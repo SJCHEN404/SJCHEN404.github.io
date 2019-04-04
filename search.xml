@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo搭建个人博客]]></title>
+    <url>%2F2019%2F04%2F04%2Fhexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%2F</url>
+    <content type="text"><![CDATA[前言打算搭建个博客用来记录自己学习的过程，这里就简单介绍下如何搭建一个个人博客。有讲得不好的请大家轻喷。 安装Hexo安装hexo只需几分钟，但是在安装之前请先安装一些东西. node.js Git 安装完成之后，就只需要用npm安装Hexo: 先选好自己要安装的目录 cd &lt;文件名&gt; 然后再安装： $ npm install -g hexo-cli 到这里我们已经安装好了Hexo。 2，利用Hexo初始化我们的站点和目录新建一个文件 $ hexo init &lt;文件夹&gt; $ cd &lt;文件夹&gt; $ npm install 到这步我们的基本框架就完成了 进入你建的目录,然后输入: $ hexo g $ hexo s 然后它会给你发个网址，也就是http://localhost:4000， 在你的浏览器打开就可以看到你的框架了。 到这里你的博客就已经基本搭建好了，但是这只是基于你的本地， 后面我会给大家分享如何更换主题，标签，还有一些markdown的使用技巧。 感谢各位大佬能够看完。]]></content>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[first]]></title>
     <url>%2F2019%2F04%2F03%2Ffirst%2F</url>
     <content type="text"><![CDATA[第一次使用]]></content>
