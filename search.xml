@@ -4,11 +4,6 @@
     <title><![CDATA[hexo常用技巧]]></title>
     <url>%2F2019%2F04%2F04%2Fhexo%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7%2F</url>
     <content type="text"><![CDATA[一些常用的hexo方法创建一个.md文件可以执行： $ hexo new “文件名” 插入图片 首先把blog（hexo）目录下的_config.yml里的psot_asset_folder:设置为true 在blog（hexo）目录下执行: 12&gt; npm install hexo-asset-image --save&gt; 在blog（hexo）目录下Git Bash Here，运行hexo n “博客名”来生成md博客时，会在_post目录下看到一个与博客同名的文件夹。 将想要上传的图片先扔到文件夹下，然后在博客中使用markdown的格式引入图片： 12&gt; ![你想要输入的替代文字](xxxx/图片名.jpg)&gt;]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[hexo使用方法]]></title>
-    <url>%2F2019%2F04%2F04%2Fhexo%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[一些常用的hexo方法创建一个.md文件可以执行： $ hexo new “文件名” 插入图片 添加本地图片 在\hexo\source目录下新建文件夹，命名为images或者其他你喜欢的名字，然后编辑你的md博文，插入下面的代码样式： like this]]></content>
       <categories>
         <category>hexo教程</category>
       </categories>
