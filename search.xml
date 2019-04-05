@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[C++中set的用法]]></title>
+    <url>%2F2019%2F04%2F05%2FC-%E4%B8%ADset%E7%9A%84%E7%94%A8%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[set的特性是，所有元素都会根据元素的键值自动排序，set的元素不像map那样可以同时拥有实值(value)和键值(key),set元素的键值就是实值，实值就是键值。set不允许两个元素有相同的键值。 我们常用set来查重。 set的各成员函数列表如下: begin()–返回指向第一个元素的迭代器 clear()–清除所有元素 count()–返回某个值元素的个数 empty()–如果集合为空，返回true end()–返回指向最后一个元素的迭代器 equal_range()–返回集合中与给定值相等的上下限的两个迭代器 erase()–删除集合中的元素 find()–返回一个指向被查找到元素的迭代器 get_allocator()–返回集合的分配器 insert()–在集合中插入元素 lower_bound()–返回指向大于（或等于）某值的第一个元素的迭代器 key_comp()–返回一个用于元素间值比较的函数 max_size()–返回集合能容纳的元素的最大限值 rbegin()–返回指向集合中最后一个元素的反向迭代器 rend()–返回指向集合中第一个元素的反向迭代器 size()–集合中元素的数目 swap()–交换两个集合变量 upper_bound()–返回大于某个值元素的迭代器 value_comp()–返回一个用于比较元素间的值的函数 下面我们主要讲set中遍历： 假设我们对一个数组进行排序，并且里面不能有重复的元素。 123456789101112131415161718#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cmath&gt;#include &lt;cstdio&gt;#include &lt;set&gt;using namespace std;int main()&#123; int a[11] =&#123;20, 40, 32, 67, 40, 20, 89, 300, 400, 15&#125;; set&lt;int&gt;map(a,a+10); cout &lt;&lt; map.size() &lt;&lt; endl; for (set&lt;int&gt;::iterator it=map.begin(); it!=map.end(); ++it) &#123; cout &lt;&lt; *it &lt;&lt; " "; &#125; return 0;&#125; 大家可以做下面这道题练练手： 我是链接]]></content>
+      <categories>
+        <category>C++常用STL</category>
+      </categories>
+      <tags>
+        <tag>set</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[矩形面积并]]></title>
     <url>%2F2019%2F04%2F04%2F%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%B9%B6%2F</url>
     <content type="text"><![CDATA[题目链接 H. Mo的面积 单测试点时限: 1.0 秒 内存限制: 512 MB Mo的老师给了他两个矩形，让他求两个矩形的面积并。Mo很忙没时间解决这种小case，请你帮他解决。 输入输入两行，每行四个整数 𝑥,𝑦,𝑥1,𝑦1 。(𝑥,𝑦) 是矩形左下角，(𝑥1,𝑦1) 是矩形的右上角. (0≤𝑥,𝑦,𝑥1,𝑦1≤1000)。 输出输出一个整数表示二个矩形的面积并。 样例input 120 1 2 31 0 3 2 output 17 ##矩形面积并问题 两个矩形相交的情况总共有以下几种（可能有部分遗漏）： 我们可以观察到，如果两个矩阵相交，那么它的边的情况只能是这种情况： 我们假设第一个矩阵的左下角坐标为，a[1],a[2],右上角坐标为a[3],a[4] 第二个矩阵的左下角坐标为a[5],a[6],右上角坐标为a[7],a[8]. left = max ( min( a[1] , a[3] ), min( a[5], a[7] ) ) right = min (max ( a[1], a[3] ), max( a[5], a[7] ) ) up = min (max ( a[2], a[4]), max ( a[6], a[8] ) ) down = max (min ( a[2], a[4] ), min ( a[6], a[8] ) ) 12345678910111213141516171819202122232425#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;map&gt;using namespace std;#define ll long longconst int INF=0x3f3f3f3f;int main()&#123; int a[100]; for (int i=1; i&lt;=8; i++) &#123; cin &gt;&gt; a[i]; &#125; int l = max(min(a[1],a[3]),min(a[5],a[7])); int r = min(max(a[1],a[3]),max(a[5],a[7])); int u = min(max(a[2],a[4]),max(a[6],a[8])); int d = max(min(a[2],a[4]),min(a[6],a[8])); int area; if (r-l &lt; 0 || u-d &lt; 0) area = 0; else area = (r-l)*(u-d); printf("%d\n",(a[3]-a[1])*(a[4]-a[2]) + (a[7]-a[5])*(a[8]-a[6]) - area); return 0;&#125;]]></content>
