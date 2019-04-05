@@ -99,18 +99,18 @@
 
 
 
-  <meta name="description" content="map的特性是，所有元素都会根据元素的减值自动被排序。map的所有元素都是pair，同时拥有实值(value)和键值(key)。pair的第一个元素会被视为键值，第二个元素会被视为实值。map不允许两个元素拥有相同的键值。 map的基本构造函数mapstrMap;         mapintMap; map&amp;lt;sring, char&amp;gt;strMap;         map&amp;lt; ch">
+  <meta name="description" content="map的特性是，所有元素都会根据元素的减值自动被排序。map的所有元素都是pair，同时拥有实值(value)和键值(key)。pair的第一个元素会被视为键值，第二个元素会被视为实值。map不允许两个元素拥有相同的键值。 map的基本构造函数  mapstrMap;  mapintMap;  map&amp;lt;sring, char&amp;gt;strMap;          map&amp;lt; char">
 <meta name="keywords" content="map">
 <meta property="og:type" content="article">
 <meta property="og:title" content="c++中map用法">
 <meta property="og:url" content="http://SJCHEN404.com/2019/04/05/c-中map用法/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="map的特性是，所有元素都会根据元素的减值自动被排序。map的所有元素都是pair，同时拥有实值(value)和键值(key)。pair的第一个元素会被视为键值，第二个元素会被视为实值。map不允许两个元素拥有相同的键值。 map的基本构造函数mapstrMap;         mapintMap; map&amp;lt;sring, char&amp;gt;strMap;         map&amp;lt; ch">
+<meta property="og:description" content="map的特性是，所有元素都会根据元素的减值自动被排序。map的所有元素都是pair，同时拥有实值(value)和键值(key)。pair的第一个元素会被视为键值，第二个元素会被视为实值。map不允许两个元素拥有相同的键值。 map的基本构造函数  mapstrMap;  mapintMap;  map&amp;lt;sring, char&amp;gt;strMap;          map&amp;lt; char">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-05T11:23:09.865Z">
+<meta property="og:updated_time" content="2019-04-05T11:29:02.240Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="c++中map用法">
-<meta name="twitter:description" content="map的特性是，所有元素都会根据元素的减值自动被排序。map的所有元素都是pair，同时拥有实值(value)和键值(key)。pair的第一个元素会被视为键值，第二个元素会被视为实值。map不允许两个元素拥有相同的键值。 map的基本构造函数mapstrMap;         mapintMap; map&amp;lt;sring, char&amp;gt;strMap;         map&amp;lt; ch">
+<meta name="twitter:description" content="map的特性是，所有元素都会根据元素的减值自动被排序。map的所有元素都是pair，同时拥有实值(value)和键值(key)。pair的第一个元素会被视为键值，第二个元素会被视为实值。map不允许两个元素拥有相同的键值。 map的基本构造函数  mapstrMap;  mapintMap;  map&amp;lt;sring, char&amp;gt;strMap;          map&amp;lt; char">
 
 
 
@@ -437,7 +437,7 @@
                 
               
 
-              <time title="创建时间：2019-04-05 15:58:03 / 修改时间：19:23:09" itemprop="dateCreated datePublished" datetime="2019-04-05T15:58:03+08:00">2019-04-05</time>
+              <time title="创建时间：2019-04-05 15:58:03 / 修改时间：19:29:02" itemprop="dateCreated datePublished" datetime="2019-04-05T15:58:03+08:00">2019-04-05</time>
             
 
             
@@ -502,24 +502,36 @@
 
       
         <p>map的特性是，所有元素都会根据元素的减值自动被排序。map的所有元素都是pair，同时拥有实值(value)和键值(key)。pair的第一个元素会被视为键值，第二个元素会被视为实值。map不允许两个元素拥有相同的键值。</p>
-<h3 id="map的基本构造函数"><a href="#map的基本构造函数" class="headerlink" title="map的基本构造函数"></a>map的基本构造函数</h3><p>map<string , int>strMap;        </string></p>
-<p>map<int ,string>intMap;</int></p>
-<p>map&lt;sring, char&gt;strMap;        </p>
-<p>map&lt; char ,string&gt;charMap;</p>
-<p>map<char ,int>charMap;           </char></p>
-<p>map<int ,char>intMap</int></p>
-<h3 id="map添加元素"><a href="#map添加元素" class="headerlink" title="map添加元素"></a>map添加元素</h3><p>map<int ,string> maplive;  </int></p>
+<h3 id="map的基本构造函数"><a href="#map的基本构造函数" class="headerlink" title="map的基本构造函数"></a>map的基本构造函数</h3><blockquote>
+<ul>
+<li><p>map<string , int>strMap;</string></p>
+</li>
+<li><p>map<int ,string>intMap;</int></p>
+</li>
+<li><p>map&lt;sring, char&gt;strMap;        </p>
+</li>
+<li><p>map&lt; char ,string&gt;charMap;</p>
+</li>
+<li><p>map<char ,int>charMap;           </char></p>
+</li>
+<li><p>map<int ,char>intMap</int></p>
+</li>
+</ul>
+</blockquote>
+<h3 id="map添加元素"><a href="#map添加元素" class="headerlink" title="map添加元素"></a>map添加元素</h3><blockquote>
+<p>map<int ,string> maplive;  </int></p>
 <ol>
 <li>pair&lt;int,string&gt; value(1,”a”)；maplive.insert(value);</li>
 </ol>
 <p>​    等价于maplive.insert(pair&lt;int,string&gt;(1,”a”));</p>
 <ol start="2">
-<li><p>maplive.insert(map&lt;int,string&gt;::value_type(1,”a”)); </p>
-</li>
-<li><p>maplive[1]=”a”;//map中最简单最常用的插入添加！</p>
-</li>
+<li>maplive.insert(map&lt;int,string&gt;::value_type(1,”a”)); </li>
+<li>maplive[1]=”a”;//map中最简单最常用的插入添加！</li>
 </ol>
-<h3 id="map的基本操作函数"><a href="#map的基本操作函数" class="headerlink" title="map的基本操作函数"></a>map的基本操作函数</h3><p>　begin()          返回指向map头部的迭代器<br>　clear()         删除所有元素<br>    count()          返回指定元素出现的次数<br>    empty()          如果map为空则返回true<br>    end()            返回指向map末尾的迭代器<br>    equal_range()    返回特殊条目的迭代器对<br>    erase()          删除一个元素<br>    find()           查找一个元素<br>    get_allocator()  返回map的配置器<br>    insert()         插入元素<br>    key_comp()       返回比较元素key的函数<br>    lower_bound()    返回键值&gt;=给定元素的第一个位置<br>    max_size()       返回可以容纳的最大元素个数<br>    rbegin()         返回一个指向map尾部的逆向迭代器<br>    rend()           返回一个指向map头部的逆向迭代器<br>    size()           返回map中元素的个数<br>    swap()            交换两个map<br>    upper_bound()     返回键值&gt;给定元素的第一个位置<br>    value_comp()      返回比较元素value的函数</p>
+</blockquote>
+<h3 id="map的基本操作函数"><a href="#map的基本操作函数" class="headerlink" title="map的基本操作函数"></a>map的基本操作函数</h3><blockquote>
+<p>　begin()          返回指向map头部的迭代器<br>　clear()         删除所有元素<br>    count()          返回指定元素出现的次数<br>    empty()          如果map为空则返回true<br>    end()            返回指向map末尾的迭代器<br>    equal_range()    返回特殊条目的迭代器对<br>    erase()          删除一个元素<br>    find()           查找一个元素<br>    get_allocator()  返回map的配置器<br>    insert()         插入元素<br>    key_comp()       返回比较元素key的函数<br>    lower_bound()    返回键值&gt;=给定元素的第一个位置<br>    max_size()       返回可以容纳的最大元素个数<br>    rbegin()         返回一个指向map尾部的逆向迭代器<br>    rend()           返回一个指向map头部的逆向迭代器<br>    size()           返回map中元素的个数<br>    swap()            交换两个map<br>    upper_bound()     返回键值&gt;给定元素的第一个位置<br>    value_comp()      返回比较元素value的函数</p>
+</blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt; strMap;  <span class="comment">//以string为键值，以int为实值</span></span><br><span class="line">    strMap[<span class="built_in">string</span>(<span class="string">"jjhou"</span>)] = <span class="number">1</span>;</span><br><span class="line">    strMap[<span class="built_in">string</span>(<span class="string">"jerry"</span>)] = <span class="number">2</span>;</span><br><span class="line">    strMap[<span class="built_in">string</span>(<span class="string">"jason"</span>)] = <span class="number">3</span>;</span><br><span class="line">    strMap[<span class="built_in">string</span>(<span class="string">"jimmy"</span>)] = <span class="number">4</span>;</span><br><span class="line">    </span><br><span class="line">    pair&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt; value(<span class="built_in">string</span>(<span class="string">"david"</span>),<span class="number">5</span>);</span><br><span class="line">    strMap.insert(value);<span class="comment">//插入新元素</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//遍历操作</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt;::iterator it = strMap.begin();it !=strMap.end();it++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">//first为键，second为值</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;it-&gt;first&lt;&lt;<span class="string">' '</span>&lt;&lt;it-&gt;second&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> number = strMap[<span class="built_in">string</span>(<span class="string">"jjhou"</span>)];</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;number&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//查找元素</span></span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt;::iterator iter1;</span><br><span class="line">    <span class="comment">//面对关联式容器，应该使用其所提供的find函数来搜索元素，会比使用STL算法find()更有效率。因为STL算法find()只是循环搜索。</span></span><br><span class="line">    iter1 = strMap.find(<span class="built_in">string</span>(<span class="string">"mchen"</span>));</span><br><span class="line">    <span class="keyword">if</span>(iter1 == strMap.end())<span class="comment">//找不到默认为末尾</span></span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"mchen no fount"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    iter1 = strMap.find(<span class="built_in">string</span>(<span class="string">"jerry"</span>));</span><br><span class="line">    <span class="keyword">if</span>(iter1 != strMap.end())</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="string">"jerry fount"</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//修改实值，键值不可修改</span></span><br><span class="line">    iter1-&gt;second = <span class="number">9</span>; <span class="comment">//可以通过map迭代器修改“value”(not key)</span></span><br><span class="line">    <span class="keyword">int</span> number1 = strMap[<span class="built_in">string</span>(<span class="string">"jerry"</span>)];</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;number1&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//删除元素</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt;::iterator it = strMap.begin();it !=strMap.end();it++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;it-&gt;first&lt;&lt;<span class="string">' '</span>&lt;&lt;it-&gt;second&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    strMap.erase(iter1);<span class="comment">//删除一个条目</span></span><br><span class="line">    strMap.erase(<span class="built_in">string</span>(<span class="string">"jason"</span>));<span class="comment">//根据键值删除</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="built_in">string</span>,<span class="keyword">int</span>&gt;::iterator strmap_iter2 = strMap.begin();</span><br><span class="line">    <span class="keyword">for</span>(;strmap_iter2 !=strMap.end();strmap_iter2++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;strmap_iter2-&gt;first&lt;&lt;<span class="string">' '</span>&lt;&lt;strmap_iter2-&gt;second&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>map用的最多的还是key排序和value排序。这里我们重点讲value排序。</p>
 <p>我们可能想到要用sort函数来排序，但是直接用的话又不可以，</p>
