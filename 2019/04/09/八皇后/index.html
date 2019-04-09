@@ -99,16 +99,20 @@
 
 
 
-  <meta name="description" content="start from zero">
-<meta property="og:type" content="website">
-<meta property="og:title" content="SJCHEN">
-<meta property="og:url" content="http://SJCHEN404.com/archives/2019/index.html">
+  <meta name="description" content="题目链接 题目描述检查一个如下的6 x 6的跳棋棋盘，有六个棋子被放置在棋盘上，使得每行、每列有且只有一个，每条对角线(包括两条主对角线的所有平行线)上至多有一个棋子。  上面的布局可以用序列2 4 6 1 3 5来描述，第i个数字表示在第i行的相应位置有一个棋子，如下： 行号 1 2 3 4 5 6 列号 2 4 6 1 3 5 这只是跳棋放置的一个解。请编一个程序找出所有跳棋放置的解。并把它们">
+<meta name="keywords" content="dfs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="八皇后">
+<meta property="og:url" content="http://SJCHEN404.com/2019/04/09/八皇后/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="start from zero">
+<meta property="og:description" content="题目链接 题目描述检查一个如下的6 x 6的跳棋棋盘，有六个棋子被放置在棋盘上，使得每行、每列有且只有一个，每条对角线(包括两条主对角线的所有平行线)上至多有一个棋子。  上面的布局可以用序列2 4 6 1 3 5来描述，第i个数字表示在第i行的相应位置有一个棋子，如下： 行号 1 2 3 4 5 6 列号 2 4 6 1 3 5 这只是跳棋放置的一个解。请编一个程序找出所有跳棋放置的解。并把它们">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://sjchen404.com/2019/04/09/八皇后/60.png">
+<meta property="og:updated_time" content="2019-04-09T13:03:59.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SJCHEN">
-<meta name="twitter:description" content="start from zero">
+<meta name="twitter:title" content="八皇后">
+<meta name="twitter:description" content="题目链接 题目描述检查一个如下的6 x 6的跳棋棋盘，有六个棋子被放置在棋盘上，使得每行、每列有且只有一个，每条对角线(包括两条主对角线的所有平行线)上至多有一个棋子。  上面的布局可以用序列2 4 6 1 3 5来描述，第i个数字表示在第i行的相应位置有一个棋子，如下： 行号 1 2 3 4 5 6 列号 2 4 6 1 3 5 这只是跳棋放置的一个解。请编一个程序找出所有跳棋放置的解。并把它们">
+<meta name="twitter:image" content="http://sjchen404.com/2019/04/09/八皇后/60.png">
 
 
 
@@ -116,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="http://SJCHEN404.com/archives/2019/">
+  <link rel="canonical" href="http://SJCHEN404.com/2019/04/09/八皇后/">
 
 
 
@@ -126,7 +130,7 @@
   };
 </script>
 
-  <title>归档 | SJCHEN</title>
+  <title>八皇后 | SJCHEN</title>
   
 
 
@@ -174,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -284,7 +288,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -331,31 +335,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -401,358 +380,235 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://SJCHEN404.com/2019/04/09/八皇后/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">八皇后
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-09 20:52:01 / 修改时间：21:03:59" itemprop="dateCreated datePublished" datetime="2019-04-09T20:52:01+08:00">2019-04-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 9 篇日志。 继续努力。
-      </span>
-      
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/dfs/" itemprop="url" rel="index"><span itemprop="name">dfs</span></a></span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/09/八皇后/" itemprop="url">
+          
             
-              <span itemprop="name">八皇后</span>
             
-          </a>
-        
-      </h2>
+          
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-09T20:52:01+08:00" content="2019-04-09">
-          04-09
-        </time>
-      </div>
+          
+          
 
-    </header>
-  </article>
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
 
+          
 
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/09/深度优先搜索/" itemprop="url">
-            
-              <span itemprop="name">单词接龙</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-09T20:05:32+08:00" content="2019-04-09">
-          04-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/06/快速排序和归并排序/" itemprop="url">
-            
-              <span itemprop="name">快速排序和归并排序</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-06T21:44:27+08:00" content="2019-04-06">
-          04-06
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <p><a href="https://www.luogu.org/problemnew/show/P1219" target="_blank" rel="noopener">题目链接</a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>检查一个如下的6 x 6的跳棋棋盘，有六个棋子被放置在棋盘上，使得每行、每列有且只有一个，每条对角线(包括两条主对角线的所有平行线)上至多有一个棋子。</p>
+<p><img src="/2019/04/09/八皇后/60.png" alt="img"></p>
+<p>上面的布局可以用序列2 4 6 1 3 5来描述，第i个数字表示在第i行的相应位置有一个棋子，如下：</p>
+<p>行号 1 2 3 4 5 6</p>
+<p>列号 2 4 6 1 3 5</p>
+<p>这只是跳棋放置的一个解。请编一个程序找出所有跳棋放置的解。并把它们以上面的序列方法输出。解按字典顺序排列。请输出前3个解。最后一行是解的总个数。</p>
+<p>//以下的话来自usaco官方，不代表洛谷观点</p>
+<p>特别注意: 对于更大的N(棋盘大小N x N)你的程序应当改进得更有效。不要事先计算出所有解然后只输出(或是找到一个关于它的公式），这是作弊。如果你坚持作弊，那么你登陆USACO Training的帐号删除并且不能参加USACO的任何竞赛。我警告过你了！</p>
+<h2 id="输入输出格式"><a href="#输入输出格式" class="headerlink" title="输入输出格式"></a>输入输出格式</h2><p>输入格式：</p>
+<p>一个数字N (6 &lt;= N &lt;= 13) 表示棋盘是N x N大小的。</p>
+<p>输出格式：</p>
+<p>前三行为前三个解，每个解的两个数字之间用一个空格隔开。第四行只有一个数字，表示解的总数。</p>
+<h3 id="输入样例："><a href="#输入样例：" class="headerlink" title="输入样例："></a>输入样例：</h3><blockquote>
+<p>6</p>
+</blockquote>
+<h3 id="输出样例："><a href="#输出样例：" class="headerlink" title="输出样例："></a>输出样例：</h3><blockquote>
+<p>2 4 6 1 3 5</p>
+<p>3 6 2 5 1 4</p>
+<p>4 1 5 2 6 3</p>
+<p>4</p>
+</blockquote>
+<h3 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路:"></a>解题思路:</h3><p>dfs模版题</p>
+<p>我们可以注意到从左下角到右上角的对角线上各个元素的（行+列）都相等</p>
+<p>从右下角到左上角的各个元素的 (行-列)都相等，为了避免出现负数。我们用(行-列+n)来表示。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,sum;</span><br><span class="line"><span class="keyword">int</span> ans[<span class="number">14</span>],check[<span class="number">3</span>][<span class="number">50</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    sum++;</span><br><span class="line">    <span class="keyword">if</span>(sum&lt;=<span class="number">3</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="built_in">cout</span>&lt;&lt;ans[i]&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> line)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(check[<span class="number">0</span>][i]==<span class="number">0</span>&amp;&amp;check[<span class="number">1</span>][line+i]==<span class="number">0</span>&amp;&amp;check[<span class="number">2</span>][line-i+n]==<span class="number">0</span>)&#123;</span><br><span class="line">            ans[line]=i;<span class="comment">//第line行第j个</span></span><br><span class="line">            check[<span class="number">0</span>][i]=<span class="number">1</span>;<span class="comment">//占列</span></span><br><span class="line">            check[<span class="number">1</span>][line+i]=<span class="number">1</span>;<span class="comment">//占左下角到右上角的对角线</span></span><br><span class="line">            check[<span class="number">2</span>][line-i+n]=<span class="number">1</span>;<span class="comment">//占右下到左上的对角线</span></span><br><span class="line">            <span class="keyword">if</span>(line==n)print();</span><br><span class="line">            <span class="keyword">else</span> dfs(line+<span class="number">1</span>);</span><br><span class="line">            check[<span class="number">0</span>][i]=<span class="number">0</span>;check[<span class="number">1</span>][line+i]=<span class="number">0</span>;check[<span class="number">2</span>][line-i+n]=<span class="number">0</span>;<span class="comment">//回溯</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    dfs(<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;sum&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/05/c-中map用法/" itemprop="url">
-            
-              <span itemprop="name">c++中map用法</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-05T15:58:03+08:00" content="2019-04-05">
-          04-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/05/C-中set的用法/" itemprop="url">
-            
-              <span itemprop="name">C++中set的用法</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-05T10:34:14+08:00" content="2019-04-05">
-          04-05
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/04/矩形面积并/" itemprop="url">
-            
-              <span itemprop="name">矩形面积并</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-04T15:41:03+08:00" content="2019-04-04">
-          04-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/04/hexo常用技巧/" itemprop="url">
-            
-              <span itemprop="name">hexo常用技巧</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-04T15:27:09+08:00" content="2019-04-04">
-          04-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/04/hexo搭建个人博客/" itemprop="url">
-            
-              <span itemprop="name">hexo搭建个人博客(一)</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-04T10:36:58+08:00" content="2019-04-04">
-          04-04
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/03/first/" itemprop="url">
-            
-              <span itemprop="name">first</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-03T12:38:56+08:00" content="2019-04-03">
-          04-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-heart"></i>感谢阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/dfs/" rel="tag"># dfs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/09/深度优先搜索/" rel="next" title="单词接龙">
+                <i class="fa fa-chevron-left"></i> 单词接龙
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -772,8 +628,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -899,6 +764,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入输出格式"><span class="nav-number">2.</span> <span class="nav-text">输入输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#输入样例："><span class="nav-number">2.1.</span> <span class="nav-text">输入样例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#输出样例："><span class="nav-number">2.2.</span> <span class="nav-text">输出样例：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解题思路"><span class="nav-number">2.3.</span> <span class="nav-text">解题思路:</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1053,6 +935,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -1068,6 +954,8 @@
 
   
 
+
+  
 
 
   
