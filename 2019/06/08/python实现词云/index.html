@@ -99,17 +99,22 @@
 
 
 
-  <meta name="description" content="start from zero">
-<meta property="og:type" content="website">
-<meta property="og:title" content="标签">
-<meta property="og:url" content="http://SJCHEN404.com/tags/index.html">
+  <meta name="description" content="首先我们先配置下环境：打开命令行，输入以下命令，回车:   pip3 install numpy matplotlib pillow wordcloud imageio jieba snownlp itchat -i https://pypi.tuna.tsinghua.edu.cn/simple   如果遇上权限问题的话:在前面加上sudo如果你遇到python pip更新问题:输入以下命令:">
+<meta name="keywords" content="python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python实现词云">
+<meta property="og:url" content="http://SJCHEN404.com/2019/06/08/python实现词云/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="start from zero">
+<meta property="og:description" content="首先我们先配置下环境：打开命令行，输入以下命令，回车:   pip3 install numpy matplotlib pillow wordcloud imageio jieba snownlp itchat -i https://pypi.tuna.tsinghua.edu.cn/simple   如果遇上权限问题的话:在前面加上sudo如果你遇到python pip更新问题:输入以下命令:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-03T14:17:44.353Z">
+<meta property="og:image" content="http://sjchen404.com/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/example1.png">
+<meta property="og:image" content="http://sjchen404.com/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/word/example2.png">
+<meta property="og:image" content="http://sjchen404.com/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/word/example3.png">
+<meta property="og:updated_time" content="2019-06-07T16:12:35.307Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="标签">
-<meta name="twitter:description" content="start from zero">
+<meta name="twitter:title" content="python实现词云">
+<meta name="twitter:description" content="首先我们先配置下环境：打开命令行，输入以下命令，回车:   pip3 install numpy matplotlib pillow wordcloud imageio jieba snownlp itchat -i https://pypi.tuna.tsinghua.edu.cn/simple   如果遇上权限问题的话:在前面加上sudo如果你遇到python pip更新问题:输入以下命令:">
+<meta name="twitter:image" content="http://sjchen404.com/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/example1.png">
 
 
 
@@ -117,7 +122,7 @@
 
   
   
-  <link rel="canonical" href="http://SJCHEN404.com/tags/">
+  <link rel="canonical" href="http://SJCHEN404.com/2019/06/08/python实现词云/">
 
 
 
@@ -127,7 +132,7 @@
   };
 </script>
 
-  <title>标签 | SJCHEN</title>
+  <title>python实现词云 | SJCHEN</title>
   
 
 
@@ -251,7 +256,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -332,31 +337,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -404,108 +384,239 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://SJCHEN404.com/2019/06/08/python实现词云/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">标签
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
+          <h1 class="post-title" itemprop="name headline">python实现词云
+
               
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-                
-                  
-                
-              
-              目前共计 13 个标签
-            </div>
-            <div class="tag-cloud-tags">
-              
-                <a href="/tags/bits-stdc-h/" style="font-size: 12px; color: #ccc">bits/stdc++/.h</a> <a href="/tags/dfs/" style="font-size: 30px; color: #111">dfs</a> <a href="/tags/map/" style="font-size: 12px; color: #ccc">map</a> <a href="/tags/next-permutation/" style="font-size: 12px; color: #ccc">next_permutation</a> <a href="/tags/prev-permutation/" style="font-size: 12px; color: #ccc">prev_permutation</a> <a href="/tags/python/" style="font-size: 12px; color: #ccc">python</a> <a href="/tags/set/" style="font-size: 12px; color: #ccc">set</a> <a href="/tags/字符串/" style="font-size: 12px; color: #ccc">字符串</a> <a href="/tags/快速幂取模/" style="font-size: 12px; color: #ccc">快速幂取模</a> <a href="/tags/排序/" style="font-size: 12px; color: #ccc">排序</a> <a href="/tags/模拟/" style="font-size: 12px; color: #ccc">模拟</a> <a href="/tags/随笔/" style="font-size: 21px; color: #6f6f6f">随笔</a> <a href="/tags/面积/" style="font-size: 12px; color: #ccc">面积</a>
-              
-            </div>
-          </div>
+            
+          </h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-08 00:08:20 / 修改时间：00:12:35" itemprop="dateCreated datePublished" datetime="2019-06-08T00:08:20+08:00">2019-06-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/python-wordcloud/" itemprop="url" rel="index"><span itemprop="name">-python -wordcloud</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>首先我们先配置下环境：<br>打开命令行，输入以下命令，回车: </p>
+<blockquote>
+<p>pip3 install numpy matplotlib pillow wordcloud imageio jieba snownlp itchat -i <a href="https://pypi.tuna.tsinghua.edu.cn/simple" target="_blank" rel="noopener">https://pypi.tuna.tsinghua.edu.cn/simple</a> </p>
+</blockquote>
+<p>如果遇上权限问题的话:<br>在前面加上sudo<br>如果你遇到python pip更新问题:<br>输入以下命令: </p>
+<blockquote>
+<p>sudo pip3 —upgrade pip </p>
+</blockquote>
+<p>下面开始正式的词云学习: </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入第三方库</span></span><br><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建词云对象</span></span><br><span class="line">w=wordcloud.WordCloud()</span><br><span class="line"></span><br><span class="line"><span class="comment">#调用词云对象的generate方法，将文本传入</span></span><br><span class="line">w.generate(<span class="string">'and that government of the people,by the people,for the people,shall not perish from the earth.'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将生成的词云保存到当前文件夹下</span></span><br><span class="line">w.to_file(<span class="string">'example1.png'</span>)</span><br></pre></td></tr></table></figure>
+<p>效果如下：<br><img src="/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/example1.png" alt></p>
+<p>这只是简单的制作，我们还可以美化它:<br>我们可以在WordCloud()里面加入各种参数，控制词云的字体，字号，字色，背景颜色等等。<br>wordcloud库会非常智能地按空格进行分词及词频统计，出现次数多的词就大。 </p>
+<h4 id="美化词云"><a href="#美化词云" class="headerlink" title="美化词云"></a>美化词云</h4><p>注意字体 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建词云对象w，设置词云图片宽、高、字体、背景颜色等参数</span></span><br><span class="line">w = wordcloud.WordCloud(width=<span class="number">1000</span>,height=<span class="number">700</span>,background_color=<span class="string">'white'</span>,font_path=<span class="string">'Songti.ttc'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用词云对象的generate方法，将文本传入</span></span><br><span class="line">w.generate(<span class="string">'从明天起，做一个幸福的人。喂马、劈柴，周游世界。从明天起，关心粮食和蔬菜。我有一所房子，面朝大海，春暖花开'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将生成的词云保存为output2-poem.png图片文件，保存到当前文件夹中</span></span><br><span class="line">w.to_file(<span class="string">'example2.png'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/word/example2.png" alt></p>
+<h4 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h4><ul>
+<li>width 词云图片宽度，默认400像素 </li>
+<li>height 词云图片高度 默认200像素 </li>
+<li>background_color 词云图片的背景颜色，默认为黑色 </li>
+</ul>
+<blockquote>
+<p>background_color=’white’ </p>
+</blockquote>
+<ul>
+<li>font_step 字号增大的步进间隔 默认1号</li>
+</ul>
+<p>font_path 指定字体路径 默认None，对于中文可用font_path=’msyh.ttc’ </p>
+<ul>
+<li>mini_font_size 最小字号 默认4号 </li>
+<li>max_font_size 最大字号 根据高度自动调节 </li>
+<li>max_words 最大词数 默认200 </li>
+<li>stop_words 不显示的单词 stop_words={“python”,”java”} </li>
+<li>Scale 默认值1。值越大，图像密度越大越清晰 </li>
+<li>prefer_horizontal：默认值0.90，浮点数类型。表示在水平如果不合适，就旋转为垂直方向，水平放置的词数占0.9？ </li>
+<li>relative_scaling：默认值0.5，浮点型。设定按词频倒序排列，上一个词相对下一位词的大小倍数。有如下取值：“0”表示大小标准只参考频率排名，“1”如果词频是2倍，大小也是2倍 </li>
+<li>mask 指定词云形状图片，默认为矩形 </li>
+</ul>
+<p>通过以下代码读入外部词云形状图片（需要先pip install imageio安装imageio） </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">w=wordcloud.WordCloud(</span><br><span class="line">  width=<span class="number">400</span>,</span><br><span class="line">  height=<span class="number">200</span>,</span><br><span class="line">  background_color=<span class="string">'black'</span>,</span><br><span class="line">  font_path=<span class="literal">None</span>,</span><br><span class="line">  font_step=<span class="number">1</span>,</span><br><span class="line">  min_font_size=<span class="number">4</span>,</span><br><span class="line">  max_font_size=<span class="literal">None</span>,</span><br><span class="line">  max_words=<span class="number">200</span>,</span><br><span class="line">  stoppwords=&#123;&#125;,</span><br><span class="line">  scale=<span class="number">1</span>,</span><br><span class="line">  prefer_horizontal=<span class="number">0.9</span>,</span><br><span class="line">  relative_scaling=<span class="number">0.5</span>,</span><br><span class="line">  mask=<span class="literal">None</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="从外部文件读入文本"><a href="#从外部文件读入文本" class="headerlink" title="从外部文件读入文本"></a>从外部文件读入文本</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从外部.txt文件中读取大段文本，存入变量txt中</span></span><br><span class="line">f=open(<span class="string">'/Users/SJCHEN/Downloads/zihaowordcloud-master/code/关于实施乡村振兴战略的意见.txt'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">txt=f.read()</span><br><span class="line"></span><br><span class="line">w=wordcloud.WordCloud(</span><br><span class="line">  width=<span class="number">1000</span>,</span><br><span class="line">  height=<span class="number">700</span>,</span><br><span class="line">  background_color=<span class="string">'white'</span>,</span><br><span class="line">  font_path=<span class="string">'Songti.ttc'</span>)</span><br><span class="line">w.generate(txt)</span><br><span class="line">w.to_file(<span class="string">'example3.png'</span>)</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/word/example3.png" alt></p>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-heart"></i>感谢阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/04/sublime-Text配置万能头文件/" rel="next" title="Mac上sublime Text配置万能头文件">
+                <i class="fa fa-chevron-left"></i> Mac上sublime Text配置万能头文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -534,8 +645,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -683,6 +803,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#美化词云"><span class="nav-number">1.</span> <span class="nav-text">美化词云</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用参数"><span class="nav-number">2.</span> <span class="nav-text">常用参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从外部文件读入文本"><span class="nav-number">3.</span> <span class="nav-text">从外部文件读入文本</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
