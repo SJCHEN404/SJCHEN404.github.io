@@ -107,14 +107,14 @@
 <meta property="og:site_name" content="SJCHEN">
 <meta property="og:description" content="首先我们先配置下环境：打开命令行，输入以下命令，回车:   pip3 install numpy matplotlib pillow wordcloud imageio jieba snownlp itchat -i https://pypi.tuna.tsinghua.edu.cn/simple   如果遇上权限问题的话:在前面加上sudo如果你遇到python pip更新问题:输入以下命令:">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://sjchen404.com/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/example1.png">
-<meta property="og:image" content="http://sjchen404.com/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/word/example2.png">
-<meta property="og:image" content="http://sjchen404.com/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/word/example3.png">
-<meta property="og:updated_time" content="2019-06-07T16:12:35.307Z">
+<meta property="og:image" content="http://sjchen404.com/2019/06/08/python实现词云/example1.png">
+<meta property="og:image" content="http://sjchen404.com/2019/06/08/python实现词云/example2.png">
+<meta property="og:image" content="http://sjchen404.com/2019/06/08/python实现词云/example3.png">
+<meta property="og:updated_time" content="2019-06-07T16:18:05.652Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python实现词云">
 <meta name="twitter:description" content="首先我们先配置下环境：打开命令行，输入以下命令，回车:   pip3 install numpy matplotlib pillow wordcloud imageio jieba snownlp itchat -i https://pypi.tuna.tsinghua.edu.cn/simple   如果遇上权限问题的话:在前面加上sudo如果你遇到python pip更新问题:输入以下命令:">
-<meta name="twitter:image" content="http://sjchen404.com/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/example1.png">
+<meta name="twitter:image" content="http://sjchen404.com/2019/06/08/python实现词云/example1.png">
 
 
 
@@ -441,7 +441,7 @@
                 
               
 
-              <time title="创建时间：2019-06-08 00:08:20 / 修改时间：00:12:35" itemprop="dateCreated datePublished" datetime="2019-06-08T00:08:20+08:00">2019-06-08</time>
+              <time title="创建时间：2019-06-08 00:08:20 / 修改时间：00:18:05" itemprop="dateCreated datePublished" datetime="2019-06-08T00:08:20+08:00">2019-06-08</time>
             
 
             
@@ -515,11 +515,11 @@
 </blockquote>
 <p>下面开始正式的词云学习: </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入第三方库</span></span><br><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建词云对象</span></span><br><span class="line">w=wordcloud.WordCloud()</span><br><span class="line"></span><br><span class="line"><span class="comment">#调用词云对象的generate方法，将文本传入</span></span><br><span class="line">w.generate(<span class="string">'and that government of the people,by the people,for the people,shall not perish from the earth.'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将生成的词云保存到当前文件夹下</span></span><br><span class="line">w.to_file(<span class="string">'example1.png'</span>)</span><br></pre></td></tr></table></figure>
-<p>效果如下：<br><img src="/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/example1.png" alt></p>
+<p>效果如下：<br><img src="/2019/06/08/python实现词云/example1.png" alt></p>
 <p>这只是简单的制作，我们还可以美化它:<br>我们可以在WordCloud()里面加入各种参数，控制词云的字体，字号，字色，背景颜色等等。<br>wordcloud库会非常智能地按空格进行分词及词频统计，出现次数多的词就大。 </p>
 <h4 id="美化词云"><a href="#美化词云" class="headerlink" title="美化词云"></a>美化词云</h4><p>注意字体 </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建词云对象w，设置词云图片宽、高、字体、背景颜色等参数</span></span><br><span class="line">w = wordcloud.WordCloud(width=<span class="number">1000</span>,height=<span class="number">700</span>,background_color=<span class="string">'white'</span>,font_path=<span class="string">'Songti.ttc'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用词云对象的generate方法，将文本传入</span></span><br><span class="line">w.generate(<span class="string">'从明天起，做一个幸福的人。喂马、劈柴，周游世界。从明天起，关心粮食和蔬菜。我有一所房子，面朝大海，春暖花开'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将生成的词云保存为output2-poem.png图片文件，保存到当前文件夹中</span></span><br><span class="line">w.to_file(<span class="string">'example2.png'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/word/example2.png" alt></p>
+<p><img src="/2019/06/08/python实现词云/example2.png" alt></p>
 <h4 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h4><ul>
 <li>width 词云图片宽度，默认400像素 </li>
 <li>height 词云图片高度 默认200像素 </li>
@@ -545,7 +545,7 @@
 <p>通过以下代码读入外部词云形状图片（需要先pip install imageio安装imageio） </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">w=wordcloud.WordCloud(</span><br><span class="line">  width=<span class="number">400</span>,</span><br><span class="line">  height=<span class="number">200</span>,</span><br><span class="line">  background_color=<span class="string">'black'</span>,</span><br><span class="line">  font_path=<span class="literal">None</span>,</span><br><span class="line">  font_step=<span class="number">1</span>,</span><br><span class="line">  min_font_size=<span class="number">4</span>,</span><br><span class="line">  max_font_size=<span class="literal">None</span>,</span><br><span class="line">  max_words=<span class="number">200</span>,</span><br><span class="line">  stoppwords=&#123;&#125;,</span><br><span class="line">  scale=<span class="number">1</span>,</span><br><span class="line">  prefer_horizontal=<span class="number">0.9</span>,</span><br><span class="line">  relative_scaling=<span class="number">0.5</span>,</span><br><span class="line">  mask=<span class="literal">None</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
 <h4 id="从外部文件读入文本"><a href="#从外部文件读入文本" class="headerlink" title="从外部文件读入文本"></a>从外部文件读入文本</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从外部.txt文件中读取大段文本，存入变量txt中</span></span><br><span class="line">f=open(<span class="string">'/Users/SJCHEN/Downloads/zihaowordcloud-master/code/关于实施乡村振兴战略的意见.txt'</span>,encoding=<span class="string">'utf-8'</span>)</span><br><span class="line">txt=f.read()</span><br><span class="line"></span><br><span class="line">w=wordcloud.WordCloud(</span><br><span class="line">  width=<span class="number">1000</span>,</span><br><span class="line">  height=<span class="number">700</span>,</span><br><span class="line">  background_color=<span class="string">'white'</span>,</span><br><span class="line">  font_path=<span class="string">'Songti.ttc'</span>)</span><br><span class="line">w.generate(txt)</span><br><span class="line">w.to_file(<span class="string">'example3.png'</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="/2019/06/08/python实现词云/Users/SJCHEN/Desktop/python/word/example3.png" alt></p>
+<p><img src="/2019/06/08/python实现词云/example3.png" alt></p>
 
       
     </div>
