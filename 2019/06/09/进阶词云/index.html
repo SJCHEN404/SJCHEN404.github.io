@@ -107,7 +107,7 @@
 <meta property="og:site_name" content="SJCHEN">
 <meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849登陆微信获取好友个性签名生成词云import itchatimport jiebaimport imageioimport wordcloudimport matplotlib.pyplot as plt# 登陆微信itc">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-09T15:16:37.147Z">
+<meta property="og:updated_time" content="2019-06-09T15:23:32.098Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="进阶词云">
 <meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849登陆微信获取好友个性签名生成词云import itchatimport jiebaimport imageioimport wordcloudimport matplotlib.pyplot as plt# 登陆微信itc">
@@ -437,7 +437,7 @@
                 
               
 
-              <time title="创建时间：2019-06-09 23:15:30 / 修改时间：23:16:37" itemprop="dateCreated datePublished" datetime="2019-06-09T23:15:30+08:00">2019-06-09</time>
+              <time title="创建时间：2019-06-09 23:15:30 / 修改时间：23:23:32" itemprop="dateCreated datePublished" datetime="2019-06-09T23:15:30+08:00">2019-06-09</time>
             
 
             
@@ -460,6 +460,13 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/词云/" itemprop="url" rel="index"><span itemprop="name">词云</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/词云/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
 
                 
                 
@@ -502,7 +509,6 @@
 
       
         <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">登陆微信获取好友个性签名生成词云</span><br><span class="line"><span class="keyword">import</span> itchat</span><br><span class="line"><span class="keyword">import</span> jieba</span><br><span class="line"><span class="keyword">import</span> imageio</span><br><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment"># 登陆微信</span></span><br><span class="line">itchat.login()</span><br><span class="line">tList=[]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 获取好友列表</span></span><br><span class="line">friends=itchat.get_friends(update=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#构建所有好友个性签名组成的大列表tList</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> friends:</span><br><span class="line">    signature=i[<span class="string">"Signature"</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="string">'emoji'</span> <span class="keyword">in</span> signature:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        tList.append(signature)</span><br><span class="line">text=<span class="string">" "</span>.join(tList)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对个性签名进行中文分词</span></span><br><span class="line">wordlist_jieba=jieba.lcut(text,cut_all=<span class="literal">True</span>)</span><br><span class="line">wl_space_split=<span class="string">" "</span>.join(wordlist_jieba)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 读取个性图片</span></span><br><span class="line">mk=imageio.imread(<span class="string">"/Users/SJCHEN/Downloads/zihaowordcloud-master/code/chinamap.png"</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建词云对象</span></span><br><span class="line">my_wordcloud=wordcloud.WordCloud(background_color=<span class="string">'white'</span>,</span><br><span class="line">                                 width=<span class="number">1000</span>,</span><br><span class="line">                                 height=<span class="number">700</span>,</span><br><span class="line">                                 font_path=<span class="string">'Songti.ttc'</span>,</span><br><span class="line">                                 max_words=<span class="number">2000</span>,</span><br><span class="line">                                 mask=mk,</span><br><span class="line">                                 scale=<span class="number">20</span>)</span><br><span class="line">my_wordcloud.generate(wl_space_split)</span><br><span class="line"></span><br><span class="line">nickname=friends[<span class="number">0</span>][<span class="string">'NickName'</span>]</span><br><span class="line">filename=<span class="string">"example12-&#123;&#125;的微信好友个性签名词云图.png"</span>.format(nickname)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 显示词云图</span></span><br><span class="line">plt.imshow(my_wordcloud)</span><br><span class="line">plt.axis(<span class="string">"off"</span>)</span><br><span class="line">plt.show()</span><br><span class="line">print(<span class="string">'程序结束'</span>)</span><br></pre></td></tr></table></figure>
-
       
     </div>
 
@@ -668,7 +674,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">19</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>

@@ -6,6 +6,7 @@
     <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849登陆微信获取好友个性签名生成词云import itchatimport jiebaimport imageioimport wordcloudimport matplotlib.pyplot as plt# 登陆微信itchat.login()tList=[]# 获取好友列表friends=itchat.get_friends(update=True)#构建所有好友个性签名组成的大列表tListfor i in friends: signature=i["Signature"] if 'emoji' in signature: pass else: tList.append(signature)text=" ".join(tList)# 对个性签名进行中文分词wordlist_jieba=jieba.lcut(text,cut_all=True)wl_space_split=" ".join(wordlist_jieba)# 读取个性图片mk=imageio.imread("/Users/SJCHEN/Downloads/zihaowordcloud-master/code/chinamap.png")# 构建词云对象my_wordcloud=wordcloud.WordCloud(background_color='white', width=1000, height=700, font_path='Songti.ttc', max_words=2000, mask=mk, scale=20)my_wordcloud.generate(wl_space_split)nickname=friends[0]['NickName']filename="example12-&#123;&#125;的微信好友个性签名词云图.png".format(nickname)# 显示词云图plt.imshow(my_wordcloud)plt.axis("off")plt.show()print('程序结束')]]></content>
       <categories>
         <category>词云</category>
+        <category>python</category>
       </categories>
       <tags>
         <tag>python</tag>
@@ -20,6 +21,7 @@
         <category>jieba</category>
         <category>imageio</category>
         <category>词云</category>
+        <category>python</category>
       </categories>
       <tags>
         <tag>python</tag>
@@ -33,6 +35,7 @@
       <categories>
         <category>jieba</category>
         <category>词云</category>
+        <category>python</category>
       </categories>
       <tags>
         <tag>python</tag>
