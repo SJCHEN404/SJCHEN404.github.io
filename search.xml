@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[数据库配置环境]]></title>
+    <url>%2F2020%2F01%2F02%2F%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%2F</url>
+    <content type="text"><![CDATA[mysql安装配置1，选择合适自己电脑的版本进行安装mysql 2，安装MYSQL驱动 ​ 由于MySQL服务器以独立的进程运行，并通过网络对外服务，所以，需要支持Python的MySQL驱动来连接到MySQL服务器。MySQL官方提供了mysql-connector-python驱动，但是安装的时候需要给pip命令加上参数 $ pip install mysql-connector-python —allow-external mysql-connector-python 如果你用的是pip3 $ pip3 install mysql-connector-python —allow-external mysql-connector-python 如果上面的命令安装失败，可以试试下面的方法 $ pip install mysql-connector 同理如果是pip3 $ pip3 install mysql-connector 如果需要权限的话前面加上sudo即可，到这里mysql应该就已经安装完成。 可以在命令行里面敲 mysql -u root -p你的密码 这样就代表配置成功了。]]></content>
+      <categories>
+        <category>mysql</category>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[p1141 01迷宫]]></title>
     <url>%2F2019%2F06%2F11%2Fp1141-01%E8%BF%B7%E5%AE%AB%2F</url>
     <content type="text"><![CDATA[题目链接 题目描述有一个仅由数字0与1组成的n×n格迷宫。若你位于一格0上，那么你可以移动到相邻44格中的某一格1上，同样若你位于一格1上，那么你可以移动到相邻44格中的某一格0上。 你的任务是：对于给定的迷宫，询问从某一格开始能移动到多少个格子（包含自身）。 输入输出格式输入格式： 第1行为两个正整数n,m。 下面n行，每行n个字符，字符只可能是0或者1，字符之间没有空格。 接下来m行，每行2个用空格分隔的正整数i,j，对应了迷宫中第i行第j列的一个格子，询问从这一格开始能移动到多少格。 输出格式： mm行，对于每个询问输出相应答案。 输入输出样例输入样例#1: 2 2 01 10 1 1 2 2 输出样例#1: 4 4 解题思路一开始我直接就dfs直接搜了，但是TLE了3个数据。 代码如下: 123456789101112131415161718192021222324252627282930313233343536373839404142434445#include &lt;bits/stdc++.h&gt;using namespace std;const int maxn=1010;char a[maxn][maxn];int dir[][2]=&#123;&#123;-1,0&#125;,&#123;1,0&#125;,&#123;0,-1&#125;,&#123;0,1&#125;&#125;;int vis[maxn][maxn];int n,m;int ans;int max_ans;void dfs(int x,int y,char temp)&#123; vis[x][y]=1; if(x&lt;1||x&gt;n||y&lt;1||y&gt;n) return; else &#123; for(int i=0;i&lt;4;i++)&#123; int dx=x+dir[i][0]; int dy=y+dir[i][1]; if(dx&gt;0&amp;&amp;dx&lt;=n&amp;&amp;dy&gt;0&amp;&amp;dy&lt;=n&amp;&amp;vis[dx][dy]==0&amp;&amp;a[dx][dy]!=temp)&#123; if(vis[dx][dy]==0) ans++; vis[dx][dy]++; temp=a[dx][dy]; if(ans&gt;max_ans) max_ans=ans; dfs(dx,dy,temp); temp=a[x][y]; &#125; &#125; &#125;&#125;int main()&#123; int start,end; cin&gt;&gt;n&gt;&gt;m; for(int i=1;i&lt;=n;i++) for(int j=1;j&lt;=n;j++) cin&gt;&gt;a[i][j]; while(m--)&#123; cin&gt;&gt;start&gt;&gt;end; memset(vis,0,sizeof(vis)); ans=1;max_ans=1; dfs(start,end,a[start][end]); cout&lt;&lt;max_ans&lt;&lt;endl; &#125; return 0;&#125; 听大佬说可以用并查集可以直接写，但是不会（无奈） 想了许久，发现如果每次查询一个就重新查会TLE,那么是不是只要我们查过了的我们就标志下，下次就不用再查了. 12345678910111213141516171819202122232425262728293031323334#include &lt;bit/stdc++.h&gt;using namespace std;const int maxn=1000010;int x,y,f[1010][1010];int n,m,ans[maxn];char s[1010][1010];void dfs(int r,int c,int z,int l)&#123; if(r&lt;0||r&gt;=n||c&lt;0||c&gt;=n||f[r][c]!=-1||s[r][c]-'0'!=z) return; f[r][c]=l;ans[l]++;//记录个数 dfs(r-1,c,!z,l); dfs(r+1,c,!z,l); dfs(r,c-1,!z,l); dfs(r,c+1,!z,l);&#125;int main()&#123; cin&gt;&gt;n&gt;&gt;m; for(int i=0;i&lt;n;i++) for(int j=0;j&lt;n;j++) cin&gt;&gt;s[i][j]; memset(f,-1,sizeof(f)); for(int i=0;i&lt;m;i++)&#123; cin&gt;&gt;x&gt;&gt;y; x--;y--; if(f[x][y]==-1) dfs(x,y,s[x][y]-'0',i); else ans[i]=ans[f[x][y]];//已经找过了 &#125; for(int i=0;i&lt;m;i++) cout&lt;&lt;ans[i]&lt;&lt;endl; return 0;&#125;]]></content>
