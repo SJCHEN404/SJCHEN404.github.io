@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[安装pymysql库和tjinter库]]></title>
+    <url>%2F2020%2F01%2F02%2F%E5%AE%89%E8%A3%85pymysql%E5%BA%93%E5%92%8Ctjinter%E5%BA%93%2F</url>
+    <content type="text"><![CDATA[pymysql是python3中用于连接mysql服务器的一个库 在cmd中输入：(如果你是pip3就用pip3,否则就有pip) pip3 install pymysql 在python的ide中调用 import pymysql 看下有没有安装成功 tkinter是python的一个图形设置库 安装方法也如上,具体使用方法请百度。]]></content>
+      <tags>
+        <tag>python</tag>
+        <tag>pymysql</tag>
+        <tag>tkinter</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数据库配置环境]]></title>
     <url>%2F2020%2F01%2F02%2F%E6%95%B0%E6%8D%AE%E5%BA%93%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%2F</url>
     <content type="text"><![CDATA[mysql安装配置1，选择合适自己电脑的版本进行安装mysql 2，安装MYSQL驱动 ​ 由于MySQL服务器以独立的进程运行，并通过网络对外服务，所以，需要支持Python的MySQL驱动来连接到MySQL服务器。MySQL官方提供了mysql-connector-python驱动，但是安装的时候需要给pip命令加上参数 $ pip install mysql-connector-python —allow-external mysql-connector-python 如果你用的是pip3 $ pip3 install mysql-connector-python —allow-external mysql-connector-python 如果上面的命令安装失败，可以试试下面的方法 $ pip install mysql-connector 同理如果是pip3 $ pip3 install mysql-connector 如果需要权限的话前面加上sudo即可，到这里mysql应该就已经安装完成。 可以在命令行里面敲 mysql -u root -p你的密码 这样就代表配置成功了。]]></content>
