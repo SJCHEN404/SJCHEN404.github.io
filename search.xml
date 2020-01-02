@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[安装pymysql库和tjinter库]]></title>
+    <title><![CDATA[安装pymysql库和tkinter库]]></title>
     <url>%2F2020%2F01%2F02%2F%E5%AE%89%E8%A3%85pymysql%E5%BA%93%E5%92%8Ctkinter%E5%BA%93%2F</url>
     <content type="text"><![CDATA[pymysql是python3中用于连接mysql服务器的一个库 在cmd中输入：(如果你是pip3就用pip3,否则就有pip) pip3 install pymysql 如果需要加上权限 mac sudo pip3 install pymysql window pip3 install —user pymysql 下载这个全靠运气，服务器在国外，下载速度慢，经常超时错误，多试几次,直接方向键上键就可以。 在python的ide中调用 import pymysql 看下有没有安装成功 tkinter是python的一个图形设置库 安装方法也如上,具体使用方法请百度。]]></content>
       <tags>
