@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="最长回文子串给定一个字符 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。 示例1: 输入：“babad”输出：”bab”注意：”aba”也是一个有效答案。 示例2: 输入：”cbbd”：”bb” 方法一：暴力匹配（Brute Force） 根据回文子串的定义，枚举所有长度大于等于2的子串，依次判断它们是否是回文 在具体实现时，可以只针对大于“当前得到的最长回文子串长度”的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SJCHEN">
+<meta property="og:url" content="http://SJCHEN404.com/2021/01/06/LC最长回文子串/index.html">
+<meta property="og:site_name" content="SJCHEN">
+<meta property="og:description" content="最长回文子串给定一个字符 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。 示例1: 输入：“babad”输出：”bab”注意：”aba”也是一个有效答案。 示例2: 输入：”cbbd”：”bb” 方法一：暴力匹配（Brute Force） 根据回文子串的定义，枚举所有长度大于等于2的子串，依次判断它们是否是回文 在具体实现时，可以只针对大于“当前得到的最长回文子串长度”的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://pic.leetcode-cn.com/572db4731d6a0e32ee9c14773ed476068bebb88883335bc7415cb0b43762303a.jpg">
+<meta property="og:updated_time" content="2021-01-08T09:38:38.020Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SJCHEN">
+<meta name="twitter:description" content="最长回文子串给定一个字符 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。 示例1: 输入：“babad”输出：”bab”注意：”aba”也是一个有效答案。 示例2: 输入：”cbbd”：”bb” 方法一：暴力匹配（Brute Force） 根据回文子串的定义，枚举所有长度大于等于2的子串，依次判断它们是否是回文 在具体实现时，可以只针对大于“当前得到的最长回文子串长度”的">
+<meta name="twitter:image" content="https://pic.leetcode-cn.com/572db4731d6a0e32ee9c14773ed476068bebb88883335bc7415cb0b43762303a.jpg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://SJCHEN404.com/2021/01/06/LC最长回文子串/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title> | SJCHEN</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SJCHEN</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">时光，不会辜负每一个平静努力的人</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-schedule">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://SJCHEN404.com/2021/01/06/LC最长回文子串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-01-06 20:01:29" itemprop="dateCreated datePublished" datetime="2021-01-06T20:01:29+08:00">2021-01-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-01-08 17:38:38" itemprop="dateModified" datetime="2021-01-08T17:38:38+08:00">2021-01-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="最长回文子串"><a href="#最长回文子串" class="headerlink" title="最长回文子串"></a>最长回文子串</h3><p>给定一个字符 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
+<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><blockquote>
+<h5 id="输入：“babad”"><a href="#输入：“babad”" class="headerlink" title="输入：“babad”"></a>输入：“babad”</h5><h5 id="输出：”bab”"><a href="#输出：”bab”" class="headerlink" title="输出：”bab”"></a>输出：”bab”</h5><h5 id="注意：”aba”也是一个有效答案。"><a href="#注意：”aba”也是一个有效答案。" class="headerlink" title="注意：”aba”也是一个有效答案。"></a>注意：”aba”也是一个有效答案。</h5></blockquote>
+<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><blockquote>
+<h5 id="输入：”cbbd”"><a href="#输入：”cbbd”" class="headerlink" title="输入：”cbbd”"></a>输入：”cbbd”</h5><h5 id="：”bb”"><a href="#：”bb”" class="headerlink" title="：”bb”"></a>：”bb”</h5></blockquote>
+<h4 id="方法一：暴力匹配（Brute-Force）"><a href="#方法一：暴力匹配（Brute-Force）" class="headerlink" title="方法一：暴力匹配（Brute Force）"></a>方法一：暴力匹配（Brute Force）</h4><ul>
+<li>根据回文子串的定义，枚举所有长度大于等于2的子串，依次判断它们是否是回文</li>
+<li>在具体实现时，可以只针对大于“当前得到的最长回文子串长度”的子串进行“回文判断”</li>
+<li>在记录最长回文子串时，只记录当前子串的起始位置和子串长度。</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">valid</span><span class="params">(<span class="built_in">string</span> s,<span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">		<span class="comment">//验证子串s[left,right]是否为回文串</span></span><br><span class="line">		<span class="keyword">while</span>(left &lt;= right)&#123;</span><br><span class="line">			<span class="keyword">if</span>(s[left] != s[right])&#123;</span><br><span class="line">				<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			left++;</span><br><span class="line">			right--;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    	<span class="comment">//特判</span></span><br><span class="line">    	<span class="keyword">int</span> len = s.size();</span><br><span class="line">    	<span class="keyword">if</span>(len &lt; <span class="number">2</span>)&#123;</span><br><span class="line">    		<span class="keyword">return</span> s;</span><br><span class="line">    	&#125;</span><br><span class="line"></span><br><span class="line">    	<span class="keyword">int</span> maxLen = <span class="number">1</span>;</span><br><span class="line">    	<span class="built_in">string</span> res = s.substr(<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    	<span class="comment">//枚举所有长度大于等于2的子串</span></span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len - <span class="number">1</span>; i++)&#123;</span><br><span class="line">    		<span class="keyword">for</span>(<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; len; j++)&#123;</span><br><span class="line">    			<span class="keyword">if</span>(j - i + <span class="number">1</span> &gt; maxLen &amp;&amp; valid(s,i,j))&#123;</span><br><span class="line">    				maxLen = j - i + <span class="number">1</span>;</span><br><span class="line">    				res = s.substr(i,maxLen);</span><br><span class="line">    			&#125;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="方法二：动态规划"><a href="#方法二：动态规划" class="headerlink" title="方法二：动态规划"></a>方法二：动态规划</h4><h5 id="1，思考状态（重点）"><a href="#1，思考状态（重点）" class="headerlink" title="1，思考状态（重点）"></a>1，思考状态（重点）</h5><ul>
+<li>状态的定义，先尝试（题目问什么，就把什么设置为状态）；</li>
+<li>然后思考「状态如何转移」，如果「状态转移方程」不容易得到，尝试修改定义，目的依然是为了方便得到「状态转移方程」。</li>
+</ul>
+<blockquote>
+<p>状态转移方程是原始问题的不同规模的子问题的联系。即大问题的最优解如何由小问题的最优解得到的。</p>
+</blockquote>
+<h5 id="2，思考状态转移方程（核心，难点）"><a href="#2，思考状态转移方程（核心，难点）" class="headerlink" title="2，思考状态转移方程（核心，难点）"></a>2，思考状态转移方程（核心，难点）</h5><ul>
+<li>常见的推到技巧是：分类讨论。即：对状态空间进行分类；</li>
+<li>「动态规划」方法依然是「空间换时间」思想的体现，常见的解决问题的过程很像在「填表」。</li>
+</ul>
+<h5 id="3，思考初始化"><a href="#3，思考初始化" class="headerlink" title="3，思考初始化"></a>3，思考初始化</h5><p>初始化是非常重要的，一步错，步步错。初始化状态一定要设置对，才可能得到正确的结果。</p>
+<ul>
+<li>角度1: 直接从状态的语义出发。</li>
+<li>角度2: 如果状态的语义不好思考，就考虑「状态转移方程」的边界需要什么样初始化的条件；</li>
+<li>角度3: 从「状态转移方程」的下标看是否需要多设置一行，一列表示「哨兵」，这样可以避免一些特殊情况的讨论。</li>
+</ul>
+<h5 id="4，思考输出"><a href="#4，思考输出" class="headerlink" title="4，思考输出"></a>4，思考输出</h5><p>有些时候是最后一个状态，有些时候可能会综合之前所有计算过的状态。</p>
+<h5 id="5，思考优化空间（也可以叫表格复用）"><a href="#5，思考优化空间（也可以叫表格复用）" class="headerlink" title="5，思考优化空间（也可以叫表格复用）"></a>5，思考优化空间（也可以叫表格复用）</h5><ul>
+<li>经典的「优化空间」的典型问题是「0-1」背包问题和「完全背包」问题。</li>
+</ul>
+<h4 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h4><p>对于这道题来说，我们从回文串的定义展开讨论：</p>
+<ul>
+<li><p>如果一个字符串的头尾两个字符不相等，那么这两个字符串一定不是回文串；</p>
+</li>
+<li><p>如果一个字符串的头尾两个字符相等，才有必要继续判断下去</p>
+<p>​    1，如果里面的子串是回文，整体就是回文</p>
+<p>​    2，如果里面的子串不是回文，整体就不是回文</p>
+</li>
+</ul>
+<p>综上： <strong>在头尾字符相等的情况，里面的回文性质决定了整个子串的回文性质</strong>这就是状态转移。因此可以把「状态」定义为原字符串的一个子串是否是回文子串。</p>
+<h5 id="第1步：定义状态"><a href="#第1步：定义状态" class="headerlink" title="第1步：定义状态"></a>第1步：定义状态</h5><p>^dp[ i ][ j ]表示子串s[ i , j ]是否为回文子串，这里可以取到s[ i ]和s[ j ]。</p>
+<h5 id="第2步：思考状态转移方程"><a href="#第2步：思考状态转移方程" class="headerlink" title="第2步：思考状态转移方程"></a>第2步：思考状态转移方程</h5><p>根据我们前面的分析（头尾字符是否相等），可以得到：</p>
+<blockquote>
+<p>dp[i][j] = (s[i] == s[j]) and dp[i + 1][j - 1]</p>
+</blockquote>
+<p>这里需要注意：</p>
+<ul>
+<li>「动态规划」事实上是在填一张二维表格，由于构成子串，因此 <sup><a href="#fn_ i" id="reffn_ i"> i</a></sup> 和 <sup><a href="#fn_ j" id="reffn_ j"> j</a></sup> 的关系</li>
+</ul>
+<p>是<sup><a href="#fn_i < = j" id="reffn_i < = j">i < = j</a></sup> ，因此，只需要填这张表格对角线以上的部分。</p>
+<ul>
+<li>看到<sup><a href="#fn_ dp[i + 1, j - 1\] " id="reffn_ dp[i + 1, j - 1\] "> dp[i + 1, j - 1\] </a></sup> 就得考虑边界情况。</li>
+</ul>
+<p>边界条件是：表达式 <sup><a href="#fn_ [i + 1, j - 1\]" id="reffn_ [i + 1, j - 1\]"> [i + 1, j - 1\]</a></sup> 不构成区间，即长度严格小于 2，即<sup><a href="#fn_ j - 1 - (i + 1) + 1 < 2 " id="reffn_ j - 1 - (i + 1) + 1 < 2 "> j - 1 - (i + 1) + 1 < 2 </a></sup>，整理得<sup><a href="#fn_ j - i < 3" id="reffn_ j - i < 3"> j - i < 3</a></sup>。</p>
+<p>这个结论很显然：j - i &lt; 3 等价于 j - i + 1 &lt; 4，即当子串 s[i..j] 的长度等于 2 或者等于 3 的时候，其实只需要判断一下头尾两个字符是否相等就可以直接下结论了。</p>
+<ul>
+<li><p>如果子串 s[i + 1..j - 1] 只有 1 个字符，即去掉两头，剩下中间部分只有 1个字符，显然是回文；</p>
+</li>
+<li><p>如果子串 s[i + 1..j - 1] 为空串，那么子串 s[i, j] 一定是回文子串。</p>
+</li>
+</ul>
+<p>  因此，在 s[i] == s[j] 成立和 j - i &lt; 3 的前提下，直接可以下结论，dp[ i ][ j ] = true，否则才执行状态转移。</p>
+<h5 id="第3步：考虑初始化"><a href="#第3步：考虑初始化" class="headerlink" title="第3步：考虑初始化"></a>第3步：考虑初始化</h5><p>  初始化的时候，单个字符一定是回文串，因此把对角线先初始化为 true，即 dp[i][i] = true 。</p>
+<p>  事实上，初始化的部分都可以省去。因为只有一个字符的时候一定是回文，dp[ i ][ i ] 根本不会被其它状态值所参考。</p>
+<h5 id="第4步：考虑输出"><a href="#第4步：考虑输出" class="headerlink" title="第4步：考虑输出"></a>第4步：考虑输出</h5><p>只要一得到 dp[ i ] [ j ] = true，就记录子串的长度和起始位置，没有必要截取，这是因为截取字符串也要消耗性能，记录此时的回文子串的「起始位置」和「回文长度」即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">    	<span class="comment">//特判</span></span><br><span class="line">    	<span class="keyword">int</span> len = s.size();</span><br><span class="line">    	<span class="keyword">if</span>(len &lt; <span class="number">2</span>)&#123;</span><br><span class="line">    		<span class="keyword">return</span> s;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">int</span> maxLen = <span class="number">1</span>;</span><br><span class="line">    	<span class="keyword">int</span> begin = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    	<span class="comment">//dp[i][j]表示s[i,j]是否是回文串</span></span><br><span class="line">    	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; dp(len,<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(len));</span><br><span class="line">    	<span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; len; j++)&#123;</span><br><span class="line">    		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; j; i++)&#123;</span><br><span class="line">    			<span class="keyword">if</span>(s[i] != s[j])&#123;</span><br><span class="line">    				dp[i][j] = <span class="literal">false</span>;</span><br><span class="line">    				<span class="keyword">continue</span>;</span><br><span class="line">    			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(j - i &lt; <span class="number">3</span>)&#123;</span><br><span class="line">    				dp[i][j] = <span class="literal">true</span>;</span><br><span class="line">    			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    				dp[i][j] = dp[i + <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">    			&#125;</span><br><span class="line">    			<span class="keyword">if</span>(dp[i][j] &amp;&amp; (j - i + <span class="number">1</span> &gt; maxLen))&#123;</span><br><span class="line">    				maxLen = j - i + <span class="number">1</span>;</span><br><span class="line">    				begin = i;</span><br><span class="line">    			&#125;</span><br><span class="line">    		&#125;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> s.substr(begin,maxLen);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="方法三：中心扩散法"><a href="#方法三：中心扩散法" class="headerlink" title="方法三：中心扩散法"></a>方法三：中心扩散法</h4><p>暴力法采用双指针，验证是否是回文串。</p>
+<p>除了枚举字符串的左右边界以外，比较容易想到的是<strong>枚举可能出现的回文子串的“中心位置”，从中心位置尝试尽可能扩散出去，得到一个回文串。</strong></p>
+<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><p>遍历每一个索引，以这个索引为中心，利用“回文串”中心对称的特点，往两边扩散，看最多能扩散多远。</p>
+<p>枚举“中心位置”时间复杂度为O(N)，从“中心位置”扩散得到“回文子串”的时间复杂度为O(N)，因此时间复杂度可以降到O(N^2)。</p>
+<p><strong>注意：</strong>在这里注意一个细节：回文串在长度为奇数和偶数的时候，“回文中心”的形式是不一样的。</p>
+<ul>
+<li>奇数回文串的“中心”是一个具体的字符，例如：回文串<sup><a href="#fn_ aba" id="reffn_ aba"> aba</a></sup> 的中心是字符<sup><a href="#fn_ b" id="reffn_ b"> b</a></sup>；</li>
+<li>偶数回文串的”中心”是位于中间的两个字符的“空隙”，例如：回文串<sup><a href="#fn_ abba" id="reffn_ abba"> abba</a></sup>的中心是两个<sup><a href="#fn_ b" id="reffn_ b"> b</a></sup>中间的那个“空隙”。</li>
+</ul>
+<p><img src="https://pic.leetcode-cn.com/572db4731d6a0e32ee9c14773ed476068bebb88883335bc7415cb0b43762303a.jpg" alt="图 1 ：奇数回文串与偶数回文串"></p>
+<p>我们可以设计一个方法，兼容以上两种情况：</p>
+<p>1、如果传入重合的索引编码，进行中心扩散，此时得到的回文子串的长度是奇数；</p>
+<p>2、如果传入相邻的索引编码，进行中心扩散，此时得到的回文子串的长度是偶数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">centerSpread</span><span class="params">(<span class="built_in">string</span> s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// left = right 的时候，此时回文中心是一个空隙，向两边扩散得到的回文子串的长度是奇数</span></span><br><span class="line">        <span class="comment">// right = left + 1 的时候，此时回文中心是一个字符，向两边扩散得到的回文子串的长度是偶数</span></span><br><span class="line">        <span class="keyword">int</span> size = s.size();</span><br><span class="line">        <span class="keyword">int</span> i = left;</span><br><span class="line">        <span class="keyword">int</span> j = right;</span><br><span class="line">        <span class="keyword">while</span> (i &gt;= <span class="number">0</span> &amp;&amp; j &lt; size) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s[i] == s[j]) &#123;</span><br><span class="line">                i--;</span><br><span class="line">                j++;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 这里要小心，跳出 while 循环时，恰好满足 s.charAt(i) != s.charAt(j)，因此不能取 i，不能取 j</span></span><br><span class="line">        <span class="keyword">return</span> s.substr(i + <span class="number">1</span>, j - i - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestPalindrome</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 特判</span></span><br><span class="line">        <span class="keyword">int</span> size = s.size();</span><br><span class="line">        <span class="keyword">if</span> (size &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> s;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> maxLen = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">string</span> res = s.substr(<span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 中心位置枚举到 len - 2 即可</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            <span class="built_in">string</span> oddStr = centerSpread(s, i, i);</span><br><span class="line">            <span class="built_in">string</span> evenStr = centerSpread(s, i, i + <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">string</span> maxLenStr = oddStr.size() &gt; evenStr.size() ? oddStr : evenStr;</span><br><span class="line">            <span class="keyword">if</span> (maxLenStr.length() &gt; maxLen) &#123;</span><br><span class="line">                maxLen = maxLenStr.size();</span><br><span class="line">                res = maxLenStr;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+
+    <div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-heart"></i>感谢阅读-------------</div>
+    
+</div>
+  
+</div>
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/06/JAVA连接数据库/" rel="next" title>
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2022/01/20/NumPy/" rel="prev" title="NumPy入门">
+                NumPy入门 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">SJCHEN</p>
+              <div class="site-description motion-element" itemprop="description">start from zero</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">28</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/SJCHEN404" title="GitHub &rarr; https://github.com/SJCHEN404" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/5702603638/profile?rightmod=1&wvr=6&mod=personinfo" title="Weibo &rarr; https://weibo.com/5702603638/profile?rightmod=1&wvr=6&mod=personinfo" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#最长回文子串"><span class="nav-number">1.</span> <span class="nav-text">最长回文子串</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#示例1"><span class="nav-number">1.0.1.</span> <span class="nav-text">示例1:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入：“babad”"><span class="nav-number">1.0.2.</span> <span class="nav-text">输入：“babad”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输出：”bab”"><span class="nav-number">1.0.3.</span> <span class="nav-text">输出：”bab”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#注意：”aba”也是一个有效答案。"><span class="nav-number">1.0.4.</span> <span class="nav-text">注意：”aba”也是一个有效答案。</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#示例2"><span class="nav-number">1.0.5.</span> <span class="nav-text">示例2:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#输入：”cbbd”"><span class="nav-number">1.0.6.</span> <span class="nav-text">输入：”cbbd”</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#：”bb”"><span class="nav-number">1.0.7.</span> <span class="nav-text">：”bb”</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法一：暴力匹配（Brute-Force）"><span class="nav-number">1.1.</span> <span class="nav-text">方法一：暴力匹配（Brute Force）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法二：动态规划"><span class="nav-number">1.2.</span> <span class="nav-text">方法二：动态规划</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1，思考状态（重点）"><span class="nav-number">1.2.1.</span> <span class="nav-text">1，思考状态（重点）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2，思考状态转移方程（核心，难点）"><span class="nav-number">1.2.2.</span> <span class="nav-text">2，思考状态转移方程（核心，难点）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3，思考初始化"><span class="nav-number">1.2.3.</span> <span class="nav-text">3，思考初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4，思考输出"><span class="nav-number">1.2.4.</span> <span class="nav-text">4，思考输出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5，思考优化空间（也可以叫表格复用）"><span class="nav-number">1.2.5.</span> <span class="nav-text">5，思考优化空间（也可以叫表格复用）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析"><span class="nav-number">1.3.</span> <span class="nav-text">分析</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第1步：定义状态"><span class="nav-number">1.3.1.</span> <span class="nav-text">第1步：定义状态</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第2步：思考状态转移方程"><span class="nav-number">1.3.2.</span> <span class="nav-text">第2步：思考状态转移方程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第3步：考虑初始化"><span class="nav-number">1.3.3.</span> <span class="nav-text">第3步：考虑初始化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第4步：考虑输出"><span class="nav-number">1.3.4.</span> <span class="nav-text">第4步：考虑输出</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#方法三：中心扩散法"><span class="nav-number">1.4.</span> <span class="nav-text">方法三：中心扩散法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#思路："><span class="nav-number">1.4.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2022</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SJCHEN</span>
+
+  
+
+  
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.1.0</div>
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.1.0"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
