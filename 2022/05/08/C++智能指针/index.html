@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sjchen404.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="为了更容易（同时也更安全）地使用动态内存，新的标准库提供了两种智能指针类型来管理动态对象。智能指针的行为类似常规指针，最重要的区别是它负责自动释放所指向的对象。不需要考虑内存泄露。 shared_ptr允许多个指针指向同一个对象； unique_ptr则独占所指向的对象； 标准库还定义了一个名为weak_ptr的伴随类，它是一种弱引用，指向shared_ptr所管理的对象。这三种类型都定义在mem">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++智能指针">
+<meta property="og:url" content="https://sjchen404.github.io/2022/05/08/C++%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/index.html">
+<meta property="og:site_name" content="SJCHEN">
+<meta property="og:description" content="为了更容易（同时也更安全）地使用动态内存，新的标准库提供了两种智能指针类型来管理动态对象。智能指针的行为类似常规指针，最重要的区别是它负责自动释放所指向的对象。不需要考虑内存泄露。 shared_ptr允许多个指针指向同一个对象； unique_ptr则独占所指向的对象； 标准库还定义了一个名为weak_ptr的伴随类，它是一种弱引用，指向shared_ptr所管理的对象。这三种类型都定义在mem">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sjchen404.github.io/C++%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/2.jpg">
+<meta property="article:published_time" content="2022-05-08T02:40:57.919Z">
+<meta property="article:modified_time" content="2022-05-14T16:07:44.642Z">
+<meta property="article:author" content="SJCHEN">
+<meta property="article:tag" content="智能指针">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sjchen404.github.io/C++%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/2.jpg">
+
+<link rel="canonical" href="https://sjchen404.github.io/2022/05/08/C++%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>C++智能指针 | SJCHEN</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SJCHEN</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">时光，不会辜负每一个平静努力的人</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/05/08/C++%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          C++智能指针
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-08 10:40:57" itemprop="dateCreated datePublished" datetime="2022-05-08T10:40:57+08:00">2022-05-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-15 00:07:44" itemprop="dateModified" datetime="2022-05-15T00:07:44+08:00">2022-05-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" itemprop="url" rel="index"><span itemprop="name">智能指针</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>为了更容易（同时也更安全）地使用动态内存，新的标准库提供了两种<strong>智能指针</strong>类型来管理动态对象。智能指针的行为类似常规指针，最重要的区别是它负责自动释放所指向的对象。不需要考虑内存泄露。</p>
+<p><code>shared_ptr</code>允许多个指针指向同一个对象；</p>
+<p><code>unique_ptr</code>则独占所指向的对象；</p>
+<p>标准库还定义了一个名为<code>weak_ptr</code>的伴随类，它是一种弱引用，指向<code>shared_ptr</code>所管理的对象。这三种类型都定义在<code>memory</code>头文件中。</p>
+<span id="more"></span>
+
+<h1 id="1-unique-ptr"><a href="#1-unique-ptr" class="headerlink" title="1. unique_ptr"></a>1. unique_ptr</h1><p>一个<code>unique_ptr</code>拥有它所指向的对象。</p>
+<p>当我们定义一个<code>unique_ptr</code>时，需要将其绑定到一个<code>new</code>返回的指针上，初始化<code>unique_ptr</code>必须采用直接初始化形式。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">unique_ptr&lt;<span class="type">int</span>&gt; <span class="title">unPtr1</span><span class="params">(<span class="keyword">new</span> <span class="type">int</span>(<span class="number">10</span>))</span></span>;</span><br><span class="line">    cout &lt;&lt; *unPtr1 &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果:</p>
+<blockquote>
+<p>10</p>
+</blockquote>
+<p><strong><code>unique_ptr</code>不支持普通的拷贝或赋值操作。</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">unique_ptr&lt;<span class="type">int</span>&gt; <span class="title">unPtr1</span><span class="params">(<span class="keyword">new</span> <span class="type">int</span>(<span class="number">10</span>))</span></span>;</span><br><span class="line"><span class="function">unique_ptr&lt;<span class="type">int</span>&gt; <span class="title">unPtr2</span><span class="params">(unPtr1)</span></span>;		<span class="comment">//error: unique_ptr 不支持拷贝</span></span><br><span class="line">unique_ptr&lt;<span class="type">int</span>&gt; unPtr2 = unPtr1;	<span class="comment">//error: unique_ptr 不支持赋值</span></span><br></pre></td></tr></table></figure>
+
+<p>虽然我们不能拷贝或赋值<code>unique_ptr</code>，但可以通过调用<code>move</code>来转移所有权。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">unique_ptr&lt;<span class="type">int</span>&gt; <span class="title">unPtr1</span><span class="params">(<span class="keyword">new</span> <span class="type">int</span>(<span class="number">10</span>))</span></span>;</span><br><span class="line">unique_ptr&lt;<span class="type">int</span>&gt; unPtr2 = <span class="built_in">move</span>(unPtr1);</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;unptr2 = &quot;</span> &lt;&lt; *unPtr2 &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<blockquote>
+<p>unptr2 &#x3D; 10</p>
+</blockquote>
+<p><strong>需要注意的是，一旦你转移了指针的所有权，之前的所有者，也就是<code>unPtr1</code>就变为了空指针。</strong></p>
+<p>C++ 11标准库中默认实现了<code>make_shared</code>，但是没有给出一个<code>make_unique</code>的实现。<br> 本例实现<code>make_unique</code>。<br> 技术要点：<br> 1.使用模板函数重载，分别支持普通指针，变长数组，不支持定长数组<br> 2.<code>std::enable_if</code>关键字根据不同条件，调用不同模板<br> 3.<code>std::unique_ptr</code>能构造和析构数组</p>
+<p><code>make_unique.h</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _MAKE_UNIQUE_HPP_</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _MAKE_UNIQUE_HPP_</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;type_traits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 单一元素类模板定义</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> Ele = <span class="keyword">typename</span> std::enable_if&lt;!std::is_array&lt;T&gt;::value, std::unique_ptr&lt;T&gt; &gt;::type;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 变长数组类模板定义</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> Slice = <span class="keyword">typename</span> std::enable_if&lt;std::is_array&lt;T&gt;::value &amp;&amp; std::extent&lt;T&gt;::value == <span class="number">0</span>, std::unique_ptr&lt;T&gt;&gt;::type;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 定长数组类模板定义</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="keyword">using</span> Arr = <span class="keyword">typename</span> std::enable_if&lt;std::extent&lt;T&gt;::value != <span class="number">0</span>, <span class="type">void</span>&gt;::type;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 支持普通指针</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> ... Args&gt; <span class="function"><span class="keyword">inline</span></span></span><br><span class="line"><span class="function">Ele&lt;T&gt; <span class="title">make_unique</span><span class="params">(Args &amp;&amp; ... args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">unique_ptr</span>&lt;T&gt;(<span class="keyword">new</span> <span class="built_in">T</span>(std::forward&lt;Args&gt;(args)...));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 支持动态数组</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt; <span class="function"><span class="keyword">inline</span></span></span><br><span class="line"><span class="function">Slice&lt;T&gt; <span class="title">make_unique</span><span class="params">(<span class="type">size_t</span> size)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">using</span> U = <span class="keyword">typename</span> std::remove_extent&lt;T&gt;::type;</span><br><span class="line">    <span class="keyword">return</span> std::<span class="built_in">unique_ptr</span>&lt;T&gt;(<span class="keyword">new</span> U[size]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 过滤定长数组</span></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> ... Args&gt;</span><br><span class="line"><span class="function">Arr&lt;T&gt; <span class="title">make_unique</span><span class="params">(Args &amp;&amp;...)</span> </span>= <span class="keyword">delete</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;make_unique.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">myClass</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">myClass</span>()&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Constructor invoked \n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">myClass</span>()&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Destructor invoked \n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    unique_ptr&lt;myClass&gt; unPtr1 = <span class="built_in">make_unique</span>&lt;myClass&gt;();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<blockquote>
+<p>Constructor invoked<br>Destructor invoked </p>
+</blockquote>
+<h1 id="2-shared-ptr"><a href="#2-shared-ptr" class="headerlink" title="2. shared_ptr"></a>2. shared_ptr</h1><p>共享指针可以被共享，可以被多个所有者共享。智能指针也是模版，当我们创建一个智能指针时，必须提供额外的信息——指针可以指向的类型。</p>
+<h2 id="2-1-如何创建shared-ptr"><a href="#2-1-如何创建shared-ptr" class="headerlink" title="2.1 如何创建shared_ptr"></a>2.1 如何创建<code>shared_ptr</code></h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">myClass</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">myClass</span>()&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Constructor invoked \n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">myClass</span>()&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Destructor invoked \n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    shared_ptr&lt;myClass&gt; shPtr1 = <span class="built_in">make_shared</span>&lt;myClass&gt;();</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/C++%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/2.jpg"></p>
+<p>共享指针有所有指向这个指针的引用次数。我们可以通过<code>use_count</code>方法来查询：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;memory&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">myClass</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">myClass</span>()&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Constructor invoked \n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">myClass</span>()&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Destructor invoked \n&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    shared_ptr&lt;myClass&gt; shPtr1 = <span class="built_in">make_shared</span>&lt;myClass&gt;();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Shared count: &quot;</span> &lt;&lt; shPtr1.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<blockquote>
+<p>Constructor invoked<br>Shared count: 1<br>Destructor invoked </p>
+</blockquote>
+<p>可以看出我们只有一个指向这个类的指针。所以结果为<code>1	</code>,我们再创建一个类共享指针。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">shared_ptr&lt;myClass&gt; shPtr1 = <span class="built_in">make_shared</span>&lt;myClass&gt;();</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Shared count: &quot;</span> &lt;&lt; shPtr1.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br><span class="line">shared_ptr&lt;myClass&gt; shPtr2 = shPtr1;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Shared count: &quot;</span> &lt;&lt; shPtr1.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果：</p>
+<blockquote>
+<p>Constructor invoked<br>Shared count: 1<br>Shared count: 2<br>Destructor invoked </p>
+</blockquote>
+<p>可以看出此时结果为2。当我们销毁一个指向这个类的指针时，引用次数减一，直到引用次数为<code>0</code>，内存才会被释放。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">shared_ptr&lt;myClass&gt; shPtr1 = <span class="built_in">make_shared</span>&lt;myClass&gt;();</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Shared count: &quot;</span> &lt;&lt; shPtr1.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br><span class="line">&#123;</span><br><span class="line">    shared_ptr&lt;myClass&gt; shPtr2 = shPtr1;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Shared count: &quot;</span> &lt;&lt; shPtr1.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line">cout &lt;&lt; <span class="string">&quot;Shared count: &quot;</span> &lt;&lt; shPtr1.<span class="built_in">use_count</span>() &lt;&lt; endl;</span><br></pre></td></tr></table></figure>
+
+<p>输出结果为：</p>
+<blockquote>
+<p>Shared count: 1<br>Shared count: 2<br>Shared count: 1</p>
+</blockquote>
+<p>可以看到<code>shPtr2</code>超出它的作用域之后就被销毁了，所以最后的引用次数为<code>1</code>。</p>
+<h1 id="3-weak-ptr"><a href="#3-weak-ptr" class="headerlink" title="3. weak_ptr"></a>3. weak_ptr</h1><p>弱引用<code>weak_ptr</code>是一种不控制所指向对象生存期的智能指针，它指向由一个<code>shared_ptr</code>管理的对象。前面我们知道多个<code>shared_ptr</code>指向一个特定的内存位置时，会导致引用次数的增加。而将一个<code>weak_ptr</code>绑定到一个<code>shared_ptr</code>不会改变<code>share_ptr</code>的引用次数。一旦最后一个指向对象的<code>shared_ptr</code>被销毁，对象就会被释放，即使<code>weak_ptr</code>指向对象，对象也会被释。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">weak_ptr&lt;<span class="type">int</span>&gt; wePtr1;</span><br><span class="line">    &#123;</span><br><span class="line">        shared_ptr&lt;<span class="type">int</span>&gt; shPtr1 = <span class="built_in">make_shared</span>&lt;<span class="type">int</span>&gt;(<span class="number">25</span>);</span><br><span class="line">        wePtr1 = shPtr1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>weptr1</code>就被赋值为<code>25</code></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/" rel="tag"># 智能指针</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/05/08/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E9%97%AE%E9%A2%98/" rel="prev" title="最近公共祖先问题">
+      <i class="fa fa-chevron-left"></i> 最近公共祖先问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/05/09/%E6%95%B0%E7%BB%84%E4%B8%AD%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E6%8D%AE/" rel="next" title="数组中重复的数据">
+      数组中重复的数据 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-unique-ptr"><span class="nav-number">1.</span> <span class="nav-text">1. unique_ptr</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-shared-ptr"><span class="nav-number">2.</span> <span class="nav-text">2. shared_ptr</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E5%A6%82%E4%BD%95%E5%88%9B%E5%BB%BAshared-ptr"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 如何创建shared_ptr</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-weak-ptr"><span class="nav-number">3.</span> <span class="nav-text">3. weak_ptr</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SJCHEN</p>
+  <div class="site-description" itemprop="description">start from zero</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">144</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">106</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SJCHEN</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

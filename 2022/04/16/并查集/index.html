@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sjchen404.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="#问题背景 当下，我们每个人都有自己的亲感，但你能保证认识你所有的亲戚吗？如何确定一个陌生人是否是你的亲威呢？如果有这样一个前提：拥有相同祖先的两个人是亲威。那么并查集就可以帮助我们判断某个陌生人是否是我们的亲戚。通俗地讲一个故事：儿个家族进行宴会，但是家族音遍长寿，所以人数众多由于长时间的分离以及年龄的增长，这些人逐渐忘掉了自己的亲人，只记得自己的爸爸是谁了，而最长者（称为「祖先」）的父亲已经去">
+<meta property="og:type" content="article">
+<meta property="og:title" content="并查集">
+<meta property="og:url" content="https://sjchen404.github.io/2022/04/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/index.html">
+<meta property="og:site_name" content="SJCHEN">
+<meta property="og:description" content="#问题背景 当下，我们每个人都有自己的亲感，但你能保证认识你所有的亲戚吗？如何确定一个陌生人是否是你的亲威呢？如果有这样一个前提：拥有相同祖先的两个人是亲威。那么并查集就可以帮助我们判断某个陌生人是否是我们的亲戚。通俗地讲一个故事：儿个家族进行宴会，但是家族音遍长寿，所以人数众多由于长时间的分离以及年龄的增长，这些人逐渐忘掉了自己的亲人，只记得自己的爸爸是谁了，而最长者（称为「祖先」）的父亲已经去">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sjchen404.github.io/%E5%B9%B6%E6%9F%A5%E9%9B%86/1.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/%E5%B9%B6%E6%9F%A5%E9%9B%86/2.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/%E5%B9%B6%E6%9F%A5%E9%9B%86/4.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/%E5%B9%B6%E6%9F%A5%E9%9B%86/5.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/%E5%B9%B6%E6%9F%A5%E9%9B%86/3.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/%E5%B9%B6%E6%9F%A5%E9%9B%86/6.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/%E5%B9%B6%E6%9F%A5%E9%9B%86/7.jpg">
+<meta property="article:published_time" content="2022-04-16T12:50:03.263Z">
+<meta property="article:modified_time" content="2022-05-14T16:18:28.981Z">
+<meta property="article:author" content="SJCHEN">
+<meta property="article:tag" content="图">
+<meta property="article:tag" content="并查集">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sjchen404.github.io/%E5%B9%B6%E6%9F%A5%E9%9B%86/1.jpg">
+
+<link rel="canonical" href="https://sjchen404.github.io/2022/04/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>并查集 | SJCHEN</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SJCHEN</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">时光，不会辜负每一个平静努力的人</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/04/16/%E5%B9%B6%E6%9F%A5%E9%9B%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          并查集
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-16 20:50:03" itemprop="dateCreated datePublished" datetime="2022-04-16T20:50:03+08:00">2022-04-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-15 00:18:28" itemprop="dateModified" datetime="2022-05-15T00:18:28+08:00">2022-05-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B9%B6%E6%9F%A5%E9%9B%86/" itemprop="url" rel="index"><span itemprop="name">并查集</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>#<strong>问题背景</strong></p>
+<p>当下，我们每个人都有自己的亲感，但你能保证认识你所有的亲戚吗？如何确定一个陌生人是否是你的亲威呢？<br>如果有这样一个前提：拥有相同祖先的两个人是亲威。那么并查集就可以帮助我们判断某个陌生人是否是我们的亲戚。<br>通俗地讲一个故事：儿个家族进行宴会，但是家族音遍长寿，所以人数众多由于长时间的分离以及年龄的增长，这些人逐渐忘掉了自己的亲人，只记得自己的爸爸是谁了，而最长者（称为「祖先」）的父亲已经去世，他具知道自己是祖先。为了确定自己是哪个家族，他们想出了个办法，只要问自己的爸爸是不是祖先，一层一层的向上问，直到问到祖先。如果要判断两人是否在同一家族，只要看两人的祖先是不是同一人就可以了。</p>
+<span id="more"></span>
+
+<h1 id="并查集应用"><a href="#并查集应用" class="headerlink" title="并查集应用"></a>并查集应用</h1><ul>
+<li>”边带权“并查集与“扩展域”并查集</li>
+<li>判断图是否连通</li>
+<li>最小生成树 Kruskal 算法</li>
+<li>最近公共祖先LCA</li>
+</ul>
+<p>#并查集定义：</p>
+<p>并查集是一种可以动态维护若干个不重叠的集合，并支持<strong>合并</strong>和<strong>查询</strong>的树形数据结构。</p>
+<p>主要有以下两个基本操作：</p>
+<ul>
+<li>find，查询一个&#x3D;&#x3D;元素&#x3D;&#x3D;属于哪一个集合。</li>
+<li>merge，把两个集合合并为一个集合。</li>
+</ul>
+<blockquote>
+<p>ps: 元素的表现形式是多样的，但最终会抽象为数字</p>
+</blockquote>
+<h2 id="如何表示一个集合？"><a href="#如何表示一个集合？" class="headerlink" title="如何表示一个集合？"></a>如何表示一个集合？</h2><p>第一种：<strong>”代表元“</strong>法，每个集合选择一个固定的元素，树形结构中自然会想到树根作为该颗树的代表。</p>
+<p>第二种：定义一个数组<code>fa[]</code>表示某个元素的父亲节点，特别地，根节点的父亲节点是自身（需要初始化）。</p>
+<p><img src="/%E5%B9%B6%E6%9F%A5%E9%9B%86/1.jpg"></p>
+<h2 id="如何合并两个集合？"><a href="#如何合并两个集合？" class="headerlink" title="如何合并两个集合？"></a>如何合并两个集合？</h2><p>集合 a 的代表元是 a, <code>fa[a] = a</code>，集合 b 的代表元是 b，<code>fa[b] = b</code></p>
+<p>现在让集合 a 的父亲变为 b，使<code>fa[a] = b</code>，从而实现合并两个集合的操作。</p>
+<p><img src="/%E5%B9%B6%E6%9F%A5%E9%9B%86/2.jpg"></p>
+<p>这里我们具体问题具体分析，这里只是讲一下思想，方便了解。</p>
+<p>在合并时，我们<strong>按秩合并</strong>：&#x3D;&#x3D;“秩” &#x3D; 树的深度或者集合的大小，把元素少的集合合并到元素多的集合上。&#x3D;&#x3D;</p>
+<p><img src="/%E5%B9%B6%E6%9F%A5%E9%9B%86/4.jpg"></p>
+<p><img src="/%E5%B9%B6%E6%9F%A5%E9%9B%86/5.jpg"></p>
+<h2 id="路径压缩"><a href="#路径压缩" class="headerlink" title="路径压缩"></a>路径压缩</h2><p>集合中如果要查寻节点4,5的集合代表元，要向上搜索很多次，效率低。所以需要考虑<em>路径压缩</em>，在查询<code>find</code>的过程中，让集合中的每一个元素的父亲都变为根节点。</p>
+<p><img src="/%E5%B9%B6%E6%9F%A5%E9%9B%86/3.jpg"></p>
+<p>例如我们按照DFS来路径压缩。</p>
+<p>不使用了路径压缩</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//找到 x 的根节点</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x == fa[x])<span class="comment">//本身是父亲节点</span></span><br><span class="line">    <span class="keyword">return</span> x</span><br><span class="line">  <span class="keyword">else</span>	<span class="comment">//否则向上递归查找</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">find</span>(fa[x]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用路径压缩</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//找到 x 的根节点</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(x != fa[x])</span><br><span class="line">    fa[x] = <span class="built_in">find</span>(fa[x]);	<span class="comment">//返回的就是根节点</span></span><br><span class="line">  <span class="keyword">return</span> fa[x];	<span class="comment">//返回的就是当前这个集合的根节点</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="如何实现merge-函数"><a href="#如何实现merge-函数" class="headerlink" title="如何实现merge()函数"></a>如何实现merge()函数</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">  x = <span class="built_in">find</span>(x);	<span class="comment">//寻找 x 的祖先，在寻找的过程中路径压缩</span></span><br><span class="line">  y = <span class="built_in">find</span>(y);</span><br><span class="line">  fa[x] = y;		<span class="comment">//将 x 的祖先变为 y,在一个集合中只有祖先能代表这个集合</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="初始化init"><a href="#初始化init" class="headerlink" title="初始化init()"></a>初始化init()</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">    fa[i] = i;	<span class="comment">//初始化每个节点的父亲节点为本身</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h1><p>##<a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1551">P1551 亲戚</a></p>
+<h3 id="题目背景"><a href="#题目背景" class="headerlink" title="题目背景"></a>题目背景</h3><p>若某个家族人员过于庞大，要判断两个是否是亲戚，确实还很不容易，现在给出某个亲戚关系图，求任意给出的两个人是否具有亲戚关系。</p>
+<h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>规定：x 和 y 是亲戚，y 和 z 是亲戚，那么 x 和 z 也是亲戚。如果 x，y 是亲戚，那么 x 的亲戚都是 y的亲戚，y 的亲戚也都是 x 的亲戚。</p>
+<h3 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h3><p>第一行：三个整数 n , m p，（n,m,p≤5000），分别表示有 n 个人，m个亲戚关系，询问 p 对亲戚关系。</p>
+<p>以下 m 行：每行两个数 $$M_i,M_j, 1 ≤ M_i,M_j ≤ N  $$，表示 $$M_i$$和 $$M_j$$具有亲戚关系。</p>
+<p>接下来 p行：每行两个数 $$p_i,p_j$$，询问 $$p_i$$和 $$p_j$$是否具有亲戚关系。</p>
+<h3 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h3><p>p 行，每行一个 <code>Yes</code> 或 <code>No</code>。表示第 i<em>i</em> 个询问的答案为“具有”或“不具有”亲戚关系。</p>
+<p><strong>输入 #1</strong></p>
+<blockquote>
+<p>6 5 3<br>1 2<br>1 5<br>3 4<br>5 2<br>1 3<br>1 4<br>2 3<br>5 6</p>
+</blockquote>
+<p><strong>输出 #1</strong></p>
+<blockquote>
+<p>Yes<br>Yes<br>No</p>
+</blockquote>
+<h4 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h4><p>典型的并查集，我们可以注意到描述中说的，x 和 y 是亲戚，y 和 z 是亲戚，那么 x 和 z 也是亲戚。这表示了具有传递性，要具体问题具体分析。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">double</span> ld;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; pll;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;<span class="type">int</span>&gt; vi;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1e5</span> + <span class="number">10</span>;</span><br><span class="line"><span class="type">int</span> fa[N];</span><br><span class="line"><span class="type">int</span> n,m,p;</span><br><span class="line"></span><br><span class="line"><span class="comment">//寻找 x 的根节点</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="comment">//判断 x 是不是根节点</span></span><br><span class="line">    <span class="keyword">if</span>(x != fa[x])&#123;</span><br><span class="line">        <span class="comment">//路径压缩</span></span><br><span class="line">        fa[x] = <span class="built_in">find</span>(fa[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fa[x];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">merge</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="comment">//找到 x 和 y 的祖先</span></span><br><span class="line">    x = <span class="built_in">find</span>(x);</span><br><span class="line">    y = <span class="built_in">find</span>(y);</span><br><span class="line">    <span class="comment">//这里可以进一步优化，按秩合并</span></span><br><span class="line">    fa[x] = y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        fa[i] = i;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m &gt;&gt; p;</span><br><span class="line">    <span class="built_in">init</span>();</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="type">int</span> x, y;</span><br><span class="line">        <span class="comment">//x 和 y 是亲戚</span></span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        <span class="built_in">merge</span>(x,y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(p--)&#123;</span><br><span class="line">        <span class="type">int</span> x, y;</span><br><span class="line">        cin &gt;&gt; x &gt;&gt; y;</span><br><span class="line">        <span class="comment">//判断 x 和 y 的根节点是否相同</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">find</span>(x) == <span class="built_in">find</span>(y))&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Yes\n&quot;</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            cout &lt;&lt;<span class="string">&quot;No\n&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="130-被围绕的区域"><a href="#130-被围绕的区域" class="headerlink" title="130. 被围绕的区域"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/surrounded-regions/">130. 被围绕的区域</a></h2><p>给你一个 <code>m x n</code> 的矩阵 <code>board</code> ，由若干字符 <code>&#39;X&#39;</code> 和 <code>&#39;O&#39;</code> ，找到所有被 <code>&#39;X&#39;</code> 围绕的区域，并将这些区域里所有的 <code>&#39;O&#39;</code> 用 <code>&#39;X&#39;</code> 填充。</p>
+<p>###示例：</p>
+<p><img src="/%E5%B9%B6%E6%9F%A5%E9%9B%86/6.jpg"></p>
+<blockquote>
+<p>输入：board &#x3D; [[“X”,”X”,”X”,”X”],[“X”,”O”,”O”,”X”],[“X”,”X”,”O”,”X”],[“X”,”O”,”X”,”X”]]<br>输出：[[“X”,”X”,”X”,”X”],[“X”,”X”,”X”,”X”],[“X”,”X”,”X”,”X”],[“X”,”O”,”X”,”X”]]<br>解释：被围绕的区间不会存在于边界上，换句话说，任何边界上的 ‘O’ 都不会被填充为 ‘X’。 任何不在边界上，或不与边界上的 ‘O’ 相连的 ‘O’ 最终都会被填充为 ‘X’。如果两个元素在水平或垂直方向相邻，则称它们是“相连”的。</p>
+</blockquote>
+<h4 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h4><p>常规方法就是DFS，从边界开始搜，和前面的岛屿问题类似。具体可以看一下写的岛屿部分。</p>
+<p>这里直接给出代码，我们具体将并查集做法。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt;&gt;&amp; board)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = board.<span class="built_in">size</span>(), n = board[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(m == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="comment">//遍历上边</span></span><br><span class="line">            <span class="built_in">dfs</span>(board, <span class="number">0</span>, i);</span><br><span class="line">            <span class="comment">//遍历下边</span></span><br><span class="line">            <span class="built_in">dfs</span>(board, m - <span class="number">1</span>, i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">            <span class="comment">//遍历左边</span></span><br><span class="line">            <span class="built_in">dfs</span>(board, i, <span class="number">0</span>);</span><br><span class="line">            <span class="comment">//遍历右边</span></span><br><span class="line">            <span class="built_in">dfs</span>(board, i, n - <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//遍历整个区域，如果为 A 则表示没有被包围，为 O 则表示被包围</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(board[i][j] == <span class="string">&#x27;A&#x27;</span>)&#123;</span><br><span class="line">                    board[i][j] = <span class="string">&#x27;O&#x27;</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(board[i][j] == <span class="string">&#x27;O&#x27;</span>)&#123;</span><br><span class="line">                    board[i][j] = <span class="string">&#x27;X&#x27;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">dfs</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt; &gt;&amp; board, <span class="type">int</span> x, <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">        <span class="type">int</span> m = board.<span class="built_in">size</span>(), n = board[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(x &lt; <span class="number">0</span> || x &gt;= m || y &lt; <span class="number">0</span> || y &gt;= n) <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span>(board[x][y] != <span class="string">&#x27;O&#x27;</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">//变为A</span></span><br><span class="line">        board[x][y] = <span class="string">&#x27;A&#x27;</span>;</span><br><span class="line">        <span class="built_in">dfs</span>(board, x + <span class="number">1</span>, y);</span><br><span class="line">        <span class="built_in">dfs</span>(board, x - <span class="number">1</span>, y);</span><br><span class="line">        <span class="built_in">dfs</span>(board, x, y + <span class="number">1</span>);</span><br><span class="line">        <span class="built_in">dfs</span>(board, x, y - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>并查集就是定义一个节点，把边界的<code>O</code>和这个根节点连通，</p>
+<p><img src="/%E5%B9%B6%E6%9F%A5%E9%9B%86/7.jpg"></p>
+<p>然后再遍历整个 <code>board</code>，那些和 <code>dummy</code> 不连通的 <code>O</code> 就是被围绕的区域，需要被替换。</p>
+<p>这里需要用到把二维数组映射为一维数组，<code>(x,y) = x * n + y</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> m, n;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; fa;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">init</span><span class="params">(<span class="type">int</span> len)</span></span>&#123;</span><br><span class="line">        fa.<span class="built_in">resize</span>(len);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">            fa[i] = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">find</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x != fa[x])</span><br><span class="line">            fa[x] = <span class="built_in">find</span>(fa[x]);</span><br><span class="line">        <span class="keyword">return</span> fa[x];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">to_union</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y)</span></span>&#123;</span><br><span class="line">        x = <span class="built_in">find</span>(x);</span><br><span class="line">        y = <span class="built_in">find</span>(y);</span><br><span class="line">        fa[x] = y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">(vector&lt;vector&lt;<span class="type">char</span>&gt; &gt;&amp; board)</span> </span>&#123;</span><br><span class="line">        m = board.<span class="built_in">size</span>(), n = board[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="built_in">init</span>(n * m + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//定义根节点</span></span><br><span class="line">        <span class="type">int</span> dummy = m * n;</span><br><span class="line">        <span class="comment">//将首列和末列的 O 与 dummy 连通</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(board[i][<span class="number">0</span>] == <span class="string">&#x27;O&#x27;</span>)&#123;</span><br><span class="line">                <span class="comment">//连通,把二维映射为一维</span></span><br><span class="line">                <span class="built_in">to_union</span>(i * n, dummy);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(board[i][n - <span class="number">1</span>] == <span class="string">&#x27;O&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">to_union</span>(i * n + n - <span class="number">1</span>, dummy);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将首行和末行的 O 与 dummy 连通</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(board[<span class="number">0</span>][i] == <span class="string">&#x27;O&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">to_union</span>(i, dummy);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(board[m - <span class="number">1</span>][i] == <span class="string">&#x27;O&#x27;</span>)&#123;</span><br><span class="line">                <span class="built_in">to_union</span>(n * (m - <span class="number">1</span>) + i, dummy);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//搜索上下左右的 O</span></span><br><span class="line">        <span class="type">int</span> dx[<span class="number">4</span>] = &#123;<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">-1</span>&#125;;</span><br><span class="line">        <span class="type">int</span> dy[<span class="number">4</span>] = &#123;<span class="number">1</span>,<span class="number">-1</span>,<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; m - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt; n - <span class="number">1</span>; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(board[i][j] == <span class="string">&#x27;O&#x27;</span>)&#123;</span><br><span class="line">                    <span class="comment">//将此 O 与上下左右的 O 连通</span></span><br><span class="line">                    <span class="keyword">for</span>(<span class="type">int</span> k = <span class="number">0</span>; k &lt; <span class="number">4</span>; k++)&#123;</span><br><span class="line">                        <span class="type">int</span> x = i + dx[k];</span><br><span class="line">                        <span class="type">int</span> y = j + dy[k];</span><br><span class="line">                        <span class="keyword">if</span>(board[x][y] == <span class="string">&#x27;O&#x27;</span>)&#123;</span><br><span class="line">                            <span class="built_in">to_union</span>(x * n + y, i * n + j);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//所有不和 dummy 连通的 O 都要被替换</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; m - <span class="number">1</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt; n - <span class="number">1</span>; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(<span class="built_in">find</span>(dummy) != <span class="built_in">find</span>(i * n + j))&#123;</span><br><span class="line">                    board[i][j] = <span class="string">&#x27;X&#x27;</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%9B%BE/" rel="tag"># 图</a>
+              <a href="/tags/%E5%B9%B6%E6%9F%A5%E9%9B%86/" rel="tag"># 并查集</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/04/16/%E5%9B%BE%E8%A7%A3HTTP/" rel="prev" title="图解HTTP 第一章 了解 Web 及网络基础">
+      <i class="fa fa-chevron-left"></i> 图解HTTP 第一章 了解 Web 及网络基础
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/17/%E5%9B%BE%E8%A7%A3HTTP-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%AE%80%E5%8D%95%E7%9A%84HTTP%E5%8D%8F%E8%AE%AE/" rel="next" title="图解HTTP 第二章 简单的HTTP协议">
+      图解HTTP 第二章 简单的HTTP协议 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B6%E6%9F%A5%E9%9B%86%E5%BA%94%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">并查集应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%A1%A8%E7%A4%BA%E4%B8%80%E4%B8%AA%E9%9B%86%E5%90%88%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">如何表示一个集合？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%90%88%E5%B9%B6%E4%B8%A4%E4%B8%AA%E9%9B%86%E5%90%88%EF%BC%9F"><span class="nav-number">1.2.</span> <span class="nav-text">如何合并两个集合？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.3.</span> <span class="nav-text">路径压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0merge-%E5%87%BD%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">如何实现merge()函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96init"><span class="nav-number">1.5.</span> <span class="nav-text">初始化init()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BE%8B%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">例题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E8%83%8C%E6%99%AF"><span class="nav-number">2.0.1.</span> <span class="nav-text">题目背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">2.0.2.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.0.3.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.0.4.</span> <span class="nav-text">输出格式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">2.0.4.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#130-%E8%A2%AB%E5%9B%B4%E7%BB%95%E7%9A%84%E5%8C%BA%E5%9F%9F"><span class="nav-number">2.1.</span> <span class="nav-text">130. 被围绕的区域</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-1"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">SJCHEN</p>
+  <div class="site-description" itemprop="description">start from zero</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">144</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">106</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SJCHEN</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
