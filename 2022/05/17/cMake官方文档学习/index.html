@@ -317,14 +317,11 @@
     <div class="post-body" itemprop="articleBody">
         <p><code>cmake 3.23.1</code><a target="_blank" rel="noopener" href="https://cmake.org/cmake/help/v3.23/guide/tutorial/A%20Basic%20Starting%20Point.html">官方文档学习</a></p>
 <span id="more"></span>
-
 <h1 id="Step1-A-Basic-Starting-Point"><a href="#Step1-A-Basic-Starting-Point" class="headerlink" title="Step1: A Basic Starting Point"></a>Step1: A Basic Starting Point</h1><p>我们在<code>CMake01</code>的文件下建立一个<code>hello.cpp</code>用于输出<code>hello world</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  std::cout&lt;&lt; <span class="string">&quot;hello world&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>并建立<code>CMakeLists.txt</code></p>
 <p>写入</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cmake_minimum_required</span>(VERSION <span class="number">3.10</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta"># set the project name</span></span><br><span class="line"><span class="built_in">project</span>(Hello)</span><br><span class="line"></span><br><span class="line"><span class="meta"># add the executeable</span></span><br><span class="line"><span class="built_in">add_executable</span>(hello hello.cpp)</span><br></pre></td></tr></table></figure>
-
 <p><code>CMake</code>支持大写和小写</p>
 <p><code>cmake_minimum_required(VERSION 3.10)</code>:指明我们的最低<code>cmake</code>版本号</p>
 <p><code>project(Hello)</code>:指定了工程的名字，并且支持所有语言</p>
@@ -333,28 +330,23 @@
 <p>生成可执行文件的名称为<code>hello</code>,读取的源文件为<code>hello.cpp</code></p>
 <h2 id="编译和运行"><a href="#编译和运行" class="headerlink" title="编译和运行"></a>编译和运行</h2><p>现在我们可以开始进行编译运行，不过编译可能会产生需要我们不需要的文件，这让我们的项目不好管理，我们建立一个文件夹<code>Step1_build</code>用来存放编译信息。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> Step1_build</span><br><span class="line"><span class="built_in">cd</span> Step1_build</span><br></pre></td></tr></table></figure>
-
 <p>执行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake ..</span><br></pre></td></tr></table></figure>
-
 <p>当然<code>..</code>表示上一级目录，你也可以写<code>CMakeLists.txt</code>所在的绝对路径，这里我用的是相对路径，生产的文件都在<code>Step1_build</code>目录下了</p>
 <p>现在我们开始链接</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake --build .</span><br></pre></td></tr></table></figure>
-
 <p>可以看到以下信息，代表我们链接成功</p>
 <blockquote>
-<p>[ 50%] Building CXX object CMakeFiles&#x2F;hello.dir&#x2F;hello.cpp.o<br>[100%] Linking CXX executable hello<br>[100%] Built target hello</p>
+<p>[ 50%] Building CXX object CMakeFiles/hello.dir/hello.cpp.o<br>[100%] Linking CXX executable hello<br>[100%] Built target hello</p>
 </blockquote>
 <p>输入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ll</span><br></pre></td></tr></table></figure>
-
 <p>看到我们的可执行文件<code>hello</code>已经生成</p>
 <blockquote>
-<p>-rw-r–r–   1 SJCHEN  staff    14K  5 17 01:51 CMakeCache.txt<br>drwxr-xr-x  13 SJCHEN  staff   416B  5 17 01:54 CMakeFiles<br>-rw-r–r–   1 SJCHEN  staff   5.2K  5 17 01:51 Makefile<br>-rw-r–r–   1 SJCHEN  staff   1.5K  5 17 01:51 cmake_install.cmake<br>-rwxr-xr-x   1 SJCHEN  staff    55K  5 17 01:54 <code>hello</code></p>
+<p>-rw-r—r—   1 SJCHEN  staff    14K  5 17 01:51 CMakeCache.txt<br>drwxr-xr-x  13 SJCHEN  staff   416B  5 17 01:54 CMakeFiles<br>-rw-r—r—   1 SJCHEN  staff   5.2K  5 17 01:51 Makefile<br>-rw-r—r—   1 SJCHEN  staff   1.5K  5 17 01:51 cmake_install.cmake<br>-rwxr-xr-x   1 SJCHEN  staff    55K  5 17 01:54 <code>hello</code></p>
 </blockquote>
 <p>执行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hello</span><br></pre></td></tr></table></figure>
-
 <p>输出</p>
 <blockquote>
 <p>hello world</p>
@@ -362,31 +354,21 @@
 <p>至此我们已经编译运行成功。</p>
 <h2 id="CMake-编译工程"><a href="#CMake-编译工程" class="headerlink" title="CMake 编译工程"></a>CMake 编译工程</h2><p>我们新建<code>CMake02</code>，并根据目录树结构创建对应的文件</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">├── build</span><br><span class="line">├── main.cpp</span><br><span class="line">├── include</span><br><span class="line">│   └── hello.h</span><br><span class="line">└── src</span><br><span class="line">    └── hello.cpp</span><br></pre></td></tr></table></figure>
-
 <p><code>hello.h</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hello.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> HELLO_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> HELLO_H</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SayHello</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-
 <p><code>hello.cpp</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;hello.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">SayHello</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;hello world&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><code>main.cpp</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;hello.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">  <span class="built_in">SayHello</span>();</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 <p><code>CMakeLists.txt</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cmake_minimum_required</span>(VERSION <span class="number">3.0</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">project</span>(HELLO)</span><br><span class="line"></span><br><span class="line"><span class="built_in">include_directories</span>(include)</span><br><span class="line"></span><br><span class="line"><span class="built_in">add_executable</span>(hello main.cpp src/hello.cpp)</span><br></pre></td></tr></table></figure>
-
-<p><code>include_directories(include)</code>向工程添加多个特定的库文件搜索路径，相当于指定g++编译器的**-L**参数</p>
+<p><code>include_directories(include)</code>向工程添加多个特定的库文件搜索路径，相当于指定g++编译器的<strong>-L</strong>参数</p>
 <p><code>add_executable</code>：生成可执行文件</p>
 <ul>
 <li>语法：<code>add_executable(exe文件名 source1 source2 .. sourceN)</code></li>
 </ul>
 <p><strong>外部构建编译执行</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">cmake --build .</span><br></pre></td></tr></table></figure>
-
-
-
 <h2 id="重要指令-amp-常用变量"><a href="#重要指令-amp-常用变量" class="headerlink" title="重要指令&amp;常用变量"></a><strong>重要指令&amp;常用变量</strong></h2><h3 id="1-重要指令"><a href="#1-重要指令" class="headerlink" title="1. 重要指令"></a>1. 重要指令</h3><ul>
 <li><p><code>cmake_minimum_required</code></p>
 <p>：指定CMake的最小版本要求</p>
@@ -396,7 +378,6 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CMake最小版本要求为2.8.3</span></span><br><span class="line"><span class="built_in">cmake_minimum_required</span>(VERSION <span class="number">2.8</span><span class="number">.3</span>)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong><code>project</code></strong></p>
 <p>：定义工程名称，并可指定工程支持的语言</p>
@@ -406,7 +387,6 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 指定工程名为HELLOWORLD</span></span><br><span class="line"><span class="built_in">project</span>(HELLOWORLD)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong><code>set</code></strong></p>
 <p>：显式的定义变量</p>
@@ -416,7 +396,6 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义SRC变量，其值为main.cpp hello.cpp</span></span><br><span class="line"><span class="built_in">set</span>(SRC sayhello.cpp hello.cpp)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong><code>include_directories</code></strong></p>
 <p>：向工程添加多个特定的头文件搜索路径，相当于指定g++编译器的</p>
@@ -428,7 +407,6 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将/usr/include/myincludefolder 和 ./include 添加到头文件搜索路径</span></span><br><span class="line"><span class="built_in">include_directories</span>(/usr/include/myincludefolder ./include)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong>link_directories</strong></p>
 <p>：向工程添加多个特定的库文件搜索路径，相当于指定g++编译器的</p>
@@ -440,7 +418,6 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将/usr/lib/mylibfolder 和 ./lib 添加到库文件搜索路径</span></span><br><span class="line"><span class="built_in">link_directories</span>(/usr/lib/mylibfolder ./lib)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong><code>add_library</code></strong></p>
 <p>：生成库文件</p>
@@ -450,7 +427,6 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 通过变量 SRC 生成 libhello.so 共享库</span></span><br><span class="line"><span class="comment">// SHARED代表动态库，STATIC代表静态库</span></span><br><span class="line"><span class="built_in">add_library</span>(hello SHARED $&#123;SRC&#125;)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong><code>add_compile_options</code></strong></p>
 <p>：添加编译参数</p>
@@ -460,7 +436,6 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加编译参数 -wall -std=c++11</span></span><br><span class="line"><span class="built_in">add_compile_options</span>(-wall -std=c++<span class="number">11</span> -o2)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong><code>add_executable</code></strong></p>
 <p>：生成可执行文件</p>
@@ -470,7 +445,6 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 编译main.cpp生成可执行文件main</span></span><br><span class="line"><span class="built_in">add_executable</span>(main main.cpp)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong>target_link_libraries</strong></p>
 <p>：为target添加需要链接的共享库，相当于指定g++编译器-l参数</p>
@@ -480,7 +454,6 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将hello动态库文件链接到可执行文件main</span></span><br><span class="line"><span class="built_in">target_link_libraries</span>(main hello)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong><code>add_subdirectory</code></strong></p>
 <p>：向当前工程添加存放源文件的子目录，并可以指定中间二进制和目标二进制存放的位置</p>
@@ -490,7 +463,6 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 添加src子目录，src中需要有一个CMakeLists.txt</span></span><br><span class="line"><span class="built_in">add_subdirectory</span>(src)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong><code>aux_source_directory</code></strong></p>
 <p>：发现一个目录下所有的源代码文件并将列表存储在一个变量中，这个指令临时被用来自动构建源文件列表</p>
@@ -500,14 +472,12 @@
 </li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义SRC变量，其值为当前目录下所有的源代码文件</span></span><br><span class="line"><span class="built_in">aux_source_directory</span>(. SRC)</span><br><span class="line"><span class="comment">// 编译SRC变量所代表的源代码文件，生成main可执行文件</span></span><br><span class="line"><span class="built_in">add_executable</span>(main $&#123;SRC&#125;)</span><br></pre></td></tr></table></figure>
-
 <hr>
 <h3 id="2-常用变量"><a href="#2-常用变量" class="headerlink" title="2. 常用变量"></a>2. 常用变量</h3><ul>
 <li><strong>CMAKE_C_FLAGS</strong>：gcc编译选项</li>
 <li><strong>CMAKE_CXX_FLAGS</strong>：g++编译选项</li>
 </ul>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在CMAKE_CXX_FLAGS编译选项后追加-std=c++11</span></span><br><span class="line"><span class="built_in">set</span>(CMAKE_CXX_FLAGS <span class="string">&quot;$&#123;CMAKE_CXX_FLAGS&#125; -std=c++11&quot;</span>)</span><br></pre></td></tr></table></figure>
-
 <ul>
 <li><p><strong>CMAKE_BUILD_TYPE</strong>：编译类型(Debug, Release)</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设定编译类型为debug，因为在调试时需要选择debug</span></span><br><span class="line"><span class="built_in">set</span>(CMAKE_BUILD_TYPE Debug)</span><br><span class="line"><span class="comment">// 设定编译类型为release，因为在发布时需要选择release</span></span><br><span class="line"><span class="built_in">set</span>(CMAKE_BUILD_TYPE release)</span><br></pre></td></tr></table></figure>
@@ -610,13 +580,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -664,7 +634,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

@@ -301,7 +301,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.8k</span>
+      <span>1.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -323,28 +323,29 @@
 <p>在算法程序设计竞赛中，我们竞赛选手会经常碰到对某个数N进行求大数次幂并对1e9+7取模的运算的题目，一方面求大数次幂是一个时间复杂度很高的运算（容易超时），另一方面对1e9+7取模，暗示着结果是连long long都存不下（同余定理），所以这时候快速幂取模算法就派上用场了。</p>
 </blockquote>
 <span id="more"></span>
-
-<h2 id="同余定理"><a href="#同余定理" class="headerlink" title="同余定理"></a>同余定理</h2><p><strong>这里我们不证明了</strong><br>$$<br>(a+b)%c&#x3D;(a%c + b%c)%c<br>$$</p>
-<p>$$<br>(a<em>b)%c &#x3D; (a % c)</em>(b % c) %c<br>$$</p>
-<p>$$<br>(a^b)%c &#x3D; (a%c)^b %c<br>$$</p>
-<h2 id="快速幂取模"><a href="#快速幂取模" class="headerlink" title="快速幂取模"></a>快速幂取模</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>首先假设我们有<br>$$<br>a^b%c<br>$$<br>这里(1&lt;&#x3D;a,b&lt;&#x3D;1e5,c&#x3D;1e9+7),要求算出它的结果，如果我们按照正常的手段去算的话，结果肯定会超时或者溢出，所以我们可以先把式子展开： </p>
+<h2 id="同余定理"><a href="#同余定理" class="headerlink" title="同余定理"></a>同余定理</h2><p><strong>这里我们不证明了</strong></p>
+<script type="math/tex; mode=display">
+(a+b)\%c=(a\%c + b\%c)\%c</script><script type="math/tex; mode=display">
+(a*b)\%c = (a \% c)*(b \% c) \%c</script><script type="math/tex; mode=display">
+(a^b)\%c = (a\%c)^b \%c</script><h2 id="快速幂取模"><a href="#快速幂取模" class="headerlink" title="快速幂取模"></a>快速幂取模</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>首先假设我们有 </p>
+<script type="math/tex; mode=display">
+a^b\%c</script><p>这里(1&lt;=a,b&lt;=1e5,c=1e9+7),要求算出它的结果，如果我们按照正常的手段去算的话，结果肯定会超时或者溢出，所以我们可以先把式子展开： </p>
 <ol>
 <li>把b转换为二进制串</li>
 <li>根据同余定理算<br><strong>这里我们用一个例子来说明，已知</strong></li>
 </ol>
-<p>$$<br>2^{10}&#x3D;1024, 10_{(10)} &#x3D; 1010_{(2)}<br>$$</p>
-<p>$$<br>2^{(10)}&#x3D;2^{0<em>2^0+1</em>2^1+0<em>2^2+1</em>2^3}<br>$$</p>
-<p>$$<br>2^{(10)}&#x3D;2^{0<em>2^0}<em>2^{1</em>2^1}<em>2^{0</em>2^2}<em>2</em>{1</em>2^3}<br>$$</p>
-<p>$$<br>2^{(10)}&#x3D;1<em>2^{1</em>2^1}<em>1</em>2^{1*2^3}<br>$$</p>
-<p>$$<br>2^{(10)}&#x3D;1<em>2^2</em>1*2^8<br>$$</p>
-<blockquote>
+<script type="math/tex; mode=display">
+2^{10}=1024, 10_{(10)} = 1010_{(2)}</script><script type="math/tex; mode=display">
+2^{(10)}=2^{0*2^0+1*2^1+0*2^2+1*2^3}</script><script type="math/tex; mode=display">
+2^{(10)}=2^{0*2^0}*2^{1*2^1}*2^{0*2^2}*2*{1*2^3}</script><script type="math/tex; mode=display">
+2^{(10)}=1*2^{1*2^1}*1*2^{1*2^3}</script><script type="math/tex; mode=display">
+2^{(10)}=1*2^2*1*2^8</script><blockquote>
 <p>观察第二条推导式可知从左往右第二项数起每一项的指数都是前一项的平方倍，所以在用代码实现的时候，我们对指数（二进制）按位平方略过为指数为0的项，大大降低了时间复杂度（0较多的前提下）。 </p>
 </blockquote>
 <h3 id="代码如下"><a href="#代码如下" class="headerlink" title="代码如下"></a>代码如下</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="type">long</span> <span class="title">quick_mod</span><span class="params">(<span class="type">long</span> <span class="type">long</span> a,<span class="type">long</span> <span class="type">long</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">long</span> <span class="type">long</span> ans = <span class="number">1</span>;</span><br><span class="line">    a %= Mod; <span class="comment">//对刚进来的a进行取模运算，避免后面第一次求平方运算溢出</span></span><br><span class="line">    <span class="keyword">while</span>(b)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>) <span class="comment">//对二进制下的 b 进行按位与1运算，求二进制下 b 的最低位是否为1</span></span><br><span class="line">            ans = ans * a % Mod; <span class="comment">//对结果进行保存</span></span><br><span class="line">        b&gt;&gt;=<span class="number">1</span>; <span class="comment">//二进制下的 b 右移一位，相当于十进制下的 b 除以2</span></span><br><span class="line">        a = a * a % Mod; </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans % Mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><a target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P1226">p1226快速幂</a><br>b,p,k,k为长整型<br>输出b^p mod k &#x3D; s </p>
+<p><a target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P1226">p1226快速幂</a><br>b,p,k,k为长整型<br>输出b^p mod k = s </p>
 <blockquote>
-<p>输入<br>2 10 9<br>输出<br>2^10 mod 9&#x3D;7 </p>
+<p>输入<br>2 10 9<br>输出<br>2^10 mod 9=7 </p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line">ll b,p,k;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">quick_mod</span><span class="params">(ll x,ll y)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    ll ans=<span class="number">1</span>;</span><br><span class="line">    x %= k;</span><br><span class="line">    <span class="keyword">while</span>(y)&#123;</span><br><span class="line">        <span class="keyword">if</span>(y&amp;<span class="number">1</span>)&#123;</span><br><span class="line">            ans = ans*x%k;</span><br><span class="line">        &#125;</span><br><span class="line">        y&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">        x=x*x%k;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans%k;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cin&gt;&gt;b&gt;&gt;p&gt;&gt;k;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%lld^%lld mod %lld=%lld\n&quot;</span>,b,p,k,<span class="built_in">quick_mod</span>(b, p));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
@@ -439,13 +440,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">

@@ -28,13 +28,13 @@
 <meta property="og:site_name" content="SJCHEN">
 <meta property="og:description" content="区间问题就是线段问题，让你合并所有线段，找出线段的交集等。主要有两个技巧： 1，排序： 常见的排序方法就是按照区间起点排序，或者先按照起点升序排序，若起点相同，则按照终点降序排列。 2，画图：画图可以更直观的看出两个区间的相对位置到底有几种可能，不同的相对位置，我们应该如何去解决。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sjchen404.github.io/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/1.jpeg">
-<meta property="og:image" content="https://sjchen404.github.io/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/2.jpeg">
-<meta property="og:image" content="https://sjchen404.github.io/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/3.jpeg">
-<meta property="og:image" content="https://sjchen404.github.io/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/4.jpeg">
-<meta property="og:image" content="https://sjchen404.github.io/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/5.jpg">
-<meta property="og:image" content="https://sjchen404.github.io/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/6.jpg">
-<meta property="og:image" content="https://sjchen404.github.io/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/7.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/04/07/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/区间问题/1.jpeg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/04/07/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/区间问题/2.jpeg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/04/07/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/区间问题/3.jpeg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/04/07/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/区间问题/4.jpeg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/04/07/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/区间问题/5.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/04/07/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/区间问题/6.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/04/07/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/区间问题/7.jpg">
 <meta property="article:published_time" content="2022-04-07T14:57:35.939Z">
 <meta property="article:modified_time" content="2022-05-14T16:45:29.807Z">
 <meta property="article:author" content="SJCHEN">
@@ -42,7 +42,7 @@
 <meta property="article:tag" content="区间">
 <meta property="article:tag" content="排序">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sjchen404.github.io/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/1.jpeg">
+<meta name="twitter:image" content="https://sjchen404.github.io/2022/04/07/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/区间问题/1.jpeg">
 
 
 <link rel="canonical" href="https://sjchen404.github.io/2022/04/07/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/">
@@ -311,7 +311,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.1k</span>
+      <span>5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -333,70 +333,63 @@
 <p>1，<strong>排序：</strong> 常见的排序方法就是按照区间起点排序，或者先按照起点升序排序，若起点相同，则按照终点降序排列。</p>
 <p>2，<strong>画图：</strong>画图可以更直观的看出两个区间的相对位置到底有几种可能，不同的相对位置，我们应该如何去解决。</p>
 <span id="more"></span>
-
 <h1 id="1288-删除被覆盖区间"><a href="#1288-删除被覆盖区间" class="headerlink" title="1288. 删除被覆盖区间"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-covered-intervals/">1288. 删除被覆盖区间</a></h1><p>给你一个区间列表，请你删除列表中被其他区间所覆盖的区间。</p>
-<p>只有当 c &lt;&#x3D; a 且 b &lt;&#x3D; d 时，我们才认为区间 [a,b) 被区间 [c,d) 覆盖。</p>
+<p>只有当 c &lt;= a 且 b &lt;= d 时，我们才认为区间 [a,b) 被区间 [c,d) 覆盖。</p>
 <p>在完成所有删除操作后，请你返回列表中剩余区间的数目。</p>
 <h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：intervals &#x3D; [[1,4],[3,6],[2,8]]<br>输出：2<br>解释：区间 [3,6] 被区间 [2,8] 覆盖，所以它被删除了。</p>
+<p>输入：intervals = [[1,4],[3,6],[2,8]]<br>输出：2<br>解释：区间 [3,6] 被区间 [2,8] 覆盖，所以它被删除了。</p>
 </blockquote>
 <h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>我们可以先算出被覆盖的区间有几个，最后再用总数减去即可。</p>
 <p>第一步，我们先排序：</p>
-<p><img src="/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/1.jpeg"></p>
+<p><img src="区间问题/1.jpeg" alt=""></p>
 <p>排序之后，两个相邻区间可能有如下三种相对位置：</p>
-<p><img src="/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/2.jpeg"></p>
+<p><img src="区间问题/2.jpeg" alt=""></p>
 <p>对于这三种情况，我们应该这样处理：</p>
 <p>对于情况一，找到了覆盖区间。</p>
 <p>对于情况二，两个区间可以合并，成一个大区间。</p>
 <p>对于情况三，两个区间完全不相交。</p>
 <p>所以代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">removeCoveredIntervals</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt; &gt;&amp; intervals)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//按照起点升序排列，起点相同时降序排列</span></span><br><span class="line">        <span class="built_in">sort</span>(intervals.<span class="built_in">begin</span>(), intervals.<span class="built_in">end</span>(), [](<span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; a, <span class="type">const</span> vector&lt;<span class="type">int</span>&gt;&amp; b)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[<span class="number">0</span>] == b[<span class="number">0</span>])&#123;</span><br><span class="line">                <span class="keyword">return</span> a[<span class="number">1</span>] &gt; b[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> a[<span class="number">0</span>] &lt; b[<span class="number">0</span>];</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//记录合并区间的起点和终点</span></span><br><span class="line">        <span class="type">int</span> left = intervals[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">        <span class="type">int</span> right = intervals[<span class="number">0</span>][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; intervals.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; intv = intervals[i];</span><br><span class="line">            <span class="comment">//情况一，找到覆盖区间</span></span><br><span class="line">            <span class="keyword">if</span>(left &lt;= intv[<span class="number">0</span>] &amp;&amp; right &gt;= intv[<span class="number">1</span>])&#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//情况二，找到相交区间，合并</span></span><br><span class="line">            <span class="keyword">if</span>(right &gt;= intv[<span class="number">0</span>] &amp;&amp; right &lt;= intv[<span class="number">1</span>])&#123;</span><br><span class="line">                right = intv[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//情况三，完全不相交</span></span><br><span class="line">            <span class="keyword">if</span>(right &lt; intv[<span class="number">0</span>])&#123;</span><br><span class="line">                left = intv[<span class="number">0</span>];</span><br><span class="line">                right = intv[<span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> intervals.<span class="built_in">size</span>() - res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="56-合并区间"><a href="#56-合并区间" class="headerlink" title="56. 合并区间"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-intervals/">56. 合并区间</a></h1><p>以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] &#x3D; [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。</p>
+<h1 id="56-合并区间"><a href="#56-合并区间" class="headerlink" title="56. 合并区间"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/merge-intervals/">56. 合并区间</a></h1><p>以数组 intervals 表示若干个区间的集合，其中单个区间为 intervals[i] = [starti, endi] 。请你合并所有重叠的区间，并返回 一个不重叠的区间数组，该数组需恰好覆盖输入中的所有区间 。</p>
 <h2 id="示例：-1"><a href="#示例：-1" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：intervals &#x3D; [[1,3],[2,6],[8,10],[15,18]]<br>输出：[[1,6],[8,10],[15,18]]<br>解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].</p>
+<p>输入：intervals = [[1,3],[2,6],[8,10],[15,18]]<br>输出：[[1,6],[8,10],[15,18]]<br>解释：区间 [1,3] 和 [2,6] 重叠, 将它们合并为 [1,6].</p>
 </blockquote>
 <h3 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h3><p>我们解决区间问题一般是先排序，然后画图。我们按照起点升序排序，得到以下图形。</p>
-<p><img src="/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/3.jpeg"></p>
+<p><img src="区间问题/3.jpeg" alt=""></p>
 <p>显然，对于相交的线段，最小的起点就是<code>start</code>最小的，<code>end</code>为其中结尾最大的。那问题就转化为找到相交中起点最小的和终点最大的，</p>
 <p>由于我们已经按照起点排序了，那么第一位就是我们的<code>start</code>,那么<code>end</code>应该如何确定呢，我们只需要判断下一个要来的起点是否小于当前的终点，如果小于，那么终点就是这两个结尾的最大值。</p>
-<p>例如[1,3]和[2,6]，2 &lt; 3 所以必相交，终点就更新为max(3, 6) &#x3D; 6；</p>
+<p>例如[1,3]和[2,6]，2 &lt; 3 所以必相交，终点就更新为max(3, 6) = 6；</p>
 <p>代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; <span class="built_in">merge</span>(vector&lt;vector&lt;<span class="type">int</span>&gt; &gt;&amp; intervals) &#123;</span><br><span class="line">        <span class="built_in">sort</span>(intervals.<span class="built_in">begin</span>(), intervals.<span class="built_in">end</span>());</span><br><span class="line"></span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; res;</span><br><span class="line">        res.<span class="built_in">push_back</span>(intervals[<span class="number">0</span>]);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; intervals.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; curr = intervals[i];</span><br><span class="line">            <span class="comment">// res 中最后一个元素的引用</span></span><br><span class="line">            vector&lt;<span class="type">int</span>&gt; last = res.<span class="built_in">back</span>();</span><br><span class="line">            <span class="comment">//后一个开始节点小于前一个的终点，所以相交或覆盖，取两条线段尾部最大的</span></span><br><span class="line">            <span class="keyword">if</span>(curr[<span class="number">0</span>] &lt;= last[<span class="number">1</span>])&#123;</span><br><span class="line">                last[<span class="number">1</span>] = <span class="built_in">max</span>(last[<span class="number">1</span>], curr[<span class="number">1</span>]);</span><br><span class="line">              	<span class="comment">//更新终点</span></span><br><span class="line">                res.<span class="built_in">pop_back</span>();</span><br><span class="line">                res.<span class="built_in">push_back</span>(last);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//处理下一个待合并的区间</span></span><br><span class="line">                res.<span class="built_in">push_back</span>(curr);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h1 id="986-区间列表的交集"><a href="#986-区间列表的交集" class="headerlink" title="986. 区间列表的交集"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/interval-list-intersections/">986. 区间列表的交集</a></h1><p>给定两个由一些 闭区间 组成的列表，firstList 和 secondList ，其中 firstList[i] &#x3D; [starti, endi] 而 secondList[j] &#x3D; [startj, endj] 。每个区间列表都是成对 不相交 的，并且 已经排序 。</p>
+<h1 id="986-区间列表的交集"><a href="#986-区间列表的交集" class="headerlink" title="986. 区间列表的交集"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/interval-list-intersections/">986. 区间列表的交集</a></h1><p>给定两个由一些 闭区间 组成的列表，firstList 和 secondList ，其中 firstList[i] = [starti, endi] 而 secondList[j] = [startj, endj] 。每个区间列表都是成对 不相交 的，并且 已经排序 。</p>
 <p>返回这 两个区间列表的交集 。</p>
-<p>形式上，闭区间 [a, b]（其中 a &lt;&#x3D; b）表示实数 x 的集合，而 a &lt;&#x3D; x &lt;&#x3D; b 。</p>
+<p>形式上，闭区间 [a, b]（其中 a &lt;= b）表示实数 x 的集合，而 a &lt;= x &lt;= b 。</p>
 <p>两个闭区间的 交集 是一组实数，要么为空集，要么为闭区间。例如，[1, 3] 和 [2, 4] 的交集为 [2, 3] 。</p>
-<h2 id="示例：-2"><a href="#示例：-2" class="headerlink" title="示例："></a>示例：</h2><p><img src="/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/4.jpeg"></p>
+<h2 id="示例：-2"><a href="#示例：-2" class="headerlink" title="示例："></a>示例：</h2><p><img src="区间问题/4.jpeg" alt=""></p>
 <blockquote>
-<p>输入：firstList &#x3D; [[0,2],[5,10],[13,23],[24,25]], secondList &#x3D; [[1,5],[8,12],[15,24],[25,26]]<br>输出：[[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]</p>
+<p>输入：firstList = [[0,2],[5,10],[13,23],[24,25]], secondList = [[1,5],[8,12],[15,24],[25,26]]<br>输出：[[1,2],[5,5],[8,10],[15,23],[24,24],[25,25]]</p>
 </blockquote>
 <h3 id="思路：-2"><a href="#思路：-2" class="headerlink" title="思路："></a>思路：</h3><p><strong>第一步，排序</strong>，已经排过序了，那我们使用双指针。</p>
 <p>我们分析下各种情况：</p>
 <ul>
 <li>对于两个区间，我们用<code>[a1,a2]</code>和<code>[b1,b2]</code>表示在A 和 B中的两个区间，那么什么时候没有交集呢？</li>
 </ul>
-<p><img src="/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/5.jpg"></p>
+<p><img src="区间问题/5.jpg" alt=""></p>
 <p>只有这两种情况：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(b2 &lt; a1 || a2 &lt; b1)&#123;</span><br><span class="line">	[a1,a2]和[b1,b2]无交集</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>那么什么时候存在交集呢？根据命题的否定</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(b2 &gt;= a1 &amp;&amp; a2 &gt;= b1)&#123;</span><br><span class="line">	存在交集</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>穷举出来如下：</p>
-<p><img src="/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/6.jpg"></p>
+<p><img src="区间问题/6.jpg" alt=""></p>
 <p>这很简单吧，就这四种情况而已。那么接下来思考，这几种情况下，交集是否有什么共同点呢？</p>
-<p><img src="/%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98/7.jpg"></p>
+<p><img src="区间问题/7.jpg" alt=""></p>
 <p>我们惊奇地发现，交集区间是有规律的！如果交集区间是<code>[c1,c2]</code>，那么<code>c1=max(a1,b1)</code>，<code>c2=min(a2,b2)</code>！这一点就是寻找交集的核心，我们把代码更进一步：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> i &lt; <span class="built_in">len</span>(A) <span class="keyword">and</span> j &lt; <span class="built_in">len</span>(B):</span><br><span class="line">    a1, a2 = A[i][<span class="number">0</span>], A[i][<span class="number">1</span>]</span><br><span class="line">    b1, b2 = B[j][<span class="number">0</span>], B[j][<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> b2 &gt;= a1 <span class="keyword">and</span> a2 &gt;= b1:</span><br><span class="line">        res.<span class="built_in">append</span>([<span class="built_in">max</span>(a1, b1), <span class="built_in">min</span>(a2, b2)])</span><br><span class="line">    # ...</span><br></pre></td></tr></table></figure>
-
 <p>最后一步，我们的指针 <code>i</code>和<code>j</code>什么时候前进？</p>
 <p>我们发现当 b2 &lt; a2时，我们的<code>j</code>会往前，因为此时这个线段的最长已经在A的里面了。</p>
-<p>同理当 b2 &gt;&#x3D; a2 时， <code>i++</code>;</p>
+<p>同理当 b2 &gt;= a2 时， <code>i++</code>;</p>
 <p>所以，完整代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; <span class="built_in">intervalIntersection</span>(vector&lt;vector&lt;<span class="type">int</span>&gt; &gt;&amp; firstList, vector&lt;vector&lt;<span class="type">int</span>&gt; &gt;&amp; secondList) &#123;</span><br><span class="line">        <span class="keyword">if</span>(firstList.<span class="built_in">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line">        <span class="keyword">if</span>(secondList.<span class="built_in">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> &#123;&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> i  = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; res;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; firstList.<span class="built_in">size</span>() &amp;&amp; j &lt; secondList.<span class="built_in">size</span>())&#123;</span><br><span class="line">            <span class="type">int</span> a1 = firstList[i][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> a2 = firstList[i][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">            <span class="type">int</span> b1 = secondList[j][<span class="number">0</span>];</span><br><span class="line">            <span class="type">int</span> b2 = secondList[j][<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">            <span class="comment">//两个区间存在交集</span></span><br><span class="line">            <span class="keyword">if</span>(b2 &gt;= a1 &amp;&amp; a2 &gt;= b1)&#123;</span><br><span class="line">                <span class="comment">//计算出交集，加入res</span></span><br><span class="line">                res.<span class="built_in">push_back</span>(&#123;<span class="built_in">max</span>(a1,b1), <span class="built_in">min</span>(a2,b2)&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//指针前进</span></span><br><span class="line">            <span class="keyword">if</span>(b2 &lt; a2) j += <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span> i += <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -492,13 +485,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -546,7 +539,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

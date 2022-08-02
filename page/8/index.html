@@ -312,7 +312,7 @@
 <li>为了提升数据传输的效率，会对传输的报文进行压缩处理。</li>
 <li>输入一个压缩后的报文，请返回它解压后的原始报文。</li>
 <li>压缩规则：n[str]，表示方括号内部的 str 正好重复 n 次。</li>
-<li>注意 n 为正整数（0 &lt; n &lt;&#x3D; 100），str只包含小写英文字母，不考虑异常情况。</li>
+<li>注意 n 为正整数（0 &lt; n &lt;= 100），str只包含小写英文字母，不考虑异常情况。</li>
 </ul>
 <p><strong>输入描述:</strong></p>
 <p><strong>输入压缩后的报文：</strong></p>
@@ -461,9 +461,9 @@
 </ol>
 <p><strong>输入描述：</strong></p>
 <ul>
-<li>输入为三行： 第一行为字符串A，仅包含小写字符，1 &lt;&#x3D; A.length &lt;&#x3D; 1000。</li>
-<li>第二行为字符串B，仅包含小写字符，1 &lt;&#x3D; B.length &lt;&#x3D; 1000。</li>
-<li>第三行为正整数V，0 &lt;&#x3D; V &lt;&#x3D; 10000。</li>
+<li>输入为三行： 第一行为字符串A，仅包含小写字符，1 &lt;= A.length &lt;= 1000。</li>
+<li>第二行为字符串B，仅包含小写字符，1 &lt;= B.length &lt;= 1000。</li>
+<li>第三行为正整数V，0 &lt;= V &lt;= 10000。</li>
 </ul>
 <p><strong>输出描述：</strong></p>
 <ul>
@@ -607,7 +607,7 @@
 <p><strong>输入描述:</strong></p>
 <ul>
 <li>3行输入分别为3个矩形的位置，分别代表“左上角x坐标”，“左上角y坐标”，“矩形宽w”，“矩形高h”</li>
-<li>参数限制如下：1000 &lt;&#x3D; x,y &lt; 1000</li>
+<li>参数限制如下：1000 &lt;= x,y &lt; 1000</li>
 </ul>
 <p><strong>输出描述:</strong></p>
 <ul>
@@ -716,7 +716,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>7.3k</span>
+      <span>7.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -737,11 +737,11 @@
           <h1 id="简易内存池"><a href="#简易内存池" class="headerlink" title="简易内存池"></a>简易内存池</h1><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
 <li>请实现一个简易内存池，根据请求命令完成内存分配和释放。</li>
 <li>内存池支持两种操作命令，REQUEST和RELEASE，其格式为：</li>
-<li>REQUEST&#x3D;请求的内存大小表示请求分配指定大小内存，如果分配成功，返回分配到的内存首地址；</li>
+<li>REQUEST=请求的内存大小表示请求分配指定大小内存，如果分配成功，返回分配到的内存首地址；</li>
 </ul>
 <p>​    如果内存不足，或指定的大小为0，则输出error。</p>
 <ul>
-<li>RELEASE&#x3D;释放的内存首地址表示释放掉之前分配的内存，释放成功无需输出，如果释放不存在的首地址则输出error。</li>
+<li>RELEASE=释放的内存首地址表示释放掉之前分配的内存，释放成功无需输出，如果释放不存在的首地址则输出error。</li>
 </ul>
 <p><strong>注意：</strong></p>
 <ol>
@@ -752,8 +752,8 @@
 <li>释放操作只是针对首地址所对应的单个内存块进行操作，不会影响其它内存块。</li>
 </ol>
 <h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a><strong>输入</strong></h4><ul>
-<li>首行为整数 N , 表示操作命令的个数，取值范围：0 &lt; N &lt;&#x3D; 100。</li>
-<li>接下来的N行, 每行将给出一个操作命令，操作命令和参数之间用 “&#x3D;” 分割。</li>
+<li>首行为整数 N , 表示操作命令的个数，取值范围：0 &lt; N &lt;= 100。</li>
+<li>接下来的N行, 每行将给出一个操作命令，操作命令和参数之间用 “=” 分割。</li>
 </ul>
 <h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a><strong>输出</strong></h4><ul>
 <li>见题目描述</li>
@@ -889,7 +889,7 @@
 <p><strong>输入描述</strong></p>
 <ul>
 <li>输入依次为N，M，一维数组。</li>
-<li>N为该批次货物的长度（1 &lt; N &lt;&#x3D; 100000），M为一维数组的长度（1 &lt;&#x3D; M &lt;&#x3D; 100000），</li>
+<li>N为该批次货物的长度（1 &lt; N &lt;= 100000），M为一维数组的长度（1 &lt;= M &lt;= 100000），</li>
 <li>一维数组为大坑从左到右每个台阶的值（-10000 &lt; 值 &lt; 10000）。</li>
 </ul>
 <p><strong>输出描述</strong></p>
@@ -1016,11 +1016,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>###<strong>题目描述</strong><br>输入一个数 <code>M</code> ，表示<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%95%B0%E7%BB%84&spm=1001.2101.3001.7020">数组</a>中有 <code>M</code> 个数<br>输入 <code>M</code> 个数。<br>输入 <code>n</code><br>求数组 <code>M</code> 中，去除重复值后，最大 <code>n</code> 个数和最小 <code>n</code> 个数的和<br>注意：最大和最小的数中不能有重复值，否则输出 <code>-1</code></p>
+          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a><strong>题目描述</strong></h3><p>输入一个数 <code>M</code> ，表示<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=数组&amp;spm=1001.2101.3001.7020">数组</a>中有 <code>M</code> 个数<br>输入 <code>M</code> 个数。<br>输入 <code>n</code><br>求数组 <code>M</code> 中，去除重复值后，最大 <code>n</code> 个数和最小 <code>n</code> 个数的和<br>注意：最大和最小的数中不能有重复值，否则输出 <code>-1</code></p>
 <blockquote>
 <p><strong>样例输入</strong><br>5<br>3 3 2 4 2<br>2<br><strong>样例输出</strong><br>-1<br><strong>说明</strong><br>去除重复后最大的2个数为[4,3]，最小的2个数为[2,3]；有相同值，所以返回-1</p>
-</blockquote>
-<blockquote>
 <p><strong>样例输入</strong><br>5<br>3 3 2 4 2<br>1<br><strong>样例输出</strong><br>6<br><strong>说明</strong><br>去除重复后最大的1个数为[4]，最小的1个数为[2]；没有相同值，返回6</p>
 </blockquote>
           <!--noindex-->
@@ -1269,7 +1267,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="VLAN资源池"><a href="#VLAN资源池" class="headerlink" title="VLAN资源池"></a>VLAN资源池</h1><p><strong>题目描述：</strong></p>
-<p><em><strong>VLAN</strong></em>是一种对局域网设备进行逻辑划分的技术，为了标识不同的VLAN，引入VLAN ID(1-4094之间的整数)的概念。</p>
+<p><strong><em>VLAN</em></strong>是一种对局域网设备进行逻辑划分的技术，为了标识不同的VLAN，引入VLAN ID(1-4094之间的整数)的概念。</p>
 <p>定义一个VLAN ID的资源池(下称VLAN资源池)，资源池中连续的VLAN用开始VLAN-结束VLAN表示，不连续的用单个整数表示，所有的VLAN用英文逗号连接起来。</p>
 <p>现在有一个VLAN资源池，业务需要从资源池中申请一个VLAN，需要你输出从VLAN资源池中移除申请的VLAN后的资源池。</p>
 <p><strong>输入描述:</strong></p>
@@ -1508,14 +1506,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.8k</span>
+      <span>2.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -1526,16 +1524,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>#<strong>■ 题目描述</strong></p>
-<ul>
+          <h1 id="■-题目描述"><a href="#■-题目描述" class="headerlink" title="■ 题目描述"></a><strong>■ 题目描述</strong></h1><ul>
 <li>TLV 编码是按 <strong>[ Tag Length Value ]</strong> 格式进行编码的，一段码流中的信元用Tag标识， Tag在码流中 <strong>唯一不重复</strong> ，Length表示信元Value的长度，Value表示信元的值。</li>
 <li>码流以某信元的Tag开头，Tag固定占 <strong>一个字节</strong>，Length固定占 <strong>两个字节</strong>，字节序为 <strong>小端序</strong> 。</li>
 <li>现给定TLV格式编码的码流，以及需要解码的信元Tag，请输出该信元的Value。</li>
 <li>输入码流的16进制字符中，不包括小写字母，且要求输出的16进制字符串中也不要包含小写字母；</li>
 <li>码流字符串的最大长度不超过50000个字节。</li>
 </ul>
-<p>##<strong>输入描述:</strong></p>
-<ul>
+<h2 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h2><ul>
 <li>输入的第一行为一个字符串，表示待解码信元的 <strong>Tag</strong> ；</li>
 <li>输入的第二行为一个字符串，表示待解码的 <strong>16进制码流</strong> ，字节之间用 <strong>空格分隔</strong> 。</li>
 </ul>
@@ -1594,13 +1590,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -1648,7 +1644,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

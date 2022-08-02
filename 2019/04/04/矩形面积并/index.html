@@ -28,13 +28,13 @@
 <meta property="og:site_name" content="SJCHEN">
 <meta property="og:description" content="题目链接 H. Mo的面积 单测试点时限: 1.0 秒 内存限制: 512 MB Mo的老师给了他两个矩形，让他求两个矩形的面积并。Mo很忙没时间解决这种小case，请你帮他解决。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sjchen404.github.io/%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%B9%B6/1.png">
+<meta property="og:image" content="https://sjchen404.github.io/2019/04/04/%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%B9%B6/矩形面积并/1.png">
 <meta property="article:published_time" content="2019-04-04T07:41:03.000Z">
 <meta property="article:modified_time" content="2022-05-14T17:29:49.084Z">
 <meta property="article:author" content="SJCHEN">
 <meta property="article:tag" content="面积">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sjchen404.github.io/%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%B9%B6/1.png">
+<meta name="twitter:image" content="https://sjchen404.github.io/2019/04/04/%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%B9%B6/矩形面积并/1.png">
 
 
 <link rel="canonical" href="https://sjchen404.github.io/2019/04/04/%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%B9%B6/">
@@ -147,7 +147,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-number">2.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">样例</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%85%A5"><span class="nav-number">1.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-number">2.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%B7%E4%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">样例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%B9%B6%E9%97%AE%E9%A2%98"><span class="nav-number"></span> <span class="nav-text">矩形面积并问题</span></a></div>
         </div>
         <!--/noindex-->
 
@@ -327,29 +327,22 @@
 <p>内存限制: 512 MB</p>
 <p>Mo的老师给了他两个矩形，让他求两个矩形的面积并。Mo很忙没时间解决这种小case，请你帮他解决。</p>
 <span id="more"></span>
-
 <h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><p>输入两行，每行四个整数 𝑥,𝑦,𝑥1,𝑦1 。(𝑥,𝑦) 是矩形左下角，(𝑥1,𝑦1) 是矩形的右上角. (0≤𝑥,𝑦,𝑥1,𝑦1≤1000)。</p>
 <h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><p>输出一个整数表示二个矩形的面积并。</p>
 <h3 id="样例"><a href="#样例" class="headerlink" title="样例"></a>样例</h3><p>input</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0 1 2 3</span><br><span class="line">1 0 3 2</span><br></pre></td></tr></table></figure>
-
 <p>output</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">7</span><br></pre></td></tr></table></figure>
-
-<p>##矩形面积并问题</p>
-<p>两个矩形相交的情况总共有以下几种（可能有部分遗漏）：</p>
-<p><img src="/%E7%9F%A9%E5%BD%A2%E9%9D%A2%E7%A7%AF%E5%B9%B6/1.png" alt="like this"></p>
+<h2 id="矩形面积并问题"><a href="#矩形面积并问题" class="headerlink" title="矩形面积并问题"></a>矩形面积并问题</h2><p>两个矩形相交的情况总共有以下几种（可能有部分遗漏）：</p>
+<p><img src="矩形面积并/1.png" alt="like this"></p>
 <p>我们可以观察到，如果两个矩阵相交，那么它的边的情况只能是这种情况：</p>
 <p>我们假设第一个矩阵的左下角坐标为，a[1],a[2],右上角坐标为a[3],a[4]</p>
 <p>第二个矩阵的左下角坐标为a[5],a[6],右上角坐标为a[7],a[8].</p>
-<p>left &#x3D; max ( min( a[1] , a[3] ), min( a[5], a[7] ) )</p>
-<p>right &#x3D; min (max ( a[1], a[3] ), max( a[5], a[7] ) )</p>
-<p>up &#x3D; min (max ( a[2], a[4]), max ( a[6], a[8] ) )</p>
-<p>down &#x3D; max (min ( a[2], a[4] ), min ( a[6], a[8] ) )</p>
+<p>left = max ( min( a[1] , a[3] ), min( a[5], a[7] ) )</p>
+<p>right = min (max ( a[1], a[3] ), max( a[5], a[7] ) )</p>
+<p>up = min (max ( a[2], a[4]), max ( a[6], a[8] ) )</p>
+<p>down = max (min ( a[2], a[4] ), min ( a[6], a[8] ) )</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">define</span> ll long long</span></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> INF=<span class="number">0x3f3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">100</span>];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">1</span>; i&lt;=<span class="number">8</span>; i++) &#123;</span><br><span class="line">        cin &gt;&gt; a[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> l = <span class="built_in">max</span>(<span class="built_in">min</span>(a[<span class="number">1</span>],a[<span class="number">3</span>]),<span class="built_in">min</span>(a[<span class="number">5</span>],a[<span class="number">7</span>]));</span><br><span class="line">    <span class="type">int</span> r = <span class="built_in">min</span>(<span class="built_in">max</span>(a[<span class="number">1</span>],a[<span class="number">3</span>]),<span class="built_in">max</span>(a[<span class="number">5</span>],a[<span class="number">7</span>]));</span><br><span class="line">    <span class="type">int</span> u = <span class="built_in">min</span>(<span class="built_in">max</span>(a[<span class="number">2</span>],a[<span class="number">4</span>]),<span class="built_in">max</span>(a[<span class="number">6</span>],a[<span class="number">8</span>]));</span><br><span class="line">    <span class="type">int</span> d = <span class="built_in">max</span>(<span class="built_in">min</span>(a[<span class="number">2</span>],a[<span class="number">4</span>]),<span class="built_in">min</span>(a[<span class="number">6</span>],a[<span class="number">8</span>]));</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> area;</span><br><span class="line">    <span class="keyword">if</span> (r-l &lt; <span class="number">0</span> || u-d &lt; <span class="number">0</span>) area = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> area = (r-l)*(u-d);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,(a[<span class="number">3</span>]-a[<span class="number">1</span>])*(a[<span class="number">4</span>]-a[<span class="number">2</span>]) + (a[<span class="number">7</span>]-a[<span class="number">5</span>])*(a[<span class="number">8</span>]-a[<span class="number">6</span>]) - area);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 
     </div>
 
@@ -443,13 +436,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -497,7 +490,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

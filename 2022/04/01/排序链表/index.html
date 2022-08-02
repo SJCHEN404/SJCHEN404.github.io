@@ -28,15 +28,15 @@
 <meta property="og:site_name" content="SJCHEN">
 <meta property="og:description" content="148. 排序链表给你链表的头结点 head ，请将其按 升序 排列并返回 排序后的链表 。 示例  输入：head &#x3D; [4,2,1,3]输出：[1,2,3,4] 输入：head &#x3D; [-1,5,3,4,0]输出：[-1,0,3,4,5] 输入：head &#x3D; []输出：[]">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sjchen404.github.io/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/1.jpg">
-<meta property="og:image" content="https://sjchen404.github.io/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/2.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/04/01/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/排序链表/1.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/04/01/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/排序链表/2.jpg">
 <meta property="article:published_time" content="2022-04-01T12:56:48.967Z">
 <meta property="article:modified_time" content="2022-05-14T16:55:08.726Z">
 <meta property="article:author" content="SJCHEN">
 <meta property="article:tag" content="链表">
 <meta property="article:tag" content="归并排序">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sjchen404.github.io/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/1.jpg">
+<meta name="twitter:image" content="https://sjchen404.github.io/2022/04/01/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/排序链表/1.jpg">
 
 
 <link rel="canonical" href="https://sjchen404.github.io/2022/04/01/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/">
@@ -328,19 +328,17 @@
     
     <div class="post-body" itemprop="articleBody">
         <h1 id="148-排序链表"><a href="#148-排序链表" class="headerlink" title="148. 排序链表"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/sort-list/">148. 排序链表</a></h1><p>给你链表的头结点 <code>head</code> ，请将其按 <strong>升序</strong> 排列并返回 <strong>排序后的链表</strong> 。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p><img src="/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/1.jpg"></p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p><img src="排序链表/1.jpg" alt=""></p>
 <blockquote>
-<p>输入：head &#x3D; [4,2,1,3]<br>输出：[1,2,3,4]</p>
-<p>输入：head &#x3D; [-1,5,3,4,0]<br>输出：[-1,0,3,4,5]</p>
-<p>输入：head &#x3D; []<br>输出：[]</p>
+<p>输入：head = [4,2,1,3]<br>输出：[1,2,3,4]</p>
+<p>输入：head = [-1,5,3,4,0]<br>输出：[-1,0,3,4,5]</p>
+<p>输入：head = []<br>输出：[]</p>
 </blockquote>
 <span id="more"></span>
-
 <h2 id="思路：归并排序"><a href="#思路：归并排序" class="headerlink" title="思路：归并排序"></a>思路：归并排序</h2><p>把链表从中间节点分成两个链表，然后递归下去，直到都为空。</p>
-<p><img src="/%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8/2.jpg"></p>
+<p><img src="排序链表/2.jpg" alt=""></p>
 <p>那么我们如何找到中间节点呢？只需要通过快慢指针即可，慢指针每次走一步，快指针走两步，这样快指针走向空时，慢指针指向的就是中间节点。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>(fast != <span class="literal">nullptr</span> &amp;&amp; fast-&gt;next != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">	slow = slow-&gt;next;</span><br><span class="line">	fast = fast-&gt;next-&gt;next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>对于分割递归的<code>base case</code>：</p>
 <p>当 <code>head == nullptr</code>时，直接返回<code>nullptr</code>（对应链表没有元素）</p>
 <p>当<code>head-&gt;next == nullptr</code>时，直接返回<code>head</code>（链表只有一个元素，无法再分）</p>
@@ -352,9 +350,6 @@
 </ul>
 <p>综上代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ListNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    ListNode *next;</span><br><span class="line">    <span class="built_in">ListNode</span>() : <span class="built_in">val</span>(<span class="number">0</span>), <span class="built_in">next</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">ListNode</span>(<span class="type">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">next</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">ListNode</span>(<span class="type">int</span> x, ListNode *next) : <span class="built_in">val</span>(x), <span class="built_in">next</span>(next) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">sortList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">if</span>(head-&gt;next == <span class="literal">nullptr</span>) <span class="keyword">return</span> head;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sort_list</span>(head, <span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ListNode* <span class="title">sort_list</span><span class="params">(ListNode* head, ListNode* tail)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (head == <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (head-&gt;next == tail) &#123;</span><br><span class="line">            head-&gt;next = <span class="literal">nullptr</span>;</span><br><span class="line">            <span class="keyword">return</span> head;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//采用快慢指针找到中间节点</span></span><br><span class="line">        ListNode* slow = head, *fast = head;</span><br><span class="line">        <span class="keyword">while</span>(fast != tail &amp;&amp; fast-&gt;next != tail)&#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//中间节点</span></span><br><span class="line">        ListNode* mid = slow;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">merge</span>(<span class="built_in">sort_list</span>(head, mid), <span class="built_in">sort_list</span>(mid, tail));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">ListNode* <span class="title">merge</span><span class="params">(ListNode* list1, ListNode* list2)</span></span>&#123;</span><br><span class="line">        ListNode* dummy = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">0</span>);</span><br><span class="line">        ListNode* temp = dummy, *temp1 = list1, *temp2 = list2;</span><br><span class="line">        <span class="keyword">while</span>(temp1 != <span class="literal">nullptr</span> &amp;&amp; temp2 != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(temp1-&gt;val &lt;= temp2-&gt;val)&#123;</span><br><span class="line">                temp-&gt;next = temp1;</span><br><span class="line">                temp1 = temp1-&gt;next;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                temp-&gt;next = temp2;</span><br><span class="line">                temp2 = temp2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            temp = temp-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(temp1 != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            temp-&gt;next = temp1;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(temp2 != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            temp-&gt;next = temp2;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dummy-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//构造链表</span></span><br><span class="line"><span class="function">ListNode* <span class="title">construct</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; v)</span></span>&#123;</span><br><span class="line">    ListNode* node = <span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">-1</span>);</span><br><span class="line">    ListNode* head = node;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; v.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">        ListNode* temp = <span class="keyword">new</span> <span class="built_in">ListNode</span>(v[i]);</span><br><span class="line">        head-&gt;next = temp;</span><br><span class="line">        head = head-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> node-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; v = &#123;<span class="number">4</span>, <span class="number">2</span>, <span class="number">1</span> ,<span class="number">3</span>&#125;;</span><br><span class="line">    ListNode* head = <span class="built_in">construct</span>(v);</span><br><span class="line">    Solution a;</span><br><span class="line">    ListNode* res = a.<span class="built_in">sortList</span>(head);</span><br><span class="line">    ListNode* cur = res;</span><br><span class="line">    <span class="keyword">while</span>(cur != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">        cout &lt;&lt; cur-&gt;val &lt;&lt; <span class="string">&quot;-&gt;&quot;</span>;</span><br><span class="line">        cur = cur-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
 
     </div>
 
@@ -449,13 +444,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -503,7 +498,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

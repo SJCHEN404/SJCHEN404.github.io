@@ -216,6 +216,170 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/08/02/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SJCHEN">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/02/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" class="post-title-link" itemprop="url">第二章_进程与线程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-02 21:23:57" itemprop="dateCreated datePublished" datetime="2022-08-02T21:23:57+08:00">2022-08-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/08/02/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/08/02/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/第二章_进程与线程.png" alt=""></p>
+<h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><p><strong>进程与线程的比较</strong></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th></th>
+<th>进程</th>
+<th>线程</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>映像组成</td>
+<td>由程序段，相关数据段和<code>PCB</code>组成</td>
+<td>共享其隶属进程的进程映像，仅拥有线程ID，寄存器集合和堆栈等</td>
+</tr>
+<tr>
+<td>并发性</td>
+<td>在没有引入线程的操作系统中，进程是独立运行的基本单位</td>
+<td><strong>线程是独立运行的基本单位</strong>,一个进程可以拥有一个或多个线程</td>
+</tr>
+<tr>
+<td>资源分配</td>
+<td>进程是资源分配和拥有的基本单位</td>
+<td>线程自己不拥有系统资源，但它可以访问所属进程所拥有的全部资源</td>
+</tr>
+<tr>
+<td><strong>调度</strong></td>
+<td>在没有引入线程的操作系统中，进程是独立调度和分配的基本单位</td>
+<td>在引入线程后的操作系统，线程是独立调度和分配的基本单位</td>
+</tr>
+<tr>
+<td>通信</td>
+<td>PV操作；共享存储；消息传递；管道通信</td>
+<td>同一进程的各线程直接读写进程数据段，不同进程的线程之间通信属于进程剑通信</td>
+</tr>
+<tr>
+<td>目的</td>
+<td>更好的使多道程序并发执行，提高资源利用率和系统吞吐量</td>
+<td>减小程序在并发执行时所付出的时空开销，提高操作系统的并发性能</td>
+</tr>
+<tr>
+<td>地址空间</td>
+<td>进程的地址空间之间相互独立</td>
+<td>同一进程的各线程间共享进程的地址空间</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>进程映像是静态的，进程是动态的</strong></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/02/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/08/02/%E5%BC%95%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -330,166 +494,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/08/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="SJCHEN">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SJCHEN">
-      <meta itemprop="description" content="start from zero">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SJCHEN">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" class="post-title-link" itemprop="url">第二章_进程与线程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-01 01:54:30" itemprop="dateCreated datePublished" datetime="2022-08-01T01:54:30+08:00">2022-08-01</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/08/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/08/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>5.4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B.png"></p>
-<h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><p><strong>进程与线程的比较</strong></p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>进程</th>
-<th>线程</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>映像组成</td>
-<td>由程序段，相关数据段和<code>PCB</code>组成</td>
-<td>共享其隶属进程的进程映像，仅拥有线程ID，寄存器集合和堆栈等</td>
-</tr>
-<tr>
-<td>并发性</td>
-<td>在没有引入线程的操作系统中，进程是独立运行的基本单位</td>
-<td><strong>线程是独立运行的基本单位</strong>,一个进程可以拥有一个或多个线程</td>
-</tr>
-<tr>
-<td>资源分配</td>
-<td>进程是资源分配和拥有的基本单位</td>
-<td>线程自己不拥有系统资源，但它可以访问所属进程所拥有的全部资源</td>
-</tr>
-<tr>
-<td><strong>调度</strong></td>
-<td>在没有引入线程的操作系统中，进程是独立调度和分配的基本单位</td>
-<td>在引入线程后的操作系统，线程是独立调度和分配的基本单位</td>
-</tr>
-<tr>
-<td>通信</td>
-<td>PV操作；共享存储；消息传递；管道通信</td>
-<td>同一进程的各线程直接读写进程数据段，不同进程的线程之间通信属于进程剑通信</td>
-</tr>
-<tr>
-<td>目的</td>
-<td>更好的使多道程序并发执行，提高资源利用率和系统吞吐量</td>
-<td>减小程序在并发执行时所付出的时空开销，提高操作系统的并发性能</td>
-</tr>
-<tr>
-<td>地址空间</td>
-<td>进程的地址空间之间相互独立</td>
-<td>同一进程的各线程间共享进程的地址空间</td>
-</tr>
-</tbody></table>
-<p><strong>进程映像是静态的，进程是动态的</strong></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/07/31/199_%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -571,11 +575,9 @@
     
     <div class="post-body" itemprop="articleBody">
           <h1 id="199-二叉树的右视图"><a href="#199-二叉树的右视图" class="headerlink" title="199. 二叉树的右视图"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-right-side-view/">199. 二叉树的右视图</a></h1><p>给定一个二叉树的 <strong>根节点</strong> <code>root</code>，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/4.jpg"></p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/4.jpg" alt=""></p>
 <blockquote>
 <p>输入: [1,2,3,null,5,null,4]<br>输出: [1,3,4]</p>
-</blockquote>
-<blockquote>
 <p>输入: []<br>输出: []</p>
 </blockquote>
           <!--noindex-->
@@ -673,7 +675,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.1k</span>
+      <span>3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -694,12 +696,10 @@
           <h1 id="62-不同路径"><a href="#62-不同路径" class="headerlink" title="62. 不同路径"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-paths/">62. 不同路径</a></h1><p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。</p>
 <p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。</p>
 <p>问总共有多少条不同的路径？</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/2.png"></p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/2.png" alt=""></p>
 <blockquote>
-<p>输入：m &#x3D; 3, n &#x3D; 7<br>输出：28</p>
-</blockquote>
-<blockquote>
-<p>输入：m &#x3D; 3, n &#x3D; 2<br>输出：3<br>解释：<br>从左上角开始，总共有 3 条路径可以到达右下角。</p>
+<p>输入：m = 3, n = 7<br>输出：28</p>
+<p>输入：m = 3, n = 2<br>输出：3<br>解释：<br>从左上角开始，总共有 3 条路径可以到达右下角。</p>
 <ol>
 <li>向右 -&gt; 向下 -&gt; 向下</li>
 <li>向下 -&gt; 向下 -&gt; 向右</li>
@@ -801,7 +801,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>735</span>
+      <span>730</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -821,9 +821,9 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="118-杨辉三角"><a href="#118-杨辉三角" class="headerlink" title="118. 杨辉三角"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/pascals-triangle/">118. 杨辉三角</a></h1><p>给定一个非负整数 <code>numRows</code>，生成「杨辉三角」的前 <code>numRows</code> 行。</p>
 <p>在「杨辉三角」中，每个数是它左上方和右上方的数的和。</p>
-<p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/1.gif"></p>
+<p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/1.gif" alt=""></p>
 <h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h2><blockquote>
-<p>输入：numRows &#x3D; 5<br><br>输出：[[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]</p>
+<p>输入：numRows = 5<br><br>输出：[[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -1157,14 +1157,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.9k</span>
+      <span>3.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -1176,10 +1176,11 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>[[toc]]</p>
-<h1 id="差分数组"><a href="#差分数组" class="headerlink" title="差分数组"></a>差分数组</h1><p>前面我们了解了<a href="https://sjchen404.github.io/2022/03/24/%E5%89%8D%E7%BC%80%E5%92%8C%E6%95%B0%E7%BB%84/">前缀和</a></p>
+<h1 id="差分数组"><a href="#差分数组" class="headerlink" title="差分数组"></a>差分数组</h1><p>前面我们了解了<a href="https://sjchen404.github.io/2022/03/24/前缀和数组/">前缀和</a></p>
 <p><strong>前缀和主要适用于原始数组不会被修改的情况下，频繁查询某个区间的累加和</strong></p>
 <p><strong>差分数组主要适用于频繁对原始数组的某个区间的元素进行增减</strong></p>
 <p>比如我们给定一个数组<code>nums</code></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -1191,7 +1192,8 @@
 <th>4</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>nums</td>
 <td>8</td>
 <td>2</td>
@@ -1199,7 +1201,9 @@
 <td>3</td>
 <td>1</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p>要求给区间<code>nums[2..6]</code>全部加1，再给<code>nums[3..9]</code>全部减3，再给<code>nums[0..4]</code>全部加2，最后问<code>nums</code>数组的值为多少？</p>
 <p>常规做法就是每次在所给区间循环加上或者减去给定的值，时间复杂度为：<code>O(m)</code>，效率比较低。</p>
 <p>这时就需要用到差分数组，我们先对<code>nums</code>数组构造一个<code>diff</code>差分数组，<code>diff[i] = nums[i] - nums[i-1]</code></p>
@@ -1298,7 +1302,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4k</span>
+      <span>3.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1318,13 +1322,13 @@
     <div class="post-body" itemprop="articleBody">
           <p>[[toc]]</p>
 <h1 id="115-不同的子序列"><a href="#115-不同的子序列" class="headerlink" title="115. 不同的子序列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/distinct-subsequences/">115. 不同的子序列</a></h1><p>给定一个字符串 s 和一个字符串 <code>t</code> ，计算在 <code>s</code> 的子序列中 <code>t</code> 出现的个数。</p>
-<p>字符串的一个 子序列 是指，通过删除一些（也可以不删除）字符且不干扰剩余字符相对位置所组成的新字符串。（例如，<code>&quot;ACE&quot;</code> 是 <code>&quot;ABCDE&quot;</code> 的一个子序列，而 <code>&quot;AEC&quot; </code>不是）</p>
+<p>字符串的一个 子序列 是指，通过删除一些（也可以不删除）字符且不干扰剩余字符相对位置所组成的新字符串。（例如，<code>&quot;ACE&quot;</code> 是 <code>&quot;ABCDE&quot;</code> 的一个子序列，而 <code>&quot;AEC&quot;</code>不是）</p>
 <p>题目数据保证答案符合 32 位带符号整数范围。</p>
 <h2 id="示例1："><a href="#示例1：" class="headerlink" title="示例1："></a>示例1：</h2><blockquote>
-<p>输入：s &#x3D; “rabbbit”, t &#x3D; “rabbit”<br>输出：3<br>解释：<br>如下图所示, 有 3 种可以从 s 中得到 “rabbit” 的方案。<br>rabbbit<br>rabbbit<br>rabbbit</p>
+<p>输入：s = “rabbbit”, t = “rabbit”<br>输出：3<br>解释：<br>如下图所示, 有 3 种可以从 s 中得到 “rabbit” 的方案。<br>rabbbit<br>rabbbit<br>rabbbit</p>
 </blockquote>
 <h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h2><blockquote>
-<p>输入：s &#x3D; “babgbag”, t &#x3D; “bag”<br>输出：5<br>解释：<br>如下图所示, 有 5 种可以从 s 中得到 “bag” 的方案,<br>babgbag<br>babgbag<br>babgbag<br>babgbag<br>babgbag</p>
+<p>输入：s = “babgbag”, t = “bag”<br>输出：5<br>解释：<br>如下图所示, 有 5 种可以从 s 中得到 “bag” 的方案,<br>babgbag<br>babgbag<br>babgbag<br>babgbag<br>babgbag</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -1421,14 +1425,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.4k</span>
+      <span>671</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -1445,14 +1449,12 @@
 <p>‘A’ -&gt; “1”<br>‘B’ -&gt; “2”<br>…<br>‘Z’ -&gt; “26”</p>
 </blockquote>
 <p>要 解码 已编码的消息，所有数字必须基于上述映射的方法，反向映射回字母（可能有多种方法）。例如，”11106” 可以映射为：</p>
-<p>“AAJF” ，将消息分组为 (1 1 10 6)<br>“KJF” ，将消息分组为 (11 10 6)<br>注意，消息不能分组为  (1 11 06) ，因为 “06” 不能映射为 “F” ，这是由于 “6” 和 “06” 在映射中并不等价。</p>
+<p>“AAJF” ，将消息分组为 (1 1 10 6)<br>“KJF” ，将消息分组为 (11 10 6)<br>注意，消息不能分组为  (1 11 06) ，因为 “06” 不能映射为 “F” ，这是由于 “6” 和 “06” 在映射中并不等价。</p>
 <p>给你一个只含数字的 非空 字符串 s ，请计算并返回 解码 方法的 总数 。</p>
 <p>题目数据保证答案肯定是一个 32 位 的整数。</p>
 <h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h2><blockquote>
-<p>输入：s &#x3D; “12”<br>输出：2<br>解释：它可以解码为 “AB”（1 2）或者 “L”（12）。</p>
-</blockquote>
-<blockquote>
-<p>输入：s &#x3D; “226”<br>输出：3<br>解释：它可以解码为 “BZ” (2 26), “VF” (22 6), 或者 “BBF” (2 2 6) 。</p>
+<p>输入：s = “12”<br>输出：2<br>解释：它可以解码为 “AB”（1 2）或者 “L”（12）。</p>
+<p>输入：s = “226”<br>输出：3<br>解释：它可以解码为 “BZ” (2 26), “VF” (22 6), 或者 “BBF” (2 2 6) 。</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -1505,13 +1507,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -1559,7 +1561,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

@@ -28,15 +28,15 @@
 <meta property="og:site_name" content="SJCHEN">
 <meta property="og:description" content="首先我们先配置下环境：打开命令行，输入以下命令，回车:   pip3 install numpy matplotlib pillow wordcloud imageio jieba snownlp itchat -i https:&#x2F;&#x2F;pypi.tuna.tsinghua.edu.cn&#x2F;simple   如果遇上权限问题的话:在前面加上sudo如果你遇到python pip更新问题:">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sjchen404.github.io/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/example1.png">
-<meta property="og:image" content="https://sjchen404.github.io/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/example2.png">
-<meta property="og:image" content="https://sjchen404.github.io/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/example3.png">
+<meta property="og:image" content="https://sjchen404.github.io/2019/06/08/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/python实现词云/example1.png">
+<meta property="og:image" content="https://sjchen404.github.io/2019/06/08/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/python实现词云/example2.png">
+<meta property="og:image" content="https://sjchen404.github.io/2019/06/08/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/python实现词云/example3.png">
 <meta property="article:published_time" content="2019-06-07T16:08:20.000Z">
 <meta property="article:modified_time" content="2022-05-14T17:20:43.096Z">
 <meta property="article:author" content="SJCHEN">
 <meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sjchen404.github.io/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/example1.png">
+<meta name="twitter:image" content="https://sjchen404.github.io/2019/06/08/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/python实现词云/example1.png">
 
 
 <link rel="canonical" href="https://sjchen404.github.io/2019/06/08/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/">
@@ -329,48 +329,43 @@
 </blockquote>
 <p>如果遇上权限问题的话:<br>在前面加上sudo<br>如果你遇到python pip更新问题:</p>
 <span id="more"></span>
-
 <p>输入以下命令: </p>
 <blockquote>
-<p>sudo pip3 –upgrade pip </p>
+<p>sudo pip3 —upgrade pip </p>
 </blockquote>
 <p>下面开始正式的词云学习: </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入第三方库</span></span><br><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建词云对象</span></span><br><span class="line">w=wordcloud.WordCloud()</span><br><span class="line"></span><br><span class="line"><span class="comment">#调用词云对象的generate方法，将文本传入</span></span><br><span class="line">w.generate(<span class="string">&#x27;and that government of the people,by the people,for the people,shall not perish from the earth.&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#将生成的词云保存到当前文件夹下</span></span><br><span class="line">w.to_file(<span class="string">&#x27;example1.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>效果如下：<br><img src="/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/example1.png"></p>
+<p>效果如下：<br><img src="python实现词云/example1.png" alt=""></p>
 <p>这只是简单的制作，我们还可以美化它:<br>我们可以在WordCloud()里面加入各种参数，控制词云的字体，字号，字色，背景颜色等等。<br>wordcloud库会非常智能地按空格进行分词及词频统计，出现次数多的词就大。 </p>
 <h4 id="美化词云"><a href="#美化词云" class="headerlink" title="美化词云"></a>美化词云</h4><p>注意字体 </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建词云对象w，设置词云图片宽、高、字体、背景颜色等参数</span></span><br><span class="line">w = wordcloud.WordCloud(width=<span class="number">1000</span>,height=<span class="number">700</span>,background_color=<span class="string">&#x27;white&#x27;</span>,font_path=<span class="string">&#x27;Songti.ttc&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用词云对象的generate方法，将文本传入</span></span><br><span class="line">w.generate(<span class="string">&#x27;从明天起，做一个幸福的人。喂马、劈柴，周游世界。从明天起，关心粮食和蔬菜。我有一所房子，面朝大海，春暖花开&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将生成的词云保存为output2-poem.png图片文件，保存到当前文件夹中</span></span><br><span class="line">w.to_file(<span class="string">&#x27;example2.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/example2.png"></p>
+<p><img src="python实现词云/example2.png" alt=""></p>
 <h4 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h4><ul>
 <li>width 词云图片宽度，默认400像素 </li>
 <li>height 词云图片高度 默认200像素 </li>
-<li>background_color 词云图片的背景颜色，默认为黑色</li>
+<li>background_color 词云图片的背景颜色，默认为黑色 </li>
 </ul>
 <blockquote>
-<p>background_color&#x3D;’white’ </p>
+<p>background_color=’white’ </p>
 </blockquote>
 <ul>
 <li>font_step 字号增大的步进间隔 默认1号</li>
 </ul>
-<p>font_path 指定字体路径 默认None，对于中文可用font_path&#x3D;’msyh.ttc’ </p>
+<p>font_path 指定字体路径 默认None，对于中文可用font_path=’msyh.ttc’ </p>
 <ul>
 <li>mini_font_size 最小字号 默认4号 </li>
 <li>max_font_size 最大字号 根据高度自动调节 </li>
 <li>max_words 最大词数 默认200 </li>
-<li>stop_words 不显示的单词 stop_words&#x3D;{“python”,”java”} </li>
+<li>stop_words 不显示的单词 stop_words={“python”,”java”} </li>
 <li>Scale 默认值1。值越大，图像密度越大越清晰 </li>
 <li>prefer_horizontal：默认值0.90，浮点数类型。表示在水平如果不合适，就旋转为垂直方向，水平放置的词数占0.9？ </li>
 <li>relative_scaling：默认值0.5，浮点型。设定按词频倒序排列，上一个词相对下一位词的大小倍数。有如下取值：“0”表示大小标准只参考频率排名，“1”如果词频是2倍，大小也是2倍 </li>
-<li>mask 指定词云形状图片，默认为矩形</li>
+<li>mask 指定词云形状图片，默认为矩形 </li>
 </ul>
 <p>通过以下代码读入外部词云形状图片（需要先pip install imageio安装imageio） </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">w=wordcloud.WordCloud(</span><br><span class="line">  width=<span class="number">400</span>,</span><br><span class="line">  height=<span class="number">200</span>,</span><br><span class="line">  background_color=<span class="string">&#x27;black&#x27;</span>,</span><br><span class="line">  font_path=<span class="literal">None</span>,</span><br><span class="line">  font_step=<span class="number">1</span>,</span><br><span class="line">  min_font_size=<span class="number">4</span>,</span><br><span class="line">  max_font_size=<span class="literal">None</span>,</span><br><span class="line">  max_words=<span class="number">200</span>,</span><br><span class="line">  stoppwords=&#123;&#125;,</span><br><span class="line">  scale=<span class="number">1</span>,</span><br><span class="line">  prefer_horizontal=<span class="number">0.9</span>,</span><br><span class="line">  relative_scaling=<span class="number">0.5</span>,</span><br><span class="line">  mask=<span class="literal">None</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-
 <h4 id="从外部文件读入文本"><a href="#从外部文件读入文本" class="headerlink" title="从外部文件读入文本"></a>从外部文件读入文本</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> wordcloud</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从外部.txt文件中读取大段文本，存入变量txt中</span></span><br><span class="line">f=<span class="built_in">open</span>(<span class="string">&#x27;/Users/SJCHEN/Downloads/zihaowordcloud-master/code/关于实施乡村振兴战略的意见.txt&#x27;</span>,encoding=<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">txt=f.read()</span><br><span class="line"></span><br><span class="line">w=wordcloud.WordCloud(</span><br><span class="line">  width=<span class="number">1000</span>,</span><br><span class="line">  height=<span class="number">700</span>,</span><br><span class="line">  background_color=<span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">  font_path=<span class="string">&#x27;Songti.ttc&#x27;</span>)</span><br><span class="line">w.generate(txt)</span><br><span class="line">w.to_file(<span class="string">&#x27;example3.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/python%E5%AE%9E%E7%8E%B0%E8%AF%8D%E4%BA%91/example3.png"></p>
+<p><img src="python实现词云/example3.png" alt=""></p>
 
     </div>
 
@@ -464,13 +459,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -518,7 +513,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

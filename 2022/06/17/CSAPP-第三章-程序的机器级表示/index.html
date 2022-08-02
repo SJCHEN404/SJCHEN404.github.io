@@ -21,23 +21,23 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="3.2 程序编码有两个文件p1.c和p2.c,我们用Unix命令编译这些代码 1gcc -Og -o p p1.c p2.c   gcc:指GCC C编译器 -Og:告诉编译器使用生成符合原始C语言整体结构的机器代码的优化等级，使用-O1,-O2会导致产出的机器代码变形，难以理解。  gcc命令调用了一整套的程序，将源代码转化成可执行代码。 首先，C预处理器扩展源代码，插入所有用#include命">
+    <meta name="description" content="3.2 程序编码有两个文件p1.c和p2.c,我们用Unix命令编译这些代码 1gcc -Og -o p p1.c p2.c  gcc:指GCCC编译器 -Og:告诉编译器使用生成符合原始C语言整体结构的机器代码的优化等级，使用-O1,-O2会导致产出的机器代码变形，难以理解。  gcc命令调用了一整套的程序，将源代码转化成可执行代码。 首先，C预处理器扩展源代码，插入所有用#include命令指">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSAPP 第三章 程序的机器级表示">
 <meta property="og:url" content="https://sjchen404.github.io/2022/06/17/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="3.2 程序编码有两个文件p1.c和p2.c,我们用Unix命令编译这些代码 1gcc -Og -o p p1.c p2.c   gcc:指GCC C编译器 -Og:告诉编译器使用生成符合原始C语言整体结构的机器代码的优化等级，使用-O1,-O2会导致产出的机器代码变形，难以理解。  gcc命令调用了一整套的程序，将源代码转化成可执行代码。 首先，C预处理器扩展源代码，插入所有用#include命">
+<meta property="og:description" content="3.2 程序编码有两个文件p1.c和p2.c,我们用Unix命令编译这些代码 1gcc -Og -o p p1.c p2.c  gcc:指GCCC编译器 -Og:告诉编译器使用生成符合原始C语言整体结构的机器代码的优化等级，使用-O1,-O2会导致产出的机器代码变形，难以理解。  gcc命令调用了一整套的程序，将源代码转化成可执行代码。 首先，C预处理器扩展源代码，插入所有用#include命令指">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://sjchen404.github.io/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/1.jpg">
-<meta property="og:image" content="https://sjchen404.github.io/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/2.jpg">
-<meta property="og:image" content="https://sjchen404.github.io/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/3.jpg">
-<meta property="og:image" content="https://sjchen404.github.io/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/4.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/06/17/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/CSAPP-第三章-程序的机器级表示/1.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/06/17/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/CSAPP-第三章-程序的机器级表示/2.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/06/17/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/CSAPP-第三章-程序的机器级表示/3.jpg">
+<meta property="og:image" content="https://sjchen404.github.io/2022/06/17/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/CSAPP-第三章-程序的机器级表示/4.jpg">
 <meta property="article:published_time" content="2022-06-17T08:19:58.278Z">
 <meta property="article:modified_time" content="2022-06-28T09:50:24.912Z">
 <meta property="article:author" content="SJCHEN">
 <meta property="article:tag" content="CSAPP">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://sjchen404.github.io/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/1.jpg">
+<meta name="twitter:image" content="https://sjchen404.github.io/2022/06/17/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/CSAPP-第三章-程序的机器级表示/1.jpg">
 
 
 <link rel="canonical" href="https://sjchen404.github.io/2022/06/17/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/">
@@ -302,7 +302,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>7.3k</span>
+      <span>7.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -322,9 +322,8 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="3-2-程序编码"><a href="#3-2-程序编码" class="headerlink" title="3.2 程序编码"></a>3.2 程序编码</h1><p>有两个文件<code>p1.c</code>和<code>p2.c</code>,我们用<code>Unix</code>命令编译这些代码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -Og -o p p1.c p2.c</span><br></pre></td></tr></table></figure>
-
 <blockquote>
-<p><code>gcc</code>:指<code>GCC </code>C编译器</p>
+<p><code>gcc</code>:指<code>GCC</code>C编译器</p>
 <p><code>-Og</code>:告诉编译器使用生成符合原始C语言整体结构的机器代码的优化等级，使用<code>-O1,-O2</code>会导致产出的机器代码变形，难以理解。</p>
 </blockquote>
 <p><code>gcc</code>命令调用了一整套的程序，将源代码转化成可执行代码。</p>
@@ -332,22 +331,16 @@
 <p>其次，编译器产出两个源文件的汇编代码，名字为<code>p1.s</code>和<code>p2.s</code></p>
 <p>接下来汇编器会将汇编代码转化成二进制目标文件<code>p1.o</code>和<code>p2.o</code></p>
 <span id="more"></span>
-
 <p><code>main.c</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">mulstore</span><span class="params">(<span class="type">long</span>, <span class="type">long</span>, <span class="type">long</span>*)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">long</span> d;</span><br><span class="line">    mulstore(<span class="number">2</span>, <span class="number">3</span>, &amp;d);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;2 * 3 --&gt; %ld\n&quot;</span>, d);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="title function_">mult2</span><span class="params">(<span class="type">long</span> a, <span class="type">long</span> b)</span>&#123;</span><br><span class="line">    <span class="type">long</span> s = a * b;</span><br><span class="line">    <span class="keyword">return</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><code>mstore.c</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="title function_">mult2</span><span class="params">(<span class="type">long</span>,<span class="type">long</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">mulstore</span><span class="params">(<span class="type">long</span> x, <span class="type">long</span> y, <span class="type">long</span> *dest)</span>&#123;</span><br><span class="line">    <span class="type">long</span> t = mult2(x, y);</span><br><span class="line">    *dest = t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h2 id="编译生成汇编文件mstore-s"><a href="#编译生成汇编文件mstore-s" class="headerlink" title="编译生成汇编文件mstore.s"></a>编译生成汇编文件<code>mstore.s</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -Og -S mstore.c</span><br></pre></td></tr></table></figure>
-
 <p>使用<code>vim</code>打开</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">	.section	__TEXT,__text,regular,pure_instructions</span><br><span class="line">	.build_version macos, <span class="number">12</span>, <span class="number">0</span>	sdk_version <span class="number">12</span>, <span class="number">3</span></span><br><span class="line">	.globl	_mulstore                       ## -- Begin function mulstore</span><br><span class="line">	.p2align	<span class="number">4</span>, <span class="number">0x90</span></span><br><span class="line">_mulstore:                              ## @mulstore</span><br><span class="line">	.cfi_startproc</span><br><span class="line">## %bb<span class="number">.0</span>:</span><br><span class="line">	pushq	%rbp</span><br><span class="line">	.cfi_def_cfa_offset <span class="number">16</span></span><br><span class="line">	.cfi_offset %rbp, <span class="number">-16</span></span><br><span class="line">	movq	%rsp, %rbp</span><br><span class="line">	.cfi_def_cfa_register %rbp</span><br><span class="line">	pushq	%rbx</span><br><span class="line">	pushq	%rax</span><br><span class="line">	.cfi_offset %rbx, <span class="number">-24</span></span><br><span class="line">	movq	%rdx, %rbx</span><br><span class="line">	callq	_mult2</span><br><span class="line">	movq	%rax, (%rbx)</span><br><span class="line">	addq	$<span class="number">8</span>, %rsp</span><br><span class="line">	popq	%rbx</span><br><span class="line">	popq	%rbp</span><br><span class="line">	retq</span><br><span class="line">	.cfi_endproc</span><br><span class="line">                                        ## -- End function</span><br><span class="line">.subsections_via_symbols</span><br></pre></td></tr></table></figure>
-
 <p>其中以<code>.</code>开头的行都是指导汇编器和链接器工作的伪指令，直接忽略</p>
 <p>可以简化为：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mulstore:</span><br><span class="line">	pushq	%rbx</span><br><span class="line">	movq	%rdx, %rbx</span><br><span class="line">	call	mult2</span><br><span class="line">	movq	%rax, (%rbx)</span><br><span class="line">	popq	%rbx</span><br><span class="line">	retq</span><br></pre></td></tr></table></figure>
-
 <p><code>pushq %rbx</code>：将寄存器<code>rbx</code>的值压入程序栈进行保存</p>
 <blockquote>
 <p>为什么程序一开始要保存<code>rbx</code> 的内容</p>
@@ -358,12 +351,12 @@
 <p>第二，被调用者保存：函数B在使用寄存器<code>rbx</code>之前，先保存寄存器<code>rbx</code>的值，在函数B返回之前，先回复寄存器<code>rbx</code>原来存储的内容</p>
 </blockquote>
 <p><code>popq %rbx</code>：在函数返回之前，恢复寄存器<code>rbx</code>的内容</p>
-<p>第二行：<code>movq	%rdx, %rbx</code>：将寄存器<code>rdx</code>的内容复制到寄存器<code>rbx</code></p>
+<p>第二行：<code>movq    %rdx, %rbx</code>：将寄存器<code>rdx</code>的内容复制到寄存器<code>rbx</code></p>
 <p>根据寄存器用法的定义</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">mulstore</span><span class="params">(<span class="type">long</span> x, <span class="type">long</span> y, <span class="type">long</span> *dest)</span>;</span><br><span class="line">x-&gt;%rdi, y-&gt;%rsi, dest-&gt;%rdx</span><br></pre></td></tr></table></figure>
-
 <p><code>mov</code>指令的后缀<code>&quot;q&quot;</code>表示数据的大小</p>
 <p><code>Size of Data Type in x86-64</code></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -373,7 +366,8 @@
 <th>大小（字节）</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>char</td>
 <td>Byte</td>
 <td>b</td>
@@ -415,17 +409,16 @@
 <td>l</td>
 <td>9</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <p><code>call mult2</code>:对应函数调用，该函数的返回值会保存到寄存器<code>rax</code>中</p>
-<p><code>movq	%rax, (%rbx)</code>：将寄存器<code>rax</code>的值送到内存中，内存的地址就存放在寄存器<code>rbx</code>中</p>
+<p><code>movq    %rax, (%rbx)</code>：将寄存器<code>rax</code>的值送到内存中，内存的地址就存放在寄存器<code>rbx</code>中</p>
 <p><code>ret</code>:就是函数返回</p>
 <h2 id="翻译为机器代码-mstore-o"><a href="#翻译为机器代码-mstore-o" class="headerlink" title="翻译为机器代码 mstore.o"></a>翻译为机器代码 <code>mstore.o</code></h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -Og -c mstore.c</span><br></pre></td></tr></table></figure>
-
-<p>由于该文件是二进制的无法直接查看，我们需要用到反汇编工具—-<code>objdump</code></p>
+<p>由于该文件是二进制的无法直接查看，我们需要用到反汇编工具——<code>objdump</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">objdump -d mstore.o</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">mstore.o:	file format mach-o <span class="number">64</span>-bit x86<span class="number">-64</span></span><br><span class="line"></span><br><span class="line">Disassembly of section __TEXT,__text:</span><br><span class="line"></span><br><span class="line"><span class="number">0000000000000000</span> &lt;_mulstore&gt;:</span><br><span class="line">       <span class="number">0</span>: <span class="number">55</span>                           	pushq	%rbp</span><br><span class="line">       <span class="number">1</span>: <span class="number">48</span> <span class="number">89</span> e5                     	movq	%rsp, %rbp</span><br><span class="line">       <span class="number">4</span>: <span class="number">53</span>                           	pushq	%rbx</span><br><span class="line">       <span class="number">5</span>: <span class="number">50</span>                           	pushq	%rax</span><br><span class="line">       <span class="number">6</span>: <span class="number">48</span> <span class="number">89</span> d3                     	movq	%rdx, %rbx</span><br><span class="line">       <span class="number">9</span>: e8 <span class="number">00</span> <span class="number">00</span> <span class="number">00</span> <span class="number">00</span>               	callq	<span class="number">0xe</span> &lt;_mulstore+<span class="number">0xe</span>&gt;</span><br><span class="line">       e: <span class="number">48</span> <span class="number">89</span> <span class="number">03</span>                     	movq	%rax, (%rbx)</span><br><span class="line">      <span class="number">11</span>: <span class="number">48</span> <span class="number">83</span> c4 <span class="number">08</span>                  	addq	$<span class="number">8</span>, %rsp</span><br><span class="line">      <span class="number">15</span>: <span class="number">5b</span>                           	popq	%rbx</span><br><span class="line">      <span class="number">16</span>: <span class="number">5</span>d                           	popq	%rbp</span><br><span class="line">      <span class="number">17</span>: c3                           	retq</span><br></pre></td></tr></table></figure>
-
 <h1 id="3-3-数据格式"><a href="#3-3-数据格式" class="headerlink" title="3.3 数据格式"></a>3.3 数据格式</h1><p>大多数指令有一个或多个操作数，指示出执行一个操作中要使用的源数据值，以及放置结果的目的位置。</p>
 <p>各种不同的操作数的被分为三种类型：</p>
 <ul>
@@ -435,11 +428,11 @@
 </ul>
 <p>内存引用：</p>
 <blockquote>
-<p>Imm($r_b,r_i,s$) —-&gt; Imm + $R[r_b] + R[r_i]*s$</p>
-<p>Imm —-&gt; 立即数</p>
-<p>$r_b$—-&gt; 基址寄存器</p>
-<p>$r_i$—-&gt;变址寄存器</p>
-<p>s —-&gt; 比例因子【1,2,4,8】</p>
+<p>Imm($r_b,r_i,s$) ——&gt; Imm + $R[r_b] + R[r_i]*s$</p>
+<p>Imm ——&gt; 立即数</p>
+<p>$r_b$——&gt; 基址寄存器</p>
+<p>$r_i$——&gt;变址寄存器</p>
+<p>s ——&gt; 比例因子【1,2,4,8】</p>
 <p>编译器会根据数组类型来确定比例因子的数值</p>
 </blockquote>
 <p><code>Mov</code>指令</p>
@@ -453,68 +446,55 @@
 <p>mov register, memory</p>
 <p>MOV指令的后缀需要与寄存器的大小匹配</p>
 </blockquote>
-<p><img src="/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/1.jpg"></p>
-<h1 id="3-4-栈与数据传送"><a href="#3-4-栈与数据传送" class="headerlink" title="3.4 栈与数据传送"></a>3.4 栈与数据传送</h1><p><img src="/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/2.jpg"></p>
+<p><img src="CSAPP-第三章-程序的机器级表示/1.jpg" alt=""></p>
+<h1 id="3-4-栈与数据传送"><a href="#3-4-栈与数据传送" class="headerlink" title="3.4 栈与数据传送"></a>3.4 栈与数据传送</h1><p><img src="CSAPP-第三章-程序的机器级表示/2.jpg" alt=""></p>
 <blockquote>
-<p><code>long</code>:64 –&gt; %rax</p>
-<p><code>int</code>:32   –&gt; %eax </p>
-<p><code>short</code>:16 –&gt; %ax</p>
-<p>低8位 –&gt; %al</p>
+<p><code>long</code>:64 —&gt; %rax</p>
+<p><code>int</code>:32   —&gt; %eax </p>
+<p><code>short</code>:16 —&gt; %ax</p>
+<p>低8位 —&gt; %al</p>
 </blockquote>
 <p><strong>数据传送示例：</strong></p>
 <p><code>main.c</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">long</span> <span class="title function_">exchange</span><span class="params">(<span class="type">long</span>*, <span class="type">long</span>)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">  <span class="type">long</span> a = <span class="number">4</span>;</span><br><span class="line">  <span class="type">long</span> b = exchange(&amp;a, <span class="number">3</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;a = %ld, b = %ld\n&quot;</span>, a, b);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p><code>exchange.c</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="title function_">exchange</span><span class="params">(<span class="type">long</span> *xp, <span class="type">long</span> y)</span>&#123;</span><br><span class="line">  <span class="type">long</span> x = *xp;</span><br><span class="line">  *xp = y;</span><br><span class="line">  <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>编译<code>exchange.c</code>为汇编代码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -Og -S exchange.c</span><br></pre></td></tr></table></figure>
-
 <p>去除多余没用信息后</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">exchange:</span><br><span class="line">	movq	(%rdi), %rax</span><br><span class="line">	movq	%rsi, (%rdi)</span><br><span class="line">	retq</span><br></pre></td></tr></table></figure>
-
 <p><code>%rdi</code>保存函数的第一个参数，<code>%rsi</code>保存函数的第二个参数</p>
 <p>所以可以这样理解</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">exchange:</span><br><span class="line">	xp in %rdi, y in %rsi</span><br><span class="line">	<span class="title function_">movq</span>	<span class="params">(%rdi)</span>, %rax    <span class="comment">//Memory --&gt; Registor long x = *xp</span></span><br><span class="line">	movq	%rsi, <span class="params">(%rdi)</span>		<span class="comment">//Register --&gt; Memory *xp = y</span></span><br><span class="line">	retq</span><br></pre></td></tr></table></figure>
-
-<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p><img src="/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/3.jpg"></p>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p><img src="CSAPP-第三章-程序的机器级表示/3.jpg" alt=""></p>
 <p>栈顶是栈中地址最低的。</p>
 <p><strong>入栈push:</strong></p>
 <p>先将地址减小，再入栈</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pushq %rax</span><br><span class="line">subq $8, %rsp</span><br><span class="line">movq %rax, (%rsp)</span><br></pre></td></tr></table></figure>
-
 <p><code>pushq</code>就等于上面两条指令</p>
 <p><strong>出栈pop:</strong></p>
 <p>先出栈，再把地址增加</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">popq %rbx</span><br><span class="line">movq (%rsp), %rbx</span><br><span class="line">addq $8, %rsp</span><br></pre></td></tr></table></figure>
-
 <h1 id="3-5-算术和逻辑操作"><a href="#3-5-算术和逻辑操作" class="headerlink" title="3.5 算术和逻辑操作"></a>3.5 算术和逻辑操作</h1><h2 id="加载有效地址leaq"><a href="#加载有效地址leaq" class="headerlink" title="加载有效地址leaq"></a>加载有效地址leaq</h2><p><code>leaq</code>：它的指令形式是从内存读数据到寄存器</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">leaq S, D</span><br></pre></td></tr></table></figure>
-
 <p>例如：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">leaq 7(%rdx, %rdx, 4), %rax</span><br></pre></td></tr></table></figure>
-
 <p>表示：</p>
-<p>假设 <code>%rdx </code> 的值为<code>x</code></p>
-<p>有效地址 &#x3D; <code>7 + %rdx + %rdx * 4 </code> &#x3D; 5x + 7</p>
+<p>假设 <code>%rdx</code> 的值为<code>x</code></p>
+<p>有效地址 = <code>7 + %rdx + %rdx * 4</code> = 5x + 7</p>
 <p><strong>目的操作数必须是一个寄存器</strong></p>
 <p><code>leaq</code>指令还可以执行加法和有限形式的乘法</p>
 <p><code>scale.c</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="title function_">scalse</span><span class="params">(<span class="type">long</span> x, <span class="type">long</span> y, <span class="type">long</span> z)</span>&#123;</span><br><span class="line">  <span class="type">long</span> t = x + <span class="number">4</span> * y + <span class="number">12</span> * z;</span><br><span class="line">  <span class="keyword">return</span> t;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>编译后形成的汇编代码为：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">scale:                                 </span><br><span class="line">	leaq	(%rdi,%rsi,4), %rax</span><br><span class="line">	leaq	(%rdx,%rdx,2), %rcx</span><br><span class="line">	leaq	(%rax,%rcx,4), %rax</span><br><span class="line">	retq</span><br></pre></td></tr></table></figure>
-
 <p>理解：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">scale:</span><br><span class="line">	x in %rdi, y in %rsi, z in %rdx</span><br><span class="line">	leaq	(%rdi,%rsi,4), %rax			--&gt; %rdi + 4 * %rsi = x + 4 * y --&gt; %rax</span><br><span class="line">	leaq	(%rdx,%rdx,2), %rcx			--&gt; %rdx + 2 * %rdx = z + 2 * z --&gt; %rcx</span><br><span class="line">	leaq	(%rax,%rcx,4), %rax			--&gt; %rax + 4 * %rcx = (x + 4 * y) + 4 * (z + 2 * z)</span><br><span class="line">	retq</span><br></pre></td></tr></table></figure>
-
 <p>因为比例因子只能为<code>[1,2,4,8]</code>,所以需要将12拆分</p>
 <h2 id="一元和二元操作"><a href="#一元和二元操作" class="headerlink" title="一元和二元操作"></a>一元和二元操作</h2><p><strong>一元操作数：</strong>即是源操作数又是目的操作数</p>
 <p><strong>二元操作数：</strong></p>
 <p>例如：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ADD S, D</span><br></pre></td></tr></table></figure>
-
 <p> 第二个操作数（<code>D</code>）即是源又是目的操作数，第一个操作数可以是立即数，寄存器或是内存位置</p>
 <p>第二个操作数可以是寄存器或是内存位置，但不能是立即数</p>
 <h2 id="移位操作"><a href="#移位操作" class="headerlink" title="移位操作"></a>移位操作</h2><p><strong>左移：</strong></p>
@@ -524,48 +504,42 @@
 <p>SHR执行逻辑运算（填上0）</p>
 <h1 id="3-6-控制"><a href="#3-6-控制" class="headerlink" title="3.6 控制"></a>3.6 控制</h1><h2 id="3-6-1-条件码"><a href="#3-6-1-条件码" class="headerlink" title="3.6.1 条件码"></a>3.6.1 条件码</h2><p>最常用的条件码：</p>
 <ul>
-<li>CF：进位标志。最近的操作使最高位产生了进位，CF &#x3D; 1。可用来检查无符号操作的溢出。</li>
-<li>ZF：零标志。最近的操作得出的结果位0，ZF &#x3D; 1</li>
-<li>SF：符号标志。最近的操作得到的结果为负数，SF &#x3D; 1</li>
-<li>OF：溢出标志。最近的操作导致一个补码溢出—-正溢出或负溢出</li>
+<li>CF：进位标志。最近的操作使最高位产生了进位，CF = 1。可用来检查无符号操作的溢出。</li>
+<li>ZF：零标志。最近的操作得出的结果位0，ZF = 1</li>
+<li>SF：符号标志。最近的操作得到的结果为负数，SF = 1</li>
+<li>OF：溢出标志。最近的操作导致一个补码溢出——正溢出或负溢出</li>
 </ul>
 <p>执行<code>XOR</code>时，<code>ZF = 0, OF = 0</code></p>
 <p><code>INC(+1),DEC(-1)</code>时，只会改变<code>OF,ZF</code>,不会改变<code>CF</code></p>
 <p><code>CMP和TEST</code>指令也可以设置条件码</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmpq %rax, %rdx</span><br></pre></td></tr></table></figure>
-
 <p>cmp指令是根据两个操作数的差来设置条件码寄存器，并不会更新目的寄存器的值</p>
 <p>test指令设置条件码寄存器，并不会更新目的寄存器的值</p>
 <h3 id="条件码的使用"><a href="#条件码的使用" class="headerlink" title="条件码的使用"></a>条件码的使用</h3><p><code>setl</code>和<code>setb</code>表示“小于时设置(set less)”和”低于时设置(set below)”</p>
 <p><code>comp.c</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">comp</span><span class="params">(<span class="type">long</span> a, <span class="type">long</span> b)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (a == b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>编译为汇编代码：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -Og -S comp.c</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">comp:</span><br><span class="line">	(a in %rdi, b in %rsi)</span><br><span class="line">	comq %rsi, %rdi  --&gt; a - b,当 a = b 时，ZF = 1</span><br><span class="line">	sete %al</span><br><span class="line">	(</span><br><span class="line">	if ZF = 1, %al = 1</span><br><span class="line">	if ZF = 0, %al = 0 </span><br><span class="line">	）</span><br><span class="line">	movzbl %al, %eax --&gt; 对寄存器al进行零扩展</span><br><span class="line">	ret</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">comp</span><span class="params">(<span class="type">char</span> a, <span class="type">char</span> b)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (a &lt; b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>汇编为：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">comp:</span><br><span class="line">	comb %sil, %dil</span><br><span class="line">	setl %al</span><br><span class="line">	movzbl %al, %eax</span><br><span class="line">	ret</span><br></pre></td></tr></table></figure>
-
-<p>a &lt; b –&gt; SF ^ OF</p>
-<p>t &#x3D; a - b</p>
-<p>Case1: a &lt; b, t &lt; 0, SF &#x3D; 1, SF ^ OF &#x3D; 1</p>
-<p>Case2: a &gt; b, t &gt; 0, SF &#x3D; 0, SF ^ OF &#x3D; 0</p>
-<p>Case3: a &lt; b, a &#x3D; -2, b &#x3D; 127</p>
-<p>a &#x3D; 1111 1110 </p>
-<p>b &#x3D; 0111 1111</p>
-<p>t &#x3D; a - b</p>
-<p>a   &#x3D;  1111 1110</p>
-<p>(-b) &#x3D; 1000 0001(按位取反，末位+1)</p>
-<p>a + (-b) &#x3D; 1 0111 1111</p>
-<p> t &#x3D; 127 &gt; 0, SF &#x3D; 0, OF &#x3D; 1, SF ^ OF &#x3D; 1</p>
+<p>a &lt; b —&gt; SF ^ OF</p>
+<p>t = a - b</p>
+<p>Case1: a &lt; b, t &lt; 0, SF = 1, SF ^ OF = 1</p>
+<p>Case2: a &gt; b, t &gt; 0, SF = 0, SF ^ OF = 0</p>
+<p>Case3: a &lt; b, a = -2, b = 127</p>
+<p>a = 1111 1110 </p>
+<p>b = 0111 1111</p>
+<p>t = a - b</p>
+<p>a   =  1111 1110</p>
+<p>(-b) = 1000 0001(按位取反，末位+1)</p>
+<p>a + (-b) = 1 0111 1111</p>
+<p> t = 127 &gt; 0, SF = 0, OF = 1, SF ^ OF = 1</p>
 <p><strong>综上：</strong></p>
 <p>对于有符号数的比较，采用的是SF和ZF的组合</p>
 <p>对于无符号数的比较，采用的是CF和ZF的组合</p>
-<p><img src="/CSAPP-%E7%AC%AC%E4%B8%89%E7%AB%A0-%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%9C%BA%E5%99%A8%E7%BA%A7%E8%A1%A8%E7%A4%BA/4.jpg"></p>
+<p><img src="CSAPP-第三章-程序的机器级表示/4.jpg" alt=""></p>
 <h2 id="3-6-2-访问条件码"><a href="#3-6-2-访问条件码" class="headerlink" title="3.6.2 访问条件码"></a>3.6.2 访问条件码</h2><p>常用的使用方式：</p>
 <ul>
 <li>可以根据条件码的某种组合，将一个字节设置为0或者1，2</li>
@@ -574,14 +548,10 @@
 </ul>
 <h2 id="3-6-3-跳转指令"><a href="#3-6-3-跳转指令" class="headerlink" title="3.6.3 跳转指令"></a>3.6.3 跳转指令</h2><p><code>jump.c</code></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="title function_">absDiff_se</span><span class="params">(<span class="type">long</span> x, <span class="type">long</span> y)</span>&#123;</span><br><span class="line">  <span class="type">long</span> res;</span><br><span class="line">  <span class="keyword">if</span>(x &lt; y)&#123;</span><br><span class="line">    res = y - x;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    res = x - y;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">absDiff_se:</span><br><span class="line"> (x in %rdi, y in %rsi)</span><br><span class="line">	cmpq %rsi, %rdi --&gt; set SF, OF</span><br><span class="line">	j1 .L4 --&gt; SF ^ OF</span><br><span class="line">	movq %rdi, %rax</span><br><span class="line">	subq %rsi, %rax --&gt; x - y</span><br><span class="line">	ret</span><br><span class="line">	</span><br><span class="line">.L4:</span><br><span class="line">	movq %rsi, %rax</span><br><span class="line">	subq %rdi, %rax --&gt; y - x</span><br><span class="line">	ret</span><br></pre></td></tr></table></figure>
-
 <p>另一种实现方式，效率更高：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="title function_">comvdiff_se</span><span class="params">(<span class="type">long</span> x, <span class="type">long</span> y)</span>&#123;</span><br><span class="line">  <span class="type">long</span> rval = y - x;</span><br><span class="line">  <span class="type">long</span> eval = x - y;</span><br><span class="line">  <span class="type">long</span> ntest = x &gt;= y;</span><br><span class="line">  <span class="keyword">if</span>(ntest)</span><br><span class="line">    rval = eval;</span><br><span class="line">  <span class="keyword">return</span> rval;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cmovdiff_se:</span><br><span class="line">	(x in %rdi, y in %rsi)</span><br><span class="line">	movq %rsi, %rdx</span><br><span class="line">	subq %rdi, %rdx --&gt; rval = y - x</span><br><span class="line">  movq %rdi, %rax</span><br><span class="line">  subq %rsi, %rax --&gt; eval = x - y</span><br><span class="line">  cmpq %rsi, %rdi</span><br><span class="line">  cmovge %rdx, %rax --&gt; ~(SF ^ OF)</span><br><span class="line">  ret</span><br></pre></td></tr></table></figure>
-
 <p><strong>为什么基于条件传送的代码会比基于跳转指令的代码效率高？</strong></p>
 <blockquote>
 <p>处理器会根据分支预测器来猜测每条跳转指令是否执行，</p>
@@ -680,13 +650,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -734,7 +704,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

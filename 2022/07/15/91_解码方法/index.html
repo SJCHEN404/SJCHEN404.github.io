@@ -290,14 +290,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.4k</span>
+      <span>671</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -314,17 +314,14 @@
 <p>‘A’ -&gt; “1”<br>‘B’ -&gt; “2”<br>…<br>‘Z’ -&gt; “26”</p>
 </blockquote>
 <p>要 解码 已编码的消息，所有数字必须基于上述映射的方法，反向映射回字母（可能有多种方法）。例如，”11106” 可以映射为：</p>
-<p>“AAJF” ，将消息分组为 (1 1 10 6)<br>“KJF” ，将消息分组为 (11 10 6)<br>注意，消息不能分组为  (1 11 06) ，因为 “06” 不能映射为 “F” ，这是由于 “6” 和 “06” 在映射中并不等价。</p>
+<p>“AAJF” ，将消息分组为 (1 1 10 6)<br>“KJF” ，将消息分组为 (11 10 6)<br>注意，消息不能分组为  (1 11 06) ，因为 “06” 不能映射为 “F” ，这是由于 “6” 和 “06” 在映射中并不等价。</p>
 <p>给你一个只含数字的 非空 字符串 s ，请计算并返回 解码 方法的 总数 。</p>
 <p>题目数据保证答案肯定是一个 32 位 的整数。</p>
 <h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h2><blockquote>
-<p>输入：s &#x3D; “12”<br>输出：2<br>解释：它可以解码为 “AB”（1 2）或者 “L”（12）。</p>
-</blockquote>
-<blockquote>
-<p>输入：s &#x3D; “226”<br>输出：3<br>解释：它可以解码为 “BZ” (2 26), “VF” (22 6), 或者 “BBF” (2 2 6) 。</p>
+<p>输入：s = “12”<br>输出：2<br>解释：它可以解码为 “AB”（1 2）或者 “L”（12）。</p>
+<p>输入：s = “226”<br>输出：3<br>解释：它可以解码为 “BZ” (2 26), “VF” (22 6), 或者 “BBF” (2 2 6) 。</p>
 </blockquote>
 <span id="more"></span>
-
 <h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>我们设<code>dp[i]</code>表示<code>s[0...i-1]</code>的解码数量。<br>不难发现对于字符串<code>s</code>的某个位置<code>i</code>而言，我们只关心「位置<code>i</code>自己是否能独立形成一个字母」和「位置<code>i</code>能够与上一个位置<code>[i-1]</code>能否形成一个字母」，<br>不关心<code>i-1</code>之前的位置。</p>
 <p>所以一共有两种情况：</p>
 <ul>
@@ -332,10 +329,12 @@
 <li><code>s[i]</code>和<code>s[i-1]</code>结合起来为一个字母</li>
 </ul>
 <p><strong>状态转移方程为：</strong></p>
-<p>$$<br>dp[i]&#x3D; \begin{cases}<br>dp[i] + dp[i-1], &amp; \text {s[i] &gt;&#x3D; ‘1’ &amp;&amp; s[i] &lt;&#x3D; ‘9’} \<br>dp[i] + dp[i-2], &amp; \text{(s[i-2] &#x3D;&#x3D; 1 || s[i-2] &#x3D;&#x3D; 2) &amp;&amp; s[i-1] &lt;&#x3D; ‘6’}<br>\end{cases}<br>$$</p>
-<p>时间复杂度：<code>O(n)</code><br>空间复杂度：<code>O(n)</code></p>
+<script type="math/tex; mode=display">
+dp[i]= \begin{cases} 
+dp[i] + dp[i-1], & \text {s[i] >= '1' \&\& s[i] <= '9'} \\ 
+dp[i] + dp[i-2], & \text{(s[i-2] == 1 || s[i-2] == 2) \&\& s[i-1] <= '6'} 
+\end{cases}</script><p>时间复杂度：<code>O(n)</code><br>空间复杂度：<code>O(n)</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">numDecodings</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(n &lt; <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// dp[i] 表示 s[0..i-1] 的解码方式数量</span></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="comment">// bace case</span></span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        dp[<span class="number">1</span>] = s[<span class="number">0</span>] == <span class="string">&#x27;0&#x27;</span> ? <span class="number">0</span> : <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="type">char</span> c = s[i - <span class="number">1</span>], d = s[i - <span class="number">2</span>];</span><br><span class="line">            <span class="keyword">if</span>(<span class="string">&#x27;1&#x27;</span> &lt;= c &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">                <span class="comment">// 1. s[i] 本身可以作为一个字母</span></span><br><span class="line">                dp[i] += dp[i - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(d == <span class="string">&#x27;1&#x27;</span> || d == <span class="string">&#x27;2&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;6&#x27;</span>) &#123;</span><br><span class="line">                <span class="comment">// 2. s[i] 和 d[i - 1] 结合起来表示一个字母</span></span><br><span class="line">                dp[i] += dp[i - <span class="number">2</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <p><strong>空间优化：</strong></p>
 <p>根据上面情况，我们可以看出<code>dp[i]</code>只依赖<code>dp[i-1]</code>和<code>dp[i-2]</code>两个状态。<br>因此我们可以使用滚动数组的思路来优化空间。</p>
 <p>时间复杂度：<code>O(n)</code><br>空间复杂度：<code>O(1)</code></p>
@@ -433,13 +432,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -487,7 +486,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

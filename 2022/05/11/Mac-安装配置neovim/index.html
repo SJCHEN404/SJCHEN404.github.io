@@ -316,83 +316,60 @@
     
     <div class="post-body" itemprop="articleBody">
         <h1 id="Mac-安装配置neovim"><a href="#Mac-安装配置neovim" class="headerlink" title="Mac 安装配置neovim"></a>Mac 安装配置neovim</h1><span id="more"></span>
-
 <h2 id="1-安装"><a href="#1-安装" class="headerlink" title="1. 安装"></a>1. 安装</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install neovim</span><br></pre></td></tr></table></figure>
-
 <p>输入<code>nvim</code>就可以进入</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvim</span><br></pre></td></tr></table></figure>
-
 <h2 id="2-创建路径"><a href="#2-创建路径" class="headerlink" title="2. 创建路径"></a>2. 创建路径</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.config/nvim</span><br></pre></td></tr></table></figure>
-
 <h2 id="3-配置"><a href="#3-配置" class="headerlink" title="3. 配置"></a>3. 配置</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvim ~/.config/nvim/init.vim</span><br></pre></td></tr></table></figure>
-
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">1 &quot;======================</span><br><span class="line">2 &quot;=== Enhance Editor ===</span><br><span class="line">3 &quot;======================</span><br><span class="line">4 let mapleader = &quot; &quot;</span><br><span class="line">5 syntax on</span><br><span class="line">6 set number</span><br><span class="line">7 set norelativenumber</span><br><span class="line">8 set cursorline</span><br><span class="line">9 set wrap</span><br><span class="line">10 set showcmd</span><br><span class="line">11 set hlsearch</span><br><span class="line">12 exec &quot;nohlsearch&quot;</span><br><span class="line">13 set incsearch</span><br><span class="line">14 set ignorecase</span><br><span class="line">15 set smartcase</span><br><span class="line">16 set wildmenu</span><br><span class="line">17 set notimeout</span><br><span class="line">18 set jumpoptions=stack</span><br><span class="line">19</span><br><span class="line">20 noremap &lt;LEADER&gt;&lt;CR&gt; :nohlsearch&lt;CR&gt;</span><br><span class="line">21 noremap = nzz</span><br><span class="line">22 noremap - Nzz</span><br><span class="line">23 map S :w&lt;CR&gt;</span><br><span class="line">24 map R :source $MYVIMRC&lt;CR&gt;</span><br><span class="line">25 noremap U 5k</span><br><span class="line">26 noremap E 5j</span><br></pre></td></tr></table></figure>
-
 <h3 id="4-下载插件vim-plug"><a href="#4-下载插件vim-plug" class="headerlink" title="4. 下载插件vim-plug"></a>4. 下载插件<code>vim-plug</code></h3><p><a target="_blank" rel="noopener" href="https://github.com/junegunn/vim-plug">vim-plug</a></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sh -c <span class="string">&#x27;curl -fLo &quot;$&#123;XDG_DATA_HOME:-$HOME/.local/share&#125;&quot;/nvim/site/autoload/plug.vim --create-dirs \</span></span><br><span class="line"><span class="string">       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim&#x27;</span></span><br></pre></td></tr></table></figure>
-
 <p>如果出现</p>
 <blockquote>
 <p>curl: (35) LibreSSL SSL_connect: SSL_ERROR_SYSCALL in connection to raw.githubusercontent.com:443</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/hosts</span><br></pre></td></tr></table></figure>
-
 <p>然后写入</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"># GitHub Start</span><br><span class="line"></span><br><span class="line"><span class="number">52.74</span><span class="number">.223</span><span class="number">.119</span> github.com</span><br><span class="line"></span><br><span class="line"><span class="number">192.30</span><span class="number">.253</span><span class="number">.119</span> gist.github.com</span><br><span class="line"></span><br><span class="line"><span class="number">54.169</span><span class="number">.195</span><span class="number">.247</span> api.github.com</span><br><span class="line"></span><br><span class="line"><span class="number">185.199</span><span class="number">.111</span><span class="number">.153</span> assets-cdn.github.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> raw.githubusercontent.com</span><br><span class="line"><span class="number">151.101</span><span class="number">.108</span><span class="number">.133</span> user-images.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> gist.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> cloud.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> camo.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> avatars0.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> avatars1.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> avatars2.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> avatars3.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> avatars4.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> avatars5.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> avatars6.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> avatars7.githubusercontent.com</span><br><span class="line"></span><br><span class="line"><span class="number">151.101</span><span class="number">.76</span><span class="number">.133</span> avatars8.githubusercontent.com</span><br><span class="line"></span><br><span class="line"># GitHub End</span><br></pre></td></tr></table></figure>
-
 <p>如果还不可以，我们直接下载<code>.zip</code>文件，然后把<code>plug.vim</code>放到</p>
 <blockquote>
-<p>.config&#x2F;nvim&#x2F;autoload&#x2F;</p>
+<p>.config/nvim/autoload/</p>
 </blockquote>
 <p>这样就解决了。</p>
 <h2 id="5-安装插件"><a href="#5-安装插件" class="headerlink" title="5. 安装插件"></a>5. 安装插件</h2><h3 id="5-1-安装coc-nvim"><a href="#5-1-安装coc-nvim" class="headerlink" title="5.1 安装coc.nvim"></a>5.1 安装<code>coc.nvim</code></h3><p><a target="_blank" rel="noopener" href="https://github.com/neoclide/coc.nvim">coc.nvim</a>文档写得很好，我们可以去看下，这里我简单说下我的配置。</p>
 <h4 id="5-1-1-安装nodejs依赖"><a href="#5-1-1-安装nodejs依赖" class="headerlink" title="5.1.1 安装nodejs依赖"></a>5.1.1 安装<code>nodejs</code>依赖</h4><p><code>coc.nvim</code>是基于<code>nodejs</code>的，我们可以调用</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -sL install-node.vercel.app/lts | bash</span><br></pre></td></tr></table></figure>
-
 <p>来安装，如果你是<code>mac</code>，使用</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install nodejs</span><br></pre></td></tr></table></figure>
-
 <h4 id="5-1-2-在vim-plug中安装插件"><a href="#5-1-2-在vim-plug中安装插件" class="headerlink" title="5.1.2 在vim-plug中安装插件"></a>5.1.2 在<code>vim-plug</code>中安装插件</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; Use release branch (recommend)</span></span><br><span class="line"><span class="string">Plug &#x27;neoclide/coc.nvim&#x27;, &#123;&#x27;branch&#x27;: &#x27;release&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
-
 <p>调用<code>:PlugInstall</code>安装插件</p>
 <p>安装一些<code>coc</code>扩展</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">:CocInstall coc-json coc-tsserver</span><br></pre></td></tr></table></figure>
-
 <p>配置文件</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
 <h4 id="5-2-安装代码高亮插件vim-lsp-cxx-highlight"><a href="#5-2-安装代码高亮插件vim-lsp-cxx-highlight" class="headerlink" title="5.2 安装代码高亮插件vim-lsp-cxx-highlight"></a>5.2 安装代码高亮插件<code>vim-lsp-cxx-highlight</code></h4><p>配置</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; ==== jackguo380/vim-lsp-cxx-highlight ====</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymFunction cxxFunction</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymFunctionParameter cxxParameter</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymFileVariableStatic cxxFileVariableStatic</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymStruct cxxStruct</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymStructField cxxStructField</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymFileTypeAlias cxxTypeAlias</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymClassField cxxStructField</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymEnum cxxEnum</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymVariableExtern cxxFileVariableStatic</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymVariable cxxVariable</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymMacro cxxMacro</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymEnumMember cxxEnumMember</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymParameter cxxParameter</span></span><br><span class="line"><span class="string">hi default link LspCxxHlSymClass cxxTypeAlias</span></span><br></pre></td></tr></table></figure>
-
 <p>并在<code>ccls</code>中配置。</p>
-<p> <code>coc.vim</code>的补全有三种<code>lsp</code>：<code>clangd</code>,<code> ccls</code>, <code>cquery</code>。这里说明如何使用<code>ccls</code>补全。</p>
-<h4 id="5-3-ccls的配置"><a href="#5-3-ccls的配置" class="headerlink" title="5.3 ccls的配置"></a>5.3 ccls的配置</h4><p>ccls是lsp(language server Protocal)（语言补全协议）中的一个，用于补全C&#x2F;C++</p>
+<p> <code>coc.vim</code>的补全有三种<code>lsp</code>：<code>clangd</code>,<code>ccls</code>, <code>cquery</code>。这里说明如何使用<code>ccls</code>补全。</p>
+<h4 id="5-3-ccls的配置"><a href="#5-3-ccls的配置" class="headerlink" title="5.3 ccls的配置"></a>5.3 ccls的配置</h4><p>ccls是lsp(language server Protocal)（语言补全协议）中的一个，用于补全C/C++</p>
 <h5 id="下载ccls"><a href="#下载ccls" class="headerlink" title="下载ccls"></a>下载ccls</h5><p>ccls的GitHub地址在<a target="_blank" rel="noopener" href="https://github.com/MaskRay/ccls">这里</a>,你可以从源码下载并编译。</p>
 <h5 id="MacOSX"><a href="#MacOSX" class="headerlink" title="MacOSX"></a>MacOSX</h5><p>Mac下使用brew可快速安装:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ccls</span><br></pre></td></tr></table></figure>
-
 <h5 id="配置ccls为补全插件"><a href="#配置ccls为补全插件" class="headerlink" title="配置ccls为补全插件"></a>配置ccls为补全插件</h5><p>ccls官方提供了很多方法，这里我说明如何使在coc.nvim中进行补全。 打开VIM，输入<code>:CocConfig</code>后回车可打开coc的配置文件，然后输入:</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;languageserver&quot;</span>: &#123;</span><br><span class="line">  <span class="string">&quot;ccls&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;command&quot;</span>: <span class="string">&quot;ccls&quot;</span>,</span><br><span class="line">    <span class="string">&quot;filetypes&quot;</span>: [<span class="string">&quot;c&quot;</span>, <span class="string">&quot;cc&quot;</span>, <span class="string">&quot;cpp&quot;</span>, <span class="string">&quot;c++&quot;</span>, <span class="string">&quot;objc&quot;</span>, <span class="string">&quot;objcpp&quot;</span>],</span><br><span class="line">    <span class="string">&quot;rootPatterns&quot;</span>: [<span class="string">&quot;.ccls&quot;</span>, <span class="string">&quot;compile_commands.json&quot;</span>, <span class="string">&quot;.git/&quot;</span>, <span class="string">&quot;.hg/&quot;</span>],</span><br><span class="line">    <span class="string">&quot;initializationOptions&quot;</span>: &#123;</span><br><span class="line">      	<span class="string">&quot;highlight&quot;</span>: &#123;<span class="string">&quot;lsRanges&quot;</span>: <span class="literal">true</span>&#125;,</span><br><span class="line">        <span class="string">&quot;cache&quot;</span>: &#123;</span><br><span class="line">          <span class="string">&quot;directory&quot;</span>: <span class="string">&quot;/tmp/ccls&quot;</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="5-4-安装debug插件vimspector"><a href="#5-4-安装debug插件vimspector" class="headerlink" title="5.4 安装debug插件vimspector"></a>5.4 安装<code>debug</code>插件<code>vimspector</code></h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot; debug</span></span><br><span class="line"><span class="string"> Plug &#x27;puremourning/vimspector&#x27;, &#123;&#x27;do&#x27;: &#x27;./install_gadget.py --enable-rust --enable-python&#x27;&#125;</span></span><br></pre></td></tr></table></figure>
-
 <p>这个需要我们安装<code>python3</code>依赖。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install python3</span><br></pre></td></tr></table></figure>
-
 <p>然后在</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.bash_profile</span><br></pre></td></tr></table></figure>
-
 <p>中添加</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias python=<span class="string">&quot;/usr/bin/python3&quot;</span></span><br></pre></td></tr></table></figure>
-
 <p>保存文件<code>:wq</code>，然后执行</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.bash_profile</span><br></pre></td></tr></table></figure>
-
 <p>最后输入<code>python</code></p>
 <p>就可以看到安装成功了。</p>
 <p>最后需要我们安装</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install neovim</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -486,13 +463,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -540,7 +517,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

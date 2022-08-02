@@ -311,7 +311,7 @@
 <li>替换一个字符</li>
 </ul>
 <h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：word1 &#x3D; “horse”, word2 &#x3D; “ros”<br>输出：3<br>解释：<br>horse -&gt; rorse (将 ‘h’ 替换为 ‘r’)<br>rorse -&gt; rose (删除 ‘r’)<br>rose -&gt; ros (删除 ‘e’)</p>
+<p>输入：word1 = “horse”, word2 = “ros”<br>输出：3<br>解释：<br>horse -&gt; rorse (将 ‘h’ 替换为 ‘r’)<br>rorse -&gt; rose (删除 ‘r’)<br>rose -&gt; ros (删除 ‘e’)</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -433,12 +433,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>#<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-path-sum/">64. 最小路径和</a></p>
-<p>给定一个包含非负整数的 <code>m x n</code> 网格 <code>grid</code> ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</p>
+          <h1 id="64-最小路径和"><a href="#64-最小路径和" class="headerlink" title="64. 最小路径和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-path-sum/">64. 最小路径和</a></h1><p>给定一个包含非负整数的 <code>m x n</code> 网格 <code>grid</code> ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</p>
 <p><strong>说明：</strong>每次只能向下或者向右移动一步。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="/%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/minpath.jpg"></p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="最小路径和/minpath.jpg" alt=""></p>
 <blockquote>
-<p>输入：grid &#x3D; [[1,3,1],[1,5,1],[4,2,1]]<br>输出：7<br>解释：因为路径 1→3→1→1→1 的总和最小。</p>
+<p>输入：grid = [[1,3,1],[1,5,1],[4,2,1]]<br>输出：7<br>解释：因为路径 1→3→1→1→1 的总和最小。</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -563,7 +562,7 @@
           <h1 id="53-最大子数组和"><a href="#53-最大子数组和" class="headerlink" title="53. 最大子数组和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximum-subarray/">53. 最大子数组和</a></h1><p>给你一个整数数组 <code>nums</code> ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
 <p><strong>子数组</strong> 是数组中的一个连续部分。</p>
 <h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：nums &#x3D; [-2,1,-3,4,-1,2,1,-5,4]<br>输出：6<br>解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。</p>
+<p>输入：nums = [-2,1,-3,4,-1,2,1,-5,4]<br>输出：6<br>解释：连续子数组 [4,-1,2,1] 的和最大，为 6 。</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -686,8 +685,8 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>知识框架：</p>
-<p><img src="/%E6%8E%92%E5%BA%8F%E6%80%BB%E7%BB%93/1.jpg"></p>
-<p><img src="/%E6%8E%92%E5%BA%8F%E6%80%BB%E7%BB%93/2.png"></p>
+<p><img src="排序总结/1.jpg" alt=""></p>
+<p><img src="排序总结/2.png" alt=""></p>
 <p>我们需要重点掌握<strong>快速排序，堆排序，归并排序</strong></p>
           <!--noindex-->
             <div class="post-button">
@@ -809,11 +808,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="33-搜索旋转排序数组"><a href="#33-搜索旋转排序数组" class="headerlink" title="33. 搜索旋转排序数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/">33. 搜索旋转排序数组</a></h1><p>整数数组 <code>nums </code>按升序排列，数组中的值 互不相同 。</p>
-<p>在传递给函数之前，<code>nums </code>在预先未知的某个下标 <code>k</code>（<code>0 &lt;= k &lt; nums.length</code>）上进行了 旋转，使数组变为 <code>[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]</code>（下标 从 <code>0 </code>开始 计数）。例如，<code> [0,1,2,4,5,6,7]</code> 在下标 <code>3 </code>处经旋转后可能变为<code> [4,5,6,7,0,1,2] 。</code></p>
-<p>给你 旋转后 的数组 <code>nums</code> 和一个整数 <code>target </code>，如果 <code>nums </code>中存在这个目标值 <code>target </code>，则返回它的下标，否则返回 <code>-1</code> 。</p>
+          <h1 id="33-搜索旋转排序数组"><a href="#33-搜索旋转排序数组" class="headerlink" title="33. 搜索旋转排序数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/search-in-rotated-sorted-array/">33. 搜索旋转排序数组</a></h1><p>整数数组 <code>nums</code>按升序排列，数组中的值 互不相同 。</p>
+<p>在传递给函数之前，<code>nums</code>在预先未知的某个下标 <code>k</code>（<code>0 &lt;= k &lt; nums.length</code>）上进行了 旋转，使数组变为 <code>[nums[k], nums[k+1], ..., nums[n-1], nums[0], nums[1], ..., nums[k-1]]</code>（下标 从 <code>0</code>开始 计数）。例如，<code>[0,1,2,4,5,6,7]</code> 在下标 <code>3</code>处经旋转后可能变为<code>[4,5,6,7,0,1,2] 。</code></p>
+<p>给你 旋转后 的数组 <code>nums</code> 和一个整数 <code>target</code>，如果 <code>nums</code>中存在这个目标值 <code>target</code>，则返回它的下标，否则返回 <code>-1</code> 。</p>
 <h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：nums &#x3D; [4,5,6,7,0,1,2], target &#x3D; 0<br>输出：4</p>
+<p>输入：nums = [4,5,6,7,0,1,2], target = 0<br>输出：4</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -937,7 +936,7 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="32-最长有效括号"><a href="#32-最长有效括号" class="headerlink" title="32. 最长有效括号"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-valid-parentheses/">32. 最长有效括号</a></h1><p>给你一个只包含 <code>&#39;(&#39;</code> 和 <code>&#39;)&#39;</code> 的字符串，找出最长有效（格式正确且连续）括号子串的长度。</p>
 <h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：s &#x3D; “(()”<br>输出：2<br>解释：最长有效括号子串是 “()”</p>
+<p>输入：s = “(()”<br>输出：2<br>解释：最长有效括号子串是 “()”</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -1063,8 +1062,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>#第五章 与HTTP报文协作的Web服务器</p>
-<p>一台<code>Web</code>服务器可搭建多个独立域名的<code>Web</code>网站，也可以作为通信路径上的中转服务器提升传输效率。</p>
+          <h1 id="第五章-与HTTP报文协作的Web服务器"><a href="#第五章-与HTTP报文协作的Web服务器" class="headerlink" title="第五章 与HTTP报文协作的Web服务器"></a>第五章 与HTTP报文协作的Web服务器</h1><p>一台<code>Web</code>服务器可搭建多个独立域名的<code>Web</code>网站，也可以作为通信路径上的中转服务器提升传输效率。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/04/25/%E5%9B%BE%E8%A7%A3HTTP-%E7%AC%AC%E4%BA%94%E7%AB%A0-%E4%B8%8EHTTP%E6%8A%A5%E6%96%87%E5%8D%8F%E4%BD%9C%E7%9A%84Web%E6%9C%8D%E5%8A%A1%E5%99%A8/#more" rel="contents">
@@ -1189,7 +1187,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>前面我们讲了<a href="https://sjchen404.github.io/2022/03/07/%E4%BA%8C%E5%8F%89%E6%A0%91/#more">二叉树</a>，二叉搜索树(<code>BST</code>)就是特殊的二叉树而已。</p>
+          <p>前面我们讲了<a href="https://sjchen404.github.io/2022/03/07/二叉树/#more">二叉树</a>，二叉搜索树(<code>BST</code>)就是特殊的二叉树而已。</p>
 <p>首先，<code>BST</code>性质：</p>
 <ul>
 <li>对于<code>BST</code>的每个节点<code>node</code>，左子树节点的值都比<code>node</code>的值小，右子树节点的值都比<code>node</code>的值大。</li>
@@ -1322,7 +1320,7 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="第五章-面向对象编程风格"><a href="#第五章-面向对象编程风格" class="headerlink" title="第五章 面向对象编程风格"></a>第五章 面向对象编程风格</h1><h2 id="5-1-面向对象编程概念"><a href="#5-1-面向对象编程概念" class="headerlink" title="5.1 面向对象编程概念"></a>5.1 面向对象编程概念</h2><p>面向对象编程概念的两项最主要特质是：<strong>继承</strong>和<strong>多态</strong>。前者使我们得以将一群相关的类组织起来，并让我们得以分享其间的共通数据和操作行为，后者让我们在这些类之上进行编程时，可以如同操作单一个体，而非互相独立的类，并赋予我们更多弹性来加入或移除任何特定类。</p>
 <p><strong>继承</strong>机制定义了父子关系。父类定义了所有子类共通的共有接口和私有实现。每个子类都可以增加或覆盖（<code>override</code>）继承而来的东西，以实现其自身独特的行为。</p>
-<p>在C++中，父类被称为<strong>基类（base class）</strong>，子类被称为**派生类(derived class)**。父类和子类之间的关系则称为继承体系。</p>
+<p>在C++中，父类被称为<strong>基类（base class）</strong>，子类被称为<strong>派生类(derived class)</strong>。父类和子类之间的关系则称为继承体系。</p>
 <p><strong>抽象基类：</strong> 例如下面的<code>LibMat</code>，<code>LibMat</code>用来定义图书馆系统中所有馆藏的共通操作行为，包括<code>check_in()</code>,<code>check_on()</code>,<code>due_data()</code>,<code>find()</code>等等。<code>LibMat</code>并不代表图书馆借阅管理系统中实际存在的任何一个馆藏，仅仅是为了我们设计上的需要而存在。但事实上这个抽象十分关键。我们称之为”抽象基类”。</p>
           <!--noindex-->
             <div class="post-button">
@@ -1500,13 +1498,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -1554,7 +1552,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

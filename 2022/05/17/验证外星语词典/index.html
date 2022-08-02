@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="953. 验证外星语词典某种外星语也使用英文小写字母，但可能顺序 order 不同。字母表的顺序（order）是一些小写字母的排列。 给定一组用外星语书写的单词 words，以及其字母表的顺序 order，只有当给定的单词在这种外星语中按字典序排列时，返回 true；否则，返回 false。 示例： 输入：words &#x3D; [“hello”,”leetcode”], order &amp;#x3D">
+    <meta name="description" content="953. 验证外星语词典某种外星语也使用英文小写字母，但可能顺序 order不同。字母表的顺序（order）是一些小写字母的排列。 给定一组用外星语书写的单词 words，以及其字母表的顺序 order，只有当给定的单词在这种外星语中按字典序排列时，返回 true；否则，返回 false。 示例： 输入：words &#x3D; [“hello”,”leetcode”], order &#x3D; “hlabcdef">
 <meta property="og:type" content="article">
 <meta property="og:title" content="验证外星语词典">
 <meta property="og:url" content="https://sjchen404.github.io/2022/05/17/%E9%AA%8C%E8%AF%81%E5%A4%96%E6%98%9F%E8%AF%AD%E8%AF%8D%E5%85%B8/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="953. 验证外星语词典某种外星语也使用英文小写字母，但可能顺序 order 不同。字母表的顺序（order）是一些小写字母的排列。 给定一组用外星语书写的单词 words，以及其字母表的顺序 order，只有当给定的单词在这种外星语中按字典序排列时，返回 true；否则，返回 false。 示例： 输入：words &#x3D; [“hello”,”leetcode”], order &amp;#x3D">
+<meta property="og:description" content="953. 验证外星语词典某种外星语也使用英文小写字母，但可能顺序 order不同。字母表的顺序（order）是一些小写字母的排列。 给定一组用外星语书写的单词 words，以及其字母表的顺序 order，只有当给定的单词在这种外星语中按字典序排列时，返回 true；否则，返回 false。 示例： 输入：words &#x3D; [“hello”,”leetcode”], order &#x3D; “hlabcdef">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-05-17T14:59:45.315Z">
 <meta property="article:modified_time" content="2022-05-17T15:05:22.248Z">
@@ -314,20 +314,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="953-验证外星语词典"><a href="#953-验证外星语词典" class="headerlink" title="953. 验证外星语词典"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/verifying-an-alien-dictionary/">953. 验证外星语词典</a></h1><p>某种外星语也使用英文小写字母，但可能顺序 <code>order </code>不同。字母表的顺序（<code>order</code>）是一些小写字母的排列。</p>
+        <h1 id="953-验证外星语词典"><a href="#953-验证外星语词典" class="headerlink" title="953. 验证外星语词典"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/verifying-an-alien-dictionary/">953. 验证外星语词典</a></h1><p>某种外星语也使用英文小写字母，但可能顺序 <code>order</code>不同。字母表的顺序（<code>order</code>）是一些小写字母的排列。</p>
 <p>给定一组用外星语书写的单词 <code>words</code>，以及其字母表的顺序 <code>order</code>，只有当给定的单词在这种外星语中按字典序排列时，返回 <code>true</code>；否则，返回 <code>false</code>。</p>
 <h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：words &#x3D; [“hello”,”leetcode”], order &#x3D; “hlabcdefgijkmnopqrstuvwxyz”<br>输出：true<br>解释：在该语言的字母表中，’h’ 位于 ‘l’ 之前，所以单词序列是按字典序排列的。</p>
+<p>输入：words = [“hello”,”leetcode”], order = “hlabcdefgijkmnopqrstuvwxyz”<br>输出：true<br>解释：在该语言的字母表中，’h’ 位于 ‘l’ 之前，所以单词序列是按字典序排列的。</p>
 </blockquote>
 <span id="more"></span>
-
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><h4 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h4><p>我们把外星语转化为正常的英语序，最后判断是否按照字典序排列</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isAlienSorted</span><span class="params">(vector&lt;string&gt;&amp; words, string order)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">char</span>,<span class="type">int</span>&gt; mp;</span><br><span class="line">        <span class="comment">//哈希表确定位置</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; order.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            mp[order[i]] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;string&gt; tmp;</span><br><span class="line">        <span class="comment">// 把外星语转化为正常英语序，最后判断是否有序</span></span><br><span class="line">        <span class="keyword">for</span>(string&amp; word : words)&#123;</span><br><span class="line">            string tmpWord;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">char</span> c : word)&#123;</span><br><span class="line">                tmpWord += <span class="string">&#x27;a&#x27;</span> + mp[c];</span><br><span class="line">            &#125;</span><br><span class="line">            tmp.<span class="built_in">emplace_back</span>(tmpWord);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">is_sorted</span>(tmp.<span class="built_in">begin</span>(), tmp.<span class="built_in">end</span>());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p> <code>M </code>为 <code>words </code>数组对长度，<code>N </code>为平均的单词长度<br> 时间复杂度为<code>O(M*N)</code><br> 空间复杂度为<code>O(N)</code></p>
+<p> <code>M</code>为 <code>words</code>数组对长度，<code>N</code>为平均的单词长度<br> 时间复杂度为<code>O(M*N)</code><br> 空间复杂度为<code>O(N)</code></p>
 <h4 id="方法二："><a href="#方法二：" class="headerlink" title="方法二："></a>方法二：</h4><p>我们只需要相邻的两个字符串是否按照给定的序列排列即可，这样就可以压缩空间复杂度</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution1</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isAlienSorted</span><span class="params">(vector&lt;string&gt;&amp; words, string order)</span> </span>&#123;</span><br><span class="line">       unordered_map&lt;<span class="type">char</span>, <span class="type">int</span>&gt; mp;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; order.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">           mp[order[i]] = i;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; words.<span class="built_in">size</span>() - <span class="number">1</span>; i++)&#123;</span><br><span class="line">           string pre = words[i];</span><br><span class="line">           string cur = words[i + <span class="number">1</span>];</span><br><span class="line">           <span class="type">bool</span> res = <span class="literal">false</span>;</span><br><span class="line">           <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; <span class="built_in">min</span>(pre.<span class="built_in">size</span>(), cur.<span class="built_in">size</span>()); j++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(mp[pre[j]] &lt; mp[cur[j]])&#123;</span><br><span class="line">                   res = <span class="literal">true</span>;</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               &#125;<span class="keyword">else</span> <span class="keyword">if</span>(mp[pre[j]] &gt; mp[cur[j]])&#123;</span><br><span class="line">                   <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">// 如果前面都相等，则判断长度</span></span><br><span class="line">           <span class="keyword">if</span>(!res &amp;&amp; pre.<span class="built_in">size</span>() &gt; cur.<span class="built_in">size</span>())&#123;</span><br><span class="line">               <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -422,13 +419,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -476,7 +473,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

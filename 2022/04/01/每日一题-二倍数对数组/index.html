@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="#954. 二倍数对数组 给定一个长度为偶数的整数数组 arr，只有对 arr 进行重组后可以满足 “对于每个 0 &lt;&#x3D; i &lt; len(arr) &#x2F; 2，都有arr[2 * i + 1] &#x3D; 2 * arr[2 * i]时，返回 true；否则，返回 false。 示例： 输入：arr &#x3D; [3,1,3,6]输出：false   输入：arr &amp;#x3D">
+    <meta name="description" content="954. 二倍数对数组给定一个长度为偶数的整数数组 arr，只有对 arr 进行重组后可以满足 “对于每个 0 &lt;&#x3D; i &lt; len(arr) &#x2F; 2，都有arr[2 * i + 1] &#x3D; 2 * arr[2 * i]时，返回 true；否则，返回 false。 示例： 输入：arr &#x3D; [3,1,3,6]输出：false 输入：arr &#x3D; [2,1,2,6]输出：false 输入：a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="每日一题 二倍数对数组">
 <meta property="og:url" content="https://sjchen404.github.io/2022/04/01/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98-%E4%BA%8C%E5%80%8D%E6%95%B0%E5%AF%B9%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="#954. 二倍数对数组 给定一个长度为偶数的整数数组 arr，只有对 arr 进行重组后可以满足 “对于每个 0 &lt;&#x3D; i &lt; len(arr) &#x2F; 2，都有arr[2 * i + 1] &#x3D; 2 * arr[2 * i]时，返回 true；否则，返回 false。 示例： 输入：arr &#x3D; [3,1,3,6]输出：false   输入：arr &amp;#x3D">
+<meta property="og:description" content="954. 二倍数对数组给定一个长度为偶数的整数数组 arr，只有对 arr 进行重组后可以满足 “对于每个 0 &lt;&#x3D; i &lt; len(arr) &#x2F; 2，都有arr[2 * i + 1] &#x3D; 2 * arr[2 * i]时，返回 true；否则，返回 false。 示例： 输入：arr &#x3D; [3,1,3,6]输出：false 输入：arr &#x3D; [2,1,2,6]输出：false 输入：a">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-01T14:52:06.434Z">
 <meta property="article:modified_time" content="2022-05-14T16:50:05.381Z">
@@ -145,7 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">思路：</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#954-%E4%BA%8C%E5%80%8D%E6%95%B0%E5%AF%B9%E6%95%B0%E7%BB%84"><span class="nav-number">1.</span> <span class="nav-text">954. 二倍数对数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.2.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -305,7 +305,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.4k</span>
+      <span>1.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -323,23 +323,16 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>#<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/array-of-doubled-pairs/">954. 二倍数对数组</a></p>
-<p>给定一个长度为偶数的整数数组 arr，只有对 arr 进行重组后可以满足 “对于每个 0 &lt;&#x3D; i &lt; len(arr) &#x2F; 2，都有<code>arr[2 * i + 1] = 2 * arr[2 * i]</code>时，返回 true；否则，返回 false。</p>
+        <h1 id="954-二倍数对数组"><a href="#954-二倍数对数组" class="headerlink" title="954. 二倍数对数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/array-of-doubled-pairs/">954. 二倍数对数组</a></h1><p>给定一个长度为偶数的整数数组 arr，只有对 arr 进行重组后可以满足 “对于每个 0 &lt;= i &lt; len(arr) / 2，都有<code>arr[2 * i + 1] = 2 * arr[2 * i]</code>时，返回 true；否则，返回 false。</p>
 <h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：arr &#x3D; [3,1,3,6]<br>输出：false</p>
-</blockquote>
-<blockquote>
-<p>输入：arr &#x3D; [2,1,2,6]<br>输出：false</p>
-</blockquote>
-<blockquote>
-<p>输入：arr &#x3D; [4,-2,2,-4]<br>输出：true<br>解释：可以用 [-2,-4] 和 [2,4] 这两组组成 [-2,-4,2,4] 或是 [2,4,-2,-4]</p>
+<p>输入：arr = [3,1,3,6]<br>输出：false</p>
+<p>输入：arr = [2,1,2,6]<br>输出：false</p>
+<p>输入：arr = [4,-2,2,-4]<br>输出：true<br>解释：可以用 [-2,-4] 和 [2,4] 这两组组成 [-2,-4,2,4] 或是 [2,4,-2,-4]</p>
 </blockquote>
 <span id="more"></span>
-
 <h2 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h2><p>我们用哈希表记录每个数出现的次数，然后排序，计算当前数的 2 倍， 负数为除 2， 正数为乘 2。</p>
 <p>如果存在这个数，并且这个数的哈希值不为0，则在哈希表中数量减一。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">canReorderDoubled</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; arr)</span> </span>&#123;</span><br><span class="line">        unordered_map&lt;<span class="type">float</span> , <span class="type">int</span>&gt; mp;</span><br><span class="line">        <span class="comment">//记录每个数出现次数</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> a : arr)&#123;</span><br><span class="line">            mp[a]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(arr.<span class="built_in">begin</span>(), arr.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> value : arr)&#123;</span><br><span class="line">            <span class="comment">//当前数已经匹配完则继续遍历下一个</span></span><br><span class="line">            <span class="keyword">if</span>(mp[value] == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">float</span> target;</span><br><span class="line">            <span class="comment">//计算当前数对2倍，负数除 2， 正数乘 2</span></span><br><span class="line">            <span class="keyword">if</span>(value &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">                target = <span class="number">2</span> * value;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                target = value / <span class="number">2.0</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//不存在 2 的倍数或者已经匹配完了，则返回false</span></span><br><span class="line">            <span class="keyword">if</span>(!mp.<span class="built_in">count</span>(target) || mp[target] == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//对应数的数量减一</span></span><br><span class="line">                mp[target]--;</span><br><span class="line">                mp[value]--;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -433,13 +426,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -487,7 +480,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

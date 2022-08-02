@@ -329,27 +329,24 @@
 </blockquote>
 <h6 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h6><p>所有人输入只包含小写字母a-z。</p>
 <span id="more"></span>
-
 <h5 id="思路1："><a href="#思路1：" class="headerlink" title="思路1："></a>思路1：</h5><blockquote>
 <p>1，当字符串数组长度为0时，则公共前缀为空，直接返回<br>2，令最长公共前缀ans的值为第一个字符串，进行初始化<br>3，遍历后面的字符串，依次将其与res进行比较，两两找出公共前缀，最终结果即为<br>   最长公共前缀<br>4，如果查找过程中出现了res为空的情况，则公共前缀不存在，直接返回<br>时间复杂度为O(s),s为所有字符串的长度之和</p>
 </blockquote>
 <p>比如示例1；</p>
 <blockquote>
-<p>res &#x3D; flower</p>
-<p>​		  flow</p>
-<p>res &#x3D; flow</p>
-<p>​		  flight</p>
-<p>res &#x3D; fl</p>
+<p>res = flower</p>
+<p>​          flow</p>
+<p>res = flow</p>
+<p>​          flight</p>
+<p>res = fl</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">longestCommonPrefix</span><span class="params">(vector&lt;string&gt;&amp; strs)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">if</span>(strs.<span class="built_in">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    	string res = strs[<span class="number">0</span>];</span><br><span class="line">    	<span class="type">int</span> minlen = res.<span class="built_in">size</span>();<span class="comment">//记录公共前缀</span></span><br><span class="line">    	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; strs.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">    		<span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    		<span class="keyword">for</span>(; j &lt; res.<span class="built_in">size</span>() &amp;&amp; j &lt; strs[i].<span class="built_in">size</span>(); j++)&#123;</span><br><span class="line">    			<span class="keyword">if</span>(res[j] != strs[i][j]) <span class="keyword">break</span>;</span><br><span class="line">    		&#125;</span><br><span class="line">    		<span class="keyword">if</span>(j &lt;= minlen)&#123;</span><br><span class="line">    			res = <span class="built_in">string</span>(res,<span class="number">0</span>,j);</span><br><span class="line">    			minlen = j;</span><br><span class="line">    		&#125;</span><br><span class="line">    		<span class="keyword">if</span>(res.<span class="built_in">empty</span>()) <span class="keyword">return</span> res;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 <h5 id="思路2"><a href="#思路2" class="headerlink" title="思路2:"></a>思路2:</h5><blockquote>
 <p>思路1:<br>1，我们先对字符串排序<br>比如abc ab abce<br>排序完后为<br>ab abc abce</p>
 <p>2，比较头尾即可</p>
 <p>复杂度为sort的复杂度</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">longestCommonPrefix</span><span class="params">(vector&lt;string&gt;&amp; strs)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">if</span>(strs.<span class="built_in">empty</span>()) <span class="keyword">return</span> <span class="built_in">string</span>();</span><br><span class="line">    	<span class="built_in">sort</span>(strs.<span class="built_in">begin</span>(), strs.<span class="built_in">end</span>());</span><br><span class="line">    	string st = strs.<span class="built_in">front</span>(), end = strs.<span class="built_in">back</span>();</span><br><span class="line">    	<span class="type">int</span> i, num = <span class="built_in">min</span>(st.<span class="built_in">size</span>(),end.<span class="built_in">size</span>());</span><br><span class="line">    	<span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; num &amp;&amp; st[i] == end[i]; i++);</span><br><span class="line">    	<span class="keyword">return</span> <span class="built_in">string</span>(st,<span class="number">0</span>,i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
 
     </div>
 
@@ -444,13 +441,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -498,7 +495,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

@@ -317,16 +317,13 @@
     <div class="post-body" itemprop="articleBody">
         <h1 id="3-1-指针的算术运算"><a href="#3-1-指针的算术运算" class="headerlink" title="3.1 指针的算术运算"></a>3.1 指针的算术运算</h1><p>假设我们需要完成以下工作。写一个函数可以同时处理<code>vector</code>和<code>array</code>内的任意类型元素。</p>
 <span id="more"></span>
-
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> elemType&gt;</span><br><span class="line"><span class="function">elemType* <span class="title">find</span><span class="params">(<span class="type">const</span> elemType *first, <span class="type">const</span> elemType *last, <span class="type">const</span> elemType &amp;value)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(!first || !last)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(; first != last; ++first)</span><br><span class="line">		<span class="keyword">if</span>(*first == value)</span><br><span class="line">			<span class="keyword">return</span> first;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> ia[<span class="number">8</span>] = &#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">8</span>,<span class="number">13</span>,<span class="number">21</span>&#125;;</span><br><span class="line">    <span class="type">double</span> da[<span class="number">6</span>] = &#123;<span class="number">1.5</span>, <span class="number">2.0</span>, <span class="number">2.5</span>, <span class="number">3.0</span>, <span class="number">3.5</span>, <span class="number">4.0</span>&#125;; </span><br><span class="line">    string sa[<span class="number">4</span>] = &#123;<span class="string">&quot;pooh&quot;</span>, <span class="string">&quot;piglet&quot;</span>, <span class="string">&quot;eeyore&quot;</span>, <span class="string">&quot;tigger&quot;</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> *pi = <span class="built_in">find</span>(ia, ia + <span class="number">8</span>, ia[<span class="number">3</span>]);</span><br><span class="line">    <span class="type">double</span> *pd = <span class="built_in">find</span>(da, da + <span class="number">6</span>, da[<span class="number">3</span>]);</span><br><span class="line">    string *ps = <span class="built_in">find</span>(sa, sa + <span class="number">4</span>, sa[<span class="number">3</span>]);</span><br><span class="line">    cout &lt;&lt; *pi &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; *pd &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; *ps &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h1 id="3-2-了解Iterator-范型指针"><a href="#3-2-了解Iterator-范型指针" class="headerlink" title="3.2 了解Iterator(范型指针)"></a>3.2 了解Iterator(范型指针)</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(iter = svec.<span class="built_in">begin</span>(); iter != svec.<span class="built_in">end</span>(); ++iter)</span><br><span class="line">	cout &lt;&lt; *iter &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br></pre></td></tr></table></figure>
-
 <p><code>vector&lt;string&gt;::iterator iter = sevc.begin()</code></p>
 <p>此处<code>iter</code>被定义为一个<code>iterator</code>，指向一个<code>vector</code>，后者的元素类型为<code>string</code>。其初值指向 svec 的第一个元素。</p>
 <h1 id="3-3-所有容器的共通操作"><a href="#3-3-所有容器的共通操作" class="headerlink" title="3.3 所有容器的共通操作"></a>3.3 所有容器的共通操作</h1><ul>
-<li>equality(&#x3D;&#x3D;) 和inequality(!&#x3D;)</li>
-<li>assignment(&#x3D;)，将某个容器复制给另一个容器</li>
+<li>equality(==) 和inequality(!=)</li>
+<li>assignment(=)，将某个容器复制给另一个容器</li>
 <li>empty()会在容器无任何元素时返回 true,否则返回 false</li>
 <li>size() 返回容器内目前持有的元素个数</li>
 <li>clear() 删除所有元素</li>
@@ -337,7 +334,6 @@
 <p>第三种顺序性容器是<code>deque</code>，<code>deque</code>也是以连续内存存储元素。和<code>vector</code>不同的是，<code>deque</code>对于前端元素的插入和删除操作，效率更高；末端亦同。如果我们需要在容器最前端插入元素，并执行末端删除操作，那么<code>deque</code>便很理想。</p>
 <h1 id="3-5-使用范型算法"><a href="#3-5-使用范型算法" class="headerlink" title="3.5 使用范型算法"></a>3.5 使用范型算法</h1><p>引入头文件</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br></pre></td></tr></table></figure>
-
 <ul>
 <li>find() 用于搜索无序集合中是否存在某值。如果找到，则返回一个<code>iterator</code>指向该值，否则返回一个<code>iterator</code>指向 last</li>
 <li>binary_search() 用于有序集合的搜索。如果找到目标，就返回 true，否则 false</li>
@@ -439,13 +435,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">547k</span>
+    <span title="站点总字数">541k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:17</span>
+    <span title="站点阅读时长">8:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
@@ -493,7 +489,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
