@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="1143. 最长公共子序列给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0 。 一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。 例如，”ace” 是 “abcde” 的子序列，但 “aec” 不是 “abcde” 的子序列。两个">
+    <meta name="description" content="1143. 最长公共子序列 给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0 。 一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。 例如，&quot;ace&quot; 是 &quot;abcde&quot; 的子序列，但 &quot;aec&quot; 不是 &quot;abcde&quot; 的子序列。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最长公共子序列">
 <meta property="og:url" content="https://sjchen404.github.io/2022/04/14/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="1143. 最长公共子序列给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0 。 一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。 例如，”ace” 是 “abcde” 的子序列，但 “aec” 不是 “abcde” 的子序列。两个">
+<meta property="og:description" content="1143. 最长公共子序列 给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0 。 一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。 例如，&quot;ace&quot; 是 &quot;abcde&quot; 的子序列，但 &quot;aec&quot; 不是 &quot;abcde&quot; 的子序列。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sjchen404.github.io/2022/04/14/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/最长公共子序列/1.jpg">
 <meta property="og:image" content="https://sjchen404.github.io/2022/04/14/%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97/最长公共子序列/2.jpg">
@@ -58,7 +58,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -151,7 +155,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1143-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">1143. 最长公共子序列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E5%BA%8F%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">1143.
+最长公共子序列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -321,23 +326,33 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="1143-最长公共子序列"><a href="#1143-最长公共子序列" class="headerlink" title="1143. 最长公共子序列"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-subsequence/">1143. 最长公共子序列</a></h1><p>给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列 的长度。如果不存在 公共子序列 ，返回 0 。</p>
-<p>一个字符串的 子序列 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。</p>
-<p>例如，”ace” 是 “abcde” 的子序列，但 “aec” 不是 “abcde” 的子序列。<br>两个字符串的 公共子序列 是这两个字符串所共同拥有的子序列。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：text1 = “abcde”, text2 = “ace”<br>输出：3<br>解释：最长公共子序列是 “ace” ，它的长度为 3 。</p>
+        <h1 id="最长公共子序列"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-common-subsequence/">1143.
+最长公共子序列</a></h1>
+<p>给定两个字符串 text1 和 text2，返回这两个字符串的最长 公共子序列
+的长度。如果不存在 公共子序列 ，返回 0 。</p>
+<p>一个字符串的 子序列
+是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。</p>
+<p>例如，"ace" 是 "abcde" 的子序列，但 "aec" 不是 "abcde" 的子序列。
+两个字符串的 公共子序列 是这两个字符串所共同拥有的子序列。</p>
+<h2 id="示例">示例：</h2>
+<blockquote>
+<p>输入：text1 = "abcde", text2 = "ace" 输出：3<br />
+解释：最长公共子序列是 "ace" ，它的长度为 3 。</p>
 </blockquote>
 <span id="more"></span>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p><strong>对于两个字符串求子序列的问题，都是用两个指针<code>i</code>和<code>j</code>分别在两个字符串上移动，大概率是动态规划思路</strong>。</p>
-<p>我们定义一个<code>dp[i][j]</code>表示：<strong><code>s1[0...i-1]</code>和<code>s2[0...j-1]</code>的 LCS的长度为 <code>dp[i][j]</code> </strong></p>
+<h3 id="思路">思路：</h3>
+<p><strong>对于两个字符串求子序列的问题，都是用两个指针<code>i</code>和<code>j</code>分别在两个字符串上移动，大概率是动态规划思路</strong>。</p>
+<p>我们定义一个<code>dp[i][j]</code>表示：<strong><code>s1[0...i-1]</code>和<code>s2[0...j-1]</code>的
+LCS的长度为 <code>dp[i][j]</code> </strong></p>
 <p><strong>接下来，咱不要看<code>s1</code>和<code>s2</code>两个字符串，而是要具体到每一个字符，思考每个字符该做什么</strong>。</p>
-<p><img src="最长公共子序列/1.jpg" alt=""></p>
+<p><img src="最长公共子序列/1.jpg" /></p>
 <p>我们只看<code>s1[i]</code>和<code>s2[j]</code>，<strong>如果<code>s1[i] == s2[j]</code>，说明这个字符一定在<code>lcs</code>中</strong>：</p>
-<p><img src="最长公共子序列/2.jpg" alt=""></p>
+<p><img src="最长公共子序列/2.jpg" /></p>
 <p>这样，就找到了一个<code>lcs</code>中的字符，根据<code>dp</code>函数的定义，我们可以完善一下代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(s1[i] == s2[j])&#123;</span><br><span class="line">  dp[i][j] = dp[i<span class="number">-1</span>][j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>如果<code>s1[i] != s2[j]</code>，<strong>意味着，<code>s1[i]</code>和<code>s2[j]</code>中至少有一个字符不在<code>lcs</code>中</strong>：</p>
-<p><img src="最长公共子序列/3.jpg" alt=""></p>
+<p><img src="最长公共子序列/3.jpg" /></p>
 <p>我们只需要计算这三种情况中的最大值。</p>
 <p>可以发现情况三其实可以忽略，因为我们要求的是最长公共子序列，情况一和情况二肯定会比情况三长。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(s1[i] != s2[j])&#123;</span><br><span class="line">  dp[i][j] = <span class="built_in">max</span>(dp[i<span class="number">-1</span>][j], dp[i][j<span class="number">-1</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -347,11 +362,10 @@
 <p>假设<code>s1 = abecbab</code>,<code>s2 = bdcbabb</code></p>
 <p>相等时，<code>dp[i][j] = dp[i-1][j-1] + 1</code>，也就是左上角元素➕1</p>
 <p>不等时，<code>dp[i][j] = max(dp[i-1][j], dp[i][j-1])</code>，左边和上边的最大值</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
-<th style="text-align:center"></th>
+<tr class="header">
+<th style="text-align: center;"></th>
 <th>a</th>
 <th>b</th>
 <th>e</th>
@@ -362,8 +376,8 @@
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">b</td>
+<tr class="odd">
+<td style="text-align: center;">b</td>
 <td>0</td>
 <td><code>1</code></td>
 <td>1</td>
@@ -372,8 +386,8 @@
 <td>1</td>
 <td>1</td>
 </tr>
-<tr>
-<td style="text-align:center">d</td>
+<tr class="even">
+<td style="text-align: center;">d</td>
 <td>0</td>
 <td>1</td>
 <td>1</td>
@@ -382,8 +396,8 @@
 <td>1</td>
 <td>1</td>
 </tr>
-<tr>
-<td style="text-align:center">c</td>
+<tr class="odd">
+<td style="text-align: center;">c</td>
 <td>0</td>
 <td>1</td>
 <td>1</td>
@@ -392,8 +406,8 @@
 <td>2</td>
 <td>2</td>
 </tr>
-<tr>
-<td style="text-align:center">b</td>
+<tr class="even">
+<td style="text-align: center;">b</td>
 <td>0</td>
 <td><code>1</code></td>
 <td>1</td>
@@ -402,8 +416,8 @@
 <td>3</td>
 <td><code>3</code></td>
 </tr>
-<tr>
-<td style="text-align:center">a</td>
+<tr class="odd">
+<td style="text-align: center;">a</td>
 <td><code>1</code></td>
 <td>1</td>
 <td>1</td>
@@ -412,8 +426,8 @@
 <td><code>4</code></td>
 <td>4</td>
 </tr>
-<tr>
-<td style="text-align:center">b</td>
+<tr class="even">
+<td style="text-align: center;">b</td>
 <td>1</td>
 <td><code>2</code></td>
 <td>2</td>
@@ -422,8 +436,8 @@
 <td>4</td>
 <td><code>5</code></td>
 </tr>
-<tr>
-<td style="text-align:center">b</td>
+<tr class="odd">
+<td style="text-align: center;">b</td>
 <td>1</td>
 <td><code>2</code></td>
 <td>2</td>
@@ -434,12 +448,11 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>所以最终我们的结果就为<code>dp[m][n] = 5</code></p>
 <p>现在我们求出了最长公共子序列的长度，假如需要我们输出任意一个路径，我们应该如何写呢？</p>
 <p>这里我们先简单的提一下思路：</p>
 <p>我们可以根据我们得到的<code>dp</code>数组，从后往前递推。</p>
-<p><img src="最长公共子序列/4.jpg" alt=""></p>
+<p><img src="最长公共子序列/4.jpg" /></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">double</span> ld;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; pll;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;<span class="type">int</span>&gt; vi;</span><br><span class="line"></span><br><span class="line">string s1,s2;</span><br><span class="line">vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; dp;</span><br><span class="line">unordered_set&lt;string&gt; lcs;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">longestCommonSubsequence</span><span class="params">(string text1, string text2)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = text1.<span class="built_in">size</span>(), m = text2.<span class="built_in">size</span>();</span><br><span class="line">    <span class="comment">//初始化为-1，表示没有计算过</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(text1[i - <span class="number">1</span>] == text2[j - <span class="number">1</span>])&#123;</span><br><span class="line">                dp[i][j] = <span class="number">1</span> + dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//至少有一个不在 lcs 中</span></span><br><span class="line">                dp[i][j] = <span class="built_in">max</span>(dp[i][j - <span class="number">1</span>], dp[i - <span class="number">1</span>][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[n][m];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print_lcs</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> j, string lcs_str)</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(i &gt; <span class="number">0</span> &amp;&amp; j &gt; <span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s1[i<span class="number">-1</span>] == s2[j<span class="number">-1</span>])&#123;</span><br><span class="line">            lcs_str.<span class="built_in">push_back</span>(s1[i<span class="number">-1</span>]);</span><br><span class="line">            --i;</span><br><span class="line">            --j;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(dp[i<span class="number">-1</span>][j] &gt; dp[i][j<span class="number">-1</span>]) --i;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(dp[i<span class="number">-1</span>][j] &lt; dp[i][j<span class="number">-1</span>]) --j;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="comment">//两个dp值相同</span></span><br><span class="line">                <span class="built_in">print_lcs</span>(i<span class="number">-1</span>,j,lcs_str);</span><br><span class="line">                <span class="built_in">print_lcs</span>(i,j<span class="number">-1</span>,lcs_str);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">reverse</span>(lcs_str.<span class="built_in">begin</span>(), lcs_str.<span class="built_in">end</span>());</span><br><span class="line">    lcs.<span class="built_in">insert</span>(lcs_str);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    s1 = <span class="string">&quot;abcbdab&quot;</span>;</span><br><span class="line">    s2 = <span class="string">&quot;bdcaba&quot;</span>;</span><br><span class="line">    <span class="type">int</span> s1_len = s1.<span class="built_in">size</span>();</span><br><span class="line">    <span class="type">int</span> s2_len = s2.<span class="built_in">size</span>();</span><br><span class="line">    dp.<span class="built_in">resize</span>(s1_len + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(s2_len + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="type">int</span> res = <span class="built_in">longestCommonSubsequence</span>(s1,s2);</span><br><span class="line">    cout &lt;&lt; res &lt;&lt; <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">    string str;</span><br><span class="line">    <span class="built_in">print_lcs</span>(s1_len,s2_len,str);</span><br><span class="line">    unordered_set&lt;string&gt;::iterator it = lcs.<span class="built_in">begin</span>();</span><br><span class="line">    <span class="keyword">for</span>(; it != lcs.<span class="built_in">end</span>(); it++)&#123;</span><br><span class="line">        cout &lt;&lt; *it &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -535,7 +548,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -589,7 +602,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

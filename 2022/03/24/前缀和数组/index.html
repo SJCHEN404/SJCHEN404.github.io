@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前缀和技巧适用于快速、频繁地计算一个索引区间内的元素之和。 303. 区域和检索 - 数组不可变给定一个整数数组  nums，处理以下类型的多个查询: 计算索引 left和right （包含 left 和 right）之间的 nums 元素的和 ，其中 left &lt;&#x3D; right实现 NumArray 类：  NumArray(int[] nums) 使用数组 nums 初始化对象 int">
+    <meta name="description" content="前缀和技巧适用于快速、频繁地计算一个索引区间内的元素之和。 303. 区域和检索 - 数组不可变 给定一个整数数组 nums，处理以下类型的多个查询: 计算索引 left和right （包含 left 和 right）之间的 nums 元素的和 ，其中 left &lt;&#x3D; right 实现 NumArray 类：  NumArray(int[] nums) 使用数组 nums 初始化对象 int">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前缀和数组">
 <meta property="og:url" content="https://sjchen404.github.io/2022/03/24/%E5%89%8D%E7%BC%80%E5%92%8C%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="前缀和技巧适用于快速、频繁地计算一个索引区间内的元素之和。 303. 区域和检索 - 数组不可变给定一个整数数组  nums，处理以下类型的多个查询: 计算索引 left和right （包含 left 和 right）之间的 nums 元素的和 ，其中 left &lt;&#x3D; right实现 NumArray 类：  NumArray(int[] nums) 使用数组 nums 初始化对象 int">
+<meta property="og:description" content="前缀和技巧适用于快速、频繁地计算一个索引区间内的元素之和。 303. 区域和检索 - 数组不可变 给定一个整数数组 nums，处理以下类型的多个查询: 计算索引 left和right （包含 left 和 right）之间的 nums 元素的和 ，其中 left &lt;&#x3D; right 实现 NumArray 类：  NumArray(int[] nums) 使用数组 nums 初始化对象 int">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sjchen404.github.io/2022/03/24/%E5%89%8D%E7%BC%80%E5%92%8C%E6%95%B0%E7%BB%84/前缀和数组/1.jpg">
 <meta property="og:image" content="https://sjchen404.github.io/2022/03/24/%E5%89%8D%E7%BC%80%E5%92%8C%E6%95%B0%E7%BB%84/前缀和数组/2.jpg">
@@ -57,7 +57,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -150,7 +154,10 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#303-%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98"><span class="nav-number">1.</span> <span class="nav-text">303. 区域和检索 - 数组不可变</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#304-%E4%BA%8C%E7%BB%B4%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E7%9F%A9%E9%98%B5%E4%B8%8D%E5%8F%AF%E5%8F%98"><span class="nav-number">2.</span> <span class="nav-text">304. 二维区域和检索 - 矩阵不可变</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-1"><span class="nav-number">2.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#560-%E5%92%8C%E4%B8%BA-K-%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">560. 和为 K 的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-2"><span class="nav-number">3.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-2"><span class="nav-number">3.1.1.</span> <span class="nav-text">思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E6%9A%B4%E5%8A%9B"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">方法一：暴力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%89%8D%E7%BC%80%E5%92%8C%E5%8A%A0%E5%93%88%E5%B8%8C%E8%A1%A8%E4%BC%98%E5%8C%96"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">方法二：前缀和加哈希表优化</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2---%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98"><span class="nav-number">1.</span> <span class="nav-text">303.
+区域和检索 - 数组不可变</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2---%E7%9F%A9%E9%98%B5%E4%B8%8D%E5%8F%AF%E5%8F%98"><span class="nav-number">2.</span> <span class="nav-text">304.
+二维区域和检索 - 矩阵不可变</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-1"><span class="nav-number">2.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%92%8C%E4%B8%BA-k-%E7%9A%84%E5%AD%90%E6%95%B0%E7%BB%84"><span class="nav-number">3.</span> <span class="nav-text">560. 和为
+K 的子数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-2"><span class="nav-number">3.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-2"><span class="nav-number">3.1.1.</span> <span class="nav-text">思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E6%9A%B4%E5%8A%9B"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">方法一：暴力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E5%89%8D%E7%BC%80%E5%92%8C%E5%8A%A0%E5%93%88%E5%B8%8C%E8%A1%A8%E4%BC%98%E5%8C%96"><span class="nav-number">3.1.1.2.</span> <span class="nav-text">方法二：前缀和加哈希表优化</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -310,7 +317,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.4k</span>
+      <span>5.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -329,51 +336,105 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>前缀和技巧适用于快速、频繁地计算一个索引区间内的元素之和。</p>
-<h1 id="303-区域和检索-数组不可变"><a href="#303-区域和检索-数组不可变" class="headerlink" title="303. 区域和检索 - 数组不可变"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-query-immutable/">303. 区域和检索 - 数组不可变</a></h1><p>给定一个整数数组  <code>nums</code>，处理以下类型的多个查询:</p>
-<p>计算索引 <code>left</code>和<code>right</code> （包含 left 和 right）之间的 nums 元素的和 ，其中 left &lt;= right<br>实现 NumArray 类：</p>
+<h1 id="区域和检索---数组不可变"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-query-immutable/">303.
+区域和检索 - 数组不可变</a></h1>
+<p>给定一个整数数组 <code>nums</code>，处理以下类型的多个查询:</p>
+<p>计算索引 <code>left</code>和<code>right</code> （包含 left 和
+right）之间的 nums 元素的和 ，其中 left &lt;= right 实现 NumArray
+类：</p>
 <ul>
 <li>NumArray(int[] nums) 使用数组 nums 初始化对象</li>
-<li>int sumRange(int i, int j) 返回数组 nums 中索引 left 和 right 之间的元素的总和 ，包含 left 和 right 两点（也就是 <code>nums[left] + nums[left + 1] + ... + nums[right] )</code></li>
+<li>int sumRange(int i, int j) 返回数组 nums 中索引 left 和 right
+之间的元素的总和 ，包含 left 和 right 两点（也就是
+<code>nums[left] + nums[left + 1] + ... + nums[right] )</code></li>
 </ul>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：<br>[“NumArray”, “sumRange”, “sumRange”, “sumRange”]<br>[[[-2, 0, 3, -5, 2, -1]], [0, 2], [2, 5], [0, 5]]<br>输出：<br>[null, 1, -1, -3]</p>
-<p>解释：<br>NumArray numArray = new NumArray([-2, 0, 3, -5, 2, -1]);<br>numArray.sumRange(0, 2); // return 1 ((-2) + 0 + 3)<br>numArray.sumRange(2, 5); // return -1 (3 + (-5) + 2 + (-1))<br>numArray.sumRange(0, 5); // return -3 ((-2) + 0 + 3 + (-5) + 2 + (-1))</p>
+<h2 id="示例">示例：</h2>
+<blockquote>
+<p>输入： ["NumArray", "sumRange", "sumRange", "sumRange"] [[[-2, 0, 3,
+-5, 2, -1]], [0, 2], [2, 5], [0, 5]] 输出： [null, 1, -1, -3]</p>
+<p>解释： NumArray numArray = new NumArray([-2, 0, 3, -5, 2, -1]);
+numArray.sumRange(0, 2); // return 1 ((-2) + 0 + 3) numArray.sumRange(2,
+5); // return -1 (3 + (-5) + 2 + (-1)) numArray.sumRange(0, 5); //
+return -3 ((-2) + 0 + 3 + (-5) + 2 + (-1))</p>
 </blockquote>
 <span id="more"></span>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>我们如果没有学过前缀和，可以这样写出。</p>
+<h3 id="思路">思路：</h3>
+<p>我们如果没有学过前缀和，可以这样写出。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NumArray</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; myNums;</span><br><span class="line">    <span class="built_in">NumArray</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        myNums = nums;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">sumRange</span><span class="params">(<span class="type">int</span> left, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = left; i &lt;= right; i++)&#123;</span><br><span class="line">            res += myNums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这样，可以达到效果，但是效率很差，因为 <code>sumRange</code> 方法会被频繁调用，而它的时间复杂度是 <code>O(N)</code>，其中 <code>N</code> 代表 <code>nums</code> 数组的长度。</p>
-<p>这道题的最优解法是使用前缀和技巧，将 <code>sumRange</code> 函数的时间复杂度降为 <code>O(1)</code>，说白了就是不要在 <code>sumRange</code> 里面用 for 循环，咋整？</p>
-<p>核心思路是我们 new 一个新的数组 <code>preSum</code> 出来，<code>preSum[i]</code> 记录 <code>nums[0..i-1]</code> 的累加和，看图 10 = 3 + 5 + 2：</p>
+<p>这样，可以达到效果，但是效率很差，因为 <code>sumRange</code>
+方法会被频繁调用，而它的时间复杂度是 <code>O(N)</code>，其中
+<code>N</code> 代表 <code>nums</code> 数组的长度。</p>
+<p>这道题的最优解法是使用前缀和技巧，将 <code>sumRange</code>
+函数的时间复杂度降为 <code>O(1)</code>，说白了就是不要在
+<code>sumRange</code> 里面用 for 循环，咋整？</p>
+<p>核心思路是我们 new 一个新的数组 <code>preSum</code>
+出来，<code>preSum[i]</code> 记录 <code>nums[0..i-1]</code>
+的累加和，看图 10 = 3 + 5 + 2：</p>
 <p><img src="前缀和数组/1.jpg" style="zoom:67%;" /></p>
-<p>看这个 <code>preSum</code> 数组，如果我想求索引区间 <code>[1, 4]</code> 内的所有元素之和，就可以通过 <code>preSum[5] - preSum[1]</code> 得出。</p>
-<p>这样，<code>sumRange</code> 函数仅仅需要做一次减法运算，避免了每次进行 for 循环调用，最坏时间复杂度为常数 <code>O(1)</code>。</p>
+<p>看这个 <code>preSum</code> 数组，如果我想求索引区间
+<code>[1, 4]</code> 内的所有元素之和，就可以通过
+<code>preSum[5] - preSum[1]</code> 得出。</p>
+<p>这样，<code>sumRange</code>
+函数仅仅需要做一次减法运算，避免了每次进行 for
+循环调用，最坏时间复杂度为常数 <code>O(1)</code>。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NumArray</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; preSum;</span><br><span class="line">    <span class="built_in">NumArray</span>(vector&lt;<span class="type">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="comment">// preSum[0] = 0, 便于计算累加和</span></span><br><span class="line">        preSum.<span class="built_in">resize</span>(nums.<span class="built_in">size</span>() + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="comment">//计算 nums 的累加和</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; preSum.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            preSum[i] = preSum[i - <span class="number">1</span>] + nums[i - <span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">sumRange</span><span class="params">(<span class="type">int</span> left, <span class="type">int</span> right)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> preSum[right + <span class="number">1</span>] - preSum[left];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="304-二维区域和检索-矩阵不可变"><a href="#304-二维区域和检索-矩阵不可变" class="headerlink" title="304. 二维区域和检索 - 矩阵不可变"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-query-2d-immutable/">304. 二维区域和检索 - 矩阵不可变</a></h1><p>给定一个二维矩阵 matrix，以下类型的多个请求：</p>
-<p>计算其子矩形范围内元素的总和，该子矩阵的 左上角 为 (row1, col1) ，右下角 为 (row2, col2) 。<br>实现 NumMatrix 类：</p>
-<p>NumMatrix(int[][] matrix) 给定整数矩阵 matrix 进行初始化<br>int sumRegion(int row1, int col1, int row2, int col2) 返回 左上角 (row1, col1) 、右下角 (row2, col2) 所描述的子矩阵的元素总和 </p>
-<h2 id="示例：-1"><a href="#示例：-1" class="headerlink" title="示例："></a>示例：</h2><p><img src="前缀和数组/2.jpg" style="zoom:67%;" /></p>
+<h1 id="二维区域和检索---矩阵不可变"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/range-sum-query-2d-immutable/">304.
+二维区域和检索 - 矩阵不可变</a></h1>
+<p>给定一个二维矩阵 matrix，以下类型的多个请求：</p>
+<p>计算其子矩形范围内元素的总和，该子矩阵的 左上角 为 (row1, col1)
+，右下角 为 (row2, col2) 。 实现 NumMatrix 类：</p>
+<p>NumMatrix(int[][] matrix) 给定整数矩阵 matrix 进行初始化 int
+sumRegion(int row1, int col1, int row2, int col2) 返回 左上角 (row1,
+col1) 、右下角 (row2, col2) 所描述的子矩阵的元素总和</p>
+<h2 id="示例-1">示例：</h2>
+<p><img src="前缀和数组/2.jpg" style="zoom:67%;" /></p>
 <blockquote>
-<p>输入:<br>[“NumMatrix”,”sumRegion”,”sumRegion”,”sumRegion”]<br>[[[[3,0,1,4,2],[5,6,3,2,1],[1,2,0,1,5],[4,1,0,1,7],[1,0,3,0,5]]],[2,1,4,3],[1,1,2,2],[1,2,2,4]]<br>输出:<br>[null, 8, 11, 12]</p>
-<p>解释:<br>NumMatrix numMatrix = new NumMatrix([[3,0,1,4,2],[5,6,3,2,1],[1,2,0,1,5],[4,1,0,1,7],[1,0,3,0,5]]);<br>numMatrix.sumRegion(2, 1, 4, 3); // return 8 (红色矩形框的元素总和)<br>numMatrix.sumRegion(1, 1, 2, 2); // return 11 (绿色矩形框的元素总和)<br>numMatrix.sumRegion(1, 2, 2, 4); // return 12 (蓝色矩形框的元素总和)</p>
+<p>输入: ["NumMatrix","sumRegion","sumRegion","sumRegion"]
+[[[[3,0,1,4,2],[5,6,3,2,1],[1,2,0,1,5],[4,1,0,1,7],[1,0,3,0,5]]],[2,1,4,3],[1,1,2,2],[1,2,2,4]]
+输出: [null, 8, 11, 12]</p>
+<p>解释: NumMatrix numMatrix = new
+NumMatrix([[3,0,1,4,2],[5,6,3,2,1],[1,2,0,1,5],[4,1,0,1,7],[1,0,3,0,5]]);
+numMatrix.sumRegion(2, 1, 4, 3); // return 8 (红色矩形框的元素总和)
+numMatrix.sumRegion(1, 1, 2, 2); // return 11 (绿色矩形框的元素总和)
+numMatrix.sumRegion(1, 2, 2, 4); // return 12 (蓝色矩形框的元素总和)</p>
 </blockquote>
-<h3 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h3><p><img src="前缀和数组/3.png" style="zoom:67%;" /></p>
-<p>如果我想计算红色的这个子矩阵的元素之和，可以用绿色矩阵减去蓝色矩阵减去橙色矩阵最后加上粉色矩阵，而绿蓝橙粉这四个矩阵有一个共同的特点，就是左上角就是 <code>(0, 0)</code> 原点。</p>
-<p>那么我们可以维护一个二维 <code>preSum</code> 数组，专门记录以原点为顶点的矩阵的元素之和，就可以用几次加减运算算出任何一个子矩阵的元素和：</p>
+<h3 id="思路-1">思路：</h3>
+<p><img src="前缀和数组/3.png" style="zoom:67%;" /></p>
+<p>如果我想计算红色的这个子矩阵的元素之和，可以用绿色矩阵减去蓝色矩阵减去橙色矩阵最后加上粉色矩阵，而绿蓝橙粉这四个矩阵有一个共同的特点，就是左上角就是
+<code>(0, 0)</code> 原点。</p>
+<p>那么我们可以维护一个二维 <code>preSum</code>
+数组，专门记录以原点为顶点的矩阵的元素之和，就可以用几次加减运算算出任何一个子矩阵的元素和：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NumMatrix</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; preSum;</span><br><span class="line">    <span class="built_in">NumMatrix</span>(vector&lt;vector&lt;<span class="type">int</span>&gt; &gt;&amp; matrix) &#123;</span><br><span class="line">        <span class="type">int</span> m = matrix.<span class="built_in">size</span>(), n = matrix[<span class="number">0</span>].<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(m == <span class="number">0</span> || n == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">        <span class="comment">//构造前缀和矩阵</span></span><br><span class="line">        preSum.<span class="built_in">resize</span>(m + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(n + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">                <span class="comment">//计算每个矩阵[0, 0, i, j] 的元素和</span></span><br><span class="line">                preSum[i][j] = preSum[i - <span class="number">1</span>][j] + preSum[i][j - <span class="number">1</span>] + matrix[i - <span class="number">1</span>][j - <span class="number">1</span>] - preSum[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">sumRegion</span><span class="params">(<span class="type">int</span> row1, <span class="type">int</span> col1, <span class="type">int</span> row2, <span class="type">int</span> col2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> preSum[row2 + <span class="number">1</span>][col2 + <span class="number">1</span>] - preSum[row1][col2 + <span class="number">1</span>] - preSum[row2 + <span class="number">1</span>][col1] + preSum[row1][col1];   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="560-和为-K-的子数组"><a href="#560-和为-K-的子数组" class="headerlink" title="560. 和为 K 的子数组"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/subarray-sum-equals-k/">560. 和为 K 的子数组</a></h1><p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code> ，请你统计并返回 <em>该数组中和为 <code>k</code> 的子数组的个数</em> 。</p>
-<h2 id="示例：-2"><a href="#示例：-2" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：nums = [1,1,1], k = 2<br>输出：2</p>
-<p>输入：nums = [1,2,3], k = 3<br>输出：2</p>
+<h1 id="和为-k-的子数组"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/subarray-sum-equals-k/">560. 和为
+K 的子数组</a></h1>
+<p>给你一个整数数组 <code>nums</code> 和一个整数 <code>k</code>
+，请你统计并返回 <em>该数组中和为 <code>k</code> 的子数组的个数</em>
+。</p>
+<h2 id="示例-2">示例：</h2>
+<blockquote>
+<p>输入：nums = [1,1,1], k = 2 输出：2</p>
+<p>输入：nums = [1,2,3], k = 3 输出：2</p>
 </blockquote>
-<h3 id="思路：-2"><a href="#思路：-2" class="headerlink" title="思路："></a>思路：</h3><h4 id="方法一：暴力"><a href="#方法一：暴力" class="headerlink" title="方法一：暴力"></a>方法一：暴力</h4><p>时机复杂度为<code>O(N^2)</code></p>
+<h3 id="思路-2">思路：</h3>
+<h4 id="方法一暴力">方法一：暴力</h4>
+<p>时机复杂度为<code>O(N^2)</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">subarraySum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = nums.<span class="built_in">size</span>();</span><br><span class="line">        <span class="comment">// 构造前缀和</span></span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">preSum</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">        preSum[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            preSum[i + <span class="number">1</span>] = preSum[i] + nums[i];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// 穷举所有子数组</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; i; j++)&#123;</span><br><span class="line">                <span class="comment">// 子数组 nums[j..i-1] 的元素和</span></span><br><span class="line">                <span class="keyword">if</span>(preSum[i] - preSum[j] == k)&#123;</span><br><span class="line">                    res++;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="方法二：前缀和加哈希表优化"><a href="#方法二：前缀和加哈希表优化" class="headerlink" title="方法二：前缀和加哈希表优化"></a>方法二：前缀和加哈希表优化</h4><p>我们针对上一个方法中的穷举所有子数组进行优化</p>
+<h4 id="方法二前缀和加哈希表优化">方法二：前缀和加哈希表优化</h4>
+<p>我们针对上一个方法中的穷举所有子数组进行优化</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">0</span>; j &lt; i; j++)&#123;</span><br><span class="line">      <span class="comment">// 子数组 nums[j..i-1] 的元素和</span></span><br><span class="line">      <span class="keyword">if</span>(preSum[i] - preSum[j] == k)&#123;</span><br><span class="line">          res++;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>第二层 for 循环在干嘛呢？翻译一下就是，<strong>在计算，有几个 <code>j</code> 能够使得 <code>preSum[i]</code> 和 <code>preSum[j]</code> 的差为 <code>k</code></strong>。毎找到一个这样的 <code>j</code>，就把结果加一。</p>
-<p>优化的思路是：<strong>我直接记录下有几个 <code>preSum[j]</code> 和 <code>preSum[i] - k</code> 相等，直接更新结果，就避免了内层的 for 循环</strong>。我们可以用哈希表，在记录前缀和的同时记录该前缀和出现的次数。</p>
+<p>第二层 for 循环在干嘛呢？翻译一下就是，<strong>在计算，有几个
+<code>j</code> 能够使得 <code>preSum[i]</code> 和 <code>preSum[j]</code>
+的差为 <code>k</code></strong>。毎找到一个这样的
+<code>j</code>，就把结果加一。</p>
+<p>优化的思路是：<strong>我直接记录下有几个 <code>preSum[j]</code> 和
+<code>preSum[i] - k</code> 相等，直接更新结果，就避免了内层的 for
+循环</strong>。我们可以用哈希表，在记录前缀和的同时记录该前缀和出现的次数。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">subarraySum</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; nums, <span class="type">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// map：前缀和 -&gt; 该前缀和出现的次数</span></span><br><span class="line">        unordered_map&lt;<span class="type">int</span>, <span class="type">int</span>&gt; preSum;</span><br><span class="line">        preSum[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>, pre = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> x : nums)&#123;</span><br><span class="line">            pre += x;</span><br><span class="line">            <span class="keyword">if</span>(preSum.<span class="built_in">count</span>(pre - k))&#123;</span><br><span class="line">                res += preSum[pre - k];</span><br><span class="line">            &#125;</span><br><span class="line">            preSum[pre]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p><strong>注意这里我们 <code>preSum</code> 记录的是前缀和到该前缀和出现的次数的映射</strong>。</p>
+<p><strong>注意这里我们 <code>preSum</code>
+记录的是前缀和到该前缀和出现的次数的映射</strong>。</p>
 <p>这样，就把时间复杂度降到了 <code>O(N)</code>，是最优解法了。</p>
 
     </div>
@@ -469,7 +530,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -523,7 +584,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="236. 二叉树的最近公共祖先给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x是 p、q的祖先且 x的深度尽可能大（一个节点也可以是它自己的祖先）。 示例：  输入：root &#x3D; [3,5,1,6,2,0,8,null,null,7,4], p &#x3D; 5, q &#x3D; 1输出：3解释：">
+    <meta name="description" content="236. 二叉树的最近公共祖先 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x是 p、q的祖先且 x的深度尽可能大（一个节点也可以是它自己的祖先）。 示例：   输入：root &#x3D; [3,5,1,6,2,0,8,null,null,7,4], p &#x3D; 5, q &#x3D; 1 输出：3">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最近公共祖先问题">
 <meta property="og:url" content="https://sjchen404.github.io/2022/05/08/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="236. 二叉树的最近公共祖先给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x是 p、q的祖先且 x的深度尽可能大（一个节点也可以是它自己的祖先）。 示例：  输入：root &#x3D; [3,5,1,6,2,0,8,null,null,7,4], p &#x3D; 5, q &#x3D; 1输出：3解释：">
+<meta property="og:description" content="236. 二叉树的最近公共祖先 给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 p、q，最近公共祖先表示为一个节点 x，满足 x是 p、q的祖先且 x的深度尽可能大（一个节点也可以是它自己的祖先）。 示例：   输入：root &#x3D; [3,5,1,6,2,0,8,null,null,7,4], p &#x3D; 5, q &#x3D; 1 输出：3">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sjchen404.github.io/2022/05/08/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E9%97%AE%E9%A2%98/最近公共祖先问题/binarytree.png">
 <meta property="og:image" content="https://sjchen404.github.io/2022/05/08/%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88%E9%97%AE%E9%A2%98/最近公共祖先问题/binarytree.png">
@@ -56,7 +56,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -149,7 +153,9 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#236-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="nav-number">1.</span> <span class="nav-text">236. 二叉树的最近公共祖先</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#235-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="nav-number">2.</span> <span class="nav-text">235. 二叉搜索树的最近公共祖先</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9B"><span class="nav-number">2.1.</span> <span class="nav-text">示例；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="nav-number">1.</span> <span class="nav-text">236.
+二叉树的最近公共祖先</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E6%9C%80%E8%BF%91%E5%85%AC%E5%85%B1%E7%A5%96%E5%85%88"><span class="nav-number">2.</span> <span class="nav-text">235.
+二叉搜索树的最近公共祖先</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B-1"><span class="nav-number">2.1.</span> <span class="nav-text">示例；</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF-1"><span class="nav-number">2.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -301,14 +307,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.8k</span>
+      <span>2.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -319,16 +325,34 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="236-二叉树的最近公共祖先"><a href="#236-二叉树的最近公共祖先" class="headerlink" title="236. 二叉树的最近公共祖先"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/">236. 二叉树的最近公共祖先</a></h1><p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
-<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点 <code>p</code>、<code>q</code>，最近公共祖先表示为一个节点 <code>x</code>，满足 <code>x</code>是 <code>p</code>、<code>q</code>的祖先且 <code>x</code>的深度尽可能大（一个节点也可以是它自己的祖先）。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="最近公共祖先问题/binarytree.png" alt=""></p>
+        <h1 id="二叉树的最近公共祖先"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/">236.
+二叉树的最近公共祖先</a></h1>
+<p>给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个节点
+<code>p</code>、<code>q</code>，最近公共祖先表示为一个节点
+<code>x</code>，满足 <code>x</code>是
+<code>p</code>、<code>q</code>的祖先且
+<code>x</code>的深度尽可能大（一个节点也可以是它自己的祖先）。</p>
+<h2 id="示例">示例：</h2>
+<p><img src="最近公共祖先问题/binarytree.png" /></p>
 <blockquote>
-<p>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1<br>输出：3<br>解释：节点 5 和节点 1 的最近公共祖先是节点 3 。</p>
-<p>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4<br>输出：5<br>解释：节点 5 和节点 4 的最近公共祖先是节点 5 。因为根据定义最近公共祖先节点可以为节点本身。</p>
+<p>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1 输出：3
+解释：节点 5 和节点 1 的最近公共祖先是节点 3 。</p>
+<p>输入：root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4 输出：5
+解释：节点 5 和节点 4 的最近公共祖先是节点 5
+。因为根据定义最近公共祖先节点可以为节点本身。</p>
 </blockquote>
 <span id="more"></span>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>祖先的定义： 若节点 <code>p</code>在节点 <code>root</code>的左（右）子树中，或 <code>p = root</code>，则称<code>root</code> 是<code>p</code> 的祖先。</p>
-<p>最近公共祖先的定义： 设节点<code>root</code> 为节点 <code>p,q</code>的某公共祖先，若其左子节点 <code>root-&gt;left</code>和右子节点<code>root-&gt;right</code>都不是<code>p,q</code> 的公共祖先，则称 <code>root</code>是 “最近的公共祖先” 。</p>
+<h3 id="思路">思路：</h3>
+<p>祖先的定义： 若节点 <code>p</code>在节点
+<code>root</code>的左（右）子树中，或
+<code>p = root</code>，则称<code>root</code> 是<code>p</code>
+的祖先。</p>
+<p>最近公共祖先的定义： 设节点<code>root</code> 为节点
+<code>p,q</code>的某公共祖先，若其左子节点
+<code>root-&gt;left</code>和右子节点<code>root-&gt;right</code>都不是<code>p,q</code>
+的公共祖先，则称 <code>root</code>是 “最近的公共祖先” 。</p>
 <p>根据以上定义：若<code>root</code>是<code>p</code>，<code>q</code>的<strong>最近公共祖先</strong></p>
 <ul>
 <li><code>p</code>和<code>q</code>在<code>root</code>的左或右子树中。</li>
@@ -336,14 +360,25 @@
 <li><code>q = root</code>，<code>p</code>在<code>root</code>的左或右子树中</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">TreeNode</span> &#123;</span><br><span class="line">    <span class="type">int</span> val;</span><br><span class="line">    TreeNode *left;</span><br><span class="line">    TreeNode *right;</span><br><span class="line">    <span class="built_in">TreeNode</span>() : <span class="built_in">val</span>(<span class="number">0</span>), <span class="built_in">left</span>(<span class="literal">nullptr</span>), <span class="built_in">right</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">TreeNode</span>(<span class="type">int</span> x) : <span class="built_in">val</span>(x), <span class="built_in">left</span>(<span class="literal">nullptr</span>), <span class="built_in">right</span>(<span class="literal">nullptr</span>) &#123;&#125;</span><br><span class="line">    <span class="built_in">TreeNode</span>(<span class="type">int</span> x, TreeNode *left, TreeNode *right) : <span class="built_in">val</span>(x), <span class="built_in">left</span>(left), <span class="built_in">right</span>(right) &#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">find</span>(root, p-&gt;val, q-&gt;val);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">find</span><span class="params">(TreeNode *root, <span class="type">int</span> val1, <span class="type">int</span> val2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="comment">//前序位置,如果p,q为根节点，则公共祖先为根节点</span></span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val == val1 || root-&gt;val == val2)&#123;</span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode *left = <span class="built_in">find</span>(root-&gt;left, val1, val2);</span><br><span class="line">        TreeNode *right = <span class="built_in">find</span>(root-&gt;right, val1, val2);</span><br><span class="line">        <span class="comment">//如果p,q为在单独一边，则去那边找</span></span><br><span class="line">        <span class="keyword">if</span>(left == <span class="literal">nullptr</span>) <span class="keyword">return</span> right;</span><br><span class="line">        <span class="keyword">if</span>(right == <span class="literal">nullptr</span>) <span class="keyword">return</span> left;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//后序位置，p,q在两边</span></span><br><span class="line">        <span class="keyword">if</span>(left != <span class="literal">nullptr</span> &amp;&amp; right != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="comment">//当前节点为 LCA 节点</span></span><br><span class="line">            <span class="keyword">return</span> root;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="235-二叉搜索树的最近公共祖先"><a href="#235-二叉搜索树的最近公共祖先" class="headerlink" title="235. 二叉搜索树的最近公共祖先"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/">235. 二叉搜索树的最近公共祖先</a></h1><p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
-<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 <code>p</code>、<code>q</code>，最近公共祖先表示为一个结点 <code>x</code>，满足 <code>x</code>是 <code>p</code>、<code>q</code>的祖先且 <code>x</code>的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
-<p>例如，给定如下二叉搜索树:  <code>root = [6,2,8,0,4,7,9,null,null,3,5</code>]</p>
-<h2 id="示例；"><a href="#示例；" class="headerlink" title="示例；"></a>示例；</h2><p><img src="最近公共祖先问题/binarytree.png" alt=""></p>
+<h1 id="二叉搜索树的最近公共祖先"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/">235.
+二叉搜索树的最近公共祖先</a></h1>
+<p>给定一个二叉搜索树, 找到该树中两个指定节点的最近公共祖先。</p>
+<p>百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点
+<code>p</code>、<code>q</code>，最近公共祖先表示为一个结点
+<code>x</code>，满足 <code>x</code>是
+<code>p</code>、<code>q</code>的祖先且
+<code>x</code>的深度尽可能大（一个节点也可以是它自己的祖先）。”</p>
+<p>例如，给定如下二叉搜索树:
+<code>root = [6,2,8,0,4,7,9,null,null,3,5</code>]</p>
+<h2 id="示例-1">示例；</h2>
+<p><img src="最近公共祖先问题/binarytree.png" /></p>
 <blockquote>
-<p>输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8<br>输出: 6<br>解释: 节点 2 和节点 8 的最近公共祖先是 6。</p>
+<p>输入: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8 输出: 6
+解释: 节点 2 和节点 8 的最近公共祖先是 6。</p>
 </blockquote>
-<h3 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h3><p>用上面的方法可以做出来，但是没有用到二叉搜索树左小右大的性质，效率比较低。</p>
+<h3 id="思路-1">思路：</h3>
+<p>用上面的方法可以做出来，但是没有用到二叉搜索树左小右大的性质，效率比较低。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">lowestCommonAncestor</span><span class="params">(TreeNode* root, TreeNode* p, TreeNode* q)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> val1 = <span class="built_in">min</span>(p-&gt;val, q-&gt;val);</span><br><span class="line">        <span class="type">int</span> val2 = <span class="built_in">max</span>(p-&gt;val, q-&gt;val);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">find</span>(root, val1, val2);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">TreeNode* <span class="title">find</span><span class="params">(TreeNode *root, <span class="type">int</span> val1, <span class="type">int</span> val2)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root == <span class="literal">nullptr</span>) <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        <span class="comment">//比最大的大，去左边找</span></span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val &gt; val2)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">find</span>(root-&gt;left, val1, val2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//比最小的小，去右边找</span></span><br><span class="line">        <span class="keyword">if</span>(root-&gt;val &lt; val1)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">find</span>(root-&gt;right, val1, val2);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -439,7 +474,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -493,7 +528,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

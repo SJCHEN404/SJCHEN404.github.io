@@ -49,7 +49,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -307,18 +311,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="报文解压缩"><a href="#报文解压缩" class="headerlink" title="报文解压缩"></a>报文解压缩</h1><p><strong>■ 题目描述</strong></p>
+          <h1 id="报文解压缩">报文解压缩</h1>
+<p><strong>■ 题目描述</strong></p>
 <ul>
 <li>为了提升数据传输的效率，会对传输的报文进行压缩处理。</li>
 <li>输入一个压缩后的报文，请返回它解压后的原始报文。</li>
 <li>压缩规则：n[str]，表示方括号内部的 str 正好重复 n 次。</li>
-<li>注意 n 为正整数（0 &lt; n &lt;= 100），str只包含小写英文字母，不考虑异常情况。</li>
+<li>注意 n 为正整数（0 &lt; n &lt;=
+100），str只包含小写英文字母，不考虑异常情况。</li>
 </ul>
 <p><strong>输入描述:</strong></p>
 <p><strong>输入压缩后的报文：</strong></p>
-<ol>
+<ol type="1">
 <li>不考虑无效的输入，报文没有额外的空格，方括号总是符合格式要求的；</li>
-<li>原始报文不包含数字，所有的数字只表示重复的次数 n ，例如不会出现像 5b 或 3[8] 的输入；</li>
+<li>原始报文不包含数字，所有的数字只表示重复的次数 n ，例如不会出现像 5b
+或 3[8] 的输入；</li>
 </ol>
 <p><strong>输出描述:</strong></p>
 <ul>
@@ -328,7 +335,8 @@
 <ul>
 <li>原始报文长度不会超过1000，不考虑异常的情况</li>
 </ul>
-<p><strong>示例 1</strong> 输入输出示例仅供调试，后台判题数据一般不包含示例</p>
+<p><strong>示例 1</strong>
+输入输出示例仅供调试，后台判题数据一般不包含示例</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/04/11/%E6%8A%A5%E6%96%87%E8%A7%A3%E5%8E%8B%E7%BC%A9/#more" rel="contents">
@@ -453,26 +461,32 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="最大连续子串长度"><a href="#最大连续子串长度" class="headerlink" title="最大连续子串长度"></a>最大连续子串长度</h1><p><strong>■ 题目描述</strong></p>
-<p>给定字符串A、B和正整数V，A的长度与B的长度相等， 请计算A中满足如下条件的最大连续子串的长度：</p>
-<ol>
+          <h1 id="最大连续子串长度">最大连续子串长度</h1>
+<p><strong>■ 题目描述</strong></p>
+<p>给定字符串A、B和正整数V，A的长度与B的长度相等，
+请计算A中满足如下条件的最大连续子串的长度：</p>
+<ol type="1">
 <li>该连续子串在A和B中的位置和长度均相同。</li>
-<li>该连续子串 <strong>|A[i] – B[i]|</strong> 之和小于等于V。其中 <strong>|A[i] – B[i]|</strong> 表示两个字母ASCII码之差的绝对值。</li>
+<li>该连续子串 <strong>|A[i] – B[i]|</strong> 之和小于等于V。其中
+<strong>|A[i] – B[i]|</strong> 表示两个字母ASCII码之差的绝对值。</li>
 </ol>
 <p><strong>输入描述：</strong></p>
 <ul>
-<li>输入为三行： 第一行为字符串A，仅包含小写字符，1 &lt;= A.length &lt;= 1000。</li>
+<li>输入为三行： 第一行为字符串A，仅包含小写字符，1 &lt;= A.length &lt;=
+1000。</li>
 <li>第二行为字符串B，仅包含小写字符，1 &lt;= B.length &lt;= 1000。</li>
 <li>第三行为正整数V，0 &lt;= V &lt;= 10000。</li>
 </ul>
 <p><strong>输出描述：</strong></p>
 <ul>
-<li>字符串最大连续子串的长度，要求该子串 <strong>|A[i] – B[i]|</strong> 之和小于等于V。</li>
+<li>字符串最大连续子串的长度，要求该子串 <strong>|A[i] – B[i]|</strong>
+之和小于等于V。</li>
 </ul>
-<p><strong>示例 1</strong> 输入输出示例仅供调试，后台判题数据一般不包含示例</p>
+<p><strong>示例 1</strong>
+输入输出示例仅供调试，后台判题数据一般不包含示例</p>
 <p><strong>输入</strong></p>
 <blockquote>
-<p>xxcdefg<br>cdefghi<br>5</p>
+<p>xxcdefg cdefghi 5</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -594,7 +608,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="矩形相交的面积"><a href="#矩形相交的面积" class="headerlink" title="矩形相交的面积"></a>矩形相交的面积</h1><p><strong>■ 题目描述</strong></p>
+          <h1 id="矩形相交的面积">矩形相交的面积</h1>
+<p><strong>■ 题目描述</strong></p>
 <ul>
 <li>给出3组点坐标(x, y, w, h)，-1000&lt;x,y&lt;1000，w,h为正整数。</li>
 <li>(x, y, w, h)表示平面直角坐标系中的一个矩形：</li>
@@ -613,7 +628,8 @@
 <ul>
 <li>输出 3 个矩形相交的面积，不相交的输出 0。</li>
 </ul>
-<p><strong>示例</strong> 输入输出示例仅供调试，后台判题数据一般不包含示例</p>
+<p><strong>示例</strong>
+输入输出示例仅供调试，后台判题数据一般不包含示例</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/04/10/%E7%9F%A9%E5%BD%A2%E7%9B%B8%E4%BA%A4%E7%9A%84%E9%9D%A2%E7%A7%AF/#more" rel="contents">
@@ -734,31 +750,38 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="简易内存池"><a href="#简易内存池" class="headerlink" title="简易内存池"></a>简易内存池</h1><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><ul>
+          <h1 id="简易内存池">简易内存池</h1>
+<h3 id="题目描述">题目描述</h3>
+<ul>
 <li>请实现一个简易内存池，根据请求命令完成内存分配和释放。</li>
 <li>内存池支持两种操作命令，REQUEST和RELEASE，其格式为：</li>
 <li>REQUEST=请求的内存大小表示请求分配指定大小内存，如果分配成功，返回分配到的内存首地址；</li>
 </ul>
-<p>​    如果内存不足，或指定的大小为0，则输出error。</p>
+<p>​ 如果内存不足，或指定的大小为0，则输出error。</p>
 <ul>
 <li>RELEASE=释放的内存首地址表示释放掉之前分配的内存，释放成功无需输出，如果释放不存在的首地址则输出error。</li>
 </ul>
 <p><strong>注意：</strong></p>
-<ol>
+<ol type="1">
 <li>内存池总大小为100字节。</li>
 <li>内存池地址分配必须是连续内存，并优先从低地址分配。</li>
 <li>内存释放后可被再次分配，已释放的内存在空闲时不能被二次释放。</li>
 <li>不会释放已申请的内存块的中间地址。</li>
 <li>释放操作只是针对首地址所对应的单个内存块进行操作，不会影响其它内存块。</li>
 </ol>
-<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a><strong>输入</strong></h4><ul>
-<li>首行为整数 N , 表示操作命令的个数，取值范围：0 &lt; N &lt;= 100。</li>
-<li>接下来的N行, 每行将给出一个操作命令，操作命令和参数之间用 “=” 分割。</li>
+<h4 id="输入"><strong>输入</strong></h4>
+<ul>
+<li>首行为整数 N , 表示操作命令的个数，取值范围：0 &lt; N &lt;=
+100。</li>
+<li>接下来的N行, 每行将给出一个操作命令，操作命令和参数之间用 “=”
+分割。</li>
 </ul>
-<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a><strong>输出</strong></h4><ul>
+<h4 id="输出"><strong>输出</strong></h4>
+<ul>
 <li>见题目描述</li>
 </ul>
-<p><strong>示例 1</strong> 输入输出示例仅供调试，后台判题数据一般不包含示例</p>
+<p><strong>示例 1</strong>
+输入输出示例仅供调试，后台判题数据一般不包含示例</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/04/10/%E7%AE%80%E6%98%93%E5%86%85%E5%AD%98%E6%B1%A0/#more" rel="contents">
@@ -879,18 +902,22 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="天然货仓"><a href="#天然货仓" class="headerlink" title="天然货仓"></a>天然货仓</h1><p><strong>题目描述</strong></p>
+          <h1 id="天然货仓">天然货仓</h1>
+<p><strong>题目描述</strong></p>
 <ul>
 <li>有一个天然形成的大坑，为台阶状结构，每个台阶的长度都为1，每个台阶的值为整数（正整数表示高于地平面，零表示与地平面平齐，负整数表示低于地平面）。</li>
 <li>有一批同等规格的货品（长度为N，高度为1），货品只能平放，且货物的上表面不能超过地平面（深度为零），或者说，高于地平面的坑中也不可存放货物。</li>
 <li>计算一个给定的大坑中最多可以放多少个货品？</li>
-<li>如下图所示，[0,-1,-2,0] 组成的大坑，货品长度为2，可以放入1个货品（阴影矩形），返回1。</li>
+<li>如下图所示，[0,-1,-2,0]
+组成的大坑，货品长度为2，可以放入1个货品（阴影矩形），返回1。</li>
 </ul>
 <p><strong>输入描述</strong></p>
 <ul>
 <li>输入依次为N，M，一维数组。</li>
-<li>N为该批次货物的长度（1 &lt; N &lt;= 100000），M为一维数组的长度（1 &lt;= M &lt;= 100000），</li>
-<li>一维数组为大坑从左到右每个台阶的值（-10000 &lt; 值 &lt; 10000）。</li>
+<li>N为该批次货物的长度（1 &lt; N &lt;= 100000），M为一维数组的长度（1
+&lt;= M &lt;= 100000），</li>
+<li>一维数组为大坑从左到右每个台阶的值（-10000 &lt; 值 &lt;
+10000）。</li>
 </ul>
 <p><strong>输出描述</strong></p>
 <ul>
@@ -998,7 +1025,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.3k</span>
+      <span>1.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1016,10 +1043,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a><strong>题目描述</strong></h3><p>输入一个数 <code>M</code> ，表示<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=数组&amp;spm=1001.2101.3001.7020">数组</a>中有 <code>M</code> 个数<br>输入 <code>M</code> 个数。<br>输入 <code>n</code><br>求数组 <code>M</code> 中，去除重复值后，最大 <code>n</code> 个数和最小 <code>n</code> 个数的和<br>注意：最大和最小的数中不能有重复值，否则输出 <code>-1</code></p>
+          <p>###<strong>题目描述</strong> 输入一个数 <code>M</code> ，表示<a
+target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=数组&amp;spm=1001.2101.3001.7020">数组</a>中有
+<code>M</code> 个数 输入 <code>M</code> 个数。 输入 <code>n</code>
+求数组 <code>M</code> 中，去除重复值后，最大 <code>n</code> 个数和最小
+<code>n</code> 个数的和 注意：最大和最小的数中不能有重复值，否则输出
+<code>-1</code></p>
 <blockquote>
-<p><strong>样例输入</strong><br>5<br>3 3 2 4 2<br>2<br><strong>样例输出</strong><br>-1<br><strong>说明</strong><br>去除重复后最大的2个数为[4,3]，最小的2个数为[2,3]；有相同值，所以返回-1</p>
-<p><strong>样例输入</strong><br>5<br>3 3 2 4 2<br>1<br><strong>样例输出</strong><br>6<br><strong>说明</strong><br>去除重复后最大的1个数为[4]，最小的1个数为[2]；没有相同值，返回6</p>
+<p><strong>样例输入</strong> 5 3 3 2 4 2 2 <strong>样例输出</strong> -1
+<strong>说明</strong>
+去除重复后最大的2个数为[4,3]，最小的2个数为[2,3]；有相同值，所以返回-1</p>
+</blockquote>
+<blockquote>
+<p><strong>样例输入</strong> 5 3 3 2 4 2 1 <strong>样例输出</strong> 6
+<strong>说明</strong>
+去除重复后最大的1个数为[4]，最小的1个数为[2]；没有相同值，返回6</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -1145,7 +1183,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="unique函数"><a href="#unique函数" class="headerlink" title="unique函数"></a>unique函数</h1><p>我们很多时候需要去重。</p>
+          <h1 id="unique函数">unique函数</h1>
+<p>我们很多时候需要去重。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/04/10/%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8Dunique%E5%87%BD%E6%95%B0/#more" rel="contents">
@@ -1266,9 +1305,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="VLAN资源池"><a href="#VLAN资源池" class="headerlink" title="VLAN资源池"></a>VLAN资源池</h1><p><strong>题目描述：</strong></p>
-<p><strong><em>VLAN</em></strong>是一种对局域网设备进行逻辑划分的技术，为了标识不同的VLAN，引入VLAN ID(1-4094之间的整数)的概念。</p>
-<p>定义一个VLAN ID的资源池(下称VLAN资源池)，资源池中连续的VLAN用开始VLAN-结束VLAN表示，不连续的用单个整数表示，所有的VLAN用英文逗号连接起来。</p>
+          <h1 id="vlan资源池">VLAN资源池</h1>
+<p><strong>题目描述：</strong></p>
+<p><strong><em>VLAN</em></strong>是一种对局域网设备进行逻辑划分的技术，为了标识不同的VLAN，引入VLAN
+ID(1-4094之间的整数)的概念。</p>
+<p>定义一个VLAN
+ID的资源池(下称VLAN资源池)，资源池中连续的VLAN用开始VLAN-结束VLAN表示，不连续的用单个整数表示，所有的VLAN用英文逗号连接起来。</p>
 <p>现在有一个VLAN资源池，业务需要从资源池中申请一个VLAN，需要你输出从VLAN资源池中移除申请的VLAN后的资源池。</p>
 <p><strong>输入描述:</strong></p>
 <p>第一行为字符串格式的VLAN资源池，第二行为业务要申请的VLAN，VLAN的取值范围为[1,4094]之间的整数。</p>
@@ -1524,20 +1566,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="■-题目描述"><a href="#■-题目描述" class="headerlink" title="■ 题目描述"></a><strong>■ 题目描述</strong></h1><ul>
-<li>TLV 编码是按 <strong>[ Tag Length Value ]</strong> 格式进行编码的，一段码流中的信元用Tag标识， Tag在码流中 <strong>唯一不重复</strong> ，Length表示信元Value的长度，Value表示信元的值。</li>
-<li>码流以某信元的Tag开头，Tag固定占 <strong>一个字节</strong>，Length固定占 <strong>两个字节</strong>，字节序为 <strong>小端序</strong> 。</li>
+          <p>#<strong>■ 题目描述</strong></p>
+<ul>
+<li>TLV 编码是按 <strong>[ Tag Length Value ]</strong>
+格式进行编码的，一段码流中的信元用Tag标识， Tag在码流中
+<strong>唯一不重复</strong>
+，Length表示信元Value的长度，Value表示信元的值。</li>
+<li>码流以某信元的Tag开头，Tag固定占
+<strong>一个字节</strong>，Length固定占
+<strong>两个字节</strong>，字节序为 <strong>小端序</strong> 。</li>
 <li>现给定TLV格式编码的码流，以及需要解码的信元Tag，请输出该信元的Value。</li>
 <li>输入码流的16进制字符中，不包括小写字母，且要求输出的16进制字符串中也不要包含小写字母；</li>
 <li>码流字符串的最大长度不超过50000个字节。</li>
 </ul>
-<h2 id="输入描述"><a href="#输入描述" class="headerlink" title="输入描述:"></a><strong>输入描述:</strong></h2><ul>
-<li>输入的第一行为一个字符串，表示待解码信元的 <strong>Tag</strong> ；</li>
-<li>输入的第二行为一个字符串，表示待解码的 <strong>16进制码流</strong> ，字节之间用 <strong>空格分隔</strong> 。</li>
+<p>##<strong>输入描述:</strong></p>
+<ul>
+<li>输入的第一行为一个字符串，表示待解码信元的 <strong>Tag</strong>
+；</li>
+<li>输入的第二行为一个字符串，表示待解码的 <strong>16进制码流</strong>
+，字节之间用 <strong>空格分隔</strong> 。</li>
 </ul>
 <p><strong>输出描述:</strong></p>
 <ul>
-<li>输出一个字符串，表示待解码信元以16进制表示的 <strong>Value</strong> 。</li>
+<li>输出一个字符串，表示待解码信元以16进制表示的 <strong>Value</strong>
+。</li>
 </ul>
           <!--noindex-->
             <div class="post-button">
@@ -1590,7 +1642,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -1644,7 +1696,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

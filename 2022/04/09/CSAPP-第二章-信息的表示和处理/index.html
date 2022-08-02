@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="信息的表示与处理2.1 信息存储大多数计算机使用8位的块，或者字节，作为最小的可寻址的内存单位，而不是访问内存中单独的位。 2.1.1 十六进制表示法 十进制 x 转化为十六进制，可以反复用 16 除 x，得到一个商 q 和一个余数 r，也就是 x &#x3D; q * 16 + r  反过来也一样，比如我们给定数字 0X7AF,十进制就为 $7  16^2 + 10  16 + 15 &#x3D; 1967$">
+    <meta name="description" content="信息的表示与处理 2.1 信息存储 大多数计算机使用8位的块，或者字节，作为最小的可寻址的内存单位，而不是访问内存中单独的位。 2.1.1 十六进制表示法  十进制 x 转化为十六进制，可以反复用 16 除 x，得到一个商 q 和一个余数 r，也就是 x &#x3D; q * 16 + r  反过来也一样，比如我们给定数字 0X7AF,十进制就为 \(7 * 16^2 + 10 * 16 + 15 &#x3D; 19">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CSAPP 第二章 信息的表示和处理">
 <meta property="og:url" content="https://sjchen404.github.io/2022/04/09/CSAPP-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="信息的表示与处理2.1 信息存储大多数计算机使用8位的块，或者字节，作为最小的可寻址的内存单位，而不是访问内存中单独的位。 2.1.1 十六进制表示法 十进制 x 转化为十六进制，可以反复用 16 除 x，得到一个商 q 和一个余数 r，也就是 x &#x3D; q * 16 + r  反过来也一样，比如我们给定数字 0X7AF,十进制就为 $7  16^2 + 10  16 + 15 &#x3D; 1967$">
+<meta property="og:description" content="信息的表示与处理 2.1 信息存储 大多数计算机使用8位的块，或者字节，作为最小的可寻址的内存单位，而不是访问内存中单独的位。 2.1.1 十六进制表示法  十进制 x 转化为十六进制，可以反复用 16 除 x，得到一个商 q 和一个余数 r，也就是 x &#x3D; q * 16 + r  反过来也一样，比如我们给定数字 0X7AF,十进制就为 \(7 * 16^2 + 10 * 16 + 15 &#x3D; 19">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sjchen404.github.io/2022/04/09/CSAPP-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86/CSAPP-第二章-信息的表示和处理/1.jpg">
 <meta property="og:image" content="https://sjchen404.github.io/2022/04/09/CSAPP-%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86/CSAPP-第二章-信息的表示和处理/2.jpg">
@@ -63,7 +63,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -156,7 +160,9 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E4%B8%8E%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">信息的表示与处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 信息存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-1-%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">2.1.1 十六进制表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-2-%E5%AD%97%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.1.2 字数据大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-3-%E5%AF%BB%E5%9D%80%E5%92%8C%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F"><span class="nav-number">1.1.3.</span> <span class="nav-text">2.1.3 寻址和字节顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-4-%E8%A1%A8%E7%A4%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.1.4.</span> <span class="nav-text">2.1.4 表示字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-5-%E8%A1%A8%E7%A4%BA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.5.</span> <span class="nav-text">2.1.5 表示代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-6-%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="nav-number">1.1.6.</span> <span class="nav-text">2.1.6 布尔代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-7-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BA%A7%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.7.</span> <span class="nav-text">2.1.7 C语言中的位级运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-8-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.8.</span> <span class="nav-text">2.1.8 C语言中的逻辑运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-9-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.9.</span> <span class="nav-text">2.1.9 C语言中的移位运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.</span> <span class="nav-text">2.2  整数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-%E6%95%B4%E5%BD%A2%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.2.1 整形数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2.2 无符号数的编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-%E8%A1%A5%E7%A0%81%E7%BC%96%E7%A0%81"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.2.3 补码编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.2.4 有符号数和无符号数之间的转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-5-C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B8%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.2.5 C语言中的有符号数与无符号数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-6-%E6%89%A9%E5%B1%95%E4%B8%80%E4%B8%AA%E6%95%B0%E5%AD%97%E7%9A%84%E4%BD%8D%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.2.6 扩展一个数字的位表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 整数运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">2.4 浮点数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-1-%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B0%8F%E6%95%B0"><span class="nav-number">1.4.1.</span> <span class="nav-text">2.4.1 二进制小数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-2-IEEE%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.4.2 IEEE浮点表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-4-%E8%88%8D%E5%85%A5"><span class="nav-number">1.4.3.</span> <span class="nav-text">2.4.4 舍入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-5-%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97"><span class="nav-number">1.4.4.</span> <span class="nav-text">2.4.5 浮点运算</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E4%B8%8E%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">信息的表示与处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E6%81%AF%E5%AD%98%E5%82%A8"><span class="nav-number">1.1.</span> <span class="nav-text">2.1 信息存储</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="nav-number">1.1.1.</span> <span class="nav-text">2.1.1 十六进制表示法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%97%E6%95%B0%E6%8D%AE%E5%A4%A7%E5%B0%8F"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.1.2 字数据大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%BB%E5%9D%80%E5%92%8C%E5%AD%97%E8%8A%82%E9%A1%BA%E5%BA%8F"><span class="nav-number">1.1.3.</span> <span class="nav-text">2.1.3 寻址和字节顺序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.1.4.</span> <span class="nav-text">2.1.4 表示字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A8%E7%A4%BA%E4%BB%A3%E7%A0%81"><span class="nav-number">1.1.5.</span> <span class="nav-text">2.1.5 表示代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%83%E5%B0%94%E4%BB%A3%E6%95%B0"><span class="nav-number">1.1.6.</span> <span class="nav-text">2.1.6 布尔代数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E4%BD%8D%E7%BA%A7%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.7.</span> <span class="nav-text">2.1.7 C语言中的位级运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.8.</span> <span class="nav-text">2.1.8 C语言中的逻辑运算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%A7%BB%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.9.</span> <span class="nav-text">2.1.9 C语言中的移位运算</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.</span> <span class="nav-text">2.2 整数表示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%BD%A2%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.2.1 整形数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E7%9A%84%E7%BC%96%E7%A0%81"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2.2 无符号数的编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81%E7%BC%96%E7%A0%81"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.2.3 补码编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E5%92%8C%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.2.4
+有符号数和无符号数之间的转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%9C%89%E7%AC%A6%E5%8F%B7%E6%95%B0%E4%B8%8E%E6%97%A0%E7%AC%A6%E5%8F%B7%E6%95%B0"><span class="nav-number">1.2.5.</span> <span class="nav-text">2.2.5
+C语言中的有符号数与无符号数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%B1%95%E4%B8%80%E4%B8%AA%E6%95%B0%E5%AD%97%E7%9A%84%E4%BD%8D%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.2.6.</span> <span class="nav-text">2.2.6 扩展一个数字的位表示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B4%E6%95%B0%E8%BF%90%E7%AE%97"><span class="nav-number">1.3.</span> <span class="nav-text">2.3 整数运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E6%95%B0"><span class="nav-number">1.4.</span> <span class="nav-text">2.4 浮点数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%B0%8F%E6%95%B0"><span class="nav-number">1.4.1.</span> <span class="nav-text">2.4.1 二进制小数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ieee%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.4.2 IEEE浮点表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%88%8D%E5%85%A5"><span class="nav-number">1.4.3.</span> <span class="nav-text">2.4.4 舍入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%AE%E7%82%B9%E8%BF%90%E7%AE%97"><span class="nav-number">1.4.4.</span> <span class="nav-text">2.4.5 浮点运算</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -326,69 +332,113 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="信息的表示与处理"><a href="#信息的表示与处理" class="headerlink" title="信息的表示与处理"></a>信息的表示与处理</h1><h2 id="2-1-信息存储"><a href="#2-1-信息存储" class="headerlink" title="2.1 信息存储"></a>2.1 信息存储</h2><p>大多数计算机使用8位的块，或者字节，作为最小的可寻址的内存单位，而不是访问内存中单独的位。</p>
-<h3 id="2-1-1-十六进制表示法"><a href="#2-1-1-十六进制表示法" class="headerlink" title="2.1.1 十六进制表示法"></a>2.1.1 十六进制表示法</h3><p><img src="CSAPP-第二章-信息的表示和处理/1.jpg" alt=""></p>
-<p>十进制 x 转化为十六进制，可以反复用 16 除 x，得到一个商 q 和一个余数 r，也就是 <code>x = q * 16 + r</code></p>
-<p><img src="CSAPP-第二章-信息的表示和处理/2.jpg" alt=""></p>
+        <h1 id="信息的表示与处理">信息的表示与处理</h1>
+<h2 id="信息存储">2.1 信息存储</h2>
+<p>大多数计算机使用8位的块，或者字节，作为最小的可寻址的内存单位，而不是访问内存中单独的位。</p>
+<h3 id="十六进制表示法">2.1.1 十六进制表示法</h3>
+<p><img src="CSAPP-第二章-信息的表示和处理/1.jpg" /></p>
+<p>十进制 x 转化为十六进制，可以反复用 16 除 x，得到一个商 q 和一个余数
+r，也就是 <code>x = q * 16 + r</code></p>
+<p><img src="CSAPP-第二章-信息的表示和处理/2.jpg" /></p>
 <p>反过来也一样，比如我们给定数字 <code>0X7AF</code>,十进制就为</p>
-<p>$7 <em> 16^2 + 10 </em> 16 + 15 = 1967$</p>
+<p><span class="math inline">\(7 * 16^2 + 10 * 16 + 15 =
+1967\)</span></p>
 <span id="more"></span>
-<h3 id="2-1-2-字数据大小"><a href="#2-1-2-字数据大小" class="headerlink" title="2.1.2 字数据大小"></a>2.1.2 字数据大小</h3><p>每台计算机都有一个<strong>字长</strong>，指明指针数据的标称大小。因为虚拟地址是以这样一个字来编码的，所以字长决定了<em>虚拟地址</em>空间的最大大小。也就是说，对于一个字长为<code>w</code>的机器，虚拟地址的范围为<code>0~2^w - 1</code>，程序最多访问$2^w$个字节。</p>
-<h3 id="2-1-3-寻址和字节顺序"><a href="#2-1-3-寻址和字节顺序" class="headerlink" title="2.1.3 寻址和字节顺序"></a>2.1.3 寻址和字节顺序</h3><ul>
-<li><strong>小端法：</strong> 从最低有效字节到最高有效字节到顺序存储</li>
-<li><strong>大端法：</strong> 从最高有效字节到最低有效字节的顺序存储</li>
+<h3 id="字数据大小">2.1.2 字数据大小</h3>
+<p>每台计算机都有一个<strong>字长</strong>，指明指针数据的标称大小。因为虚拟地址是以这样一个字来编码的，所以字长决定了<em>虚拟地址</em>空间的最大大小。也就是说，对于一个字长为<code>w</code>的机器，虚拟地址的范围为<code>0~2^w - 1</code>，程序最多访问<span
+class="math inline">\(2^w\)</span>个字节。</p>
+<h3 id="寻址和字节顺序">2.1.3 寻址和字节顺序</h3>
+<ul>
+<li><strong>小端法：</strong>
+从最低有效字节到最高有效字节到顺序存储</li>
+<li><strong>大端法：</strong>
+从最高有效字节到最低有效字节的顺序存储</li>
 </ul>
-<p><img src="CSAPP-第二章-信息的表示和处理/3.jpg" alt=""></p>
+<p><img src="CSAPP-第二章-信息的表示和处理/3.jpg" /></p>
 <p>例如：</p>
 <blockquote>
-<p>40004d3:    01 05 43 0b 20 00     add    %0x200b43(%rip)</p>
+<p>40004d3: 01 05 43 0b 20 00 add %0x200b43(%rip)</p>
 </blockquote>
-<p>如果我们取出最后4个字节，43 0b 20 00,并且按照相反的顺序写出，得到 00 20 0b 43 去掉开头的0,得到值 0x200b43，这就是右端的数值，所以可以判断是<strong>小端法机器</strong>。</p>
-<h3 id="2-1-4-表示字符串"><a href="#2-1-4-表示字符串" class="headerlink" title="2.1.4 表示字符串"></a>2.1.4 表示字符串</h3><p>C语言中字符串被编码为一个以null（其值为0）字符结尾的字符数组，每个字符由ASCII码来表示。例如<code>&quot;12345&quot;</code>,结果为<code>31 32 33 34 35 00</code>。</p>
-<h3 id="2-1-5-表示代码"><a href="#2-1-5-表示代码" class="headerlink" title="2.1.5 表示代码"></a>2.1.5 表示代码</h3><p>程序仅仅只是字节序列。</p>
-<h3 id="2-1-6-布尔代数"><a href="#2-1-6-布尔代数" class="headerlink" title="2.1.6 布尔代数"></a>2.1.6 布尔代数</h3><p><img src="CSAPP-第二章-信息的表示和处理/4.jpg" alt=""></p>
+<p>如果我们取出最后4个字节，43 0b 20 00,并且按照相反的顺序写出，得到 00
+20 0b 43 去掉开头的0,得到值
+0x200b43，这就是右端的数值，所以可以判断是<strong>小端法机器</strong>。</p>
+<h3 id="表示字符串">2.1.4 表示字符串</h3>
+<p>C语言中字符串被编码为一个以null（其值为0）字符结尾的字符数组，每个字符由ASCII码来表示。例如<code>"12345"</code>,结果为<code>31 32 33 34 35 00</code>。</p>
+<h3 id="表示代码">2.1.5 表示代码</h3>
+<p>程序仅仅只是字节序列。</p>
+<h3 id="布尔代数">2.1.6 布尔代数</h3>
+<p><img src="CSAPP-第二章-信息的表示和处理/4.jpg" /></p>
 <p><code>^</code>表示异或，相同为<code>0</code>，不同为<code>1</code>。</p>
 <p><code>(a ^ b) ^ a = b</code></p>
-<h3 id="2-1-7-C语言中的位级运算"><a href="#2-1-7-C语言中的位级运算" class="headerlink" title="2.1.7 C语言中的位级运算"></a>2.1.7 C语言中的位级运算</h3><p><code>|</code>:或</p>
+<h3 id="c语言中的位级运算">2.1.7 C语言中的位级运算</h3>
+<p><code>|</code>:或</p>
 <p><code>&amp;</code>:与</p>
 <p><code>~</code>: 取反</p>
 <p><code>^</code>: 异或</p>
-<h3 id="2-1-8-C语言中的逻辑运算"><a href="#2-1-8-C语言中的逻辑运算" class="headerlink" title="2.1.8 C语言中的逻辑运算"></a>2.1.8 C语言中的逻辑运算</h3><p><code>||</code>: OR</p>
+<h3 id="c语言中的逻辑运算">2.1.8 C语言中的逻辑运算</h3>
+<p><code>||</code>: OR</p>
 <p><code>&amp;&amp;</code>: AND</p>
 <p><code>!</code>: NOT</p>
 <p><code>1</code>表示<code>true</code>,<code>0</code>表示<code>false</code></p>
-<h3 id="2-1-9-C语言中的移位运算"><a href="#2-1-9-C语言中的移位运算" class="headerlink" title="2.1.9 C语言中的移位运算"></a>2.1.9 C语言中的移位运算</h3><p>逻辑右移和算数右移</p>
+<h3 id="c语言中的移位运算">2.1.9 C语言中的移位运算</h3>
+<p>逻辑右移和算数右移</p>
 <blockquote>
 <p>x &gt;&gt; k</p>
 <p>逻辑右移：在左端补 K 个 0</p>
 <p>算数右移：在左端补 K 个最高有效位的值</p>
 </blockquote>
-<p>如果移动的<code>k</code>很大，假设我们的 <code>int为 w = 32</code></p>
+<p>如果移动的<code>k</code>很大，假设我们的
+<code>int为 w = 32</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> lval = <span class="number">0xFEDCBA98</span> &lt;&lt; <span class="number">32</span>;</span><br><span class="line"><span class="type">int</span> aval = <span class="number">0xFEDCBA98</span> &gt;&gt; <span class="number">36</span>;</span><br><span class="line"><span class="type">unsigned</span> uval = <span class="number">0xFEDCBA98</span> &gt;&gt; <span class="number">40</span>;</span><br></pre></td></tr></table></figure>
-<p>在许多机器上，当移动一个<code>w</code>位的值时，移位指令只考虑位移量的低$log_2w$位，因此实际上位移量就是通过计算<code>k mod w</code>得到的。</p>
+<p>在许多机器上，当移动一个<code>w</code>位的值时，移位指令只考虑位移量的低<span
+class="math inline">\(log_2w\)</span>位，因此实际上位移量就是通过计算<code>k mod w</code>得到的。</p>
 <p>对于无符号数，右移必须是逻辑的。</p>
 <p>则上面的就相当于</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">lval = <span class="number">0xFEDCBA98</span> &lt;&lt; <span class="number">0</span> = <span class="number">0xFEDCBA98</span></span><br><span class="line">aval = <span class="number">0xFEDCBA98</span> &gt;&gt; <span class="number">4</span> = <span class="number">0xFFEDCBA9</span></span><br><span class="line">uval = <span class="number">0xFEDCBA98</span> &gt;&gt; <span class="number">8</span> = <span class="number">0x00FEDCBA</span></span><br></pre></td></tr></table></figure>
 <p>在C语言中，加减法的优先级比移位运算要高。</p>
-<h2 id="2-2-整数表示"><a href="#2-2-整数表示" class="headerlink" title="2.2  整数表示"></a>2.2  整数表示</h2><p><img src="CSAPP-第二章-信息的表示和处理/5.jpg" alt=""></p>
-<h3 id="2-2-1-整形数据类型"><a href="#2-2-1-整形数据类型" class="headerlink" title="2.2.1 整形数据类型"></a>2.2.1 整形数据类型</h3><p><img src="CSAPP-第二章-信息的表示和处理/6.jpg" alt=""></p>
-<p><img src="CSAPP-第二章-信息的表示和处理/7.jpg" alt=""></p>
+<h2 id="整数表示">2.2 整数表示</h2>
+<p><img src="CSAPP-第二章-信息的表示和处理/5.jpg" /></p>
+<h3 id="整形数据类型">2.2.1 整形数据类型</h3>
+<p><img src="CSAPP-第二章-信息的表示和处理/6.jpg" /></p>
+<p><img src="CSAPP-第二章-信息的表示和处理/7.jpg" /></p>
 <p>由上面我们可以看出，<strong>负数的范围比正数的范围大1</strong></p>
-<h3 id="2-2-2-无符号数的编码"><a href="#2-2-2-无符号数的编码" class="headerlink" title="2.2.2 无符号数的编码"></a>2.2.2 无符号数的编码</h3><p>假设有一个整数数据类型有<code>w</code>位，我们用一个函数<script type="math/tex">B2U_w</script>(Binary to Unsigned的缩写，长度为 w )来表示。</p>
-<p><img src="CSAPP-第二章-信息的表示和处理/2.2.2.jpg" alt=""></p>
-<p>无符号数的二进制表示有一个很重要的属性，也就是每个介于<script type="math/tex">0-2^w - 1</script>之间的数都有唯一一个<code>w</code>位的值编码。</p>
-<h3 id="2-2-3-补码编码"><a href="#2-2-3-补码编码" class="headerlink" title="2.2.3 补码编码"></a>2.2.3 补码编码</h3><p>表示负数值，最常用的有符号数的计算机表示方式就是补码，将最高有效位解释为负权。</p>
+<h3 id="无符号数的编码">2.2.2 无符号数的编码</h3>
+<p>假设有一个整数数据类型有<code>w</code>位，我们用一个函数<span
+class="math display">\[B2U_w\]</span>(Binary to Unsigned的缩写，长度为 w
+)来表示。</p>
+<p><img src="CSAPP-第二章-信息的表示和处理/2.2.2.jpg" /></p>
+<p>无符号数的二进制表示有一个很重要的属性，也就是每个介于<span
+class="math display">\[0-2^w -
+1\]</span>之间的数都有唯一一个<code>w</code>位的值编码。</p>
+<h3 id="补码编码">2.2.3 补码编码</h3>
+<p>表示负数值，最常用的有符号数的计算机表示方式就是补码，将最高有效位解释为负权。</p>
 <p>最高位为<code>1</code>，表示负数，为<code>0</code>表示非负数。</p>
 <p>补码编码具有唯一性。</p>
-<h3 id="2-2-4-有符号数和无符号数之间的转换"><a href="#2-2-4-有符号数和无符号数之间的转换" class="headerlink" title="2.2.4 有符号数和无符号数之间的转换"></a>2.2.4 有符号数和无符号数之间的转换</h3><p>对于大多数C语言的实现，处理同样字长的有符号数和无符号数之间相互转换的一般规则是：数值可能会改变，但是位模式不变。</p>
-<h3 id="2-2-5-C语言中的有符号数与无符号数"><a href="#2-2-5-C语言中的有符号数与无符号数" class="headerlink" title="2.2.5 C语言中的有符号数与无符号数"></a>2.2.5 C语言中的有符号数与无符号数</h3><h3 id="2-2-6-扩展一个数字的位表示"><a href="#2-2-6-扩展一个数字的位表示" class="headerlink" title="2.2.6 扩展一个数字的位表示"></a>2.2.6 扩展一个数字的位表示</h3><p>零扩展：要求一个无符号数转换为一个更大的数据类型时，我们只需要在表示的开头添加<code>0</code></p>
+<h3 id="有符号数和无符号数之间的转换">2.2.4
+有符号数和无符号数之间的转换</h3>
+<p>对于大多数C语言的实现，处理同样字长的有符号数和无符号数之间相互转换的一般规则是：数值可能会改变，但是位模式不变。</p>
+<h3 id="c语言中的有符号数与无符号数">2.2.5
+C语言中的有符号数与无符号数</h3>
+<h3 id="扩展一个数字的位表示">2.2.6 扩展一个数字的位表示</h3>
+<p>零扩展：要求一个无符号数转换为一个更大的数据类型时，我们只需要在表示的开头添加<code>0</code></p>
 <p>要求一个补码数字转换为一个更大的数据类型，可以执行一个符号扩展，在表示中添加最高有效位的值。</p>
-<h2 id="2-3-整数运算"><a href="#2-3-整数运算" class="headerlink" title="2.3 整数运算"></a>2.3 整数运算</h2><h2 id="2-4-浮点数"><a href="#2-4-浮点数" class="headerlink" title="2.4 浮点数"></a>2.4 浮点数</h2><h3 id="2-4-1-二进制小数"><a href="#2-4-1-二进制小数" class="headerlink" title="2.4.1 二进制小数"></a>2.4.1 二进制小数</h3><script type="math/tex; mode=display">
-b = \sum_{i = -n}^{m} 2^i * b_i</script><p>例如 $101.11_2$ 表示数字</p>
-<script type="math/tex; mode=display">
-1 * 2 ^2 + 0 * 2 ^ 1 + 1 * 2 ^ 0 + 1 * 2^{-1} + 1 * 2^{-2} = 4 + 0 + 1 + \frac{1}{2} + \frac{1}{4} = 5\frac{3}{4}</script><p>小数的二进制表示法只能表示那些能够被写成 $x * 2^y$ 的数。其他的数只能被近似表示。</p>
-<h3 id="2-4-2-IEEE浮点表示"><a href="#2-4-2-IEEE浮点表示" class="headerlink" title="2.4.2 IEEE浮点表示"></a>2.4.2 IEEE浮点表示</h3><p>前面提到的定点表示法不能很有效地表示非常大的数。</p>
-<p>IEEE 浮点标准用 $V = (-1)^s <em> M </em> 2^E$ 的形式表示一个数。</p>
+<h2 id="整数运算">2.3 整数运算</h2>
+<h2 id="浮点数">2.4 浮点数</h2>
+<h3 id="二进制小数">2.4.1 二进制小数</h3>
+<p><span class="math display">\[
+b = \sum_{i = -n}^{m} 2^i * b_i
+\]</span></p>
+<p>例如 <span class="math inline">\(101.11_2\)</span> 表示数字 <span
+class="math display">\[
+1 * 2 ^2 + 0 * 2 ^ 1 + 1 * 2 ^ 0 + 1 * 2^{-1} + 1 * 2^{-2} = 4 + 0 + 1 +
+\frac{1}{2} + \frac{1}{4} = 5\frac{3}{4}
+\]</span> 小数的二进制表示法只能表示那些能够被写成 <span
+class="math inline">\(x * 2^y\)</span>
+的数。其他的数只能被近似表示。</p>
+<h3 id="ieee浮点表示">2.4.2 IEEE浮点表示</h3>
+<p>前面提到的定点表示法不能很有效地表示非常大的数。</p>
+<p>IEEE 浮点标准用 <span class="math inline">\(V = (-1)^s * M *
+2^E\)</span> 的形式表示一个数。</p>
 <ul>
 <li>符号：<code>s</code>决定这个数是负数(<code>s = 1</code>)还是正数(<code>s = 0</code>)</li>
 <li>尾数：M 是一个二进制小数</li>
@@ -401,24 +451,32 @@ b = \sum_{i = -n}^{m} 2^i * b_i</script><p>例如 $101.11_2$ 表示数字</p>
 <li><code>n</code>位小数字段编码尾数M</li>
 </ul>
 <p>在单精度浮点格式中，<code>s = 1, k = 8, n = 23</code></p>
-<p><img src="CSAPP-第二章-信息的表示和处理/8.jpg" alt=""></p>
+<p><img src="CSAPP-第二章-信息的表示和处理/8.jpg" /></p>
 <p><strong>情况一：规格化的值</strong></p>
-<p>阶码的值：<code>E = e - Bias</code>其中<code>e</code>是无符号数，其位表示为 $e_{k-1}…e_1e_0$ ,而 Bias 是一个等于 $2 ^{k - 1} - 1$ ，（单精度是 127，双精度为 1023）的偏置值。</p>
-<p>小数字段 frac 被解释为描述小数值 f ,总是隐含的以 1 开头，尾数定义为 M = 1 + f</p>
+<p>阶码的值：<code>E = e - Bias</code>其中<code>e</code>是无符号数，其位表示为
+<span class="math inline">\(e_{k-1}...e_1e_0\)</span> ,而 Bias
+是一个等于 <span class="math inline">\(2 ^{k - 1} - 1\)</span>
+，（单精度是 127，双精度为 1023）的偏置值。</p>
+<p>小数字段 frac 被解释为描述小数值 f ,总是隐含的以 1 开头，尾数定义为 M
+= 1 + f</p>
 <p><strong>情况二：非规格化的值</strong></p>
-<p>当阶码为全0时，所表示的数是非规格化形式。阶码值是 <code>E = 1 - Bias</code>,尾数值为<code>M = f</code>，不包含隐含的开头的1。</p>
+<p>当阶码为全0时，所表示的数是非规格化形式。阶码值是
+<code>E = 1 - Bias</code>,尾数值为<code>M = f</code>，不包含隐含的开头的1。</p>
 <p>非规格化数有两个用途：</p>
-<ol>
+<ol type="1">
 <li>提供了一种表示数值 0 的方法</li>
-<li>表示那些非常接近 0.0 的数，它们提供了一种属性，称为<em>逐渐溢出</em> 。其中，可能的数值分布均匀地接近于 0.0</li>
+<li>表示那些非常接近 0.0 的数，它们提供了一种属性，称为<em>逐渐溢出</em>
+。其中，可能的数值分布均匀地接近于 0.0</li>
 </ol>
 <p><strong>情况三：特殊值</strong></p>
 <p>当阶码全为 0 时</p>
 <p>当小数域全为0，得到的值表示无穷，当<code>s = 0</code>时是+∞，或者当<code>s = 1</code>时是-∞。</p>
-<p>当小数域为非零时，结果值就称为<code>&quot;NaN&quot;</code>,即“不是一个数”的缩写。</p>
-<h3 id="2-4-4-舍入"><a href="#2-4-4-舍入" class="headerlink" title="2.4.4 舍入"></a>2.4.4 舍入</h3><p><img src="CSAPP-第二章-信息的表示和处理/9.jpg" alt=""></p>
+<p>当小数域为非零时，结果值就称为<code>"NaN"</code>,即“不是一个数”的缩写。</p>
+<h3 id="舍入">2.4.4 舍入</h3>
+<p><img src="CSAPP-第二章-信息的表示和处理/9.jpg" /></p>
 <p>向偶数舍入是在<code>50%</code>的时间里，它将向上舍入，<code>50%</code>的时间向下舍入，就避免了向下舍入时最后平均值偏小和向上舍入时平均值偏大的问题。</p>
-<h3 id="2-4-5-浮点运算"><a href="#2-4-5-浮点运算" class="headerlink" title="2.4.5 浮点运算"></a>2.4.5 浮点运算</h3><p>浮点加法不具有结合性。</p>
+<h3 id="浮点运算">2.4.5 浮点运算</h3>
+<p>浮点加法不具有结合性。</p>
 
     </div>
 
@@ -512,7 +570,7 @@ b = \sum_{i = -n}^{m} 2^i * b_i</script><p>例如 $101.11_2$ 表示数字</p>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -566,7 +624,7 @@ b = \sum_{i = -n}^{m} 2^i * b_i</script><p>例如 $101.11_2$ 表示数字</p>
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

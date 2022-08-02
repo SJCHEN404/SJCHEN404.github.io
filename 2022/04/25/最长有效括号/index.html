@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="32. 最长有效括号给你一个只包含 &#39;(&#39; 和 &#39;)&#39; 的字符串，找出最长有效（格式正确且连续）括号子串的长度。 示例： 输入：s &#x3D; “(()”输出：2解释：最长有效括号子串是 “()”">
+    <meta name="description" content="32. 最长有效括号 给你一个只包含 &#39;(&#39; 和 &#39;)&#39; 的字符串，找出最长有效（格式正确且连续）括号子串的长度。 示例：  输入：s &#x3D; &quot;(()&quot; 输出：2 解释：最长有效括号子串是 &quot;()&quot;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最长有效括号">
 <meta property="og:url" content="https://sjchen404.github.io/2022/04/25/%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="32. 最长有效括号给你一个只包含 &#39;(&#39; 和 &#39;)&#39; 的字符串，找出最长有效（格式正确且连续）括号子串的长度。 示例： 输入：s &#x3D; “(()”输出：2解释：最长有效括号子串是 “()”">
+<meta property="og:description" content="32. 最长有效括号 给你一个只包含 &#39;(&#39; 和 &#39;)&#39; 的字符串，找出最长有效（格式正确且连续）括号子串的长度。 示例：  输入：s &#x3D; &quot;(()&quot; 输出：2 解释：最长有效括号子串是 &quot;()&quot;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sjchen404.github.io/2022/04/25/%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/最长有效括号/1.jpg">
 <meta property="og:image" content="https://sjchen404.github.io/2022/04/25/%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7/最长有效括号/2.jpg">
@@ -64,7 +64,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -157,7 +161,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#32-%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7"><span class="nav-number">1.</span> <span class="nav-text">32. 最长有效括号</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E6%A0%88"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">方法一：栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">方法二：动态规划</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%80%E9%95%BF%E6%9C%89%E6%95%88%E6%8B%AC%E5%8F%B7"><span class="nav-number">1.</span> <span class="nav-text">32.
+最长有效括号</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">方法二：动态规划</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -309,7 +314,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3k</span>
+      <span>2.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -327,72 +332,76 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="32-最长有效括号"><a href="#32-最长有效括号" class="headerlink" title="32. 最长有效括号"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-valid-parentheses/">32. 最长有效括号</a></h1><p>给你一个只包含 <code>&#39;(&#39;</code> 和 <code>&#39;)&#39;</code> 的字符串，找出最长有效（格式正确且连续）括号子串的长度。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：s = “(()”<br>输出：2<br>解释：最长有效括号子串是 “()”</p>
+        <h1 id="最长有效括号"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-valid-parentheses/">32.
+最长有效括号</a></h1>
+<p>给你一个只包含 <code>'('</code> 和 <code>')'</code>
+的字符串，找出最长有效（格式正确且连续）括号子串的长度。</p>
+<h2 id="示例">示例：</h2>
+<blockquote>
+<p>输入：s = "(()" 输出：2 解释：最长有效括号子串是 "()"</p>
 </blockquote>
 <span id="more"></span>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><h4 id="方法一：栈"><a href="#方法一：栈" class="headerlink" title="方法一：栈"></a><strong>方法一：栈</strong></h4><p>具体做法是我们始终保持栈底元素为当前已经遍历过的元素中「最后一个没有被匹配的右括号的下标」，</p>
+<h3 id="思路">思路：</h3>
+<p>####<strong>方法一：栈</strong></p>
+<p>具体做法是我们始终保持栈底元素为当前已经遍历过的元素中「最后一个没有被匹配的右括号的下标」，</p>
 <p>这样的做法主要是考虑了边界条件的处理，栈里其他元素维护左括号的下标：</p>
 <ul>
-<li><p>对于遇到的每个<code>&#39;(&#39;</code>，我们将它的下标放入栈中</p>
-</li>
-<li><p>对于遇到的每个<code>&#39;)&#39;</code>,我们先弹出栈顶元素表示匹配了当前右括号：</p>
+<li><p>对于遇到的每个<code>'('</code>，我们将它的下标放入栈中</p></li>
+<li><p>对于遇到的每个<code>')'</code>,我们先弹出栈顶元素表示匹配了当前右括号：</p>
 <ul>
-<li><p>如果栈为空，说明当前的右括号为没有被匹配的右括号，我们将其下标放入栈中来更新我们之前提到的「最后一个没有被匹配的右括号的下标」</p>
-</li>
-<li><p>如果栈不为空，当前右括号的下标减去栈顶元素即为「以该右括号为结尾的最长有效括号的长度」</p>
-</li>
+<li><p>如果栈为空，说明当前的右括号为没有被匹配的右括号，我们将其下标放入栈中来更新我们之前提到的「最后一个没有被匹配的右括号的下标」</p></li>
+<li><p>如果栈不为空，当前右括号的下标减去栈顶元素即为「以该右括号为结尾的最长有效括号的长度」</p></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<p><img src="最长有效括号/1.jpg" alt=""></p>
-<p><img src="最长有效括号/2.jpg" alt=""></p>
-<p><img src="最长有效括号/3.jpg" alt=""></p>
-<p><img src="最长有效括号/4.jpg" alt=""></p>
-<p><img src="最长有效括号/5.jpg" alt=""></p>
-<p><img src="最长有效括号/6.jpg" alt=""></p>
-<p><img src="最长有效括号/7.jpg" alt=""></p>
-<p><img src="最长有效括号/8.jpg" alt=""></p>
-<p><img src="最长有效括号/9.jpg" alt=""></p>
-<p><img src="最长有效括号/10.jpg" alt=""></p>
+<p><img src="最长有效括号/1.jpg" /></p>
+<p><img src="最长有效括号/2.jpg" /></p>
+<p><img src="最长有效括号/3.jpg" /></p>
+<p><img src="最长有效括号/4.jpg" /></p>
+<p><img src="最长有效括号/5.jpg" /></p>
+<p><img src="最长有效括号/6.jpg" /></p>
+<p><img src="最长有效括号/7.jpg" /></p>
+<p><img src="最长有效括号/8.jpg" /></p>
+<p><img src="最长有效括号/9.jpg" /></p>
+<p><img src="最长有效括号/10.jpg" /></p>
 <p>到此我们可以写出如下代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longestValidParentheses</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> maxLen = <span class="number">0</span>;</span><br><span class="line">        stack&lt;<span class="type">int</span>&gt; st;</span><br><span class="line">        st.<span class="built_in">push</span>(<span class="number">-1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; s.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">&#x27;(&#x27;</span>)&#123;</span><br><span class="line">                st.<span class="built_in">push</span>(i);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">                <span class="keyword">if</span>(st.<span class="built_in">empty</span>())&#123;</span><br><span class="line">                    <span class="comment">//栈为空，则把这个右括号入栈</span></span><br><span class="line">                    st.<span class="built_in">push</span>(i);</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    maxLen = <span class="built_in">max</span>(maxLen, i - st.<span class="built_in">top</span>());</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> maxLen;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="方法二：动态规划"><a href="#方法二：动态规划" class="headerlink" title="方法二：动态规划"></a>方法二：动态规划</h4><p>首先，我们定义一个 <code>dp</code>数组，其中第 <code>i</code> 个元素表示以下标为 <code>i</code> 的字符结尾的最长有效子字符串的长度。</p>
+<h4 id="方法二动态规划">方法二：动态规划</h4>
+<p>首先，我们定义一个 <code>dp</code>数组，其中第 <code>i</code>
+个元素表示以下标为 <code>i</code>
+的字符结尾的最长有效子字符串的长度。</p>
 <p>我们先看第<code>i</code>个位置，这个位置的元素<code>s[i]</code>可能有如下两种情况：</p>
 <ul>
-<li><p><code>s[i]==&#39;(&#39;</code>：</p>
+<li><p><code>s[i]=='('</code>：</p>
 <blockquote>
 <p>这时，<code>s[i]</code>无法和之前的元素组成有效的括号对，所以<code>dp[i] = 0</code></p>
-</blockquote>
-</li>
-<li><p><code>s[i] == &#39;)&#39;</code>:</p>
+</blockquote></li>
+<li><p><code>s[i] == ')'</code>:</p>
 <p>这时需要看其前面元素来判断是否有有效括号对。</p>
 <ul>
-<li><p>情况一：<code>s[i - 1] == &#39;(&#39;</code>:</p>
+<li><p>情况一：<code>s[i - 1] == '('</code>:</p>
 <blockquote>
-<p>即<code>s[i]</code>和<code>s[i-1]</code>组成一对有效括号，有效括号新增长度 2 ，<code>i</code>位置的最长有效括号长度为<strong>其之前两个位置的最长括号长度加上当前新增的 2</strong></p>
+<p>即<code>s[i]</code>和<code>s[i-1]</code>组成一对有效括号，有效括号新增长度
+2
+，<code>i</code>位置的最长有效括号长度为<strong>其之前两个位置的最长括号长度加上当前新增的
+2</strong></p>
 <p>即：</p>
 <p><code>dp[i] = dp[i - 2] + 2</code></p>
-</blockquote>
-</li>
-<li><p>情况二：<code>s[i - 1] == &#39;)&#39;</code>:</p>
+</blockquote></li>
+<li><p>情况二：<code>s[i - 1] == ')'</code>:</p>
 <blockquote>
 <p>这种情况下，如果前面有和<code>s[i]</code>组成有效括号对的字符，即形如<code>((...))</code>，就要求<code>s[i - 1]</code>位置必然是有效的括号对，否则<code>s[i]</code>无法和前面组成有效括号对。</p>
 <p>这时，我们只需要找到和<code>s[i]</code>配对的括号位置，并判断其是否配对。</p>
 <p>和其配对的位置为：<code>i - 1 - dp[i-1]</code>。因为如果<code>s[i]</code>为有效的话<code>s[i-1]</code>也必然有效，而<code>s[i-1]</code>表示的是以<code>i-1</code>为结尾的最长有效子字符串的长度，所以和<code>s[i]</code>配对的括号位置为:<code>i - 1 - dp[i - 1]</code>。</p>
 <ul>
-<li><p>如果<code>s[i - 1 - dp[i-1]] == &#39;(&#39;</code>：</p>
-<p>有效括号长度新增 2， 即<code>dp[i] = dp[i - 1] + 2</code></p>
-</li>
+<li><p>如果<code>s[i - 1 - dp[i-1]] == '('</code>：</p>
+<p>有效括号长度新增 2， 即<code>dp[i] = dp[i - 1] + 2</code></p></li>
 </ul>
 <p>这里需要注意的是，我们还需要加上<code>dp[i - 2 - dp[i - 1]]</code>这个位置的最长有效子字符串的长度，（也就是和<code>s[i]</code>配对的括号的前一个的最长有效子字符串长度）</p>
 <p>即：</p>
 <p><code>dp[i] = dp[i] + dp[i - 2 + dp[i - 1]]</code></p>
-</blockquote>
-</li>
-</ul>
-</li>
+</blockquote></li>
+</ul></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">longestValidParentheses</span><span class="params">(string s)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n = s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(n, <span class="number">0</span>)</span></span>;</span><br><span class="line">        <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i] == <span class="string">&#x27;)&#x27;</span>)&#123;</span><br><span class="line">                <span class="comment">//匹配</span></span><br><span class="line">                <span class="keyword">if</span>(s[i - <span class="number">1</span>] == <span class="string">&#x27;(&#x27;</span>)&#123;</span><br><span class="line">                    dp[i] = <span class="number">2</span>;</span><br><span class="line">                    <span class="comment">//判断前面是不是匹配</span></span><br><span class="line">                    <span class="keyword">if</span>(i - <span class="number">2</span> &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">                        dp[i] = dp[i] + dp[i - <span class="number">2</span>];</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(dp[i - <span class="number">1</span>] &gt;= <span class="number">0</span>)&#123;<span class="comment">//代表s[i]前面的匹配了</span></span><br><span class="line">                    <span class="comment">//(i - 1) - dp[i - 1]这个含义就是当前下标减去当前下标对应最长有效括号长度,</span></span><br><span class="line">                    <span class="comment">//也就是当前索引下的对应最长有效括号的前一个下标</span></span><br><span class="line">                    <span class="keyword">if</span>((i - <span class="number">1</span> - dp[i - <span class="number">1</span>]) &gt;= <span class="number">0</span> &amp;&amp; s[i - <span class="number">1</span> - dp[i - <span class="number">1</span>]] == <span class="string">&#x27;(&#x27;</span>)&#123;</span><br><span class="line">                        dp[i] = dp[i - <span class="number">1</span>] + <span class="number">2</span>;</span><br><span class="line">                       <span class="comment">//加上和s[i]配对的括号的前一个字符的最长有效子字符串长度</span></span><br><span class="line">                        <span class="keyword">if</span>(i - <span class="number">2</span> - dp[i - <span class="number">1</span>] &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">                            dp[i] = dp[i] + dp[i - <span class="number">2</span> - dp[i - <span class="number">1</span>]];</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            res = <span class="built_in">max</span>(res, dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
@@ -489,7 +498,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -543,7 +552,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

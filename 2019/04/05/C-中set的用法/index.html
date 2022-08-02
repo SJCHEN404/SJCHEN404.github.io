@@ -52,7 +52,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -318,51 +322,33 @@
 <p>我们常用set来查重。</p>
 <span id="more"></span>
 <p><strong>set的各成员函数列表如下:</strong></p>
-<ol>
-<li><p>begin()—返回指向第一个元素的迭代器</p>
-</li>
-<li><p>clear()—清除所有元素</p>
-</li>
-<li><p>count()—返回某个值元素的个数</p>
-</li>
-<li><p>empty()—如果集合为空，返回true</p>
-</li>
-<li><p>end()—返回指向最后一个元素的迭代器</p>
-</li>
-<li><p>equal_range()—返回集合中与给定值相等的上下限的两个迭代器</p>
-</li>
-<li><p>erase()—删除集合中的元素</p>
-</li>
-<li><p>find()—返回一个指向被查找到元素的迭代器</p>
-</li>
-<li><p>get_allocator()—返回集合的分配器</p>
-</li>
-<li><p>insert()—在集合中插入元素</p>
-</li>
-<li><p>lower_bound()—返回指向大于（或等于）某值的第一个元素的迭代器</p>
-</li>
-<li><p>key_comp()—返回一个用于元素间值比较的函数</p>
-</li>
-<li><p>max_size()—返回集合能容纳的元素的最大限值</p>
-</li>
-<li><p>rbegin()—返回指向集合中最后一个元素的反向迭代器</p>
-</li>
-<li><p>rend()—返回指向集合中第一个元素的反向迭代器</p>
-</li>
-<li><p>size()—集合中元素的数目</p>
-</li>
-<li><p>swap()—交换两个集合变量</p>
-</li>
-<li><p>upper_bound()—返回大于某个值元素的迭代器</p>
-</li>
-<li><p>value_comp()—返回一个用于比较元素间的值的函数</p>
-</li>
+<ol type="1">
+<li><p>begin()--返回指向第一个元素的迭代器</p></li>
+<li><p>clear()--清除所有元素</p></li>
+<li><p>count()--返回某个值元素的个数</p></li>
+<li><p>empty()--如果集合为空，返回true</p></li>
+<li><p>end()--返回指向最后一个元素的迭代器</p></li>
+<li><p>equal_range()--返回集合中与给定值相等的上下限的两个迭代器</p></li>
+<li><p>erase()--删除集合中的元素</p></li>
+<li><p>find()--返回一个指向被查找到元素的迭代器</p></li>
+<li><p>get_allocator()--返回集合的分配器</p></li>
+<li><p>insert()--在集合中插入元素</p></li>
+<li><p>lower_bound()--返回指向大于（或等于）某值的第一个元素的迭代器</p></li>
+<li><p>key_comp()--返回一个用于元素间值比较的函数</p></li>
+<li><p>max_size()--返回集合能容纳的元素的最大限值</p></li>
+<li><p>rbegin()--返回指向集合中最后一个元素的反向迭代器</p></li>
+<li><p>rend()--返回指向集合中第一个元素的反向迭代器</p></li>
+<li><p>size()--集合中元素的数目</p></li>
+<li><p>swap()--交换两个集合变量</p></li>
+<li><p>upper_bound()--返回大于某个值元素的迭代器</p></li>
+<li><p>value_comp()--返回一个用于比较元素间的值的函数</p></li>
 </ol>
 <p>下面我们主要讲set中遍历：</p>
 <p>假设我们对一个数组进行排序，并且里面不能有重复的元素。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;set&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">11</span>] =&#123;<span class="number">20</span>, <span class="number">40</span>, <span class="number">32</span>, <span class="number">67</span>, <span class="number">40</span>, <span class="number">20</span>, <span class="number">89</span>, <span class="number">300</span>, <span class="number">400</span>, <span class="number">15</span>&#125;;</span><br><span class="line">    set&lt;<span class="type">int</span>&gt;<span class="built_in">map</span>(a,a+<span class="number">10</span>);</span><br><span class="line">    cout &lt;&lt; map.<span class="built_in">size</span>() &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (set&lt;<span class="type">int</span>&gt;::iterator it=map.<span class="built_in">begin</span>(); it!=map.<span class="built_in">end</span>(); ++it) &#123;</span><br><span class="line">        cout &lt;&lt; *it &lt;&lt; <span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>大家可以做下面这道题练练手：</p>
-<p><a target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P1059">我是链接</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://www.luogu.org/problemnew/show/P1059">我是链接</a></p>
 
     </div>
 
@@ -456,7 +442,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -510,7 +496,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

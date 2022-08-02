@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="图一般使用邻接表或者领接矩阵来实现。  ⽤邻接表和邻接矩阵的存储⽅式如下：  邻接表很直观，我把每个节点 x 的邻居都存到⼀个列表⾥，然后把 x 和这个列表关联起来，这样就可以通过 ⼀个节点 x 找到它的所有相邻节点。 邻接矩阵则是⼀个⼆维布尔数组，我们权且称为 matrix，如果节点 x 和 y 是相连的，那么就把 $matrix[x][y]$设为 （上图中绿⾊的⽅格代表 ）。如果想找节点 的邻">
+    <meta name="description" content="图一般使用邻接表或者领接矩阵来实现。  ⽤邻接表和邻接矩阵的存储⽅式如下：  邻接表很直观，我把每个节点 x 的邻居都存到⼀个列表⾥，然后把 x 和这个列表关联起来，这样就可以通过 ⼀个节点 x 找到它的所有相邻节点。 邻接矩阵则是⼀个⼆维布尔数组，我们权且称为 matrix，如果节点 x 和 y 是相连的，那么就把 \(matrix[x][y]\)设为 （上图中绿⾊的⽅格代表 ）。如果想找节点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图的遍历">
 <meta property="og:url" content="https://sjchen404.github.io/2022/04/14/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="图一般使用邻接表或者领接矩阵来实现。  ⽤邻接表和邻接矩阵的存储⽅式如下：  邻接表很直观，我把每个节点 x 的邻居都存到⼀个列表⾥，然后把 x 和这个列表关联起来，这样就可以通过 ⼀个节点 x 找到它的所有相邻节点。 邻接矩阵则是⼀个⼆维布尔数组，我们权且称为 matrix，如果节点 x 和 y 是相连的，那么就把 $matrix[x][y]$设为 （上图中绿⾊的⽅格代表 ）。如果想找节点 的邻">
+<meta property="og:description" content="图一般使用邻接表或者领接矩阵来实现。  ⽤邻接表和邻接矩阵的存储⽅式如下：  邻接表很直观，我把每个节点 x 的邻居都存到⼀个列表⾥，然后把 x 和这个列表关联起来，这样就可以通过 ⼀个节点 x 找到它的所有相邻节点。 邻接矩阵则是⼀个⼆维布尔数组，我们权且称为 matrix，如果节点 x 和 y 是相连的，那么就把 \(matrix[x][y]\)设为 （上图中绿⾊的⽅格代表 ）。如果想找节点">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sjchen404.github.io/2022/04/14/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86/图的遍历/1.jpg">
 <meta property="og:image" content="https://sjchen404.github.io/2022/04/14/%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86/图的遍历/2.jpg">
@@ -56,7 +56,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -149,7 +153,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#797-%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="nav-number">1.</span> <span class="nav-text">797. 所有可能的路径</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="nav-number">1.</span> <span class="nav-text">797.
+所有可能的路径</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -320,24 +325,42 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>图一般使用邻接表或者领接矩阵来实现。</p>
-<p><img src="图的遍历/1.jpg" alt=""></p>
+<p><img src="图的遍历/1.jpg" /></p>
 <p>⽤邻接表和邻接矩阵的存储⽅式如下：</p>
-<p><img src="图的遍历/2.jpg" alt=""></p>
-<p>邻接表很直观，我把每个节点 x 的邻居都存到⼀个列表⾥，然后把 x 和这个列表关联起来，这样就可以通过 ⼀个节点 x 找到它的所有相邻节点。 邻接矩阵则是⼀个⼆维布尔数组，我们权且称为 matrix，如果节点 x 和 y 是相连的，那么就把 $matrix[x][y]$设为 （上图中绿⾊的⽅格代表 ）。如果想找节点 的邻居，去扫⼀圈 $matrix[x][..] $就⾏ 了。</p>
-<p><strong>那么，为什么有这两种存储图的⽅式呢？肯定是因为他们各有优劣。 </strong></p>
-<p>对于邻接表，好处是占⽤的空间少。 </p>
-<p>你看邻接矩阵⾥⾯空着那么多位置，肯定需要更多的存储空间。 </p>
-<p>但是，邻接表⽆法快速判断两个节点是否相邻。 ⽐如说我想判断节点 1 是否和节点 3 相邻，我要去邻接表⾥ 1 对应的邻居列表⾥查找 是否存在。但对于邻接矩阵来说，只要看看<code>matrix[1][3]</code>就知道了，效率比较高。</p>
+<p><img src="图的遍历/2.jpg" /></p>
+<p>邻接表很直观，我把每个节点 x 的邻居都存到⼀个列表⾥，然后把 x
+和这个列表关联起来，这样就可以通过 ⼀个节点 x 找到它的所有相邻节点。
+邻接矩阵则是⼀个⼆维布尔数组，我们权且称为 matrix，如果节点 x 和 y
+是相连的，那么就把 <span class="math inline">\(matrix[x][y]\)</span>设为
+（上图中绿⾊的⽅格代表 ）。如果想找节点 的邻居，去扫⼀圈 $matrix[x][..]
+$就⾏ 了。</p>
+<p><strong>那么，为什么有这两种存储图的⽅式呢？肯定是因为他们各有优劣。
+</strong></p>
+<p>对于邻接表，好处是占⽤的空间少。</p>
+<p>你看邻接矩阵⾥⾯空着那么多位置，肯定需要更多的存储空间。</p>
+<p>但是，邻接表⽆法快速判断两个节点是否相邻。 ⽐如说我想判断节点 1
+是否和节点 3 相邻，我要去邻接表⾥ 1 对应的邻居列表⾥查找
+是否存在。但对于邻接矩阵来说，只要看看<code>matrix[1][3]</code>就知道了，效率比较高。</p>
 <span id="more"></span>
-<h1 id="797-所有可能的路径"><a href="#797-所有可能的路径" class="headerlink" title="797. 所有可能的路径"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/all-paths-from-source-to-target/">797. 所有可能的路径</a></h1><p>给你一个有 n 个节点的 有向无环图（DAG），请你找出所有从节点 0 到节点 n-1 的路径并输出（不要求按特定顺序）</p>
-<p> graph[i] 是一个从节点 i 可以访问的所有节点的列表（即从节点 i 到节点 graph[i][j]存在一条有向边）。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="图的遍历/1.jpg" alt=""></p>
+<h1 id="所有可能的路径"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/all-paths-from-source-to-target/">797.
+所有可能的路径</a></h1>
+<p>给你一个有 n 个节点的 有向无环图（DAG），请你找出所有从节点 0 到节点
+n-1 的路径并输出（不要求按特定顺序）</p>
+<p>graph[i] 是一个从节点 i 可以访问的所有节点的列表（即从节点 i 到节点
+graph[i][j]存在一条有向边）。</p>
+<h2 id="示例">示例：</h2>
+<p><img src="图的遍历/1.jpg" /></p>
 <blockquote>
-<p>输入：graph = [[4,3,1],[3,2,4],[3],[4],[]]<br>输出：[[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]</p>
+<p>输入：graph = [[4,3,1],[3,2,4],[3],[4],[]]
+输出：[[0,4],[0,3,4],[0,1,3,4],[0,1,2,3,4],[0,1,4]]</p>
 </blockquote>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>我们可以发现输入的二维数组其实就是「邻接表」。</p>
-<p>我们只需要，<strong>以 0 为起点遍历图，同时记录遍历过的路径，当遍历到终点时将路径记录下来即可。</strong></p>
-<p>既然输⼊的图是⽆环的，我们就不需要 visited 数组辅助了，直接套⽤图的遍历框架：</p>
+<h3 id="思路">思路：</h3>
+<p>我们可以发现输入的二维数组其实就是「邻接表」。</p>
+<p>我们只需要，<strong>以 0
+为起点遍历图，同时记录遍历过的路径，当遍历到终点时将路径记录下来即可。</strong></p>
+<p>既然输⼊的图是⽆环的，我们就不需要 visited
+数组辅助了，直接套⽤图的遍历框架：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; res;</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">allPathsSourceTarget</span>(vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;&amp; graph) &#123;</span><br><span class="line">        <span class="comment">//维护递归过程中经过的路径</span></span><br><span class="line">        vector&lt;<span class="type">int</span>&gt; path;</span><br><span class="line">        <span class="built_in">traverse</span>(graph, <span class="number">0</span>, path);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">traverse</span><span class="params">(vector&lt;vector&lt;<span class="type">int</span>&gt; &gt;&amp; graph, <span class="type">int</span> s, vector&lt;<span class="type">int</span>&gt;&amp; path)</span></span>&#123;</span><br><span class="line">        <span class="comment">//添加节点 s 到路径</span></span><br><span class="line">        path.<span class="built_in">push_back</span>(s);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> n = graph.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">if</span>(s == n - <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="comment">//到达终点</span></span><br><span class="line">            res.<span class="built_in">push_back</span>(path);</span><br><span class="line">            path.<span class="built_in">pop_back</span>();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//递归每个相邻节点</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> v : graph[s])&#123;</span><br><span class="line">            <span class="built_in">traverse</span>(graph, v, path);</span><br><span class="line">        &#125;</span><br><span class="line">        path.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -432,7 +455,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -486,7 +509,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

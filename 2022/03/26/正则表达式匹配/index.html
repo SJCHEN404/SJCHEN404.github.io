@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="这两个通配符是最常用的，其中点号「.」可以匹配任意一个字符，星号「*」可以让之前的那个字符重复任意次数（包括 0 次）。 比如说模式串&quot;.a*b&quot;就可以匹配文本&quot;zaaab&quot;，也可以匹配&quot;cb&quot;；模式串&quot;a..b&quot;可以匹配文本&quot;amnb&quot;；而模式串&quot;.*&quot;就比较牛逼了，它可以匹配">
+    <meta name="description" content="这两个通配符是最常用的，其中点号「.」可以匹配任意一个字符，星号「*」可以让之前的那个字符重复任意次数（包括 0 次）。 比如说模式串&quot;.a*b&quot;就可以匹配文本&quot;zaaab&quot;，也可以匹配&quot;cb&quot;；模式串&quot;a..b&quot;可以匹配文本&quot;amnb&quot;；而模式串&quot;.*&quot;就比较牛逼了，它可以匹配任何文本。 题目会给我们输入两个字符串s和p，s代表文本，p代表模式串，请你判断模式串p是否可以匹配文本s。我们可以假设">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式匹配">
 <meta property="og:url" content="https://sjchen404.github.io/2022/03/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="这两个通配符是最常用的，其中点号「.」可以匹配任意一个字符，星号「*」可以让之前的那个字符重复任意次数（包括 0 次）。 比如说模式串&quot;.a*b&quot;就可以匹配文本&quot;zaaab&quot;，也可以匹配&quot;cb&quot;；模式串&quot;a..b&quot;可以匹配文本&quot;amnb&quot;；而模式串&quot;.*&quot;就比较牛逼了，它可以匹配">
+<meta property="og:description" content="这两个通配符是最常用的，其中点号「.」可以匹配任意一个字符，星号「*」可以让之前的那个字符重复任意次数（包括 0 次）。 比如说模式串&quot;.a*b&quot;就可以匹配文本&quot;zaaab&quot;，也可以匹配&quot;cb&quot;；模式串&quot;a..b&quot;可以匹配文本&quot;amnb&quot;；而模式串&quot;.*&quot;就比较牛逼了，它可以匹配任何文本。 题目会给我们输入两个字符串s和p，s代表文本，p代表模式串，请你判断模式串p是否可以匹配文本s。我们可以假设">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sjchen404.github.io/2022/03/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/正则表达式匹配/1.jpg">
 <meta property="og:image" content="https://sjchen404.github.io/2022/03/26/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D/正则表达式匹配/2.jpg">
@@ -59,7 +59,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -152,7 +156,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#10-%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="nav-number">1.</span> <span class="nav-text">10. 正则表达式匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E6%B3%95"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">动态规划解法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%8C%B9%E9%85%8D"><span class="nav-number">1.</span> <span class="nav-text">10.
+正则表达式匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E8%A7%A3%E6%B3%95"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">动态规划解法</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -312,14 +317,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>6.2k</span>
+      <span>6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -330,39 +335,60 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>这两个通配符是最常用的，其中点号「.」可以匹配任意一个字符，星号「*」可以让之前的那个字符重复任意次数（包括 0 次）。</p>
-<p>比如说模式串<code>&quot;.a*b&quot;</code>就可以匹配文本<code>&quot;zaaab&quot;</code>，也可以匹配<code>&quot;cb&quot;</code>；模式串<code>&quot;a..b&quot;</code>可以匹配文本<code>&quot;amnb&quot;</code>；而模式串<code>&quot;.*&quot;</code>就比较牛逼了，它可以匹配任何文本。</p>
+        <p>这两个通配符是最常用的，其中点号「.」可以匹配任意一个字符，星号「*」可以让之前的那个字符重复任意次数（包括
+0 次）。</p>
+<p>比如说模式串<code>".a*b"</code>就可以匹配文本<code>"zaaab"</code>，也可以匹配<code>"cb"</code>；模式串<code>"a..b"</code>可以匹配文本<code>"amnb"</code>；而模式串<code>".*"</code>就比较牛逼了，它可以匹配任何文本。</p>
 <p>题目会给我们输入两个字符串<code>s</code>和<code>p</code>，<code>s</code>代表文本，<code>p</code>代表模式串，请你判断模式串<code>p</code>是否可以匹配文本<code>s</code>。我们可以假设模式串只包含小写字母和上述两种通配符且一定合法，不会出现<code>*a</code>或者<code>b**</code>这种不合法的模式串，</p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/rnaFK05IcFWvNN1ppNf2ug">总结自labuladong大神</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/rnaFK05IcFWvNN1ppNf2ug">总结自labuladong大神</a></p>
 <span id="more"></span>
-<h1 id="10-正则表达式匹配"><a href="#10-正则表达式匹配" class="headerlink" title="10. 正则表达式匹配"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/regular-expression-matching/">10. 正则表达式匹配</a></h1><p>给你一个字符串<code>s</code>和一个字符规律<code>p</code>，请你来实现一个支持<code>&#39;.&#39;</code>和 <code>&#39;*&#39;</code> 的正则表达式匹配。</p>
+<h1 id="正则表达式匹配"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/regular-expression-matching/">10.
+正则表达式匹配</a></h1>
+<p>给你一个字符串<code>s</code>和一个字符规律<code>p</code>，请你来实现一个支持<code>'.'</code>和
+<code>'*'</code> 的正则表达式匹配。</p>
 <ul>
-<li><code>&#39;.&#39;</code> 匹配任意单个字符</li>
-<li><code>&#39;*&#39;</code> 匹配零个或多个前面的那一个元素<br>所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。</li>
+<li><code>'.'</code> 匹配任意单个字符</li>
+<li><code>'*'</code> 匹配零个或多个前面的那一个元素 所谓匹配，是要涵盖
+整个 字符串 s的，而不是部分字符串。</li>
 </ul>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：s = “aa”, p = “a”<br>输出：false<br>解释：”a” 无法匹配 “aa” 整个字符串。</p>
-<p>输入：s = “aa”, p = “a<em>“<br>输出：true<br>解释：因为 ‘</em>‘ 代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是 ‘a’。因此，字符串 “aa” 可被视为 ‘a’ 重复了一次。</p>
-<p>输入：s = “ab”, p = “.<em>“<br>输出：true<br>解释：”.</em>“ 表示可匹配零个或多个（’*’）任意字符（’.’）。</p>
+<h2 id="示例">示例：</h2>
+<blockquote>
+<p>输入：s = "aa", p = "a" 输出：false 解释："a" 无法匹配 "aa"
+整个字符串。</p>
+<p>输入：s = "aa", p = "a<em>" 输出：true 解释：因为 '</em>'
+代表可以匹配零个或多个前面的那一个元素, 在这里前面的元素就是
+'a'。因此，字符串 "aa" 可被视为 'a' 重复了一次。</p>
+<p>输入：s = "ab", p = ".<em>" 输出：true 解释：".</em>"
+表示可匹配零个或多个（'*'）任意字符（'.'）。</p>
 </blockquote>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>我们先脑补一下，<code>s</code>和<code>p</code>相互匹配的过程大致是，两个指针<code>i, j</code>分别在<code>s</code>和<code>p</code>上移动，如果最后两个指针都能移动到字符串的末尾，那么就匹配成功，反之则匹配失败。</p>
+<h3 id="思路">思路：</h3>
+<p>我们先脑补一下，<code>s</code>和<code>p</code>相互匹配的过程大致是，两个指针<code>i, j</code>分别在<code>s</code>和<code>p</code>上移动，如果最后两个指针都能移动到字符串的末尾，那么就匹配成功，反之则匹配失败。</p>
 <p><strong>正则表达算法问题只需要把住一个基本点：看两个字符是否匹配，一切逻辑围绕匹配/不匹配两种情况展开即可。</strong></p>
 <p>如果不考虑<code>*</code>通配符，面对两个待匹配字符<code>s[i]</code>和<code>p[j]</code>，我们唯一能做的就是看他俩是否匹配：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isMatch</span><span class="params">(string s, string p)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; s.<span class="built_in">size</span>() &amp;&amp; j &lt; p.<span class="built_in">size</span>()) &#123;</span><br><span class="line">        <span class="comment">// 「.」通配符就是万金油</span></span><br><span class="line">        <span class="keyword">if</span> (s[i] == p[j] || p[j] == <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">            <span class="comment">// 匹配，接着匹配 s[i+1..] 和 p[j+1..]</span></span><br><span class="line">            i++; j++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 不匹配</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> i == j;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>那么考虑一下，如果加入<code>*</code>通配符，局面就会稍微复杂一些，不过只要分情况来分析，也不难理解。</p>
 <p><strong>当<code>p[j + 1]</code>为<code>*</code>通配符时，我们分情况讨论下</strong>：</p>
 <p>1、如果匹配，即<code>s[i] == p[j]</code>，那么有两种情况：</p>
-<p>1.1<code>p[j]</code>有可能会匹配多个字符，比如<code>s = &quot;aaa&quot;, p = &quot;a*&quot;</code>，那么<code>p[0]</code>会通过<code>*</code>匹配 3 个字符<code>&quot;a&quot;</code>。</p>
-<p>1.2<code>p[i]</code>也有可能匹配 0 个字符，比如<code>s = &quot;aa&quot;, p = &quot;a*aa&quot;</code>，由于后面的字符可以匹配<code>s</code>，所以<code>p[0]</code>只能匹配 0 次。</p>
+<p>1.1<code>p[j]</code>有可能会匹配多个字符，比如<code>s = "aaa", p = "a*"</code>，那么<code>p[0]</code>会通过<code>*</code>匹配
+3 个字符<code>"a"</code>。</p>
+<p>1.2<code>p[i]</code>也有可能匹配 0
+个字符，比如<code>s = "aa", p = "a*aa"</code>，由于后面的字符可以匹配<code>s</code>，所以<code>p[0]</code>只能匹配
+0 次。</p>
 <p>2、如果不匹配，即<code>s[i] != p[j]</code>，只有一种情况：</p>
-<p><code>p[j]</code>只能匹配 0 次，然后看下一个字符是否能和<code>s[i]</code>匹配。比如说<code>s = &quot;aa&quot;, p = &quot;b*aa&quot;</code>，此时<code>p[0]</code>只能匹配 0 次。</p>
+<p><code>p[j]</code>只能匹配 0
+次，然后看下一个字符是否能和<code>s[i]</code>匹配。比如说<code>s = "aa", p = "b*aa"</code>，此时<code>p[0]</code>只能匹配
+0 次。</p>
 <p>综上，可以把之前的代码针对<code>*</code>通配符进行一下改造：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (s[i] == p[j] || p[j] == <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">    <span class="comment">// 匹配</span></span><br><span class="line">    <span class="keyword">if</span> (j &lt; p.<span class="built_in">size</span>() - <span class="number">1</span> &amp;&amp; p[j + <span class="number">1</span>] == <span class="string">&#x27;*&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// 有 * 通配符，可以匹配 0 次或多次</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 无 * 通配符，老老实实匹配 1 次</span></span><br><span class="line">        i++; j++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="comment">// 不匹配</span></span><br><span class="line">    <span class="keyword">if</span> (j &lt; p.<span class="built_in">size</span>() - <span class="number">1</span> &amp;&amp; p[j + <span class="number">1</span>] == <span class="string">&#x27;*&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// 有 * 通配符，只能匹配 0 次</span></span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 无 * 通配符，匹配无法进行下去了</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>整体的思路已经很清晰了，但现在的问题是，遇到<code>*</code>通配符时，到底应该匹配 0 次还是匹配多次？多次是几次？</p>
+<p>整体的思路已经很清晰了，但现在的问题是，遇到<code>*</code>通配符时，到底应该匹配
+0 次还是匹配多次？多次是几次？</p>
 <p>你看，这就是一个做「选择」的问题，要把所有可能的选择都穷举一遍才能得出结果。动态规划算法的核心就是「状态」和「选择」，<strong>「状态」无非就是<code>i</code>和<code>j</code>两个指针的位置，「选择」就是<code>p[j]</code>选择匹配几个字符</strong>。</p>
-<h4 id="动态规划解法"><a href="#动态规划解法" class="headerlink" title="动态规划解法"></a>动态规划解法</h4><p>根据「状态」，我们可以定义一个<code>dp</code>函数：</p>
+<h4 id="动态规划解法">动态规划解法</h4>
+<p>根据「状态」，我们可以定义一个<code>dp</code>函数：</p>
 <blockquote>
-<p><strong>bool</strong> <strong>dp</strong>(string&amp; s, <strong>int</strong> i, string&amp; p, <strong>int</strong> j);</p>
+<p><strong>bool</strong> <strong>dp</strong>(string&amp; s,
+<strong>int</strong> i, string&amp; p, <strong>int</strong> j);</p>
 </blockquote>
 <p><code>dp</code>函数的定义如下：</p>
 <blockquote>
@@ -374,9 +400,12 @@
 <p>可以根据之前的代码写出<code>dp</code>函数的主要逻辑：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">dp</span><span class="params">(string&amp; s, <span class="type">int</span> i, string&amp; p, <span class="type">int</span> j)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (s[i] == p[j] || p[j] == <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">        <span class="comment">// 匹配</span></span><br><span class="line">        <span class="keyword">if</span> (j &lt; p.<span class="built_in">size</span>() - <span class="number">1</span> &amp;&amp; p[j + <span class="number">1</span>] == <span class="string">&#x27;*&#x27;</span>) &#123;</span><br><span class="line">            <span class="comment">// 1.1 通配符匹配 0 次或多次</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">dp</span>(s, i, p, j + <span class="number">2</span>)</span><br><span class="line">                || <span class="built_in">dp</span>(s, i + <span class="number">1</span>, p, j);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 1.2 常规匹配 1 次</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">dp</span>(s, i + <span class="number">1</span>, p, j + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 不匹配</span></span><br><span class="line">        <span class="keyword">if</span> (j &lt; p.<span class="built_in">size</span>() - <span class="number">1</span> &amp;&amp; p[j + <span class="number">1</span>] == <span class="string">&#x27;*&#x27;</span>) &#123;</span><br><span class="line">            <span class="comment">// 2.1 通配符匹配 0 次</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">dp</span>(s, i, p, j + <span class="number">2</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 2.2 无法继续匹配</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>==<strong>1.1 通配符匹配 0 次或多次</strong>==</p>
-<p>将<code>j</code>加 2，<code>i</code>不变，含义就是直接跳过<code>p[j]</code>和之后的通配符，即通配符匹配 0 次：</p>
+<p>将<code>j</code>加
+2，<code>i</code>不变，含义就是直接跳过<code>p[j]</code>和之后的通配符，即通配符匹配
+0 次：</p>
 <p><img src="正则表达式匹配/1.jpg" style="zoom:67%;" /></p>
-<p>将<code>i</code>加 1，<code>j</code>不变，含义就是<code>p[j]</code>匹配了<code>s[i]</code>，但<code>p[j]</code>还可以继续匹配，即通配符匹配多次的情况：</p>
+<p>将<code>i</code>加
+1，<code>j</code>不变，含义就是<code>p[j]</code>匹配了<code>s[i]</code>，但<code>p[j]</code>还可以继续匹配，即通配符匹配多次的情况：</p>
 <p><img src="正则表达式匹配/2.jpg" style="zoom:67%;" /></p>
 <p>两种情况只要有一种可以完成匹配即可，所以对上面两种情况求或运算。</p>
 <p>==<strong>1.2 常规匹配 1 次</strong>==</p>
@@ -385,14 +414,18 @@
 <p>==<strong>2.1 通配符匹配 0 次</strong>==</p>
 <p>类似情况 1.1，将<code>j</code>加 2，<code>i</code>不变：</p>
 <p><img src="正则表达式匹配/4.jpg" style="zoom:67%;" /></p>
-<p>==<strong>2.2 如果没有<code>*</code>通配符，也无法匹配，那只能说明匹配失败了：</strong>==</p>
+<p>==<strong>2.2
+如果没有<code>*</code>通配符，也无法匹配，那只能说明匹配失败了：</strong>==</p>
 <p><img src="正则表达式匹配/5.jpg" style="zoom:67%;" /></p>
-<p>看图理解应该很容易了，现在可以思考一下<code>dp</code>函数的 base case：</p>
-<p><strong>一个 base case 是<code>j == p.size()</code>时</strong>，按照<code>dp</code>函数的定义，这意味着模式串<code>p</code>已经被匹配完了，那么应该看看文本串<code>s</code>匹配到哪里了，如果<code>s</code>也恰好被匹配完，则说明匹配成功：</p>
+<p>看图理解应该很容易了，现在可以思考一下<code>dp</code>函数的 base
+case：</p>
+<p><strong>一个 base case
+是<code>j == p.size()</code>时</strong>，按照<code>dp</code>函数的定义，这意味着模式串<code>p</code>已经被匹配完了，那么应该看看文本串<code>s</code>匹配到哪里了，如果<code>s</code>也恰好被匹配完，则说明匹配成功：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (j == p.<span class="built_in">size</span>()) &#123;</span><br><span class="line">    <span class="keyword">return</span> i == s.<span class="built_in">size</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>另一个 base case 是<code>i == s.size()</code>时</strong>，按照<code>dp</code>函数的定义，这种情况意味着文本串<code>s</code>已经全部被匹配了，那么是不是只要简单地检查一下<code>p</code>是否也匹配完就行了呢？</p>
+<p><strong>另一个 base case
+是<code>i == s.size()</code>时</strong>，按照<code>dp</code>函数的定义，这种情况意味着文本串<code>s</code>已经全部被匹配了，那么是不是只要简单地检查一下<code>p</code>是否也匹配完就行了呢？</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i == s.<span class="built_in">size</span>()) &#123;</span><br><span class="line">    <span class="comment">// 这样行吗？</span></span><br><span class="line">    <span class="keyword">return</span> j == p.<span class="built_in">size</span>();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><strong>这是不正确的，此时并不能根据<code>j</code>是否等于<code>p.size()</code>来判断是否完成匹配，只要<code>p[j..]</code>能够匹配空串，就可以算完成匹配</strong>。比如说<code>s = &quot;a&quot;, p = &quot;ab*c*&quot;</code>，当<code>i</code>走到<code>s</code>末尾的时候，<code>j</code>并没有走到<code>p</code>的末尾，但是<code>p</code>依然可以匹配<code>s</code>。</p>
+<p><strong>这是不正确的，此时并不能根据<code>j</code>是否等于<code>p.size()</code>来判断是否完成匹配，只要<code>p[j..]</code>能够匹配空串，就可以算完成匹配</strong>。比如说<code>s = "a", p = "ab*c*"</code>，当<code>i</code>走到<code>s</code>末尾的时候，<code>j</code>并没有走到<code>p</code>的末尾，但是<code>p</code>依然可以匹配<code>s</code>。</p>
 <p>所以我们可以写出如下代码：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> m = s.<span class="built_in">size</span>(), n = p.<span class="built_in">size</span>();</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (i == s.<span class="built_in">size</span>()) &#123;</span><br><span class="line">    <span class="comment">// 如果能匹配空串，一定是字符和 * 成对儿出现</span></span><br><span class="line">    <span class="keyword">if</span> ((n - j) % <span class="number">2</span> == <span class="number">1</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 检查是否为 x*y*z* 这种形式</span></span><br><span class="line">    <span class="keyword">for</span> (; j + <span class="number">1</span> &lt; p.<span class="built_in">size</span>(); j += <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (p[j + <span class="number">1</span>] != <span class="string">&#x27;*&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>综上，完整代码如下：</strong></p>
@@ -491,7 +524,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -545,7 +578,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

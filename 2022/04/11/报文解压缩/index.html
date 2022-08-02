@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="报文解压缩■ 题目描述  为了提升数据传输的效率，会对传输的报文进行压缩处理。 输入一个压缩后的报文，请返回它解压后的原始报文。 压缩规则：n[str]，表示方括号内部的 str 正好重复 n 次。 注意 n 为正整数（0 &lt; n &lt;&#x3D; 100），str只包含小写英文字母，不考虑异常情况。  输入描述: 输入压缩后的报文：  不考虑无效的输入，报文没有额外的空格，方括号总是符合格式要求">
+    <meta name="description" content="报文解压缩 ■ 题目描述  为了提升数据传输的效率，会对传输的报文进行压缩处理。 输入一个压缩后的报文，请返回它解压后的原始报文。 压缩规则：n[str]，表示方括号内部的 str 正好重复 n 次。 注意 n 为正整数（0 &lt; n &lt;&#x3D; 100），str只包含小写英文字母，不考虑异常情况。  输入描述: 输入压缩后的报文：  不考虑无效的输入，报文没有额外的空格，方括号总是符合格式要">
 <meta property="og:type" content="article">
 <meta property="og:title" content="报文解压缩">
 <meta property="og:url" content="https://sjchen404.github.io/2022/04/11/%E6%8A%A5%E6%96%87%E8%A7%A3%E5%8E%8B%E7%BC%A9/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="报文解压缩■ 题目描述  为了提升数据传输的效率，会对传输的报文进行压缩处理。 输入一个压缩后的报文，请返回它解压后的原始报文。 压缩规则：n[str]，表示方括号内部的 str 正好重复 n 次。 注意 n 为正整数（0 &lt; n &lt;&#x3D; 100），str只包含小写英文字母，不考虑异常情况。  输入描述: 输入压缩后的报文：  不考虑无效的输入，报文没有额外的空格，方括号总是符合格式要求">
+<meta property="og:description" content="报文解压缩 ■ 题目描述  为了提升数据传输的效率，会对传输的报文进行压缩处理。 输入一个压缩后的报文，请返回它解压后的原始报文。 压缩规则：n[str]，表示方括号内部的 str 正好重复 n 次。 注意 n 为正整数（0 &lt; n &lt;&#x3D; 100），str只包含小写英文字母，不考虑异常情况。  输入描述: 输入压缩后的报文：  不考虑无效的输入，报文没有额外的空格，方括号总是符合格式要">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-11T09:42:20.261Z">
 <meta property="article:modified_time" content="2022-05-14T16:25:58.440Z">
@@ -54,7 +54,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -147,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%A5%E6%96%87%E8%A7%A3%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.</span> <span class="nav-text">报文解压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%A5%E6%96%87%E8%A7%A3%E5%8E%8B%E7%BC%A9"><span class="nav-number">1.</span> <span class="nav-text">报文解压缩</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -321,18 +325,21 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="报文解压缩"><a href="#报文解压缩" class="headerlink" title="报文解压缩"></a>报文解压缩</h1><p><strong>■ 题目描述</strong></p>
+        <h1 id="报文解压缩">报文解压缩</h1>
+<p><strong>■ 题目描述</strong></p>
 <ul>
 <li>为了提升数据传输的效率，会对传输的报文进行压缩处理。</li>
 <li>输入一个压缩后的报文，请返回它解压后的原始报文。</li>
 <li>压缩规则：n[str]，表示方括号内部的 str 正好重复 n 次。</li>
-<li>注意 n 为正整数（0 &lt; n &lt;= 100），str只包含小写英文字母，不考虑异常情况。</li>
+<li>注意 n 为正整数（0 &lt; n &lt;=
+100），str只包含小写英文字母，不考虑异常情况。</li>
 </ul>
 <p><strong>输入描述:</strong></p>
 <p><strong>输入压缩后的报文：</strong></p>
-<ol>
+<ol type="1">
 <li>不考虑无效的输入，报文没有额外的空格，方括号总是符合格式要求的；</li>
-<li>原始报文不包含数字，所有的数字只表示重复的次数 n ，例如不会出现像 5b 或 3[8] 的输入；</li>
+<li>原始报文不包含数字，所有的数字只表示重复的次数 n ，例如不会出现像 5b
+或 3[8] 的输入；</li>
 </ol>
 <p><strong>输出描述:</strong></p>
 <ul>
@@ -342,7 +349,8 @@
 <ul>
 <li>原始报文长度不会超过1000，不考虑异常的情况</li>
 </ul>
-<p><strong>示例 1</strong> 输入输出示例仅供调试，后台判题数据一般不包含示例</p>
+<p><strong>示例 1</strong>
+输入输出示例仅供调试，后台判题数据一般不包含示例</p>
 <span id="more"></span>
 <p><strong>输入</strong></p>
 <blockquote>
@@ -356,7 +364,8 @@
 <ul>
 <li>k 重复3次，mn 重复2次，最终得到 kkkmnmn</li>
 </ul>
-<p><strong>示例 2</strong> 输入输出示例仅供调试，后台判题数据一般不包含示例</p>
+<p><strong>示例 2</strong>
+输入输出示例仅供调试，后台判题数据一般不包含示例</p>
 <p><strong>输入</strong></p>
 <blockquote>
 <p>3[m2[c]]</p>
@@ -369,7 +378,8 @@
 <ul>
 <li>m2[c] 解压缩后为 mcc，重复三次为 mccmccmcc</li>
 </ul>
-<h2 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h2><p>我们全部压入栈后，遇到<code>]</code>后弹出计算，然后再压会栈中，最后判断栈是否为空即可</p>
+<h2 id="思路">思路：</h2>
+<p>我们全部压入栈后，遇到<code>]</code>后弹出计算，然后再压会栈中，最后判断栈是否为空即可</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">double</span> ld;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="type">int</span>, <span class="type">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> pair&lt;ll, ll&gt; pll;</span><br><span class="line"><span class="keyword">typedef</span> vector&lt;<span class="type">int</span>&gt; vi;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string code;</span><br><span class="line">    cin &gt;&gt; code;</span><br><span class="line">    stack&lt;string&gt; st;</span><br><span class="line">    string decode;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">    string tmp;</span><br><span class="line">    tmp = code[i];</span><br><span class="line">    st.<span class="built_in">push</span>(tmp);</span><br><span class="line">    <span class="keyword">while</span>(!st.<span class="built_in">empty</span>())&#123;</span><br><span class="line">        i++;</span><br><span class="line">        <span class="keyword">if</span>(code[i] != <span class="string">&#x27;]&#x27;</span> &amp;&amp; i &lt; code.<span class="built_in">size</span>())&#123;</span><br><span class="line">            string tmp;</span><br><span class="line">            tmp = code[i];</span><br><span class="line">            st.<span class="built_in">push</span>(tmp);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            string str;</span><br><span class="line">            string num;</span><br><span class="line">            <span class="keyword">while</span>(!st.<span class="built_in">empty</span>() &amp;&amp; st.<span class="built_in">top</span>() != <span class="string">&quot;[&quot;</span>)&#123;</span><br><span class="line">                str += st.<span class="built_in">top</span>();</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//去掉[</span></span><br><span class="line">            <span class="keyword">if</span>(!st.<span class="built_in">empty</span>())&#123;</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//计算数字</span></span><br><span class="line">            <span class="keyword">while</span>(!st.<span class="built_in">empty</span>() &amp;&amp; st.<span class="built_in">top</span>() &gt;= <span class="string">&quot;0&quot;</span> &amp;&amp; st.<span class="built_in">top</span>() &lt;= <span class="string">&quot;9&quot;</span>)&#123;</span><br><span class="line">                num += st.<span class="built_in">top</span>();</span><br><span class="line">                st.<span class="built_in">pop</span>();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(num != <span class="string">&quot;&quot;</span>)&#123;</span><br><span class="line">                <span class="built_in">reverse</span>(num.<span class="built_in">begin</span>(), num.<span class="built_in">end</span>());</span><br><span class="line">                <span class="type">int</span> cnt = <span class="built_in">stoi</span>(num);</span><br><span class="line">                string strTmp;</span><br><span class="line">                <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; cnt; i++)&#123;</span><br><span class="line">                    strTmp += str;</span><br><span class="line">                &#125;</span><br><span class="line">                st.<span class="built_in">push</span>(strTmp);</span><br><span class="line">            &#125;</span><br><span class="line">            decode = str;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//由于是栈，后进先出，所以需要翻转</span></span><br><span class="line">    <span class="built_in">reverse</span>(decode.<span class="built_in">begin</span>(), decode.<span class="built_in">end</span>());</span><br><span class="line">    cout &lt;&lt; decode &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
     </div>
@@ -466,7 +476,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -520,7 +530,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

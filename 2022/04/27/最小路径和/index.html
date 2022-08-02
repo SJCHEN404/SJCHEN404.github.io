@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="64. 最小路径和给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。 说明：每次只能向下或者向右移动一步。 示例：  输入：grid &#x3D; [[1,3,1],[1,5,1],[4,2,1]]输出：7解释：因为路径 1→3→1→1→1 的总和最小。">
+    <meta name="description" content="#64. 最小路径和 给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。 说明：每次只能向下或者向右移动一步。 示例：   输入：grid &#x3D; [[1,3,1],[1,5,1],[4,2,1]] 输出：7 解释：因为路径 1→3→1→1→1 的总和最小。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="最小路径和">
 <meta property="og:url" content="https://sjchen404.github.io/2022/04/27/%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="64. 最小路径和给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。 说明：每次只能向下或者向右移动一步。 示例：  输入：grid &#x3D; [[1,3,1],[1,5,1],[4,2,1]]输出：7解释：因为路径 1→3→1→1→1 的总和最小。">
+<meta property="og:description" content="#64. 最小路径和 给定一个包含非负整数的 m x n 网格 grid ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。 说明：每次只能向下或者向右移动一步。 示例：   输入：grid &#x3D; [[1,3,1],[1,5,1],[4,2,1]] 输出：7 解释：因为路径 1→3→1→1→1 的总和最小。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sjchen404.github.io/2022/04/27/%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/最小路径和/minpath.jpg">
 <meta property="og:image" content="https://sjchen404.github.io/2022/04/27/%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C/最小路径和/1.jpg">
@@ -55,7 +55,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -148,7 +152,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#64-%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C"><span class="nav-number">1.</span> <span class="nav-text">64. 最小路径和</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -318,14 +322,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="64-最小路径和"><a href="#64-最小路径和" class="headerlink" title="64. 最小路径和"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-path-sum/">64. 最小路径和</a></h1><p>给定一个包含非负整数的 <code>m x n</code> 网格 <code>grid</code> ，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</p>
+        <p>#<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-path-sum/">64.
+最小路径和</a></p>
+<p>给定一个包含非负整数的 <code>m x n</code> 网格 <code>grid</code>
+，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。</p>
 <p><strong>说明：</strong>每次只能向下或者向右移动一步。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="最小路径和/minpath.jpg" alt=""></p>
+<h2 id="示例">示例：</h2>
+<p><img src="最小路径和/minpath.jpg" /></p>
 <blockquote>
-<p>输入：grid = [[1,3,1],[1,5,1],[4,2,1]]<br>输出：7<br>解释：因为路径 1→3→1→1→1 的总和最小。</p>
+<p>输入：grid = [[1,3,1],[1,5,1],[4,2,1]] 输出：7 解释：因为路径
+1→3→1→1→1 的总和最小。</p>
 </blockquote>
 <span id="more"></span>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p><img src="最小路径和/1.jpg" alt=""></p>
+<h3 id="思路">思路：</h3>
+<p><img src="最小路径和/1.jpg" /></p>
 <p>我们想计算从<code>D</code>达到<code>B</code>的最小路径和，那我们就要解决如何才到到达<code>B</code>，因为只能向下或者向右移动一步，所以<code>B</code></p>
 <p>只能是从<code>A</code>或者<code>C</code>过来的，那么我们如何确定是从<code>A</code>过来的，而不是从<code>C</code>过来的，难道是因为<code>A</code>比<code>c</code>小吗？</p>
 <p><strong>当然不是，因为从<code>D</code>走到<code>A</code>的最小路径和为<code>6</code>，也就是上面橙色的部分，而从<code>D</code>走到<code>C</code>的最小路径和为<code>8</code>(1-&gt;1-&gt;4-&gt;2)，所以一定是从<code>A</code>走到<code>B</code></strong></p>
@@ -429,7 +439,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -483,7 +493,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

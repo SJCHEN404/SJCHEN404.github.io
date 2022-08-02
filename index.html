@@ -49,7 +49,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -245,7 +249,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-08-02 21:23:57" itemprop="dateCreated datePublished" datetime="2022-08-02T21:23:57+08:00">2022-08-02</time>
+      <time title="创建时间：2022-08-02 21:59:29" itemprop="dateCreated datePublished" datetime="2022-08-02T21:59:29+08:00">2022-08-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -278,7 +282,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.4k</span>
+      <span>5.5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -296,56 +300,61 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/第二章_进程与线程.png" alt=""></p>
-<h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><p><strong>进程与线程的比较</strong></p>
-<div class="table-container">
+          <p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/第二章_进程与线程.png" /></p>
+<h1 id="进程与线程">进程与线程</h1>
+<p><strong>进程与线程的比较</strong></p>
 <table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 41%" />
+<col style="width: 51%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
 <th>进程</th>
 <th>线程</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>映像组成</td>
 <td>由程序段，相关数据段和<code>PCB</code>组成</td>
 <td>共享其隶属进程的进程映像，仅拥有线程ID，寄存器集合和堆栈等</td>
 </tr>
-<tr>
+<tr class="even">
 <td>并发性</td>
 <td>在没有引入线程的操作系统中，进程是独立运行的基本单位</td>
 <td><strong>线程是独立运行的基本单位</strong>,一个进程可以拥有一个或多个线程</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>资源分配</td>
 <td>进程是资源分配和拥有的基本单位</td>
 <td>线程自己不拥有系统资源，但它可以访问所属进程所拥有的全部资源</td>
 </tr>
-<tr>
+<tr class="even">
 <td><strong>调度</strong></td>
 <td>在没有引入线程的操作系统中，进程是独立调度和分配的基本单位</td>
 <td>在引入线程后的操作系统，线程是独立调度和分配的基本单位</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>通信</td>
 <td>PV操作；共享存储；消息传递；管道通信</td>
 <td>同一进程的各线程直接读写进程数据段，不同进程的线程之间通信属于进程剑通信</td>
 </tr>
-<tr>
+<tr class="even">
 <td>目的</td>
 <td>更好的使多道程序并发执行，提高资源利用率和系统吞吐量</td>
 <td>减小程序在并发执行时所付出的时空开销，提高操作系统的并发性能</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>地址空间</td>
 <td>进程的地址空间之间相互独立</td>
 <td>同一进程的各线程间共享进程的地址空间</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p><strong>进程映像是静态的，进程是动态的</strong></p>
           <!--noindex-->
             <div class="post-button">
@@ -574,11 +583,19 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="199-二叉树的右视图"><a href="#199-二叉树的右视图" class="headerlink" title="199. 二叉树的右视图"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-right-side-view/">199. 二叉树的右视图</a></h1><p>给定一个二叉树的 <strong>根节点</strong> <code>root</code>，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/4.jpg" alt=""></p>
+          <h1 id="二叉树的右视图"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/binary-tree-right-side-view/">199.
+二叉树的右视图</a></h1>
+<p>给定一个二叉树的 <strong>根节点</strong>
+<code>root</code>，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
+<h2 id="示例">示例：</h2>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/4.jpg" /></p>
 <blockquote>
-<p>输入: [1,2,3,null,5,null,4]<br>输出: [1,3,4]</p>
-<p>输入: []<br>输出: []</p>
+<p>输入: [1,2,3,null,5,null,4] 输出: [1,3,4]</p>
+</blockquote>
+<blockquote>
+<p>输入: [] 输出: []</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -675,7 +692,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3k</span>
+      <span>3.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -693,18 +710,23 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="62-不同路径"><a href="#62-不同路径" class="headerlink" title="62. 不同路径"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-paths/">62. 不同路径</a></h1><p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start” ）。</p>
-<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为 “Finish” ）。</p>
+          <h1 id="不同路径"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/unique-paths/">62. 不同路径</a></h1>
+<p>一个机器人位于一个 m x n 网格的左上角 （起始点在下图中标记为 “Start”
+）。</p>
+<p>机器人每次只能向下或者向右移动一步。机器人试图达到网格的右下角（在下图中标记为
+“Finish” ）。</p>
 <p>问总共有多少条不同的路径？</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/2.png" alt=""></p>
+<h2 id="示例">示例：</h2>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/2.png" /></p>
 <blockquote>
-<p>输入：m = 3, n = 7<br>输出：28</p>
-<p>输入：m = 3, n = 2<br>输出：3<br>解释：<br>从左上角开始，总共有 3 条路径可以到达右下角。</p>
-<ol>
-<li>向右 -&gt; 向下 -&gt; 向下</li>
-<li>向下 -&gt; 向下 -&gt; 向右</li>
-<li>向下 -&gt; 向右 -&gt; 向下</li>
-</ol>
+<p>输入：m = 3, n = 7 输出：28</p>
+</blockquote>
+<blockquote>
+<p>输入：m = 3, n = 2 输出：3 解释： 从左上角开始，总共有 3
+条路径可以到达右下角。 1. 向右 -&gt; 向下 -&gt; 向下 2. 向下 -&gt; 向下
+-&gt; 向右 3. 向下 -&gt; 向右 -&gt; 向下</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -801,7 +823,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>730</span>
+      <span>728</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -819,11 +841,18 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="118-杨辉三角"><a href="#118-杨辉三角" class="headerlink" title="118. 杨辉三角"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/pascals-triangle/">118. 杨辉三角</a></h1><p>给定一个非负整数 <code>numRows</code>，生成「杨辉三角」的前 <code>numRows</code> 行。</p>
+          <h1 id="杨辉三角"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/pascals-triangle/">118.
+杨辉三角</a></h1>
+<p>给定一个非负整数 <code>numRows</code>，生成「杨辉三角」的前
+<code>numRows</code> 行。</p>
 <p>在「杨辉三角」中，每个数是它左上方和右上方的数的和。</p>
-<p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/1.gif" alt=""></p>
-<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h2><blockquote>
-<p>输入：numRows = 5<br><br>输出：[[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/1.gif" /></p>
+<h2 id="示例1">示例1:</h2>
+<blockquote>
+<p>输入：numRows = 5<br>
+输出：[[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -1041,7 +1070,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.5k</span>
+      <span>4.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -1061,7 +1090,8 @@
     <div class="post-body" itemprop="articleBody">
           <p>[[toc]]</p>
 <p>Getting started with lua.</p>
-<p><a target="_blank" rel="noopener" href="https://www.lua.org/manual/5.4/">Lua 5.4 Reference Manual</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.lua.org/manual/5.4/">Lua 5.4 Reference
+Manual</a></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/07/25/lua/#more" rel="contents">
@@ -1176,14 +1206,15 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>[[toc]]</p>
-<h1 id="差分数组"><a href="#差分数组" class="headerlink" title="差分数组"></a>差分数组</h1><p>前面我们了解了<a href="https://sjchen404.github.io/2022/03/24/前缀和数组/">前缀和</a></p>
+<h1 id="差分数组">差分数组</h1>
+<p>前面我们了解了<a
+href="https://sjchen404.github.io/2022/03/24/前缀和数组/">前缀和</a></p>
 <p><strong>前缀和主要适用于原始数组不会被修改的情况下，频繁查询某个区间的累加和</strong></p>
 <p><strong>差分数组主要适用于频繁对原始数组的某个区间的元素进行增减</strong></p>
 <p>比如我们给定一个数组<code>nums</code></p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th></th>
 <th>0</th>
 <th>1</th>
@@ -1193,7 +1224,7 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>nums</td>
 <td>8</td>
 <td>2</td>
@@ -1203,7 +1234,6 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>要求给区间<code>nums[2..6]</code>全部加1，再给<code>nums[3..9]</code>全部减3，再给<code>nums[0..4]</code>全部加2，最后问<code>nums</code>数组的值为多少？</p>
 <p>常规做法就是每次在所给区间循环加上或者减去给定的值，时间复杂度为：<code>O(m)</code>，效率比较低。</p>
 <p>这时就需要用到差分数组，我们先对<code>nums</code>数组构造一个<code>diff</code>差分数组，<code>diff[i] = nums[i] - nums[i-1]</code></p>
@@ -1321,14 +1351,24 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>[[toc]]</p>
-<h1 id="115-不同的子序列"><a href="#115-不同的子序列" class="headerlink" title="115. 不同的子序列"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/distinct-subsequences/">115. 不同的子序列</a></h1><p>给定一个字符串 s 和一个字符串 <code>t</code> ，计算在 <code>s</code> 的子序列中 <code>t</code> 出现的个数。</p>
-<p>字符串的一个 子序列 是指，通过删除一些（也可以不删除）字符且不干扰剩余字符相对位置所组成的新字符串。（例如，<code>&quot;ACE&quot;</code> 是 <code>&quot;ABCDE&quot;</code> 的一个子序列，而 <code>&quot;AEC&quot;</code>不是）</p>
+<h1 id="不同的子序列"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/distinct-subsequences/">115.
+不同的子序列</a></h1>
+<p>给定一个字符串 s 和一个字符串 <code>t</code> ，计算在 <code>s</code>
+的子序列中 <code>t</code> 出现的个数。</p>
+<p>字符串的一个 子序列
+是指，通过删除一些（也可以不删除）字符且不干扰剩余字符相对位置所组成的新字符串。（例如，<code>"ACE"</code> 是 <code>"ABCDE"</code> 的一个子序列，而 <code>"AEC" </code>不是）</p>
 <p>题目数据保证答案符合 32 位带符号整数范围。</p>
-<h2 id="示例1："><a href="#示例1：" class="headerlink" title="示例1："></a>示例1：</h2><blockquote>
-<p>输入：s = “rabbbit”, t = “rabbit”<br>输出：3<br>解释：<br>如下图所示, 有 3 种可以从 s 中得到 “rabbit” 的方案。<br>rabbbit<br>rabbbit<br>rabbbit</p>
+<h2 id="示例1">示例1：</h2>
+<blockquote>
+<p>输入：s = "rabbbit", t = "rabbit" 输出：3 解释： 如下图所示, 有 3
+种可以从 s 中得到 "rabbit" 的方案。 rabbbit rabbbit rabbbit</p>
 </blockquote>
-<h2 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h2><blockquote>
-<p>输入：s = “babgbag”, t = “bag”<br>输出：5<br>解释：<br>如下图所示, 有 5 种可以从 s 中得到 “bag” 的方案,<br>babgbag<br>babgbag<br>babgbag<br>babgbag<br>babgbag</p>
+<h2 id="示例2">示例2:</h2>
+<blockquote>
+<p>输入：s = "babgbag", t = "bag" 输出：5 解释： 如下图所示, 有 5
+种可以从 s 中得到 "bag" 的方案, babgbag babgbag babgbag babgbag
+babgbag</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -1425,14 +1465,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>671</span>
+      <span>2.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>2 分钟</span>
     </span>
 </div>
 
@@ -1443,18 +1483,29 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>[[toc]]</p>
-<h1 id="91-解码方法"><a href="#91-解码方法" class="headerlink" title="91. 解码方法"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/decode-ways/">91. 解码方法</a></h1><p>一条包含字母 A-Z 的消息通过以下映射进行了 编码 ：</p>
+          <p>[[toc]] # <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/decode-ways/">91.
+解码方法</a></p>
+<p>一条包含字母 A-Z 的消息通过以下映射进行了 编码 ：</p>
 <blockquote>
-<p>‘A’ -&gt; “1”<br>‘B’ -&gt; “2”<br>…<br>‘Z’ -&gt; “26”</p>
+<p>'A' -&gt; "1" 'B' -&gt; "2" ... 'Z' -&gt; "26"</p>
 </blockquote>
-<p>要 解码 已编码的消息，所有数字必须基于上述映射的方法，反向映射回字母（可能有多种方法）。例如，”11106” 可以映射为：</p>
-<p>“AAJF” ，将消息分组为 (1 1 10 6)<br>“KJF” ，将消息分组为 (11 10 6)<br>注意，消息不能分组为  (1 11 06) ，因为 “06” 不能映射为 “F” ，这是由于 “6” 和 “06” 在映射中并不等价。</p>
-<p>给你一个只含数字的 非空 字符串 s ，请计算并返回 解码 方法的 总数 。</p>
+<p>要 解码
+已编码的消息，所有数字必须基于上述映射的方法，反向映射回字母（可能有多种方法）。例如，"11106"
+可以映射为：</p>
+<p>"AAJF" ，将消息分组为 (1 1 10 6) "KJF" ，将消息分组为 (11 10 6)
+注意，消息不能分组为  (1 11 06) ，因为 "06" 不能映射为 "F" ，这是由于
+"6" 和 "06" 在映射中并不等价。</p>
+<p>给你一个只含数字的 非空 字符串 s ，请计算并返回 解码 方法的 总数
+。</p>
 <p>题目数据保证答案肯定是一个 32 位 的整数。</p>
-<h2 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h2><blockquote>
-<p>输入：s = “12”<br>输出：2<br>解释：它可以解码为 “AB”（1 2）或者 “L”（12）。</p>
-<p>输入：s = “226”<br>输出：3<br>解释：它可以解码为 “BZ” (2 26), “VF” (22 6), 或者 “BBF” (2 2 6) 。</p>
+<h2 id="示例1">示例1:</h2>
+<blockquote>
+<p>输入：s = "12" 输出：2 解释：它可以解码为 "AB"（1 2）或者
+"L"（12）。</p>
+</blockquote>
+<blockquote>
+<p>输入：s = "226" 输出：3 解释：它可以解码为 "BZ" (2 26), "VF" (22 6),
+或者 "BBF" (2 2 6) 。</p>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
@@ -1507,7 +1558,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -1561,7 +1612,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

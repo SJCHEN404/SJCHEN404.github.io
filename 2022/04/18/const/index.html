@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="1. const 含义常类型是指使用类型修饰符const说明的类型，常类型的变量或对象的值是不能被更新的。">
+    <meta name="description" content="1. const 含义 常类型是指使用类型修饰符const说明的类型，常类型的变量或对象的值是不能被更新的。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="const">
 <meta property="og:url" content="https://sjchen404.github.io/2022/04/18/const/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="1. const 含义常类型是指使用类型修饰符const说明的类型，常类型的变量或对象的值是不能被更新的。">
+<meta property="og:description" content="1. const 含义 常类型是指使用类型修饰符const说明的类型，常类型的变量或对象的值是不能被更新的。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-18T05:18:41.976Z">
 <meta property="article:modified_time" content="2022-05-14T16:16:20.912Z">
@@ -53,7 +53,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -146,7 +150,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-const-%E5%90%AB%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">1. const 含义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-const-%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2. const 作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-const-%E5%AF%B9%E8%B1%A1%E9%BB%98%E8%AE%A4%E4%B8%BA%E6%96%87%E4%BB%B6%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">3. const 对象默认为文件局部变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E5%AE%9A%E4%B9%89%E5%B8%B8%E9%87%8F"><span class="nav-number">4.</span> <span class="nav-text">4. 定义常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E6%8C%87%E9%92%88%E4%B8%8Econst"><span class="nav-number">5.</span> <span class="nav-text">5. 指针与const</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#const-%E5%90%AB%E4%B9%89"><span class="nav-number">1.</span> <span class="nav-text">1. const 含义</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#const-%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2. const 作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#const-%E5%AF%B9%E8%B1%A1%E9%BB%98%E8%AE%A4%E4%B8%BA%E6%96%87%E4%BB%B6%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">3. const
+对象默认为文件局部变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%B8%B8%E9%87%8F"><span class="nav-number">4.</span> <span class="nav-text">4. 定义常量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E4%B8%8Econst"><span class="nav-number">5.</span> <span class="nav-text">5. 指针与const</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -316,9 +321,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="1-const-含义"><a href="#1-const-含义" class="headerlink" title="1. const 含义"></a>1. const 含义</h1><p>常类型是指使用类型修饰符<strong>const</strong>说明的类型，常类型的变量或对象的值是不能被更新的。</p>
+        <h1 id="const-含义">1. const 含义</h1>
+<p>常类型是指使用类型修饰符<strong>const</strong>说明的类型，常类型的变量或对象的值是不能被更新的。</p>
 <span id="more"></span>
-<h1 id="2-const-作用"><a href="#2-const-作用" class="headerlink" title="2. const 作用"></a>2. const 作用</h1><ul>
+<h1 id="const-作用">2. const 作用</h1>
+<ul>
 <li>可以定义常量</li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> a = <span class="number">100</span>;</span><br></pre></td></tr></table></figure>
@@ -329,26 +336,27 @@
 <blockquote>
 <p>const 常量具有类型，编译器可以进行安全检查；</p>
 <p><code>#define</code>宏定义没有数据类型，只是简单的字符串替换，不能进行安全检查</p>
-</blockquote>
-</li>
-<li><p>const 定义的变量只有类型为整数或枚举，且以常量表达式初始化时才能作为常量表达式。</p>
-</li>
-<li><p>其他情况下它只是一个 <code>const</code> 限定的变量，不要将与常量混淆。</p>
-</li>
-</ul>
-</li>
-<li><p>防止修改，起保护作用。</p>
-</li>
+</blockquote></li>
+<li><p>const
+定义的变量只有类型为整数或枚举，且以常量表达式初始化时才能作为常量表达式。</p></li>
+<li><p>其他情况下它只是一个 <code>const</code>
+限定的变量，不要将与常量混淆。</p></li>
+</ul></li>
+<li><p>防止修改，起保护作用。</p></li>
 </ul>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(<span class="type">const</span> <span class="type">int</span> i)</span></span>&#123;</span><br><span class="line">  i++;	<span class="comment">//error</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>可以节省空间，避免不必要的内存分配<ul>
-<li>const 定义常量从汇编的角度看，只是给出了对应的内存地址，而不是<code>#define</code>一样给出的是立即数。</li>
-<li>const 定义的常量在程序运行过程中只有一份拷贝。而<code>#define</code>定义的常量在内存中有若干个拷贝。</li>
+<li>可以节省空间，避免不必要的内存分配
+<ul>
+<li>const
+定义常量从汇编的角度看，只是给出了对应的内存地址，而不是<code>#define</code>一样给出的是立即数。</li>
+<li>const
+定义的常量在程序运行过程中只有一份拷贝。而<code>#define</code>定义的常量在内存中有若干个拷贝。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h1 id="3-const-对象默认为文件局部变量"><a href="#3-const-对象默认为文件局部变量" class="headerlink" title="3. const 对象默认为文件局部变量"></a>3. const 对象默认为文件局部变量</h1><p>注意：非const变量默认为extern。要使const变量能够在其他文件中访问，必须在文件中显式地指定它为extern。</p>
+<h1 id="const-对象默认为文件局部变量">3. const
+对象默认为文件局部变量</h1>
+<p>注意：非const变量默认为extern。要使const变量能够在其他文件中访问，必须在文件中显式地指定它为extern。</p>
 <blockquote>
 <p>未被const修饰的变量在不同文件的访问</p>
 </blockquote>
@@ -358,24 +366,30 @@
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//extern_file1.cpp</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">int</span> ext=<span class="number">12</span>;</span><br><span class="line"><span class="comment">//extern_file2.cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">int</span> ext;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cout&lt;&lt;ext&lt;&lt;std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>小结：<br>可以发现未被const修饰的变量不需要extern显式声明！而const常量需要显式声明extern，并且需要做初始化！因为常量在定义后就不能被修改，所以定义时必须初始化。</p>
+<p>小结：
+可以发现未被const修饰的变量不需要extern显式声明！而const常量需要显式声明extern，并且需要做初始化！因为常量在定义后就不能被修改，所以定义时必须初始化。</p>
 </blockquote>
-<h1 id="4-定义常量"><a href="#4-定义常量" class="headerlink" title="4. 定义常量"></a>4. 定义常量</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> b = <span class="number">10</span>;</span><br><span class="line">b = <span class="number">0</span>; <span class="comment">// error: assignment of read-only variable ‘b’</span></span><br><span class="line"><span class="type">const</span> string s = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> i,j=<span class="number">0</span> <span class="comment">// error: uninitialized const ‘i’</span></span><br></pre></td></tr></table></figure>
+<h1 id="定义常量">4. 定义常量</h1>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> b = <span class="number">10</span>;</span><br><span class="line">b = <span class="number">0</span>; <span class="comment">// error: assignment of read-only variable ‘b’</span></span><br><span class="line"><span class="type">const</span> string s = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> i,j=<span class="number">0</span> <span class="comment">// error: uninitialized const ‘i’</span></span><br></pre></td></tr></table></figure>
 <p>上述有两个错误：</p>
 <blockquote>
 <ul>
 <li>b 为常量，不可更改！</li>
-<li>i 为常量，必须进行初始化！(因为常量在定义后就不能被修改，所以定义时必须初始化。)</li>
+<li>i
+为常量，必须进行初始化！(因为常量在定义后就不能被修改，所以定义时必须初始化。)</li>
 </ul>
 </blockquote>
 <p>小结：</p>
 <blockquote>
 <p>const 定义常量时，不可以进行更改，并且必须初始化。</p>
 </blockquote>
-<h1 id="5-指针与const"><a href="#5-指针与const" class="headerlink" title="5. 指针与const"></a>5. 指针与const</h1><p>与指针相关的const有四种：</p>
+<h1 id="指针与const">5. 指针与const</h1>
+<p>与指针相关的const有四种：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span> * a; <span class="comment">//指向const对象的指针或者说指向常量的指针。</span></span><br><span class="line"><span class="type">char</span> <span class="type">const</span> * a; <span class="comment">//同上</span></span><br><span class="line"><span class="type">char</span> * <span class="type">const</span> a; <span class="comment">//指向类型对象的const指针。或者说常指针、const指针。</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> * <span class="type">const</span> a; <span class="comment">//指向const对象的const指针。</span></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><strong>小结：</strong><br>如果<em>const</em>位于<code>*</code>的左侧，则const就是用来修饰指针所指向的变量，即指针指向为常量；<br>如果const位于<code>*</code>的右侧，<em>const</em>就是修饰指针本身，即指针本身是常量。</p>
+<p><strong>小结：</strong>
+如果<em>const</em>位于<code>*</code>的左侧，则const就是用来修饰指针所指向的变量，即指针指向为常量；
+如果const位于<code>*</code>的右侧，<em>const</em>就是修饰指针本身，即指针本身是常量。</p>
 </blockquote>
 
     </div>
@@ -471,7 +485,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -525,7 +539,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

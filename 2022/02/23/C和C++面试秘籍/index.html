@@ -52,7 +52,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -145,7 +149,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-C%E5%92%8CC-%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">1. C和C++的区别是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E5%85%B3%E9%94%AE%E5%AD%97static%E3%80%81const%E3%80%81extern%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2. 关键字static、const、extern作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-%E5%86%85%E5%AD%98%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%88%86%E9%85%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">3. 内存有哪几种类型及分配方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">4.</span> <span class="nav-text">4. 堆和栈的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-%E4%BB%80%E4%B9%88%E6%98%AF%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%EF%BC%9F%E9%9D%A2%E5%AF%B9%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%92%8C%E6%8C%87%E9%92%88%E8%B6%8A%E7%95%8C%EF%BC%8C%E4%BD%A0%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%EF%BC%9F%E4%BD%A0%E9%80%9A%E5%B8%B8%E9%87%87%E7%94%A8%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%E6%9D%A5%E9%81%BF%E5%85%8D%E5%92%8C%E5%87%8F%E5%B0%91%E8%BF%99%E7%B1%BB%E9%94%99%E8%AF%AF%EF%BC%9F"><span class="nav-number">5.</span> <span class="nav-text">5. 什么是内存泄漏？面对内存泄漏和指针越界，你有哪些方法？你通常采用哪些方法来避免和减少这类错误？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">6.</span> <span class="nav-text">6. 引用和指针的区别？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#7-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="nav-number">6.1.</span> <span class="nav-text">7. 面向对象的三大特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#8-%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="nav-number">6.2.</span> <span class="nav-text">8. 形参和实参的区别？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-vitrual-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">7.</span> <span class="nav-text">9. vitrual 关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">8.</span> <span class="nav-text">volatile常见问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C%E5%92%8CC-%E4%B8%AD%E7%9A%84Struct%E5%8C%BA%E5%88%AB"><span class="nav-number">9.</span> <span class="nav-text">C和C++中的Struct区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#struct%E4%B8%8Eclass%E5%8C%BA%E5%88%AB"><span class="nav-number">10.</span> <span class="nav-text">struct与class区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8F%8B%E5%85%83%E7%B1%BB"><span class="nav-number">11.</span> <span class="nav-text">友元函数与友元类</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E5%92%8Cc%E7%9A%84%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">1.</span> <span class="nav-text">1. C和C++的区别是什么？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AD%97staticconstextern%E4%BD%9C%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">2.
+关键字static、const、extern作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%9C%89%E5%93%AA%E5%87%A0%E7%A7%8D%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%88%86%E9%85%8D%E6%96%B9%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">3. 内存有哪几种类型及分配方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">4.</span> <span class="nav-text">4. 堆和栈的区别？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E5%92%8C%E6%8C%87%E9%92%88%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">5.</span> <span class="nav-text">6. 引用和指针的区别？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="nav-number">5.1.</span> <span class="nav-text">7. 面向对象的三大特性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BD%A2%E5%8F%82%E5%92%8C%E5%AE%9E%E5%8F%82%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">5.2.</span> <span class="nav-text">8. 形参和实参的区别？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vitrual-%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">6.</span> <span class="nav-text">9. vitrual 关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">7.</span> <span class="nav-text">volatile常见问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c%E5%92%8Cc%E4%B8%AD%E7%9A%84struct%E5%8C%BA%E5%88%AB"><span class="nav-number">8.</span> <span class="nav-text">C和C++中的Struct区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#struct%E4%B8%8Eclass%E5%8C%BA%E5%88%AB"><span class="nav-number">9.</span> <span class="nav-text">struct与class区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0%E4%B8%8E%E5%8F%8B%E5%85%83%E7%B1%BB"><span class="nav-number">10.</span> <span class="nav-text">友元函数与友元类</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -301,7 +306,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4.2k</span>
+      <span>4.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -321,127 +326,182 @@
     <div class="post-body" itemprop="articleBody">
         <p><code>C++</code>一些常见问题</p>
 <span id="more"></span>
-<h3 id="1-C和C-的区别是什么？"><a href="#1-C和C-的区别是什么？" class="headerlink" title="1. C和C++的区别是什么？"></a>1. C和C++的区别是什么？</h3><p>1，C是面向过程的语言，C++是面向对象的编程语言。面向对象是一种对现实世界理解和抽象的方法。</p>
+<h3 id="c和c的区别是什么">1. C和C++的区别是什么？</h3>
+<p>1，C是面向过程的语言，C++是面向对象的编程语言。面向对象是一种对现实世界理解和抽象的方法。</p>
 <p>2，C中函数不能进行重载，C++中函数可以重载。</p>
 <p>3，C++在C的基础上增添类。</p>
 <p>4，C中struct和C++的类(class)，除了默认访问权限外(struct的成员默认访问修饰符是public,而class默认的是private;)，别的功能几乎相同。</p>
 <p>5，C和C++动态管理管理内存的方法不同，C是使用malloc/free函数，而C++除此之外还有new/delete关键字。</p>
 <p>6，C++中有引用而C没有。</p>
-<h3 id="2-关键字static、const、extern作用"><a href="#2-关键字static、const、extern作用" class="headerlink" title="2. 关键字static、const、extern作用"></a>2. 关键字static、const、extern作用</h3><p><strong>static关键字的作用：</strong><br>    1）隐藏，当同时编译多个文件时，所有未加static前缀的全局变量和函数都具有全局可见性。</p>
-<p>​    2）保持变量内容的持久。</p>
-<p>​    3）默认初始化为0</p>
-<p>​    4）C++中的类成员声明static</p>
-<p><strong>const关键字的作用：</strong><br>（1）阻止一个变量被改变<br>（2）声明常量指针和指针常量<br>（3）const修饰形参，表明该输入参数在函数内部不能改变其值<br>（4）对于类的成员函数，若指定其为const类型，则表明其是一个常函数，不能修改类的成员变量(const成员一般在成员初始化列表处初始化)<br>（5）对于类的成员函数，有时候必须指定其返回值为const类型<br><strong>extern关键字的作用：</strong><br>（1）<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=extern&amp;spm=1001.2101.3001.7020">extern</a>可以置于变量或者函数前，以标示变量或者函数的定义在别的文件中，提示编译器遇到此变量和函数时在其他模块中寻找其定义。<br>（2）extern “C”的作用是让 C++ 编译器将extern “C”声明的代码当作 C 语言代码处理，可以避免 C++ 因符号修饰导致代码不能和C语言库中的符号进行链接。</p>
-<h3 id="3-内存有哪几种类型及分配方式"><a href="#3-内存有哪几种类型及分配方式" class="headerlink" title="3. 内存有哪几种类型及分配方式"></a>3. 内存有哪几种类型及分配方式</h3><p>类型：</p>
-<p>​    1，栈区(stack)：如局部变量，函数参数</p>
-<p>​    2，堆区(heap)：一般由程序员分配释放，若程序员不释放，程序结束时可能由操作系统回收。</p>
-<p>​    3，全局/静态区：如全局变量、static变量</p>
-<p>​    4，常量存储区：存放常量字符串</p>
-<p>​    5，程序代码区：存放函数体的二进制代码</p>
-<p>​    6，c++中还有所谓的自由存储区(new)</p>
+<h3 id="关键字staticconstextern作用">2.
+关键字static、const、extern作用</h3>
+<p><strong>static关键字的作用：</strong>
+1）隐藏，当同时编译多个文件时，所有未加static前缀的全局变量和函数都具有全局可见性。</p>
+<p>​ 2）保持变量内容的持久。</p>
+<p>​ 3）默认初始化为0</p>
+<p>​ 4）C++中的类成员声明static</p>
+<p><strong>const关键字的作用：</strong> （1）阻止一个变量被改变
+（2）声明常量指针和指针常量
+（3）const修饰形参，表明该输入参数在函数内部不能改变其值
+（4）对于类的成员函数，若指定其为const类型，则表明其是一个常函数，不能修改类的成员变量(const成员一般在成员初始化列表处初始化)
+（5）对于类的成员函数，有时候必须指定其返回值为const类型
+<strong>extern关键字的作用：</strong> （1）<a
+target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=extern&amp;spm=1001.2101.3001.7020">extern</a>可以置于变量或者函数前，以标示变量或者函数的定义在别的文件中，提示编译器遇到此变量和函数时在其他模块中寻找其定义。
+（2）extern "C"的作用是让 C++ 编译器将extern "C"声明的代码当作 C
+语言代码处理，可以避免 C++
+因符号修饰导致代码不能和C语言库中的符号进行链接。</p>
+<h3 id="内存有哪几种类型及分配方式">3. 内存有哪几种类型及分配方式</h3>
+<p>类型：</p>
+<p>​ 1，栈区(stack)：如局部变量，函数参数</p>
+<p>​
+2，堆区(heap)：一般由程序员分配释放，若程序员不释放，程序结束时可能由操作系统回收。</p>
+<p>​ 3，全局/静态区：如全局变量、static变量</p>
+<p>​ 4，常量存储区：存放常量字符串</p>
+<p>​ 5，程序代码区：存放函数体的二进制代码</p>
+<p>​ 6，c++中还有所谓的自由存储区(new)</p>
 <p>分配方式：</p>
-<p>​    1，从静态存储区域分配</p>
-<p>​    2，在栈上分配</p>
-<p>​    3，在堆上分配，也被称为动态内存分配</p>
-<h3 id="4-堆和栈的区别？"><a href="#4-堆和栈的区别？" class="headerlink" title="4. 堆和栈的区别？"></a>4. 堆和栈的区别？</h3><p>1)堆存放动态分配的对象——即那些在程序运行时动态分配的对象，比如 new 出来的对象，其生存期由程序控制；</p>
+<p>​ 1，从静态存储区域分配</p>
+<p>​ 2，在栈上分配</p>
+<p>​ 3，在堆上分配，也被称为动态内存分配</p>
+<h3 id="堆和栈的区别">4. 堆和栈的区别？</h3>
+<p>1)堆存放动态分配的对象——即那些在程序运行时动态分配的对象，比如 new
+出来的对象，其生存期由程序控制；</p>
 <p>2)栈用来保存定义在函数内的非static对象，如局部变量，仅在其定义的程序块运行时才存在；</p>
 <p>3)静态内存用来保存static对象，类static数据成员以及定义在任何函数外部的变量，static对象在使用之前分配，程序结束时销毁；</p>
 <p>4)栈和静态内存的对象由编译器自动创建和销毁。</p>
-<h3 id="5-什么是内存泄漏？面对内存泄漏和指针越界，你有哪些方法？你通常采用哪些方法来避免和减少这类错误？"><a href="#5-什么是内存泄漏？面对内存泄漏和指针越界，你有哪些方法？你通常采用哪些方法来避免和减少这类错误？" class="headerlink" title="5. 什么是内存泄漏？面对内存泄漏和指针越界，你有哪些方法？你通常采用哪些方法来避免和减少这类错误？"></a>5. 什么是内存泄漏？面对内存泄漏和指针越界，你有哪些方法？你通常采用哪些方法来避免和减少这类错误？</h3><p>用动态存储分配函数动态开辟的空间，在使用完毕后未释放，结果导致一直占据该内存单元即为内存泄露。</p>
+<p>###5.
+什么是内存泄漏？面对内存泄漏和指针越界，你有哪些方法？你通常采用哪些方法来避免和减少这类错误？</p>
+<p>用动态存储分配函数动态开辟的空间，在使用完毕后未释放，结果导致一直占据该内存单元即为内存泄露。</p>
 <p>方法：</p>
-<p>1). 使用的时候要记得指针的长度. </p>
-<p>2). malloc的时候得确定在那里free. </p>
-<p>3). 对指针赋值的时候应该注意被赋值指针需要不需要释放. </p>
-<p>4). 动态分配内存的指针最好不要再次赋值. </p>
+<p>1). 使用的时候要记得指针的长度.</p>
+<p>2). malloc的时候得确定在那里free.</p>
+<p>3). 对指针赋值的时候应该注意被赋值指针需要不需要释放.</p>
+<p>4). 动态分配内存的指针最好不要再次赋值.</p>
 <p>5). 在C++中应该优先考虑使用智能指针.</p>
-<h3 id="6-引用和指针的区别？"><a href="#6-引用和指针的区别？" class="headerlink" title="6. 引用和指针的区别？"></a>6. 引用和指针的区别？</h3><p>1) 指针是一个实体，需要分配内存空间。引用只是变量的别名，不需要分配内存空间。</p>
-<p>2) 引用在定义时必须初始化，并且不能够改变。（引用的值不能为NULL）指针在定义时不一定需要初始化，并且指向的空间可变。</p>
-<p>3) 有多级指针，但是没有多级引用，只能有一级引用。</p>
-<p>4) 指针和引用的自增运算结果不同。（指针是指向下一个空间，引用是引用的变量加1）</p>
-<p>5) sizeof引用得到的是所指向的变量的大小，sizeof指针得到的是指针的大小。</p>
-<p>6) 引用访问一个变量是直接访问，而指针访问是间接访问。</p>
-<p>7) 作为参数时也不一样，传指针本质上是传值，传递的值是指针的地址；传引用本质是传地址，传递的是变量的地址。</p>
-<h4 id="7-面向对象的三大特性"><a href="#7-面向对象的三大特性" class="headerlink" title="7. 面向对象的三大特性"></a>7. 面向对象的三大特性</h4><p>1) 抽象</p>
-<p>2) 继承</p>
-<p>3) 多态</p>
-<h4 id="8-形参和实参的区别？"><a href="#8-形参和实参的区别？" class="headerlink" title="8. 形参和实参的区别？"></a>8. 形参和实参的区别？</h4><p>1）形参变量只有在被调用时才分配内存单元，在调用结束时， 即刻释放所分配的内存单元。</p>
-<p>2）实参可以是常量、变量、表达式、函数等， 无论实参是何种类型的量，在进行函数调用时，它们都必须具有确定的值， 以便把这些值传送给形参。</p>
+<h3 id="引用和指针的区别">6. 引用和指针的区别？</h3>
+<ol type="1">
+<li><p>指针是一个实体，需要分配内存空间。引用只是变量的别名，不需要分配内存空间。</p></li>
+<li><p>引用在定义时必须初始化，并且不能够改变。（引用的值不能为NULL）指针在定义时不一定需要初始化，并且指向的空间可变。</p></li>
+<li><p>有多级指针，但是没有多级引用，只能有一级引用。</p></li>
+<li><p>指针和引用的自增运算结果不同。（指针是指向下一个空间，引用是引用的变量加1）</p></li>
+<li><p>sizeof引用得到的是所指向的变量的大小，sizeof指针得到的是指针的大小。</p></li>
+<li><p>引用访问一个变量是直接访问，而指针访问是间接访问。</p></li>
+<li><p>作为参数时也不一样，传指针本质上是传值，传递的值是指针的地址；传引用本质是传地址，传递的是变量的地址。</p></li>
+</ol>
+<h4 id="面向对象的三大特性">7. 面向对象的三大特性</h4>
+<ol type="1">
+<li><p>抽象</p></li>
+<li><p>继承</p></li>
+<li><p>多态</p></li>
+</ol>
+<h4 id="形参和实参的区别">8. 形参和实参的区别？</h4>
+<p>1）形参变量只有在被调用时才分配内存单元，在调用结束时，
+即刻释放所分配的内存单元。</p>
+<p>2）实参可以是常量、变量、表达式、函数等，
+无论实参是何种类型的量，在进行函数调用时，它们都必须具有确定的值，
+以便把这些值传送给形参。</p>
 <p>3）函数调用中发生的数据传送是单向的。只能把实参的值传送给形参，而不能把形参的值反向地传送给实参。</p>
-<h3 id="9-vitrual-关键字"><a href="#9-vitrual-关键字" class="headerlink" title="9. vitrual 关键字"></a>9. vitrual 关键字</h3><p>（1） <strong>静态函数可以声明为虚函数吗？</strong></p>
+<h3 id="vitrual-关键字">9. vitrual 关键字</h3>
+<p>（1） <strong>静态函数可以声明为虚函数吗？</strong></p>
 <p>原因主要有两方面：</p>
-<p><strong>静态函数不可以声明为虚函数，同时也不能被const 和 volatile关键字修饰</strong></p>
+<p><strong>静态函数不可以声明为虚函数，同时也不能被const 和
+volatile关键字修饰</strong></p>
 <p>static成员函数不属于任何类对象或类实例，所以即使给此函数加上virutal也是没有任何意义</p>
 <p>虚函数依靠vptr和vtable来处理。vptr是一个指针，在类的构造函数中创建生成，并且只能用this指针来访问它，静态成员函数没有this指针，所以无法访问vptr。</p>
 <p>（2）<strong>构造函数可以为虚函数吗？</strong></p>
 <p>构造函数不可以声明为虚函数。同时除了inline|explicit之外，构造函数不允许使用其它任何关键字。</p>
 <p>为什么构造函数不可以为虚函数？</p>
-<p>尽管虚函数表vtable是在编译阶段就已经建立的，但指向虚函数表的指针vptr是在运行阶段实例化对象时才产生的。 如果类含有虚函数，编译器会在构造函数中添加代码来创建vptr。 问题来了，如果构造函数是虚的，那么它需要vptr来访问vtable，可这个时候vptr还没产生。 因此，构造函数不可以为虚函数。</p>
-<p>我们之所以使用虚函数，是因为需要在信息不全的情况下进行多态运行。而构造函数是用来初始化实例的，实例的类型必须是明确的。 因此，构造函数没有必要被声明为虚函数。</p>
+<p>尽管虚函数表vtable是在编译阶段就已经建立的，但指向虚函数表的指针vptr是在运行阶段实例化对象时才产生的。
+如果类含有虚函数，编译器会在构造函数中添加代码来创建vptr。
+问题来了，如果构造函数是虚的，那么它需要vptr来访问vtable，可这个时候vptr还没产生。
+因此，构造函数不可以为虚函数。</p>
+<p>我们之所以使用虚函数，是因为需要在信息不全的情况下进行多态运行。而构造函数是用来初始化实例的，实例的类型必须是明确的。
+因此，构造函数没有必要被声明为虚函数。</p>
 <p>（3）<strong>析构函数可以为虚函数吗？</strong></p>
-<p><strong>析构函数可以声明为虚函数。如果我们需要删除一个指向派生类的基类指针时，应该把析构函数声明为虚函数。 事实上，只要一个类有可能会被其它类所继承， 就应该声明虚析构函数(哪怕该析构函数不执行任何操作)。</strong></p>
+<p><strong>析构函数可以声明为虚函数。如果我们需要删除一个指向派生类的基类指针时，应该把析构函数声明为虚函数。
+事实上，只要一个类有可能会被其它类所继承，
+就应该声明虚析构函数(哪怕该析构函数不执行任何操作)。</strong></p>
 <p>（4）<strong>虚函数可以为私有函数吗？</strong></p>
 <ul>
 <li>基类指针指向继承类对象，则调用继承类对象的函数；</li>
-<li>int main()必须声明为Base类的友元，否则编译失败。 编译器报错： ptr无法访问私有函数。 当然，把基类声明为public， 继承类为private，该问题就不存在了。</li>
+<li>int main()必须声明为Base类的友元，否则编译失败。 编译器报错：
+ptr无法访问私有函数。 当然，把基类声明为public，
+继承类为private，该问题就不存在了。</li>
 </ul>
 <p>5）<strong>虚函数可以被内联吗？</strong></p>
-<p><strong>通常类成员函数都会被编译器考虑是否进行内联。 但通过基类指针或者引用调用的虚函数必定不能被内联。 当然，实体对象调用虚函数或者静态调用时可以被内联，虚析构函数的静态调用也一定会被内联展开。</strong></p>
+<p><strong>通常类成员函数都会被编译器考虑是否进行内联。
+但通过基类指针或者引用调用的虚函数必定不能被内联。
+当然，实体对象调用虚函数或者静态调用时可以被内联，虚析构函数的静态调用也一定会被内联展开。</strong></p>
 <ul>
 <li>虚函数可以是内联函数，内联是可以修饰虚函数的，但是当虚函数表现多态性的时候不能内联。</li>
 <li>内联是在编译器建议编译器内联，而虚函数的多态性在运行期，编译器无法知道运行期调用哪个代码，因此虚函数表现为多态性时（运行期）不可以内联。</li>
-<li><code>inline virtual</code> 唯一可以内联的时候是：编译器知道所调用的对象是哪个类（如 <code>Base::who()</code>），这只有在编译器具有实际对象而不是对象的指针或引用时才会发生。</li>
+<li><code>inline virtual</code>
+唯一可以内联的时候是：编译器知道所调用的对象是哪个类（如
+<code>Base::who()</code>），这只有在编译器具有实际对象而不是对象的指针或引用时才会发生。</li>
 </ul>
-<h3 id="volatile常见问题"><a href="#volatile常见问题" class="headerlink" title="volatile常见问题"></a>volatile常见问题</h3><p>（1）一个参数既可以是const还可以是volatile吗？为什么？ </p>
-<p>​    可以。一个例子是只读的状态寄存器。它是volatile因为它可能被意想不到地改变。它是const因为程序不应该试图去修改它。</p>
-<p>（2）一个指针可以是volatile吗？为什么？ 可以。尽管这并不常见。一个例子是当一个中断服务子程序修该一个指向一个buffer的指针时。（3）下面的函数有什么错误？</p>
+<h3 id="volatile常见问题">volatile常见问题</h3>
+<p>（1）一个参数既可以是const还可以是volatile吗？为什么？</p>
+<p>​
+可以。一个例子是只读的状态寄存器。它是volatile因为它可能被意想不到地改变。它是const因为程序不应该试图去修改它。</p>
+<p>（2）一个指针可以是volatile吗？为什么？
+可以。尽管这并不常见。一个例子是当一个中断服务子程序修该一个指向一个buffer的指针时。（3）下面的函数有什么错误？</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">square</span><span class="params">(<span class="keyword">volatile</span> <span class="type">int</span> *ptr)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line"><span class="keyword">return</span> *ptr * *ptr; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 <p>这段代码有点变态，其目的是用来返回指针ptr指向值的平方，但是，由于ptr指向一个volatile型参数，编译器将产生类似下面的代码</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">square</span><span class="params">(<span class="keyword">volatile</span> <span class="type">int</span> *ptr)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line"><span class="type">int</span> a,b; </span><br><span class="line">a = *ptr; </span><br><span class="line">b = *ptr; </span><br><span class="line"><span class="keyword">return</span> a * b; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 <p>由于*ptr的值可能被意想不到地改变，因此a和b可能是不同的。结果，这段代码可能返回的不是你所期望的平方值！正确的代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">long</span> <span class="title">square</span><span class="params">(<span class="keyword">volatile</span> <span class="type">int</span> *ptr)</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line"><span class="type">int</span> a=*ptr; </span><br><span class="line"><span class="keyword">return</span> a * a; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
 <ul>
-<li>volatile 关键字是一种类型修饰符，用它声明的类型变量表示可以被某些编译器未知的因素（操作系统、硬件、其它线程等）更改。所以使用 volatile 告诉编译器不应对这样的对象进行优化。</li>
-<li>volatile 关键字声明的变量，每次访问时都必须从内存中取出值（没有被 volatile 修饰的变量，可能由于编译器的优化，从 CPU 寄存器中取值）</li>
+<li>volatile
+关键字是一种类型修饰符，用它声明的类型变量表示可以被某些编译器未知的因素（操作系统、硬件、其它线程等）更改。所以使用
+volatile 告诉编译器不应对这样的对象进行优化。</li>
+<li>volatile 关键字声明的变量，每次访问时都必须从内存中取出值（没有被
+volatile 修饰的变量，可能由于编译器的优化，从 CPU 寄存器中取值）</li>
 <li>const 可以是 volatile （如只读的状态寄存器）</li>
 <li>指针可以是 volatile</li>
 </ul>
-<h3 id="C和C-中的Struct区别"><a href="#C和C-中的Struct区别" class="headerlink" title="C和C++中的Struct区别"></a>C和C++中的Struct区别</h3><div class="table-container">
+<h3 id="c和c中的struct区别">C和C++中的Struct区别</h3>
 <table>
+<colgroup>
+<col style="width: 47%" />
+<col style="width: 52%" />
+</colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>C</th>
 <th>C++</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>不能将函数放在结构体声明</td>
 <td>能将函数放在结构体声明</td>
 </tr>
-<tr>
+<tr class="even">
 <td>在C结构体声明中不能使用C++访问修饰符。</td>
 <td>public、protected、private 在C++中可以使用。</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>在C中定义结构体变量，如果使用了下面定义必须加struct。</td>
 <td>可以不加struct</td>
 </tr>
-<tr>
+<tr class="even">
 <td>结构体不能继承（没有这一概念）。</td>
 <td>可以继承</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>若结构体的名字与函数名相同，可以正常运行且正常的调用！</td>
 <td>若结构体的名字与函数名相同，使用结构体，只能使用带struct定义！</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h3 id="struct与class区别"><a href="#struct与class区别" class="headerlink" title="struct与class区别"></a>struct与class区别</h3><p>区别:</p>
+<h3 id="struct与class区别">struct与class区别</h3>
+<p>区别:</p>
 <p>最本质的一个区别就是默认的访问控制</p>
 <p>默认的继承访问权限。struct 是 public 的，class 是 private 的。</p>
-<p>struct 作为数据结构的实现体，它默认的数据访问控制是 public 的，而 class 作为对象的实现体，它默认的成员变量访问控制是 private 的。</p>
-<h3 id="友元函数与友元类"><a href="#友元函数与友元类" class="headerlink" title="友元函数与友元类"></a>友元函数与友元类</h3><ul>
+<p>struct 作为数据结构的实现体，它默认的数据访问控制是 public 的，而
+class 作为对象的实现体，它默认的成员变量访问控制是 private 的。</p>
+<h3 id="友元函数与友元类">友元函数与友元类</h3>
+<ul>
 <li>能访问私有成员</li>
 <li>破坏封装性</li>
 <li>友元关系不可传递</li>
@@ -541,7 +601,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -595,7 +655,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

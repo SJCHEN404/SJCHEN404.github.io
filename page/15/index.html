@@ -49,7 +49,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -307,7 +311,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><a target="_blank" rel="noopener" href="https://www.hpuoj.com/contest/16/problem/H/">题目链接</a></p>
+          <p><a
+target="_blank" rel="noopener" href="https://www.hpuoj.com/contest/16/problem/H/">题目链接</a></p>
 <p>H. Mo的面积</p>
 <p>单测试点时限: 1.0 秒</p>
 <p>内存限制: 512 MB</p>
@@ -414,7 +419,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>296</span>
+      <span>299</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -432,11 +437,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="一些常用的hexo方法"><a href="#一些常用的hexo方法" class="headerlink" title="一些常用的hexo方法"></a>一些常用的hexo方法</h1><h2 id="创建一个-md文件"><a href="#创建一个-md文件" class="headerlink" title="创建一个.md文件"></a>创建一个.md文件</h2><p>可以执行：</p>
+          <h1 id="一些常用的hexo方法">一些常用的hexo方法</h1>
+<h2 id="创建一个.md文件">创建一个.md文件</h2>
+<p>可以执行：</p>
 <blockquote>
-<p>$ hexo new “文件名”</p>
+<p>$ hexo new "文件名"</p>
 </blockquote>
-<h2 id="插入图片"><a href="#插入图片" class="headerlink" title="插入图片"></a>插入图片</h2><ul>
+<h2 id="插入图片">插入图片</h2>
+<ul>
 <li>首先把blog（hexo）目录下的_config.yml里的psot_asset_folder:设置为true</li>
 <li>在blog（hexo）目录下执行:</li>
 </ul>
@@ -444,13 +452,17 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-asset-image --save</span><br></pre></td></tr></table></figure>
 </blockquote>
 <ul>
-<li>在blog（hexo）目录下Git Bash Here，运行hexo n “博客名”来生成md博客时，会在_post目录下看到一个与博客同名的文件夹。</li>
+<li>在blog（hexo）目录下Git Bash Here，运行hexo n
+"博客名"来生成md博客时，会在_post目录下看到一个与博客同名的文件夹。</li>
 <li>将想要上传的图片先扔到文件夹下，然后在博客中使用markdown的格式引入图片：</li>
 </ul>
 <blockquote>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![你想要输入的替代文字](xxxx/图片名.jpg)</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p><img src="/hexo常用技巧/test.png" alt="插入图片"></p>
+<figure>
+<img src="/hexo常用技巧/test.png" alt="插入图片" />
+<figcaption aria-hidden="true">插入图片</figcaption>
+</figure>
 
       
     </div>
@@ -546,7 +558,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>453</span>
+      <span>420</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -564,7 +576,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>打算搭建个博客用来记录自己学习的过程，这里就简单介绍下如何搭建一个个人博客。有讲得不好的请大家轻喷。</p>
+          <h1 id="前言">前言</h1>
+<p>打算搭建个博客用来记录自己学习的过程，这里就简单介绍下如何搭建一个个人博客。有讲得不好的请大家轻喷。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/04/04/hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
@@ -721,7 +734,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -775,7 +788,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

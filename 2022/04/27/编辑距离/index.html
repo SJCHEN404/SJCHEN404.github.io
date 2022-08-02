@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="72. 编辑距离给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数 。 你可以对一个单词进行如下三种操作：  插入一个字符 删除一个字符 替换一个字符  示例： 输入：word1 &#x3D; “horse”, word2 &#x3D; “ros”输出：3解释：horse -&gt; rorse (将 ‘h’ 替换为 ‘r’)rorse -&gt; rose (删">
+    <meta name="description" content="72. 编辑距离 给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数 。 你可以对一个单词进行如下三种操作：  插入一个字符 删除一个字符 替换一个字符  示例：  输入：word1 &#x3D; &quot;horse&quot;, word2 &#x3D; &quot;ros&quot; 输出：3 解释： horse -&gt; rorse (将 &#39;h&#39; 替换为 &#39;r&#39;) rorse -&gt; r">
 <meta property="og:type" content="article">
 <meta property="og:title" content="编辑距离">
 <meta property="og:url" content="https://sjchen404.github.io/2022/04/27/%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="72. 编辑距离给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数 。 你可以对一个单词进行如下三种操作：  插入一个字符 删除一个字符 替换一个字符  示例： 输入：word1 &#x3D; “horse”, word2 &#x3D; “ros”输出：3解释：horse -&gt; rorse (将 ‘h’ 替换为 ‘r’)rorse -&gt; rose (删">
+<meta property="og:description" content="72. 编辑距离 给你两个单词 word1 和 word2， 请返回将 word1 转换成 word2 所使用的最少操作数 。 你可以对一个单词进行如下三种操作：  插入一个字符 删除一个字符 替换一个字符  示例：  输入：word1 &#x3D; &quot;horse&quot;, word2 &#x3D; &quot;ros&quot; 输出：3 解释： horse -&gt; rorse (将 &#39;h&#39; 替换为 &#39;r&#39;) rorse -&gt; r">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-04-27T07:53:48.959Z">
 <meta property="article:modified_time" content="2022-05-14T16:09:08.048Z">
@@ -52,7 +52,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -145,7 +149,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#72-%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB"><span class="nav-number">1.</span> <span class="nav-text">72. 编辑距离</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%BE%91%E8%B7%9D%E7%A6%BB"><span class="nav-number">1.</span> <span class="nav-text">72.
+编辑距离</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -315,33 +320,40 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="72-编辑距离"><a href="#72-编辑距离" class="headerlink" title="72. 编辑距离"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/edit-distance/">72. 编辑距离</a></h1><p>给你两个单词 <code>word1</code> 和 <code>word2</code>， <em>请返回将 <code>word1</code> 转换成 <code>word2</code> 所使用的最少操作数</em> 。</p>
+        <h1 id="编辑距离"><a
+target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/edit-distance/">72.
+编辑距离</a></h1>
+<p>给你两个单词 <code>word1</code> 和 <code>word2</code>， <em>请返回将
+<code>word1</code> 转换成 <code>word2</code> 所使用的最少操作数</em>
+。</p>
 <p>你可以对一个单词进行如下三种操作：</p>
 <ul>
 <li>插入一个字符</li>
 <li>删除一个字符</li>
 <li>替换一个字符</li>
 </ul>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><blockquote>
-<p>输入：word1 = “horse”, word2 = “ros”<br>输出：3<br>解释：<br>horse -&gt; rorse (将 ‘h’ 替换为 ‘r’)<br>rorse -&gt; rose (删除 ‘r’)<br>rose -&gt; ros (删除 ‘e’)</p>
+<h2 id="示例">示例：</h2>
+<blockquote>
+<p>输入：word1 = "horse", word2 = "ros" 输出：3 解释： horse -&gt; rorse
+(将 'h' 替换为 'r') rorse -&gt; rose (删除 'r') rose -&gt; ros (删除
+'e')</p>
 </blockquote>
 <span id="more"></span>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p><code>if s1[i] == s2[j]:</code></p>
+<h3 id="思路">思路：</h3>
+<p><code>if s1[i] == s2[j]:</code></p>
 <ul>
 <li>什么也不做</li>
 <li><code>i, j</code>同时向前移动</li>
 </ul>
 <p><code>else</code>:</p>
-<p>​    三选一：</p>
+<p>​ 三选一：</p>
 <ul>
-<li><p>插入（inser）</p>
-</li>
-<li><p>删除（delete）</p>
-</li>
-<li><p>替换（replace）</p>
-</li>
+<li><p>插入（inser）</p></li>
+<li><p>删除（delete）</p></li>
+<li><p>替换（replace）</p></li>
 </ul>
-<p><strong><code>dp(i,j)</code>定义：返回<code>s1[0...i]</code> 和 <code>s2[0...j]</code> 的最小编辑距离</strong></p>
+<p><strong><code>dp(i,j)</code>定义：返回<code>s1[0...i]</code> 和
+<code>s2[0...j]</code> 的最小编辑距离</strong></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minDistance</span><span class="params">(string word1, string word2)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = word1.<span class="built_in">size</span>(), n = word2.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dp</span>(word1, word2, m - <span class="number">1</span>, n - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">dp</span><span class="params">(string&amp; s1, string &amp; s2, <span class="type">int</span> i, <span class="type">int</span> j)</span></span>&#123;</span><br><span class="line">        <span class="comment">//base case</span></span><br><span class="line">        <span class="keyword">if</span>(i == <span class="number">-1</span>) <span class="keyword">return</span> j + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(j == <span class="number">-1</span>) <span class="keyword">return</span> i + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//s1[i] == s2[j]什么都不做，i,j同时向前移</span></span><br><span class="line">        <span class="keyword">if</span>(s1[i] == s2[j])&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">dp</span>(s1, s2, i - <span class="number">1</span>, j - <span class="number">1</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//插入，删除，替换三选一</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">min</span>(<span class="built_in">dp</span>(s1, s2, i, j - <span class="number">1</span>) + <span class="number">1</span>, <span class="comment">//插入</span></span><br><span class="line">            <span class="built_in">min</span>(<span class="built_in">dp</span>(s1, s2, i - <span class="number">1</span>, j) + <span class="number">1</span>,        <span class="comment">//删除</span></span><br><span class="line">                <span class="built_in">dp</span>(s1, s2, i - <span class="number">1</span>, j - <span class="number">1</span>) + <span class="number">1</span>));  <span class="comment">//替换</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>有大量的重叠子问题，我们采用迭代的方法来解决</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minDistance</span><span class="params">(string word1, string word2)</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> m = word1.<span class="built_in">size</span>(), n = word2.<span class="built_in">size</span>();</span><br><span class="line">        vector&lt;vector&lt;<span class="type">int</span>&gt; &gt; <span class="built_in">dp</span>(m + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt; (n + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">        <span class="comment">//base case, 某一个为空时</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">            dp[i][<span class="number">0</span>] = i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">            dp[<span class="number">0</span>][j] = j;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 自底向上</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> j = <span class="number">1</span>; j &lt;= n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(word1[i - <span class="number">1</span>] == word2[j - <span class="number">1</span>])&#123;</span><br><span class="line">                    dp[i][j] = dp[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    dp[i][j] = <span class="built_in">min</span>(</span><br><span class="line">                        dp[i][j - <span class="number">1</span>] + <span class="number">1</span>,</span><br><span class="line">                        <span class="built_in">min</span>(</span><br><span class="line">                            dp[i - <span class="number">1</span>][j] + <span class="number">1</span>,</span><br><span class="line">                            dp[i - <span class="number">1</span>][j - <span class="number">1</span>] + <span class="number">1</span></span><br><span class="line">                        )</span><br><span class="line">                    );</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[m][n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -438,7 +450,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -492,7 +504,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="LC最长公共前缀编写一个函数来查找字符串数组中的最长公共前缀。 如果不存在公共前缀，返回空字符串 &quot;&quot;。 示例1: 输入：[“flower”,”flow”,”flight”] 输出：[fl]  示例2: 输入：[“dog”,”racecar”,”car”] 输出：”” 解释：输入不存在公共前缀  说明：所有人输入只包含小写字母a-z。">
+    <meta name="description" content="LC最长公共前缀 编写一个函数来查找字符串数组中的最长公共前缀。 如果不存在公共前缀，返回空字符串 &quot;&quot;。 示例1:  输入：[&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;] 输出：[fl]  示例2:  输入：[&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;] 输出：&quot;&quot; 解释：输入不存在公共前缀  说明： 所有人输入只包含小写字母a-z。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LC最长公共前缀">
 <meta property="og:url" content="https://sjchen404.github.io/2021/01/05/LC%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="LC最长公共前缀编写一个函数来查找字符串数组中的最长公共前缀。 如果不存在公共前缀，返回空字符串 &quot;&quot;。 示例1: 输入：[“flower”,”flow”,”flight”] 输出：[fl]  示例2: 输入：[“dog”,”racecar”,”car”] 输出：”” 解释：输入不存在公共前缀  说明：所有人输入只包含小写字母a-z。">
+<meta property="og:description" content="LC最长公共前缀 编写一个函数来查找字符串数组中的最长公共前缀。 如果不存在公共前缀，返回空字符串 &quot;&quot;。 示例1:  输入：[&quot;flower&quot;,&quot;flow&quot;,&quot;flight&quot;] 输出：[fl]  示例2:  输入：[&quot;dog&quot;,&quot;racecar&quot;,&quot;car&quot;] 输出：&quot;&quot; 解释：输入不存在公共前缀  说明： 所有人输入只包含小写字母a-z。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-05T11:54:45.418Z">
 <meta property="article:modified_time" content="2022-05-14T17:16:56.130Z">
@@ -53,7 +53,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -146,7 +150,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#LC%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80"><span class="nav-number">1.</span> <span class="nav-text">LC最长公共前缀</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B1"><span class="nav-number">1.0.1.</span> <span class="nav-text">示例1:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B2"><span class="nav-number">1.0.2.</span> <span class="nav-text">示例2:</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">说明：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF1%EF%BC%9A"><span class="nav-number">1.0.3.</span> <span class="nav-text">思路1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF2"><span class="nav-number">1.0.4.</span> <span class="nav-text">思路2:</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#lc%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80"><span class="nav-number">1.</span> <span class="nav-text">LC最长公共前缀</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B1"><span class="nav-number">1.0.1.</span> <span class="nav-text">示例1:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B2"><span class="nav-number">1.0.2.</span> <span class="nav-text">示例2:</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#%E8%AF%B4%E6%98%8E"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">说明：</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF1"><span class="nav-number">1.0.3.</span> <span class="nav-text">思路1：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF2"><span class="nav-number">1.0.4.</span> <span class="nav-text">思路2:</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -316,33 +320,45 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h3 id="LC最长公共前缀"><a href="#LC最长公共前缀" class="headerlink" title="LC最长公共前缀"></a>LC最长公共前缀</h3><p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
-<p>如果不存在公共前缀，返回空字符串 <code>&quot;&quot;</code>。</p>
-<h5 id="示例1"><a href="#示例1" class="headerlink" title="示例1:"></a>示例1:</h5><blockquote>
-<p>输入：[“flower”,”flow”,”flight”]</p>
+        <h3 id="lc最长公共前缀">LC最长公共前缀</h3>
+<p>编写一个函数来查找字符串数组中的最长公共前缀。</p>
+<p>如果不存在公共前缀，返回空字符串 <code>""</code>。</p>
+<h5 id="示例1">示例1:</h5>
+<blockquote>
+<p>输入：["flower","flow","flight"]</p>
 <p>输出：[fl]</p>
 </blockquote>
-<h5 id="示例2"><a href="#示例2" class="headerlink" title="示例2:"></a>示例2:</h5><blockquote>
-<p>输入：[“dog”,”racecar”,”car”]</p>
-<p>输出：””</p>
+<h5 id="示例2">示例2:</h5>
+<blockquote>
+<p>输入：["dog","racecar","car"]</p>
+<p>输出：""</p>
 <p>解释：输入不存在公共前缀</p>
 </blockquote>
-<h6 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h6><p>所有人输入只包含小写字母a-z。</p>
+<h6 id="说明">说明：</h6>
+<p>所有人输入只包含小写字母a-z。</p>
 <span id="more"></span>
-<h5 id="思路1："><a href="#思路1：" class="headerlink" title="思路1："></a>思路1：</h5><blockquote>
-<p>1，当字符串数组长度为0时，则公共前缀为空，直接返回<br>2，令最长公共前缀ans的值为第一个字符串，进行初始化<br>3，遍历后面的字符串，依次将其与res进行比较，两两找出公共前缀，最终结果即为<br>   最长公共前缀<br>4，如果查找过程中出现了res为空的情况，则公共前缀不存在，直接返回<br>时间复杂度为O(s),s为所有字符串的长度之和</p>
+<h5 id="思路1">思路1：</h5>
+<blockquote>
+<p>1，当字符串数组长度为0时，则公共前缀为空，直接返回
+2，令最长公共前缀ans的值为第一个字符串，进行初始化
+3，遍历后面的字符串，依次将其与res进行比较，两两找出公共前缀，最终结果即为
+最长公共前缀
+4，如果查找过程中出现了res为空的情况，则公共前缀不存在，直接返回
+时间复杂度为O(s),s为所有字符串的长度之和</p>
 </blockquote>
 <p>比如示例1；</p>
 <blockquote>
 <p>res = flower</p>
-<p>​          flow</p>
+<p>​ flow</p>
 <p>res = flow</p>
-<p>​          flight</p>
+<p>​ flight</p>
 <p>res = fl</p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">longestCommonPrefix</span><span class="params">(vector&lt;string&gt;&amp; strs)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">if</span>(strs.<span class="built_in">size</span>() == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    	string res = strs[<span class="number">0</span>];</span><br><span class="line">    	<span class="type">int</span> minlen = res.<span class="built_in">size</span>();<span class="comment">//记录公共前缀</span></span><br><span class="line">    	<span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">1</span>; i &lt; strs.<span class="built_in">size</span>(); i++)&#123;</span><br><span class="line">    		<span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line">    		<span class="keyword">for</span>(; j &lt; res.<span class="built_in">size</span>() &amp;&amp; j &lt; strs[i].<span class="built_in">size</span>(); j++)&#123;</span><br><span class="line">    			<span class="keyword">if</span>(res[j] != strs[i][j]) <span class="keyword">break</span>;</span><br><span class="line">    		&#125;</span><br><span class="line">    		<span class="keyword">if</span>(j &lt;= minlen)&#123;</span><br><span class="line">    			res = <span class="built_in">string</span>(res,<span class="number">0</span>,j);</span><br><span class="line">    			minlen = j;</span><br><span class="line">    		&#125;</span><br><span class="line">    		<span class="keyword">if</span>(res.<span class="built_in">empty</span>()) <span class="keyword">return</span> res;</span><br><span class="line">    	&#125;</span><br><span class="line">    	<span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="思路2"><a href="#思路2" class="headerlink" title="思路2:"></a>思路2:</h5><blockquote>
-<p>思路1:<br>1，我们先对字符串排序<br>比如abc ab abce<br>排序完后为<br>ab abc abce</p>
+<h5 id="思路2">思路2:</h5>
+<blockquote>
+<p>思路1: 1，我们先对字符串排序 比如abc ab abce 排序完后为 ab abc
+abce</p>
 <p>2，比较头尾即可</p>
 <p>复杂度为sort的复杂度</p>
 </blockquote>
@@ -441,7 +457,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -495,7 +511,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 

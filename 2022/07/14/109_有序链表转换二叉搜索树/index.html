@@ -21,12 +21,12 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="109. 有序链表转换二叉搜索树给定一个单链表的头节点  head，其中的元素 按升序排序 ，将其转换为高度平衡的二叉搜索树。 本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差不超过 1。 示例：  输入: head &#x3D; [-10,-3,0,5,9]输出: [0,-3,9,-10,null,5]解释: 一个可能的答案是[0，-3,9，-10,null,5]，它表示所示的高度">
+    <meta name="description" content="109. 有序链表转换二叉搜索树 给定一个单链表的头节点 head，其中的元素 按升序排序 ，将其转换为高度平衡的二叉搜索树。 本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差不超过 1。 示例：   输入: head &#x3D; [-10,-3,0,5,9] 输出: [0,-3,9,-10,null,5] 解释: 一个可能的答案是[0，-3,9，-10,null,5]，它表示所示">
 <meta property="og:type" content="article">
 <meta property="og:title" content="109_有序链表转换二叉搜索树">
 <meta property="og:url" content="https://sjchen404.github.io/2022/07/14/109_%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%E8%BD%AC%E6%8D%A2%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/index.html">
 <meta property="og:site_name" content="SJCHEN">
-<meta property="og:description" content="109. 有序链表转换二叉搜索树给定一个单链表的头节点  head，其中的元素 按升序排序 ，将其转换为高度平衡的二叉搜索树。 本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差不超过 1。 示例：  输入: head &#x3D; [-10,-3,0,5,9]输出: [0,-3,9,-10,null,5]解释: 一个可能的答案是[0，-3,9，-10,null,5]，它表示所示的高度">
+<meta property="og:description" content="109. 有序链表转换二叉搜索树 给定一个单链表的头节点 head，其中的元素 按升序排序 ，将其转换为高度平衡的二叉搜索树。 本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差不超过 1。 示例：   输入: head &#x3D; [-10,-3,0,5,9] 输出: [0,-3,9,-10,null,5] 解释: 一个可能的答案是[0，-3,9，-10,null,5]，它表示所示">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://sjchen404.github.io/2022/07/14/109_%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%E8%BD%AC%E6%8D%A2%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/109_有序链表转换二叉搜索树/linked.jpg">
 <meta property="article:published_time" content="2022-07-13T17:36:12.612Z">
@@ -54,7 +54,11 @@
   <noscript>
     <link rel="stylesheet" href="/css/noscript.css">
   </noscript>
-</head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
   <div class="headband"></div>
@@ -147,7 +151,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#109-%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%E8%BD%AC%E6%8D%A2%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">109. 有序链表转换二叉搜索树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E9%80%9A%E8%BF%87%E5%BF%AB%E6%85%A2%E5%8F%8C%E6%8C%87%E9%92%88%E6%89%BE%E5%88%B0%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">方法一：通过快慢双指针找到链表中间节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">方法二：中序遍历</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%E8%BD%AC%E6%8D%A2%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91"><span class="nav-number">1.</span> <span class="nav-text">109.
+有序链表转换二叉搜索树</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B"><span class="nav-number">1.1.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF"><span class="nav-number">1.1.1.</span> <span class="nav-text">思路：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%E9%80%9A%E8%BF%87%E5%BF%AB%E6%85%A2%E5%8F%8C%E6%8C%87%E9%92%88%E6%89%BE%E5%88%B0%E9%93%BE%E8%A1%A8%E4%B8%AD%E9%97%B4%E8%8A%82%E7%82%B9"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">方法一：通过快慢双指针找到链表中间节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">方法二：中序遍历</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -310,18 +315,30 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="109-有序链表转换二叉搜索树"><a href="#109-有序链表转换二叉搜索树" class="headerlink" title="109. 有序链表转换二叉搜索树"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-sorted-list-to-binary-search-tree/">109. 有序链表转换二叉搜索树</a></h1><p>给定一个单链表的头节点  <code>head</code>，其中的元素 按升序排序 ，将其转换为高度平衡的二叉搜索树。</p>
-<p>本题中，一个高度平衡二叉树是指一个二叉树每个节点 的左右两个子树的高度差不超过 1。</p>
-<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p><img src="109_有序链表转换二叉搜索树/linked.jpg" alt=""></p>
+        <h1 id="有序链表转换二叉搜索树"><a
+target="_blank" rel="noopener" href="https://leetcode.cn/problems/convert-sorted-list-to-binary-search-tree/">109.
+有序链表转换二叉搜索树</a></h1>
+<p>给定一个单链表的头节点 <code>head</code>，其中的元素 按升序排序
+，将其转换为高度平衡的二叉搜索树。</p>
+<p>本题中，一个高度平衡二叉树是指一个二叉树每个节点
+的左右两个子树的高度差不超过 1。</p>
+<h2 id="示例">示例：</h2>
+<p><img src="109_有序链表转换二叉搜索树/linked.jpg" /></p>
 <blockquote>
-<p>输入: head = [-10,-3,0,5,9]<br>输出: [0,-3,9,-10,null,5]<br>解释: 一个可能的答案是[0，-3,9，-10,null,5]，它表示所示的高度平衡的二叉搜索树。<br><span id="more"></span></p>
+<p>输入: head = [-10,-3,0,5,9] 输出: [0,-3,9,-10,null,5] 解释:
+一个可能的答案是[0，-3,9，-10,null,5]，它表示所示的高度平衡的二叉搜索树。
+<span id="more"></span></p>
 </blockquote>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><h4 id="方法一：通过快慢双指针找到链表中间节点"><a href="#方法一：通过快慢双指针找到链表中间节点" class="headerlink" title="方法一：通过快慢双指针找到链表中间节点"></a>方法一：通过快慢双指针找到链表中间节点</h4><p>由于我们需要构造出平衡二叉树，那么我们第一步就是确定根结点，并且使根结点的左子树和右子树节点个数尽可能接近。这样左右子树的高度才能达到高度差的绝对值不超过1。</p>
+<h3 id="思路">思路：</h3>
+<h4
+id="方法一通过快慢双指针找到链表中间节点">方法一：通过快慢双指针找到链表中间节点</h4>
+<p>由于我们需要构造出平衡二叉树，那么我们第一步就是确定根结点，并且使根结点的左子树和右子树节点个数尽可能接近。这样左右子树的高度才能达到高度差的绝对值不超过1。</p>
 <p>那么如何找到这样的根结点呢？理所当然我们想到找到链表的中心节点。</p>
 <p>时间复杂度为<code>O(nlogn)</code></p>
 <p>空间复杂度为<code>O(logn)</code></p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution1</span> &#123;</span><br><span class="line"><span class="keyword">public</span>: </span><br><span class="line">    <span class="function">TreeNode* <span class="title">sortedListToBST</span><span class="params">(ListNode* head)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">build</span>(head, <span class="literal">nullptr</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 把链表左闭右开区间[begin,end) 的节点构造成 BST</span></span><br><span class="line">    <span class="function">TreeNode* <span class="title">build</span><span class="params">(ListNode *begin, ListNode *end)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(begin == end)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *mid = <span class="built_in">getMid</span>(begin, end);</span><br><span class="line">        TreeNode *root = <span class="keyword">new</span> <span class="built_in">TreeNode</span>(mid-&gt;val);</span><br><span class="line">        root-&gt;left = <span class="built_in">build</span>(begin, mid);</span><br><span class="line">        root-&gt;right = <span class="built_in">build</span>(mid-&gt;next, end);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 通过双指针获取链表左闭右开区间的中心结点</span></span><br><span class="line">    <span class="function">ListNode* <span class="title">getMid</span><span class="params">(ListNode *begin, ListNode *end)</span></span>&#123;</span><br><span class="line">        ListNode *slow = begin, *fast = begin;</span><br><span class="line">        <span class="keyword">while</span>(fast != <span class="literal">nullptr</span> &amp;&amp; fast-&gt;next != <span class="literal">nullptr</span>)&#123;</span><br><span class="line">            slow = slow-&gt;next;</span><br><span class="line">            fast = fast-&gt;next-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="方法二：中序遍历"><a href="#方法二：中序遍历" class="headerlink" title="方法二：中序遍历"></a>方法二：中序遍历</h4><p>方法一中我们的时间都浪费在了查找中间节点上，我们每次获取链表的头结点O(1),它对应BST的最左子树的根结点</p>
+<h4 id="方法二中序遍历">方法二：中序遍历</h4>
+<p>方法一中我们的时间都浪费在了查找中间节点上，我们每次获取链表的头结点O(1),它对应BST的最左子树的根结点</p>
 <p>我们根据中序遍历原则，分别构建左子树，根结点，右子树</p>
 <p>时间复杂度：<code>O(n)</code></p>
 <p>空间复杂度：<code>O(logn)</code></p>
@@ -419,7 +436,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">541k</span>
+    <span title="站点总字数">540k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
@@ -473,7 +490,7 @@
 
   
 
-  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
