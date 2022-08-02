@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sjchen404.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="进程与线程进程与线程的比较     进程 线程    映像组成 由程序段，相关数据段和PCB组成 共享其隶属进程的进程映像，仅拥有线程ID，寄存器集合和堆栈等   并发性 在没有引入线程的操作系统中，进程是独立运行的基本单位 线程是独立运行的基本单位,一个进程可以拥有一个或多个线程   资源分配 进程是资源分配和拥有的基本单位 线程自己不拥有系统资源，但它可以访问所属进程所拥有的全部资源   调">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第二章_进程与线程">
+<meta property="og:url" content="https://sjchen404.github.io/2022/08/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/index.html">
+<meta property="og:site_name" content="SJCHEN">
+<meta property="og:description" content="进程与线程进程与线程的比较     进程 线程    映像组成 由程序段，相关数据段和PCB组成 共享其隶属进程的进程映像，仅拥有线程ID，寄存器集合和堆栈等   并发性 在没有引入线程的操作系统中，进程是独立运行的基本单位 线程是独立运行的基本单位,一个进程可以拥有一个或多个线程   资源分配 进程是资源分配和拥有的基本单位 线程自己不拥有系统资源，但它可以访问所属进程所拥有的全部资源   调">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B.png">
+<meta property="og:image" content="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81.png">
+<meta property="article:published_time" content="2022-07-31T17:54:30.176Z">
+<meta property="article:modified_time" content="2022-07-31T17:54:30.176Z">
+<meta property="article:author" content="SJCHEN">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B.png">
+
+<link rel="canonical" href="https://sjchen404.github.io/2022/08/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>第二章_进程与线程 | SJCHEN</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SJCHEN</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">时光，不会辜负每一个平静努力的人</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/08/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第二章_进程与线程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-01 01:54:30" itemprop="dateCreated datePublished" datetime="2022-08-01T01:54:30+08:00">2022-08-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B.png"></p>
+<h1 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h1><p><strong>进程与线程的比较</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>进程</th>
+<th>线程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>映像组成</td>
+<td>由程序段，相关数据段和<code>PCB</code>组成</td>
+<td>共享其隶属进程的进程映像，仅拥有线程ID，寄存器集合和堆栈等</td>
+</tr>
+<tr>
+<td>并发性</td>
+<td>在没有引入线程的操作系统中，进程是独立运行的基本单位</td>
+<td><strong>线程是独立运行的基本单位</strong>,一个进程可以拥有一个或多个线程</td>
+</tr>
+<tr>
+<td>资源分配</td>
+<td>进程是资源分配和拥有的基本单位</td>
+<td>线程自己不拥有系统资源，但它可以访问所属进程所拥有的全部资源</td>
+</tr>
+<tr>
+<td><strong>调度</strong></td>
+<td>在没有引入线程的操作系统中，进程是独立调度和分配的基本单位</td>
+<td>在引入线程后的操作系统，线程是独立调度和分配的基本单位</td>
+</tr>
+<tr>
+<td>通信</td>
+<td>PV操作；共享存储；消息传递；管道通信</td>
+<td>同一进程的各线程直接读写进程数据段，不同进程的线程之间通信属于进程剑通信</td>
+</tr>
+<tr>
+<td>目的</td>
+<td>更好的使多道程序并发执行，提高资源利用率和系统吞吐量</td>
+<td>减小程序在并发执行时所付出的时空开销，提高操作系统的并发性能</td>
+</tr>
+<tr>
+<td>地址空间</td>
+<td>进程的地址空间之间相互独立</td>
+<td>同一进程的各线程间共享进程的地址空间</td>
+</tr>
+</tbody></table>
+<p><strong>进程映像是静态的，进程是动态的</strong></p>
+<span id="more"></span>
+
+<h2 id="PCB"><a href="#PCB" class="headerlink" title="PCB"></a>PCB</h2><p><code>PCB</code>是进程存在的唯一标记！！！</p>
+<p>组成：</p>
+<ul>
+<li>进程描述信息</li>
+<li>进程控制和管理信息</li>
+<li>资源分配清单</li>
+<li>处理机相关信息</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>进程描述信息</th>
+<th>进程控制和管理信息</th>
+<th>资源分配清单</th>
+<th>处理机相关信息</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>进程标识符（PID）</td>
+<td>进程当前状态</td>
+<td>代码段指针</td>
+<td>通用寄存器值</td>
+</tr>
+<tr>
+<td>用户标识符（UID）</td>
+<td>进程优先级</td>
+<td>数据段指针</td>
+<td>地址寄存器值</td>
+</tr>
+<tr>
+<td></td>
+<td>代码运行入口地址</td>
+<td>堆栈段指针</td>
+<td>控制寄存器值</td>
+</tr>
+<tr>
+<td></td>
+<td>程序的外存地址</td>
+<td>文件描述符</td>
+<td>标记寄存器值</td>
+</tr>
+<tr>
+<td></td>
+<td>进入内存时间</td>
+<td>键盘</td>
+<td>状态字</td>
+</tr>
+<tr>
+<td></td>
+<td>处理机占用时间</td>
+<td>鼠标</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>信号量的使用</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id="进程的状态"><a href="#进程的状态" class="headerlink" title="进程的状态"></a>进程的状态</h2><p><img src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81.png"></p>
+<p><strong>从运行态变成阻塞态是主动的</strong></p>
+<h2 id="用户级线程和内核支持线程"><a href="#用户级线程和内核支持线程" class="headerlink" title="用户级线程和内核支持线程"></a>用户级线程和内核支持线程</h2><table>
+<thead>
+<tr>
+<th>线程</th>
+<th>用户级线程</th>
+<th>内核级线程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>优点</td>
+<td>线程切换不需要转换到内核空间，节省了开销</td>
+<td>一个线程被阻塞，内核可以调度该进程中的其他线程；能发挥多处理器优势</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td>一个线程被阻塞，则同一进程内所有线程都会被阻塞</td>
+<td>同一进程中，线程切换时，需要从用户态转到内核态，系统开销大</td>
+</tr>
+</tbody></table>
+<p>多线程模型：</p>
+<ul>
+<li>多对一<blockquote>
+<p>一个线程阻塞，则整个进程阻塞</p>
+</blockquote>
+</li>
+<li>一对一</li>
+<li>多对多</li>
+</ul>
+<h2 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h2><p><strong>进程创建</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph TD</span><br><span class="line">A[申请空白PCB] --&gt; B[为新进程分配资源]</span><br><span class="line">B --&gt; C[初始化PCB]</span><br><span class="line">C -- 如果进程就绪队列能够接纳新进程 --&gt; D[将新进程插入到就绪队列]</span><br></pre></td></tr></table></figure>
+
+<p>在同一个进程中，线程切换不会引起进程的切换。</p>
+<p>当从一个进程中的线程切换到另一个进程中的线程时，才会引起进程的切换。</p>
+<h1 id="处理机调度"><a href="#处理机调度" class="headerlink" title="处理机调度"></a>处理机调度</h1><p>在多道程序系统中，进程的数量往往多于处理机个数，因此进程争用处理机的情况在所难免。</p>
+<p>处理机调度是对处理机进行分配，即从就绪队列中按照一定的算法选择一个进程并将处理机分配给它运行，以实现进程并发地执行。</p>
+<h2 id="调度的层次"><a href="#调度的层次" class="headerlink" title="调度的层次"></a>调度的层次</h2><ul>
+<li>高级调度（作业调度）</li>
+<li>中级调度（内存调度）</li>
+<li>低级调度（进程调度）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">graph LR</span><br><span class="line">A[外存 作业后备队列] --中级调度--&gt; B[内存 进程就绪队列]</span><br><span class="line">A --作业调度--&gt; B</span><br><span class="line">B --进程调度--&gt; C[CPU]</span><br></pre></td></tr></table></figure>
+
+<p>多道批处理器系统中大多配有作业调度，而其他系统中通常不需要配置作业调度。</p>
+<p><em>引入中级调度的目的是提高内存利用率和系统吞吐量。</em></p>
+<p>进程调度是最基本的，不可或缺。</p>
+<h2 id="调度的原则"><a href="#调度的原则" class="headerlink" title="调度的原则"></a>调度的原则</h2><p><code>CPU</code>利用率：</p>
+<blockquote>
+<p>CPU的工作在整个系统工作时间所占的比例。</p>
+</blockquote>
+<p>$$<br>CPU利用率 &#x3D; \frac{CPU有效工作时间}{CPU有效工作时间 + CPU空闲等待时间}<br>$$</p>
+<p>系统吞吐量：<br>表示单位时间内CPU完成作业的数量。</p>
+<p>周转时间：</p>
+<p>$$<br>周转时间 &#x3D; 作业完成时间 - 作业提交时间<br>$$</p>
+<p>平均周转时间：</p>
+<p>$$<br>平均周转时间 &#x3D; \frac{作业1的周转时间 + … + 作业n的周转时间}{n}<br>$$</p>
+<p>带权周转时间：</p>
+<p>$$<br>带权周转时间 &#x3D; \frac{作业周转时间}{作业实际运行时间}<br>$$</p>
+<p>等待时间：</p>
+<p>进程处于等待处理器状态的时间之和。</p>
+<p>响应时间：</p>
+<p>从用户提交请求到系统首次产生响应所用的时间。</p>
+<h2 id="不能进行处理机调度的情况"><a href="#不能进行处理机调度的情况" class="headerlink" title="不能进行处理机调度的情况"></a>不能进行处理机调度的情况</h2><ul>
+<li>在处理中断的过程中</li>
+<li>进程在操作系统内核临界区中</li>
+<li>其他需要完全屏蔽中断的原子操作过程中</li>
+</ul>
+<h2 id="常用的调度算法"><a href="#常用的调度算法" class="headerlink" title="常用的调度算法"></a>常用的调度算法</h2><table>
+<thead>
+<tr>
+<th>算法</th>
+<th>调度方法</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>先来先服务FCFS</td>
+<td>每次选择最先进入的作业或进程</td>
+<td>有利于长作业不利于短作业<br>有利于CPU繁忙型型作业不利于I&#x2F;O繁忙型作业</td>
+</tr>
+<tr>
+<td>短作业优先SJF</td>
+<td>选择运行时间最短的</td>
+<td><em>平均等待时间，平均周转时间最少</em></td>
+</tr>
+<tr>
+<td>时间片轮转</td>
+<td>所有进程按先来先服务排队</td>
+<td>主要适用于<strong>分时系统</strong></td>
+</tr>
+<tr>
+<td>优先级调度</td>
+<td>选择优先级最高的</td>
+<td>系统进程&gt; 用户进程<br>交互性进程&gt; 非交互性进程<br>I&#x2F;O型进程&gt;计算型进程</td>
+</tr>
+<tr>
+<td>高响应比优先</td>
+<td>选择响应比最高的</td>
+<td>有利于短作业，长作业不会产出“饥饿”，等待时间越长，优先级越高</td>
+</tr>
+<tr>
+<td>多级反馈队列</td>
+<td>…</td>
+<td>终端型作业：短作业优先<br>短批处理作业用户：周转时间较短<br>长批处理作业用户：不会长期得不到处理</td>
+</tr>
+</tbody></table>
+<p>响应比：</p>
+<p>$$<br>响应比R_p &#x3D; \frac{等待时间 + 要求服务时间}{要求服务时间}<br>$$</p>
+<h1 id="同步于互斥"><a href="#同步于互斥" class="headerlink" title="同步于互斥"></a>同步于互斥</h1><h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><p>我们将一次仅允许一个进程使用的资源称为<em>临界资源</em></p>
+<p>临界区：进程中访问临界资源的那段代码。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    entry section;      <span class="comment">//进入区</span></span><br><span class="line">    critical section;   <span class="comment">//临界区</span></span><br><span class="line">    exit section;       <span class="comment">//退出区</span></span><br><span class="line">    remainder section;  <span class="comment">//剩余区</span></span><br><span class="line">&#125;<span class="keyword">while</span>(<span class="literal">true</span>)</span><br></pre></td></tr></table></figure>
+
+<p><strong>同步：</strong><br>进程需要协调它们的工作次序而等待，传递信息所产生的制约关系。</p>
+<p><strong>互斥：</strong><br>当一个进程进入临界区使用临界资源时，另一个进程必须等待，当占用临界资源的进程退出临界区后，另一进程才允许去访问此临界资源</p>
+<p>同步需要遵循的准则：</p>
+<ul>
+<li>空闲让进 – 临界区空闲时，可以允许一个请求进入临界区的进程立即进入临界区。</li>
+<li>忙则等待 – 当已有进程进入临界区时，其他试图进入临界区的进程必须等待。</li>
+<li>有限等待 – 对已有进程进入临界区，应保证能在有限时间内进入临界区。</li>
+<li>让权等待 – 当进程不能进入临界区时，应立即释放处理器，防止进程忙等待。</li>
+</ul>
+<h2 id="实现临界区互斥的基本方法"><a href="#实现临界区互斥的基本方法" class="headerlink" title="实现临界区互斥的基本方法"></a>实现临界区互斥的基本方法</h2><h3 id="软件实现"><a href="#软件实现" class="headerlink" title="软件实现"></a>软件实现</h3><ul>
+<li>单标记法</li>
+<li>双标记法先检查</li>
+<li>双标记法后检查</li>
+<li>皮特森算法（Peterson）</li>
+</ul>
+<h4 id="单标记法"><a href="#单标记法" class="headerlink" title="单标记法"></a>单标记法</h4><p>设置一个公用模型变量<code>turn</code>,用于指示被允许进入临界区的进程编号，即若<code>turn = 0</code>,则允许$p_0$进程进入临界区。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//p0进程</span></span><br><span class="line"><span class="keyword">while</span>(turn != <span class="number">0</span>);   <span class="comment">//进入区</span></span><br><span class="line">critical section;   <span class="comment">//临界区</span></span><br><span class="line">turn = <span class="number">1</span>;           <span class="comment">//退出区</span></span><br><span class="line">remainder section;  <span class="comment">//剩余区</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//p1进程;</span></span><br><span class="line"><span class="keyword">while</span>(turn != <span class="number">1</span>);</span><br><span class="line">critical section;</span><br><span class="line">turn = <span class="number">0</span>;</span><br><span class="line">remainder section;</span><br></pre></td></tr></table></figure>
+<p>该算法保证每次只允许一个进程进入临界区，但两个进程必须交替进入临界区，若某个进程不再进入临界区，则另一个进程也将无法进入临界区。<br>违背了<em>空闲让进</em>，容易造成资源利用不充分。</p>
+<h4 id="双标记法先检查"><a href="#双标记法先检查" class="headerlink" title="双标记法先检查"></a>双标记法先检查</h4><p>思想：</p>
+<p>在每个进程访问临界区资源之前，先检查临界资源是否正在被访问，若正在被访问，该进程等待；否则，进程才进入自己的临界区。</p>
+<p>设置一个数组<code>flag[2]</code>,表示进程是否进入临界区。<code>flag[i]</code>值为<code>FALSE</code>,表示$P_i$进程未进入临界区，值为<code>TRUE</code>,表示$P_i$进程进入临界区。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//P_i进程</span></span><br><span class="line"><span class="keyword">while</span>(flag[j]);     <span class="comment">// 1 进入区</span></span><br><span class="line">flag[i] = TRUE;     <span class="comment">// 3 进入区</span></span><br><span class="line">critical section;   <span class="comment">// 临界区</span></span><br><span class="line">flag[i] = FALSE;    <span class="comment">//退出区</span></span><br><span class="line">remainder section;  <span class="comment">//剩余区</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// P_j进程</span></span><br><span class="line"><span class="keyword">while</span>(flag[i]);     <span class="comment">// 2</span></span><br><span class="line">flag[j] = TRUE;     <span class="comment">// 4</span></span><br><span class="line">critical section;</span><br><span class="line">flag[j] = FALSE;</span><br><span class="line">remainder section;</span><br></pre></td></tr></table></figure>
+
+<p>优点：不用交替进入，可连续使用；</p>
+<p>缺点：$P_i$和$P_j$可能同时进入临界区；</p>
+<p>按系列1，2，3，4执行，会同时进入临界区（违背了<em>忙则等待</em>）。</p>
+<h4 id="双标记法后检查"><a href="#双标记法后检查" class="headerlink" title="双标记法后检查"></a>双标记法后检查</h4><p>和双标记法先检查相比，先将自己的标记设置为<code>TRUE</code>,再检测对方的状态标记，若对方标记为<code>TRUE</code>,则进程等待；否则进入临界区。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//P_i进程</span></span><br><span class="line">flag[i] = TRUE;     <span class="comment">// 先设置自己的标记，进入区</span></span><br><span class="line"><span class="keyword">while</span>(flag[j]);     <span class="comment">// 检查对方状态，进入区</span></span><br><span class="line">critical section;   <span class="comment">// 临界区</span></span><br><span class="line">flag[i] = FALSE;    <span class="comment">// 退出区</span></span><br><span class="line">remainder section;  <span class="comment">// 剩余区</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//P_j进程</span></span><br><span class="line">flag[j] = TRUE;</span><br><span class="line"><span class="keyword">while</span>(flag[i]);</span><br><span class="line">critical section;</span><br><span class="line">flag[j] = FALSE;</span><br><span class="line">remainder section;</span><br></pre></td></tr></table></figure>
+
+<p>确保进程可以互斥访问临界区。</p>
+<p>但是存在两个进程都进不了临界区的“饥饿”现象。</p>
+<h4 id="皮特森算法（Peterson）"><a href="#皮特森算法（Peterson）" class="headerlink" title="皮特森算法（Peterson）"></a>皮特森算法（Peterson）</h4><p>为了防止两个进程为进入临界区而无限期等待，又设置了变量<code>turn</code>，每个进程在先设置自己的标记之后再设计<code>turn</code>标记。再同时检测另一个进程状态标记和<br>允许进入标记，以便保证两个进程同时要求进入临界区，只允许一个进程进入临界区。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//P_i进程</span></span><br><span class="line">flag[i] = TRUE, turn = j;  <span class="comment">// falg[j] = TRUE表示它想要进入临界区，turn = j,表示进程P_j已在临界区</span></span><br><span class="line"><span class="keyword">while</span>(flag[j] &amp;&amp; turn == j);</span><br><span class="line">critical sections;</span><br><span class="line">flag[i] = FALSE;</span><br><span class="line">remainder section;</span><br><span class="line"></span><br><span class="line"><span class="comment">// P_j进程</span></span><br><span class="line">flag[j] = TRUE, turn = i;</span><br><span class="line"><span class="keyword">while</span>(flag[i] &amp;&amp; turn == i);</span><br><span class="line">critical section;</span><br><span class="line">flag[j] = FALSE;</span><br><span class="line">remainder section;</span><br></pre></td></tr></table></figure>
+
+<p><code>Peterson</code>算法利用<code>turn</code>解决了“饥饿”问题</p>
+<h3 id="硬件实现方法"><a href="#硬件实现方法" class="headerlink" title="硬件实现方法"></a>硬件实现方法</h3><p>（低级方法）</p>
+<h4 id="（1）中断屏蔽方法"><a href="#（1）中断屏蔽方法" class="headerlink" title="（1）中断屏蔽方法"></a>（1）中断屏蔽方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">关中断</span><br><span class="line">临界区</span><br><span class="line">开中断</span><br></pre></td></tr></table></figure>
+
+<p>效率低</p>
+<h4 id="（2）硬件指令方法"><a href="#（2）硬件指令方法" class="headerlink" title="（2）硬件指令方法"></a>（2）硬件指令方法</h4><p><em>由硬件逻辑直接实现，不会被中断</em></p>
+<p><code>TestAndSet</code>指令，<code>原子操作</code>,即这条指令执行时不允许被中断。</p>
+<p>功能：读出指定标志后把该指令设置为真。</p>
+<p><code>Swap</code>指令：</p>
+<p>功能：交换两个字（字节）的内容。</p>
+<p><strong>小结：</strong></p>
+<p>缺点：进程等待进入临界区要耗费处理机时间，<em>不能实现让权等待</em>，会导致“饥饿”现象。</p>
+<p>优点：适用于任意数目的进程，而不管是单处理机还是多处理机；简单，容易验证其正确性。</p>
+<h2 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h2><p>解决临界区最简单的工具就是<em>互斥锁（mutex lock）</em>。一个进程在进入临界区时应获得锁，在退出临界区时释放锁。<br>函数<code>acquire()</code>获得锁，而函数<code>release()</code>释放锁。</p>
+<p>每个锁有一个布尔变量<code>available</code>,表示锁是否可用。</p>
+<p><strong>互斥锁通常采用硬件机制实现</strong></p>
+<p><strong>缺点：忙等待</strong></p>
+<h2 id="信号量"><a href="#信号量" class="headerlink" title="信号量"></a>信号量</h2><p>用来解决互斥与同步问题，它只能被两个标准的原语<code>wait(s)</code>和<code>signal(s)</code>访问，也可记为“P操作”或“V操作”。</p>
+<h3 id="整型信号量"><a href="#整型信号量" class="headerlink" title="整型信号量"></a>整型信号量</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">wait</span>(S)&#123;</span><br><span class="line">        <span class="keyword">while</span>(S &lt;= <span class="number">0</span>);</span><br><span class="line">        S = S - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">signal</span>(S)&#123;</span><br><span class="line">        S = S + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>不遵循“让权等待”的准则，而是使进程处于“忙等”的状态。</p>
+<h3 id="记录型信号量"><a href="#记录型信号量" class="headerlink" title="记录型信号量"></a>记录型信号量</h3><p>除了需要一个用于代表资源数目的整型变量<code>value</code>外，再增加一个进程链表L，用于链接所有等待该资源的进程。<br><code>wait</code>操作请求一个该类资源时，如果<code>s.value &lt; 0</code>,表示该类资源已经分配完毕，因此进程应调用<code>block</code>原语，进行自我阻塞，放弃处理机。<br>并插入该类资源的等待队列<code>S.L</code>。</p>
+<p>不存在“忙等”现象等进程同步机制。遵循了“让权等待”准则。</p>
+<h3 id="利用信号量实现同步"><a href="#利用信号量实现同步" class="headerlink" title="利用信号量实现同步"></a>利用信号量实现同步</h3><p>同步就是根据什么次序配合互相完成。</p>
+<h3 id="利用信号量实现进程互斥"><a href="#利用信号量实现进程互斥" class="headerlink" title="利用信号量实现进程互斥"></a>利用信号量实现进程互斥</h3><p>一般都把初始化信号量设为1.</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">semaphore S = <span class="number">1</span>;        <span class="comment">// 初始化信号量</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">P1</span>() &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="built_in">P</span>(S);           <span class="comment">// 准备开始访问临界资源，加锁</span></span><br><span class="line">        进程P1的临界区；</span><br><span class="line">        <span class="built_in">V</span>(S);           <span class="comment">// 访问结束，解锁</span></span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">P2</span>() &#123;</span><br><span class="line">        ...</span><br><span class="line">        <span class="built_in">P</span>(S);</span><br><span class="line">        进程P2的临界区</span><br><span class="line">        <span class="built_in">V</span>(S);</span><br><span class="line">        ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="利用信号量实现前驱关系"><a href="#利用信号量实现前驱关系" class="headerlink" title="利用信号量实现前驱关系"></a>利用信号量实现前驱关系</h3><h2 id="管程"><a href="#管程" class="headerlink" title="管程"></a>管程</h2><p>在信号量机制中，每个要访问临界资源的进程都必须自备同步的PV操作。大量分散的同步操作给系统管理带来了麻烦，<br>且容易因操作不当而导致系统<em>死锁</em>。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>管程定义了一个数据结构和能为并发进程所执行（在该数据结构上）的一组操作，这组操作能同步进程和改变管程中的数据。</p>
+<p>组成：</p>
+<ul>
+<li>管程的名称</li>
+<li>局部于管程内部的共享数据结构说明</li>
+<li>对该数据结构进行操作的一组过程</li>
+<li>对局部于管程内部的共享数据设置初始值的语句</li>
+</ul>
+<p>管程很像一个类（class）：</p>
+<ul>
+<li>管程把对共享资源的操作封装起来</li>
+<li>每次仅允许一个进程进入管程</li>
+</ul>
+<h3 id="条件变量"><a href="#条件变量" class="headerlink" title="条件变量"></a>条件变量</h3><p>将阻塞原因定义为条件变量。</p>
+<p>对条件变量只能进行两种操作：<br><code>wait</code>和<code>signal</code></p>
+<h2 id="经典同步问题（重点！！！）"><a href="#经典同步问题（重点！！！）" class="headerlink" title="经典同步问题（重点！！！）"></a>经典同步问题（重点！！！）</h2><h3 id="1-生产者-消费者问题"><a href="#1-生产者-消费者问题" class="headerlink" title="1. 生产者-消费者问题"></a>1. 生产者-消费者问题</h3>
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>如有帮助.</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="SJCHEN 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="SJCHEN 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>SJCHEN
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://sjchen404.github.io/2022/08/01/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" title="第二章_进程与线程">https://sjchen404.github.io/2022/08/01/第二章_进程与线程/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 操作系统</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/07/31/199_%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE/" rel="prev" title="199_二叉树的右视图">
+      <i class="fa fa-chevron-left"></i> 199_二叉树的右视图
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/02/%E5%BC%95%E7%94%A8/" rel="next" title="引用">
+      引用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">进程与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#PCB"><span class="nav-number">1.1.</span> <span class="nav-text">PCB</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">1.2.</span> <span class="nav-text">进程的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%BA%A7%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%86%85%E6%A0%B8%E6%94%AF%E6%8C%81%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">用户级线程和内核支持线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="nav-number">1.4.</span> <span class="nav-text">进程控制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">处理机调度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E7%9A%84%E5%B1%82%E6%AC%A1"><span class="nav-number">2.1.</span> <span class="nav-text">调度的层次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B0%83%E5%BA%A6%E7%9A%84%E5%8E%9F%E5%88%99"><span class="nav-number">2.2.</span> <span class="nav-text">调度的原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E8%83%BD%E8%BF%9B%E8%A1%8C%E5%A4%84%E7%90%86%E6%9C%BA%E8%B0%83%E5%BA%A6%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-number">2.3.</span> <span class="nav-text">不能进行处理机调度的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">2.4.</span> <span class="nav-text">常用的调度算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E4%BA%8E%E4%BA%92%E6%96%A5"><span class="nav-number">3.</span> <span class="nav-text">同步于互斥</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">3.1.</span> <span class="nav-text">基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E4%B8%B4%E7%95%8C%E5%8C%BA%E4%BA%92%E6%96%A5%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.</span> <span class="nav-text">实现临界区互斥的基本方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.2.1.</span> <span class="nav-text">软件实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E6%A0%87%E8%AE%B0%E6%B3%95"><span class="nav-number">3.2.1.1.</span> <span class="nav-text">单标记法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E6%A0%87%E8%AE%B0%E6%B3%95%E5%85%88%E6%A3%80%E6%9F%A5"><span class="nav-number">3.2.1.2.</span> <span class="nav-text">双标记法先检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E6%A0%87%E8%AE%B0%E6%B3%95%E5%90%8E%E6%A3%80%E6%9F%A5"><span class="nav-number">3.2.1.3.</span> <span class="nav-text">双标记法后检查</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9A%AE%E7%89%B9%E6%A3%AE%E7%AE%97%E6%B3%95%EF%BC%88Peterson%EF%BC%89"><span class="nav-number">3.2.1.4.</span> <span class="nav-text">皮特森算法（Peterson）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.2.</span> <span class="nav-text">硬件实现方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%881%EF%BC%89%E4%B8%AD%E6%96%AD%E5%B1%8F%E8%94%BD%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.2.1.</span> <span class="nav-text">（1）中断屏蔽方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%EF%BC%882%EF%BC%89%E7%A1%AC%E4%BB%B6%E6%8C%87%E4%BB%A4%E6%96%B9%E6%B3%95"><span class="nav-number">3.2.2.2.</span> <span class="nav-text">（2）硬件指令方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%92%E6%96%A5%E9%94%81"><span class="nav-number">3.3.</span> <span class="nav-text">互斥锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="nav-number">3.4.</span> <span class="nav-text">信号量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%9E%8B%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="nav-number">3.4.1.</span> <span class="nav-text">整型信号量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%B0%E5%BD%95%E5%9E%8B%E4%BF%A1%E5%8F%B7%E9%87%8F"><span class="nav-number">3.4.2.</span> <span class="nav-text">记录型信号量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E4%BF%A1%E5%8F%B7%E9%87%8F%E5%AE%9E%E7%8E%B0%E5%90%8C%E6%AD%A5"><span class="nav-number">3.4.3.</span> <span class="nav-text">利用信号量实现同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E4%BF%A1%E5%8F%B7%E9%87%8F%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E4%BA%92%E6%96%A5"><span class="nav-number">3.4.4.</span> <span class="nav-text">利用信号量实现进程互斥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E4%BF%A1%E5%8F%B7%E9%87%8F%E5%AE%9E%E7%8E%B0%E5%89%8D%E9%A9%B1%E5%85%B3%E7%B3%BB"><span class="nav-number">3.4.5.</span> <span class="nav-text">利用信号量实现前驱关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E7%A8%8B"><span class="nav-number">3.5.</span> <span class="nav-text">管程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-number">3.5.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F"><span class="nav-number">3.5.2.</span> <span class="nav-text">条件变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%81%EF%BC%81%EF%BC%81%EF%BC%89"><span class="nav-number">3.6.</span> <span class="nav-text">经典同步问题（重点！！！）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="nav-number">3.6.1.</span> <span class="nav-text">1. 生产者-消费者问题</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="SJCHEN"
+      src="/images/new%E5%A4%B4%E5%83%8F.jpg">
+  <p class="site-author-name" itemprop="name">SJCHEN</p>
+  <div class="site-description" itemprop="description">start from zero</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">144</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">106</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SJCHEN404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SJCHEN404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chenshengjiao1912@163.com" title="E-Mail → mailto:chenshengjiao1912@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5702603638" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5702603638" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SJCHEN</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">440k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:40</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+    </div>
+</body>
+</html>

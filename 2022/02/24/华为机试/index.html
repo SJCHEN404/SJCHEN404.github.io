@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"sjchen404.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.json"};
+  </script>
+
+  <meta name="description" content="华为机试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="华为机试">
+<meta property="og:url" content="https://sjchen404.github.io/2022/02/24/%E5%8D%8E%E4%B8%BA%E6%9C%BA%E8%AF%95/index.html">
+<meta property="og:site_name" content="SJCHEN">
+<meta property="og:description" content="华为机试">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-24T09:15:05.154Z">
+<meta property="article:modified_time" content="2022-05-14T17:11:35.805Z">
+<meta property="article:author" content="SJCHEN">
+<meta property="article:tag" content="华为">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://sjchen404.github.io/2022/02/24/%E5%8D%8E%E4%B8%BA%E6%9C%BA%E8%AF%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>华为机试 | SJCHEN</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">SJCHEN</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">时光，不会辜负每一个平静努力的人</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/02/24/%E5%8D%8E%E4%B8%BA%E6%9C%BA%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          华为机试
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-02-24 17:15:05" itemprop="dateCreated datePublished" datetime="2022-02-24T17:15:05+08:00">2022-02-24</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-05-15 01:11:35" itemprop="dateModified" datetime="2022-05-15T01:11:35+08:00">2022-05-15</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8D%8E%E4%B8%BA/" itemprop="url" rel="index"><span itemprop="name">华为</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span><br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8.3k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>8 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>华为机试</p>
+<span id="more"></span>
+
+<p>####HJ1 字符串最后一个单词的长度</p>
+<p><strong>计算字符串最后一个单词的长度，单词以空格隔开，字符串长度小于5000。（注：字符串末尾不以空格为结尾）</strong></p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>输入 hello world</p>
+<p>输出 8</p>
+</blockquote>
+<p><strong>思路：</strong></p>
+<p>从后往前开始计算，碰到第一个空格时，长度为字符串长度-当前所在的位置-1；</p>
+<p><strong>代码：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string s1=<span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="built_in">getline</span>(cin,s1);</span><br><span class="line">    <span class="type">int</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i = s1.<span class="built_in">size</span>()<span class="number">-1</span>; i &gt;= <span class="number">0</span>; --i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s1[i] == <span class="string">&#x27; &#x27;</span>)&#123;</span><br><span class="line">            ans = s1.<span class="built_in">size</span>() - i - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">0</span>)&#123;</span><br><span class="line">            ans = s1.<span class="built_in">size</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; ans &lt;&lt; endl;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####<strong>HJ2</strong> <strong>计算某字符出现次数</strong></p>
+<p><strong>写出一个程序，接受一个由字母、数字和空格组成的字符串，和一个字符，然后输出输入字符串中该字符的出现次数。（不区分大小写字母）</strong></p>
+<blockquote>
+<p>ABCabc</p>
+<p>A</p>
+<p>输出：2</p>
+</blockquote>
+<p><strong>思路：</strong></p>
+<p>由于不区分大小写，所以将大写转化为小写，统计输出次数。</p>
+<p>tolower函数把小写字母转换为小写，非字母字符不做出处理</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string s1;</span><br><span class="line">    <span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">getline</span>(cin,s1))&#123;</span><br><span class="line">        <span class="type">char</span> input;</span><br><span class="line">        cin &gt;&gt; input;</span><br><span class="line">        cin.<span class="built_in">ignore</span>();</span><br><span class="line">        input= <span class="built_in">tolower</span>(input);<span class="comment">//转化为小写</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;s1.<span class="built_in">size</span>();++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s1[i]==input|| s1[i]==input<span class="number">-32</span>)&#123;</span><br><span class="line">                res++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;res&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HJ3-明明的随机数"><a href="#HJ3-明明的随机数" class="headerlink" title="HJ3 明明的随机数"></a><strong>HJ3</strong> <strong>明明的随机数</strong></h4><p>明明想在学校中请一些同学一起做一项问卷调查，为了实验的客观性，他先用计算机生成了 N 个 1 到 1000 之间的随机整数（ N≤1000 ），对于其中重复的数字，只保留一个，把其余相同的数去掉，不同的数对应着不同的学生的学号。然后再把这些数从小到大排序，按照排好的顺序去找同学做调查。现在明明把他已经用计算机生成好的 N 个随机数按照下面的输入描述的格式交给你，请你协助明明完成“去重”与“排序”的工作(同一个测试用例里可能会有多组数据(用于不同的调查)，希望大家能正确处理)。 </p>
+<p>注：测试用例保证输入参数的正确性，答题者无需验证。测试用例不止一组。 </p>
+<p>当没有新的输入时，说明输入结束。 </p>
+<p>数据范围： 1≤n≤1000 1≤<em>n</em>≤1000 ，输入的数字大小满足 1≤val≤500 1≤<em>v<strong>a</strong>l</em>≤500 </p>
+<blockquote>
+<p>3<br>2<br>2<br>1<br>11<br>10<br>20<br>40<br>32<br>67<br>40<br>20<br>89<br>300<br>400<br>15</p>
+<p>输出：</p>
+<p>1<br>2<br>10<br>15<br>20<br>32<br>40<br>67<br>89<br>300<br>400</p>
+<p>说明：</p>
+<p>示例1包含了两个小样例！！<br>输入解释：<br>第一个数字是3，也即这个小样例的N&#x3D;3，说明用计算机生成了3个1到1000之间的随机整数，接下来每行一个随机数字，共3行，也即这3个随机数字为：<br>2<br>2<br>1<br>所以第一个小样例的输出为：<br>1<br>2<br>第二个小样例的第一个数字为11，也即…(类似上面的解释)…<br>所以第二个小样例的输出为：<br>10<br>15<br>20<br>32<br>40<br>67<br>89<br>300<br>400    </p>
+</blockquote>
+<p><strong>思路：</strong></p>
+<p>类似于map,统计，最后遍历一遍输出即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> number,n;</span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;number)&#123;</span><br><span class="line">        <span class="type">int</span> a[<span class="number">1001</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">        <span class="keyword">while</span>(number--)&#123;</span><br><span class="line">            cin&gt;&gt;n;</span><br><span class="line">            a[n]++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>;i&lt;<span class="number">1001</span>;++i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a[i])&#123;</span><br><span class="line">                cout&lt;&lt;i&lt;&lt;endl;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HJ4-字符串分隔"><a href="#HJ4-字符串分隔" class="headerlink" title="HJ4 字符串分隔"></a><strong>HJ4</strong> <strong>字符串分隔</strong></h4><p>•连续输入字符串，请按长度为8拆分每个输入字符串并进行输出；</p>
+<p>•长度不是8整数倍的字符串请在后面补数字0，空字符串不处理。</p>
+<p>（注：本题有多组输入）</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>输入：</p>
+<p>abc<br>123456789</p>
+<p>输出：</p>
+<p>abc00000<br>12345678<br>90000000</p>
+</blockquote>
+<p><strong>思路：</strong></p>
+<p>我们在读取的字符串后面增加7个零，这样我们就可以保证后面的0；在通过substr函数进行提取，这里需要简单介绍下substr函数。</p>
+<p>s.substr(pos,len)，返回值是string,包含s中从pos开始的len个字符的拷贝。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string s1;</span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;s1)&#123;</span><br><span class="line">        s1 = s1 + <span class="string">&quot;0000000&quot;</span>;    <span class="comment">//增加7个0，然后substr函数截取前8个</span></span><br><span class="line">        <span class="keyword">while</span>(s1.<span class="built_in">size</span>()&gt;=<span class="number">8</span>)&#123;</span><br><span class="line">            cout&lt;&lt;s1.<span class="built_in">substr</span>(<span class="number">0</span>,<span class="number">8</span>)&lt;&lt;endl;</span><br><span class="line">            s1 = s1.<span class="built_in">substr</span>(<span class="number">8</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HJ5-进制转换"><a href="#HJ5-进制转换" class="headerlink" title="HJ5 进制转换"></a><strong>HJ5</strong> <strong>进制转换</strong></h4><p>写出一个程序，接受一个十六进制的数，输出该数值的十进制表示。 </p>
+<p>数据范围：保证结果在 1≤n≤231−1 1≤<em>n</em>≤231−1 </p>
+<p>注意本题有多组输入</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>输入：</p>
+<p>0xA<br>0xAA</p>
+<p>输出：</p>
+<p>10<br>170</p>
+</blockquote>
+<p><strong>思路：</strong></p>
+<p>方法一：</p>
+<p>直接用流类格式化输入输出</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="type">int</span> a;</span><br><span class="line">	<span class="keyword">while</span>(cin&gt;&gt;hex&gt;&gt;a)</span><br><span class="line">	cout&lt;&lt;dec&lt;&lt;a&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<p>主要就是十进制和十六进制的转换关系。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string s;</span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;s)&#123;</span><br><span class="line">        <span class="type">int</span> bit=<span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i =s.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;<span class="number">1</span>;--i)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i]&gt;=<span class="string">&#x27;0&#x27;</span>&amp;&amp;s[i]&lt;=<span class="string">&#x27;9&#x27;</span>)&#123;</span><br><span class="line">                ans+=(s[i]-<span class="string">&#x27;0&#x27;</span>)*<span class="built_in">pow</span>(<span class="number">16</span>,bit++);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(s[i]&gt;=<span class="string">&#x27;A&#x27;</span>&amp;&amp;s[i]&lt;=<span class="string">&#x27;F&#x27;</span>)&#123;</span><br><span class="line">                ans+=(s[i]-<span class="string">&#x27;A&#x27;</span>+<span class="number">10</span>)*<span class="built_in">pow</span>(<span class="number">16</span>,bit++);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;ans&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####HJ6 质数因子</p>
+<p>功能:输入一个正整数，按照从小到大的顺序输出它的所有质因子（重复的也要列举）（如180的质因子为2 2 3 3 5 ） </p>
+<p>数据范围： 1≤n≤2×109+14 1≤<em>n</em>≤2×109+14 </p>
+<p><strong>输入描述：</strong></p>
+<p>输入一个整数</p>
+<p><strong>输出描述：</strong></p>
+<p>按照从小到大的顺序输出它的所有质数的因子，以空格隔开。最后一个数后面也要有空格。</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>输入：180</p>
+<p>输出：2 2 3 3 5</p>
+</blockquote>
+<p><strong>思路：</strong></p>
+<p>输出所有质数的因子，那么这个因子最大也就是这个数值开根号，比如25，质数因子就是 5、5；除数从2开始，进行除法计算，除不尽就用3，以此类推，直到除数增加到该数的开根号。</p>
+<p>有除数能除的最后数值一定是1，如果不是1，那就是这个数本身就是质因子，只有1和本身可以整数，直接输出即可。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">long</span> res;</span><br><span class="line">    <span class="type">long</span> i = <span class="number">2</span>;</span><br><span class="line">    cin &gt;&gt; res;</span><br><span class="line">    <span class="keyword">for</span>(i;i&lt;=<span class="built_in">sqrt</span>(res);i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(res%i==<span class="number">0</span>)&#123;</span><br><span class="line">            cout&lt;&lt;i&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">            res /= i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(res&gt;<span class="number">1</span>)&#123;</span><br><span class="line">        cout&lt;&lt;res&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HJ7-取近似值"><a href="#HJ7-取近似值" class="headerlink" title="HJ7 取近似值"></a><strong>HJ7</strong> <strong>取近似值</strong></h4><p>写出一个程序，接受一个正浮点数值，输出该数值的近似整数值。如果小数点后数值大于等于 0.5 ,向上取整；小于 0.5 ，则向下取整。 </p>
+<p>数据范围：保证输入的数字在 32 位浮点数范围内</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>输入：5.5</p>
+<p>输出：6</p>
+<p>输入：2.499</p>
+<p>输出：2</p>
+</blockquote>
+<p><strong>思路：</strong></p>
+<p>直接在输入的数上+0.5，然后通过int取整就可以了</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">float</span> input;</span><br><span class="line">    cin&gt;&gt;input;</span><br><span class="line">    cout&lt;&lt;<span class="built_in">int</span>(input+<span class="number">0.5</span>)&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####<strong>HJ8</strong> <strong>合并表记录</strong></p>
+<p>数据表记录包含表索引和数值（int范围的正整数），请对表索引相同的记录进行合并，即将相同索引的数值进行求和运算，输出按照key值升序进行输出。</p>
+<p>提示: </p>
+<p>0 &lt;&#x3D; index &lt;&#x3D; 11111111</p>
+<p>1 &lt;&#x3D; value &lt;&#x3D; 100000</p>
+<p><strong>输入描述:</strong></p>
+<p>先输入键值对的个数n（1 &lt;&#x3D; n &lt;&#x3D; 500）<br>然后输入成对的index和value值，以空格隔开</p>
+<p><strong>输出描述：</strong></p>
+<p>输出合并后的键值对（多行）</p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>输入：</p>
+<p>4<br>0 1<br>0 2<br>1 2<br>3 4</p>
+<p>输出：</p>
+<p>0 3<br>1 2<br>3 4</p>
+</blockquote>
+<p><strong>解题思路：</strong></p>
+<p>方法一：</p>
+<p>我们用一个数组来存储，对相同索引的数值求和，最后遍历输出数值大与0的即可。（不能完全AC）</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    cin&gt;&gt;num;</span><br><span class="line">    <span class="type">int</span> sum[<span class="number">1000</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span> index,value;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;num;i++)&#123;</span><br><span class="line">        cin&gt;&gt;index&gt;&gt;value;</span><br><span class="line">        sum[index]+=value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">1000</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(sum[i]!=<span class="number">0</span>)&#123;</span><br><span class="line">            cout&lt;&lt;i&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;sum[i]&lt;&lt;endl;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二：</p>
+<p>利用C++的map实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    map&lt;<span class="type">int</span>,<span class="type">int</span>&gt;sum;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="type">int</span> index,value;</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        cin&gt;&gt;index&gt;&gt;value;</span><br><span class="line">        sum[index]+=value;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> c:sum)&#123;</span><br><span class="line">        cout&lt;&lt;c.first&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;c.second&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HJ9-提取不重复的整数"><a href="#HJ9-提取不重复的整数" class="headerlink" title="HJ9 提取不重复的整数"></a><strong>HJ9</strong> <strong>提取不重复的整数</strong></h4><p>输入一个 int 型整数，按照从右向左的阅读顺序，返回一个不含重复数字的新的整数。 </p>
+<p>保证输入的整数最后一位不是 0 。</p>
+<p>数据范围： 1≤n≤108 1≤<em>n</em>≤108 </p>
+<p><strong>示例：</strong></p>
+<blockquote>
+<p>输入：9876673</p>
+<p>输出：37689</p>
+</blockquote>
+<p><strong>解题思路：</strong></p>
+<p>转化为字符串的方法来解决，这里了解一下string::npos</p>
+<p>find函数在找不到指定值得情况下会返回string::npos。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string str;</span><br><span class="line">    string str1=<span class="string">&quot;&quot;</span>;</span><br><span class="line">    cin&gt;&gt;str;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=str.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(str1.<span class="built_in">find</span>(str[i])==string::npos)</span><br><span class="line">            str1+=str[i];</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;str1&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法二：</strong></p>
+<p>使用数组a[10]来更新，每次把a[n%10]来判断是否出现过</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">10</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    <span class="type">int</span> num=<span class="number">0</span>;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    <span class="keyword">while</span>(n)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[n%<span class="number">10</span>]==<span class="number">0</span>)&#123;</span><br><span class="line">            a[n%<span class="number">10</span>]++;<span class="comment">//这一步更新，遇到相同的数会跳过</span></span><br><span class="line">            num = num*<span class="number">10</span>+n%<span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        n/=<span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;num&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####<strong>HJ10</strong> <strong>字符个数统计</strong></p>
+<p>编写一个函数，计算字符串中含有的不同字符的个数。字符在 ASCII 码范围内( 0~127 ，包括 0 和 127 )，换行表示结束符，不算在字符里。不在范围内的不作统计。多个相同的字符只计算一次 </p>
+<p>例如，对于字符串 abaca 而言，有 a、b、c 三种不同的字符，因此输出 3 。 </p>
+<p>数据范围： 1≤n≤500 1≤<em>n</em>≤500 </p>
+<h5 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h5><blockquote>
+<p>输入：abc</p>
+<p>输出：3</p>
+</blockquote>
+<p>#####思路：</p>
+<p>set就是关键字的简单集合。当只是想知道一个值是否存在时，set是最有用的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string str;</span><br><span class="line">    set&lt;<span class="type">char</span>&gt;s;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">getline</span>(cin,str))&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;str.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">            s.<span class="built_in">insert</span>(str[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;s.<span class="built_in">size</span>()&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HJ11-数字颠倒"><a href="#HJ11-数字颠倒" class="headerlink" title="HJ11 数字颠倒"></a><strong>HJ11</strong> <strong>数字颠倒</strong></h4><p>输入一个整数，将这个整数以字符串的形式逆序输出 </p>
+<p>程序不考虑负数的情况，若数字含有0，则逆序形式也含有0，如输入为100，则输出为001 </p>
+<p>数据范围： 0≤n≤230−1 0≤<em>n</em>≤230−1 </p>
+<h5 id="示例：-1"><a href="#示例：-1" class="headerlink" title="示例："></a>示例：</h5><blockquote>
+<p>输入：1516000</p>
+<p>输出：0006151</p>
+</blockquote>
+<h5 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h5><p>转化为string,然后翻转</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> input;</span><br><span class="line">    cin&gt;&gt;input;</span><br><span class="line">    string res = <span class="built_in">to_string</span>(input);</span><br><span class="line">    <span class="built_in">reverse</span>(res.<span class="built_in">begin</span>(), res.<span class="built_in">end</span>());</span><br><span class="line">    cout&lt;&lt;res;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HJ12-字符串反转"><a href="#HJ12-字符串反转" class="headerlink" title="HJ12 字符串反转"></a><strong>HJ12</strong> <strong>字符串反转</strong></h4><p>接受一个只包含小写字母的字符串，然后输出该字符串反转后的字符串。（字符串长度不超过1000）</p>
+<h5 id="示例：-2"><a href="#示例：-2" class="headerlink" title="示例："></a>示例：</h5><blockquote>
+<p>输入：abcd</p>
+<p>输出：dcba</p>
+</blockquote>
+<h5 id="思路：-1"><a href="#思路：-1" class="headerlink" title="思路："></a>思路：</h5><p>直接reverse()</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string str;</span><br><span class="line">    cin&gt;&gt;str;</span><br><span class="line">    <span class="built_in">reverse</span>(str.<span class="built_in">begin</span>(),str.<span class="built_in">end</span>());</span><br><span class="line">    cout&lt;&lt;str;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HJ13-句子逆序"><a href="#HJ13-句子逆序" class="headerlink" title="HJ13 句子逆序"></a><strong>HJ13</strong> <strong>句子逆序</strong></h4><p>将一个英文语句以单词为单位逆序排放。例如“I am a boy”，逆序排放后为“boy a am I” </p>
+<p>所有单词之间用一个空格隔开，语句中除了英文字母外，不再包含其他字符 </p>
+<p>数据范围：输入的字符串长度满足 1≤n≤1000 1≤<em>n</em>≤1000 </p>
+<p>注意本题有多组输入</p>
+<h4 id="示例：-3"><a href="#示例：-3" class="headerlink" title="示例："></a>示例：</h4><blockquote>
+<p>输入：I am a boy</p>
+<p>输出：boy a am I</p>
+</blockquote>
+<h5 id="思路：-2"><a href="#思路：-2" class="headerlink" title="思路："></a>思路：</h5><p>我们定义一个string数组，顺序输入，倒序输出即可</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    string str;</span><br><span class="line">    vector&lt;string&gt; tmp;</span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;str)&#123;</span><br><span class="line">        tmp.<span class="built_in">push_back</span>(str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=tmp.<span class="built_in">size</span>()<span class="number">-1</span>;i&gt;<span class="number">0</span>;i--)&#123;</span><br><span class="line">        cout&lt;&lt;tmp[i]&lt;&lt;<span class="string">&quot; &quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;tmp[<span class="number">0</span>]&lt;&lt;endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="HJ14-字符串排序"><a href="#HJ14-字符串排序" class="headerlink" title="HJ14 字符串排序"></a><strong>HJ14</strong> <strong>字符串排序</strong></h4><h5 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h5><p>给定 n 个字符串，请对 n 个字符串按照字典序排列。 </p>
+<p>数据范围： 1≤n≤1000 1≤<em>n</em>≤1000 ，字符串长度满足 1≤len≤100 1≤<em>l<strong>e</strong>n</em>≤100 </p>
+<h5 id="输入描述："><a href="#输入描述：" class="headerlink" title="输入描述："></a>输入描述：</h5><p>输入第一行为一个正整数n(1≤n≤1000),下面n行为n个字符串(字符串长度≤100),字符串中只含有大小写字母。</p>
+<h5 id="输出描述："><a href="#输出描述：" class="headerlink" title="输出描述："></a>输出描述：</h5><p>数据输出n行，输出结果为按照字典序排列的字符串。</p>
+<h5 id="示例：-4"><a href="#示例：-4" class="headerlink" title="示例："></a>示例：</h5><blockquote>
+<p>输入：</p>
+<p>9<br>cap<br>to<br>cat<br>card<br>two<br>too<br>up<br>boat<br>boot</p>
+<p>输出：</p>
+<p>boat<br>boot<br>cap<br>card<br>cat<br>to<br>too<br>two<br>up</p>
+</blockquote>
+<h5 id="思路：-3"><a href="#思路：-3" class="headerlink" title="思路："></a>思路：</h5><p>直接排序</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    cin&gt;&gt;n;</span><br><span class="line">    vector&lt;string&gt; res;</span><br><span class="line">    <span class="keyword">while</span>(n--)&#123;</span><br><span class="line">        string tmp;</span><br><span class="line">        cin&gt;&gt;tmp;</span><br><span class="line">        res.<span class="built_in">push_back</span>(tmp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">sort</span>(res.<span class="built_in">begin</span>(),res.<span class="built_in">end</span>());</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;res.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">        cout&lt;&lt;res[i]&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>####HJ15 求int型正整数在内存中存储时1的个数</p>
+<p>#####描述</p>
+<p>输入一个 int 型的正整数，计算出该 int 型数据在内存中存储时 1 的个数。 </p>
+<p>数据范围：保证在 32 位整型数字范围内</p>
+<h5 id="输入描述：-1"><a href="#输入描述：-1" class="headerlink" title="输入描述："></a>输入描述：</h5><p> 输入一个整数（int类型）</p>
+<h5 id="输出描述：-1"><a href="#输出描述：-1" class="headerlink" title="输出描述："></a>输出描述：</h5><p> 这个数转换成2进制后，输出1的个数</p>
+<h5 id="示例：-5"><a href="#示例：-5" class="headerlink" title="示例："></a>示例：</h5><blockquote>
+<p>输入：5</p>
+<p>输出：2</p>
+</blockquote>
+<h5 id="思路：-4"><a href="#思路：-4" class="headerlink" title="思路："></a>思路：</h5><p>n&amp;(n-1) 即（0111）&amp;（0110）&#x3D;&#x3D; 0110 就是 n去除了最后一个1 ；</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> n;</span><br><span class="line">    <span class="keyword">while</span>(cin&gt;&gt;n)&#123;</span><br><span class="line">        <span class="type">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(n)&#123;</span><br><span class="line">            <span class="comment">//判断二进制有多少个1</span></span><br><span class="line">            n &amp;= n<span class="number">-1</span>;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;count&lt;&lt;endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>如有帮助.</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="SJCHEN 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.png" alt="SJCHEN 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>SJCHEN
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://sjchen404.github.io/2022/02/24/%E5%8D%8E%E4%B8%BA%E6%9C%BA%E8%AF%95/" title="华为机试">https://sjchen404.github.io/2022/02/24/华为机试/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8D%8E%E4%B8%BA/" rel="tag"># 华为</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/24/%E5%89%91%E6%8C%87offer/" rel="prev" title="剑指offer">
+      <i class="fa fa-chevron-left"></i> 剑指offer
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/03/03/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" rel="next" title="背包问题">
+      背包问题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#HJ3-%E6%98%8E%E6%98%8E%E7%9A%84%E9%9A%8F%E6%9C%BA%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">HJ3 明明的随机数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HJ4-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%86%E9%9A%94"><span class="nav-number">2.</span> <span class="nav-text">HJ4 字符串分隔</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HJ5-%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">3.</span> <span class="nav-text">HJ5 进制转换</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HJ7-%E5%8F%96%E8%BF%91%E4%BC%BC%E5%80%BC"><span class="nav-number">4.</span> <span class="nav-text">HJ7 取近似值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HJ9-%E6%8F%90%E5%8F%96%E4%B8%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B4%E6%95%B0"><span class="nav-number">5.</span> <span class="nav-text">HJ9 提取不重复的整数</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A"><span class="nav-number">5.1.</span> <span class="nav-text">示例：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HJ11-%E6%95%B0%E5%AD%97%E9%A2%A0%E5%80%92"><span class="nav-number">6.</span> <span class="nav-text">HJ11 数字颠倒</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-1"><span class="nav-number">6.1.</span> <span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A"><span class="nav-number">6.2.</span> <span class="nav-text">思路：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HJ12-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8F%8D%E8%BD%AC"><span class="nav-number">7.</span> <span class="nav-text">HJ12 字符串反转</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-2"><span class="nav-number">7.1.</span> <span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-1"><span class="nav-number">7.2.</span> <span class="nav-text">思路：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HJ13-%E5%8F%A5%E5%AD%90%E9%80%86%E5%BA%8F"><span class="nav-number">8.</span> <span class="nav-text">HJ13 句子逆序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-3"><span class="nav-number">9.</span> <span class="nav-text">示例：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-2"><span class="nav-number">9.1.</span> <span class="nav-text">思路：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HJ14-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F"><span class="nav-number">10.</span> <span class="nav-text">HJ14 字符串排序</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8F%8F%E8%BF%B0"><span class="nav-number">10.1.</span> <span class="nav-text">描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="nav-number">10.2.</span> <span class="nav-text">输入描述：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%8F%8F%E8%BF%B0%EF%BC%9A"><span class="nav-number">10.3.</span> <span class="nav-text">输出描述：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-4"><span class="nav-number">10.4.</span> <span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-3"><span class="nav-number">10.5.</span> <span class="nav-text">思路：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%8F%8F%E8%BF%B0%EF%BC%9A-1"><span class="nav-number">10.6.</span> <span class="nav-text">输入描述：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%BE%93%E5%87%BA%E6%8F%8F%E8%BF%B0%EF%BC%9A-1"><span class="nav-number">10.7.</span> <span class="nav-text">输出描述：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%EF%BC%9A-5"><span class="nav-number">10.8.</span> <span class="nav-text">示例：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%EF%BC%9A-4"><span class="nav-number">10.9.</span> <span class="nav-text">思路：</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="SJCHEN"
+      src="/images/new%E5%A4%B4%E5%83%8F.jpg">
+  <p class="site-author-name" itemprop="name">SJCHEN</p>
+  <div class="site-description" itemprop="description">start from zero</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">144</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">106</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">80</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SJCHEN404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SJCHEN404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chenshengjiao1912@163.com" title="E-Mail → mailto:chenshengjiao1912@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5702603638" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5702603638" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SJCHEN</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">440k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">6:40</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/medium-zoom@1/dist/medium-zoom.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+  
+
+    </div>
+</body>
+</html>
