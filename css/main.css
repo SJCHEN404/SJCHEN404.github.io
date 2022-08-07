@@ -2904,3 +2904,18 @@ mjx-container[display='true'] + br {
 .post-content {
   padding: 20px;
 }
+body {
+  background-image: url("/images/background.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+.site-nav {
+  background-image: url("/images/sidebar.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+.site-overview-wrap {
+  background-image: url("/images/sidebar.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
