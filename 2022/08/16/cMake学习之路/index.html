@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="cMake适用于跨平台的编译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cMake学习之路">
+<meta property="og:url" content="https://sjchen404.github.io/2022/08/16/cMake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/index.html">
+<meta property="og:site_name" content="SJCHEN">
+<meta property="og:description" content="cMake适用于跨平台的编译">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-16T03:05:00.632Z">
+<meta property="article:modified_time" content="2022-08-16T03:05:00.632Z">
+<meta property="article:author" content="SJCHEN">
+<meta property="article:tag" content="cMake">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sjchen404.github.io/2022/08/16/cMake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sjchen404.github.io/2022/08/16/cMake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/","path":"2022/08/16/cMake学习之路/","title":"cMake学习之路"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>cMake学习之路 | SJCHEN</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="waline-blog-ij33-fskc7zdtq-1261476297-qqcom.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SJCHEN</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">时光，不会辜负每一个平静努力的人</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#cmake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF"><span class="nav-number">1.</span> <span class="nav-text">cMake学习之路</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cmake%E5%AE%89%E8%A3%85"><span class="nav-number">1.1.</span> <span class="nav-text">1. cMake安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmake%E7%9A%84%E7%BC%96%E8%AF%91"><span class="nav-number">1.2.</span> <span class="nav-text">2. cMake的编译</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AAhello-world"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1 创建一个hello world</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%99cmakelists.txt"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2 写CMakeLists.txt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8cmake%E7%94%9F%E6%88%90makefile%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3
+使用cmake生成makefile文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8make%E7%BC%96%E8%AF%91"><span class="nav-number">1.2.4.</span> <span class="nav-text">2.4 使用make编译</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cmake%E8%AF%AD%E6%B3%95%E4%BB%8B%E7%BB%8D"><span class="nav-number">1.3.</span> <span class="nav-text">3. cMake语法介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#project%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1 PROJECT关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#set%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2 SET关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#message%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.3.3.</span> <span class="nav-text">3.3 MESSAGE关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#add_executable%E5%85%B3%E9%94%AE%E5%AD%97"><span class="nav-number">1.3.4.</span> <span class="nav-text">3.4 ADD_EXECUTABLE关键字</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99"><span class="nav-number">1.4.</span> <span class="nav-text">4. 语法的基本原则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%AD%E6%B3%95%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1 语法注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E9%83%A8%E6%9E%84%E5%BB%BA%E5%92%8C%E5%A4%96%E9%83%A8%E6%9E%84%E5%BB%BA"><span class="nav-number">1.5.</span> <span class="nav-text">5. 内部构建和外部构建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A9hello-world%E7%9C%8B%E8%B5%B7%E6%9D%A5%E6%9B%B4%E5%83%8F%E4%B8%80%E4%B8%AA%E5%B7%A5%E7%A8%8B"><span class="nav-number">1.6.</span> <span class="nav-text">6. 让Hello
+World看起来更像一个工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%86%E7%9B%AE%E6%A0%87%E6%96%87%E4%BB%B6%E6%94%BE%E5%85%A5%E6%9E%84%E5%BB%BA%E7%9B%AE%E5%BD%95%E7%9A%84-bin%E5%AD%90%E7%9B%AE%E5%BD%95"><span class="nav-number">1.6.1.</span> <span class="nav-text">6.1 将目标文件放入构建目录的
+bin子目录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">7. 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B"><span class="nav-number">2.1.</span> <span class="nav-text">7.1 创建实例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%96%87%E4%BB%B6copyright%E5%92%8Creadme"><span class="nav-number">2.1.1.</span> <span class="nav-text">7.2 安装文件COPYRIGHT和README</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%96%87%E4%BB%B6copyright"><span class="nav-number">2.1.1.1.</span> <span class="nav-text">7.2.1 安装文件COPYRIGHT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%84%9A%E6%9C%ACrunhello.sh"><span class="nav-number">2.1.1.2.</span> <span class="nav-text">7.2.2 安装脚本runhello.sh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-doc%E4%B8%AD%E7%9A%84-hello.txt"><span class="nav-number">2.1.1.3.</span> <span class="nav-text">7.2.3 安装 doc中的
+hello.txt</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-1"><span class="nav-number">2.1.1.4.</span> <span class="nav-text">7.2.4 安装</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%BA%93%E5%92%8C%E5%8A%A8%E6%80%81%E5%BA%93%E7%9A%84%E6%9E%84%E5%BB%BA"><span class="nav-number">2.2.</span> <span class="nav-text">8. 静态库和动态库的构建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E5%AE%9E%E4%BE%8B-1"><span class="nav-number">2.2.1.</span> <span class="nav-text">8.1 创建实例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%97%B6%E6%9E%84%E5%BB%BA%E9%9D%99%E6%80%81%E5%92%8C%E5%8A%A8%E6%80%81%E5%BA%93"><span class="nav-number">2.2.2.</span> <span class="nav-text">8.2 同时构建静态和动态库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%85%B1%E4%BA%AB%E5%BA%93%E5%92%8C%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.3.</span> <span class="nav-text">8.3 安装共享库和头文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A4%96%E9%83%A8%E5%85%B1%E4%BA%AB%E5%BA%93%E5%92%8C%E5%A4%B4%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.4.</span> <span class="nav-text">8.4 使用外部共享库和头文件</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="SJCHEN"
+      src="/images/new%E5%A4%B4%E5%83%8F.jpg">
+  <p class="site-author-name" itemprop="name">SJCHEN</p>
+  <div class="site-description" itemprop="description">start from zero</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">148</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SJCHEN404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SJCHEN404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chenshengjiao1912@163.com" title="E-Mail → mailto:chenshengjiao1912@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5702603638" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5702603638" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+  <div class="links-of-recent-posts motion-element">
+    <div class="links-of-recent-posts-title">
+      <i class="fa fa-history fa-fw"></i>
+      最近文章
+    </div>
+    <ul class="links-of-recent-posts-list">
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/static/" title="2022&#x2F;08&#x2F;16&#x2F;static&#x2F;">快速了解static</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/%E5%BF%AB%E9%80%9F%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E5%88%B0github/" title="2022&#x2F;08&#x2F;16&#x2F;快速将本地项目上传到github&#x2F;">上传项目到github</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" title="2022&#x2F;08&#x2F;16&#x2F;第二章_进程与线程&#x2F;">第二章_进程与线程</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/Hexo8.x%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%AF%E5%88%87%E6%8D%A2%E7%9A%84%E9%BB%91%E6%9A%97%E6%A8%A1%E5%BC%8F/" title="2022&#x2F;08&#x2F;16&#x2F;Hexo8.x主题添加可切换的黑暗模式&#x2F;">Hexo8.x主题添加可切换的黑暗模式</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/Hexo%E8%AE%BE%E7%BD%AE%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0/" title="2022&#x2F;08&#x2F;16&#x2F;Hexo设置近期文章&#x2F;">Hexo设置近期文章</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/08/16/cMake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="cMake学习之路 | SJCHEN">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cMake学习之路
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-16 11:05:00" itemprop="dateCreated datePublished" datetime="2022-08-16T11:05:00+08:00">2022-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/cMake/" itemprop="url" rel="index"><span itemprop="name">cMake</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/08/16/cMake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/08/16/cMake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>9.5k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><code>cMake</code>适用于跨平台的编译</p>
+<span id="more"></span>
+<h1 id="cmake学习之路"><code>cMake</code>学习之路</h1>
+<h2 id="cmake安装">1. <code>cMake</code>安装</h2>
+<p>我使用的是<code>mac</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install cmake</span><br></pre></td></tr></table></figure>
+<h2 id="cmake的编译">2. <code>cMake</code>的编译</h2>
+<p>创建我们的文件所在目录，并来到创建的目录</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">madir cmakeLearn/cmake01</span><br><span class="line"><span class="built_in">cd</span> cmakeLearen/cmake01</span><br></pre></td></tr></table></figure>
+<h3 id="创建一个hello-world">2.1 创建一个<code>hello world</code></h3>
+<p>我是在<code>nvim</code>下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvim main.cpp</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;hello world&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们正常编译执行看下结果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">clang++ main.cpp</span><br><span class="line">./a.out</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>hello world</p>
+</blockquote>
+<p>然后把<code>a.out</code>删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf a.out</span><br></pre></td></tr></table></figure>
+<h3 id="写cmakelists.txt">2.2 写<code>CMakeLists.txt</code></h3>
+<p>现在我们用<code>cMake</code>来编译</p>
+<p><strong>新建<code>CMakeLists.txt</code></strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvim CMakeLists.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// projext name</span></span><br><span class="line"><span class="built_in">PROJECT</span>(HELLO)</span><br><span class="line"><span class="built_in">SET</span>(SRC_LIST main.cpp)</span><br><span class="line"><span class="built_in">MESSAGE</span>(STATUS <span class="string">&quot;This is BINARY dir&quot;</span> $&#123;HELLO_BINARY_DIR&#125;)</span><br><span class="line"><span class="built_in">MESSAGE</span>(STATUS <span class="string">&quot;This is SOURCES dir&quot;</span> $&#123;HELLO_SOURCE_DIR&#125;)</span><br><span class="line"><span class="built_in">ADD_EXECUTABLE</span>(hello $&#123;SRC_LIST&#125;)</span><br></pre></td></tr></table></figure>
+<h3 id="使用cmake生成makefile文件">2.3
+使用<code>cmake</code>生成<code>makefile</code>文件</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake .</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202208161101298.jpg" /></p>
+<p>没有发生报错，就是成功编译了</p>
+<p>我们执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">la -a</span><br></pre></td></tr></table></figure>
+<p>查看当前目录下有哪些文件</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202208161101270.jpg" /></p>
+<h3 id="使用make编译">2.4 使用<code>make</code>编译</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202208161102635.jpg" /></p>
+<p>可以发现生成了<code>hello</code>这个文件，我们执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./hello</span><br></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<blockquote>
+<p>hello world</p>
+</blockquote>
+<h2 id="cmake语法介绍">3. <code>cMake</code>语法介绍</h2>
+<h3 id="project关键字">3.1 <code>PROJECT</code>关键字</h3>
+<p>可以用来指定工程的名字和支持的语言，默认支持所有语言</p>
+<p><code>PROJECT (HELLO)</code> 指定了工程的名字，并且支持所有语言</p>
+<p><code>PROJECT (HELLO CXX)</code>
+指定了工程的名字，并且支持语言是<code>C++</code></p>
+<p><code>PROJECT (HELLO C CXX)</code>
+指定了工程的名字，并且支持语言是<code>C</code>和<code>C++</code></p>
+<p>我们的<code>hello world</code>程序</p>
+<p>该指定隐式定义了两个CMAKE的变量</p>
+<p><code>&lt;projectname&gt;_BINARY_DIR</code>，本例中是
+HELLO_BINARY_DIR</p>
+<p><code>&lt;projectname&gt;_SOURCE_DIR</code>，本例中是
+HELLO_SOURCE_DIR</p>
+<p><code>MESSAGE</code>关键字就可以直接使用者两个变量，当前都指向当前的工作目录，后面会讲外部编译</p>
+<blockquote>
+<p>ps:</p>
+<p>问题：如果改了工程名，这两个变量名也会改变</p>
+<p>解决：又定义两个预定义变量：<code>PROJECT_BINARY_DIR</code>和<code>PROJECT_SOURCE_DIR</code>，这两个变量和<code>HELLO_BINARY_DIR</code>，<code>HELLO_SOURCE_DIR</code>是一致的。所以改了工程名也没有关系</p>
+</blockquote>
+<h3 id="set关键字">3.2 <code>SET</code>关键字</h3>
+<p>用来显示的指定变量的</p>
+<p><code>SET(SRC_LIST main.cpp)</code>
+<code>SRC_LIST</code>变量就包含了<code>main.cpp</code></p>
+<p>如果有多个<code>cpp</code>文件</p>
+<p>也可以 <code>SET(SRC_LIST main.cpp t1.cpp t2.cpp)</code></p>
+<h3 id="message关键字">3.3 <code>MESSAGE</code>关键字</h3>
+<p>向终端输出用户自定义的信息</p>
+<p>主要包含三种信息：</p>
+<ul>
+<li><code>SEND_ERROR</code>，产生错误，生成过程被跳过。</li>
+<li><code>STATUS</code>，输出前缀为<code>—</code>的信息。</li>
+<li><code>FATAL_ERROR</code>，立即终止所有 cmake 过程.</li>
+</ul>
+<h3 id="add_executable关键字">3.4 <code>ADD_EXECUTABLE</code>关键字</h3>
+<p>生成可执行文件</p>
+<p><code>ADD_EXECUTABLE(hello $&#123;SRC_LIST&#125;)</code>
+生成的可执行文件名是<code>hello</code>，源文件读取变量<code>SRC_LIST</code>中的内容</p>
+<p>也可以直接写 <code>ADD_EXECUTABLE(hello main.cpp)</code></p>
+<p>上述例子可以简化的写成</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PROJECT</span>(HELLO)</span><br><span class="line"><span class="built_in">ADD_EXECUTABLE</span>(hello main.cpp)</span><br></pre></td></tr></table></figure>
+<p>注意：工程名的 <code>HELLO</code>和生成的可执行文件
+<code>hello</code>是没有任何关系的</p>
+<h2 id="语法的基本原则">4. 语法的基本原则</h2>
+<ul>
+<li><p>变量使用<code>$&#123;&#125;</code>方式取值，但是在<code>IF</code>
+控制语句中是直接使用变量名</p></li>
+<li><p>指令(参数 1 参数 2...)
+参数使用括弧括起，参数之间使用空格或分号分开。 以上面的
+<code>ADD_EXECUTABLE</code>指令为例，如果存在另外一个
+<code>func.cpp</code> 源文件</p>
+<p>就要写成：<code>ADD_EXECUTABLE(hello main.cpp func.cpp)</code>或者<code>ADD_EXECUTABLE(hello main.cpp;func.cpp)</code></p></li>
+<li><p>指令是大小写无关的，参数和变量是大小写相关的。但，推荐你全部使用大写指令</p></li>
+</ul>
+<h3 id="语法注意事项">4.1 语法注意事项</h3>
+<ul>
+<li><code>SET(SRC_LIST main.cpp)</code>可以写成
+<code>SET(SRC_LIST “main.cpp”)</code>，如果源文件名中含有空格，就必须要加双引号</li>
+<li><code>ADD_EXECUTABLE(hello main)</code>后缀可以不行，他会自动去找.c和.cpp，最好不要这样写，可能会有这两个文件main.cpp和main</li>
+</ul>
+<h2 id="内部构建和外部构建">5. 内部构建和外部构建</h2>
+<p>我们的<code>hello world</code>使用的就是内部构建，生产的临时文件特别多，不方便清理</p>
+<p>外部构建，就会把生成的临时文件放在<code>build</code>目录下，不会对源文件有任何影响强烈使用外部构建方式</p>
+<p>我们删除到只剩下</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202208161102846.jpg" /></p>
+<p>### 5.1 外部构建</p>
+<p>1、建立一个<code>build</code>目录，可以在任何地方，建议在当前目录下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br></pre></td></tr></table></figure>
+<p>2、运行<code>cmake ..</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake ..</span><br></pre></td></tr></table></figure>
+<p>当然<code>..</code>表示上一级目录，你可以写<code>CMakeLists.txt</code>所在的绝对路径，生产的文件都在<code>build</code>目录下了</p>
+<p>3、在<code>build</code>目录下，运行<code>make</code>来构建工程</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ps:</p>
+<p>注意外部构建的两个变量</p>
+<p>1、<code>HELLO_SOURCE_DIR</code> 还是工程路径</p>
+<p>2、<code>HELLO_BINARY_DIR</code> 编译路径
+也就是<code>/root/cmake/bulid</code></p>
+</blockquote>
+<h2 id="让hello-world看起来更像一个工程">6. 让Hello
+World看起来更像一个工程</h2>
+<ul>
+<li>为工程添加一个子目录 <code>src</code>，用来放置工程源代码</li>
+<li>添加一个子目录 <code>doc</code>，用来放置这个工程的文档
+<code>hello.txt</code></li>
+<li>在工程目录添加文本文件 <code>COPYRIGHT</code>,
+<code>README</code></li>
+<li>在工程目录添加一个 <a target="_blank" rel="noopener" href="http://runhello.sh/">runhello.sh</a>
+脚本，用来调用 <code>hello</code>二进制</li>
+<li>将构建后的目标文件放入构建目录的 <code>bin</code>子目录</li>
+<li>将 <code>doc</code>目录 的内容以及<code>COPYRIGHT/README</code>
+安装到<code>/usr/share/doc/cmake/</code></li>
+</ul>
+<h3 id="将目标文件放入构建目录的-bin子目录">6.1 将目标文件放入构建目录的
+<code>bin</code>子目录</h3>
+<p>每个目录下都要有一个<code>CMakeLists.txt</code>说明</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost cmake01]<span class="meta"># tree</span></span><br><span class="line">.</span><br><span class="line">├── build</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    └── main.cpp</span><br></pre></td></tr></table></figure>
+<p>回到我们的<code>cmake01</code>，此时路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lab/cmakeLearn/cmake01</span><br></pre></td></tr></table></figure>
+<p>建立<code>src</code>,并把<code>main.cpp</code>移动过来</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> src</span><br><span class="line"><span class="built_in">mv</span> main.cpp src/</span><br></pre></td></tr></table></figure>
+<p>并在<code>src</code>中创建一个<code>CMakeLists.txt</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">touch</span> CMakeLists.txt</span><br></pre></td></tr></table></figure>
+<p>回到我们的根目录下，也就是<code>cmake01</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost cmake01]<span class="meta"># tree</span></span><br><span class="line">.</span><br><span class="line">├── build</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    └── main.cpp</span><br></pre></td></tr></table></figure>
+<p>输入</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> CMakeLists.txt</span><br></pre></td></tr></table></figure>
+<p>可以看到里面有数据</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PROJECT</span>(HELLO)</span><br><span class="line"><span class="built_in">SET</span>(SRC_LIST main.cpp)</span><br><span class="line"><span class="built_in">MESSAGE</span>(STATUS <span class="string">&quot;This is BINARY dir&quot;</span> $&#123;HELLO_BINARY_DIR&#125;)</span><br><span class="line"><span class="built_in">MESSAGE</span>(STATUS <span class="string">&quot;This is SOURCES dir&quot;</span> $&#123;HELLO_SOURCE_DIR&#125;)</span><br><span class="line"><span class="built_in">ADD_EXECUTABLE</span>(hello $&#123;SRC_LIST&#125;)</span><br></pre></td></tr></table></figure>
+<p>我们把里面的数据删除</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&quot;&quot;</span> &gt; CMakeLists.txt</span><br></pre></td></tr></table></figure>
+<p>重新在<code>CMakeLists.txt</code>中输入</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CMakeLists.txt</span></span><br><span class="line"><span class="built_in">PROJECT</span>(HELLO)</span><br><span class="line"><span class="built_in">ADD_SUBDIRECTORY</span>(src bin)</span><br></pre></td></tr></table></figure>
+<p><code>ADD_SUBDIRECTORY</code>指令</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ADD_SUBDIRECTORY</span>(source_dir [binary_dir] [EXCLUDE_FROM_ALL])</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>这个指令用于向当前工程添加存放源文件的子目录，并可以指定中间二进制和目标二进制存放的位置</p></li>
+<li><p><code>EXCLUDE_FROM_ALL</code>函数是将写的目录从编译中排除，如程序中的<code>example</code></p></li>
+<li><p><code>ADD_SUBDIRECTORY(src bin)</code></p>
+<p>将<code>src</code>子目录加入工程并指定编译输出(包含编译中间结果)路径为<code>bin</code>目录</p>
+<p>如果不进行
+<code>bin</code>目录的指定，那么编译结果(包括中间结果)都将存放在<code>build/src</code>
+目录</p></li>
+</ul>
+<p>接下来我们写<code>src</code>下的<code>CMakeLists.txt</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> src</span><br><span class="line">nvim CMakeLists.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//	src/CMakeLists.txt</span></span><br><span class="line"><span class="built_in">ADD_EXECUTABLE</span>(hello main.cpp)</span><br></pre></td></tr></table></figure>
+<p>去到<code>build</code>文件下(空)</p>
+<p>执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmake ..</span><br></pre></td></tr></table></figure>
+<p>可以看到产生了</p>
+<blockquote>
+<p>. .. CMakeCache.txt CMakeFiles Makefile bin cmake_install.cmake</p>
+</blockquote>
+<p>再执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
+<p>生成</p>
+<blockquote>
+<p>. .. CMakeCache.txt CMakeFiles Makefile bin cmake_install.cmake</p>
+</blockquote>
+<p>去到<code>bin</code>文件下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> bin</span><br><span class="line"><span class="built_in">ls</span> -a</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>. .. CMakeFiles Makefile cmake_install.cmake hello</p>
+</blockquote>
+<p>可以看到已经产生了我们的可执行文件<code>hello</code></p>
+<h4 id="总结">总结</h4>
+<p>结构为：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── build</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    └── main.cpp</span><br></pre></td></tr></table></figure>
+<p>在外层的<code>CMakeLists.txt</code>中通过<code>ADD_SUBDIRECTORY</code>指明当前工程添加存放源文件的子目录，并可以指定中间二进制和目标二进制存放的位置</p>
+<p>在<code>src</code>中执行<code>ADD_EXECUTABLE(hello main.cpp)</code></p>
+<p>如果要更改二进制的保存路径</p>
+<p><code>SET</code>指令重新定义 <code>EXECUTABLE_OUTPUT_PATH</code> 和
+<code>LIBRARY_OUTPUT_PATH</code>变量 来指定最终的目标二进制的位置</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">SET</span>(EXECUTABLE_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/bin)</span><br><span class="line"><span class="built_in">SET</span>(LIBRARY_OUTPUT_PATH $&#123;PROJECT_BINARY_DIR&#125;/lib)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ps:</p>
+<p>思考：加载哪个CMakeLists.txt当中</p>
+<p>哪里要改变目标存放路径，就在哪里加入上述的定义，所以应该在src下的CMakeLists.txt下写</p>
+</blockquote>
+<h1 id="安装">7. 安装</h1>
+<p>使用<code>CMAKE</code>一个新的指令：<code>INSTALL</code></p>
+<p><code>INSTALL</code>的安装可以包括：二进制、动态库、静态库以及文件、目录、脚本等</p>
+<p>使用<code>CMAKE</code>一个新的变量：<code>CMAKE_INSTALL_PREFIX</code></p>
+<h2 id="创建实例">7.1 创建实例</h2>
+<p>我们创建<code>cmake02</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── cmake01</span><br><span class="line">├── cmake02</span><br></pre></td></tr></table></figure>
+<p>然后把<code>cmake01</code>的内容复制到<code>cmake02</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> cmake01/* cmake02</span><br></pre></td></tr></table></figure>
+<p>此时<code>cmake02</code>到的结构为</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">lab/cmakeLearn/cmake02</span><br><span class="line">➜ tree</span><br><span class="line">.</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">├── build</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    └── main.cpp</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>安装以下目录树构建完整。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 目录树结构</span></span><br><span class="line"><span class="comment">//lab/cmakeLearn/cmake02</span></span><br><span class="line">➜ tree</span><br><span class="line">.</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">├── COPYRIGHT</span><br><span class="line">├── README</span><br><span class="line">├── build</span><br><span class="line">├── doc</span><br><span class="line">│   └── hello.txt</span><br><span class="line">├── runhello.sh</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    └── main.cpp</span><br></pre></td></tr></table></figure>
+<h3 id="安装文件copyright和readme">7.2 安装文件COPYRIGHT和README</h3>
+<h4 id="安装文件copyright">7.2.1 安装文件COPYRIGHT</h4>
+<p>打开最外层的<code>CMakeLists.txt</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nvim CMakeLists.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CMakeLists.txt</span></span><br><span class="line"><span class="built_in">PROJECT</span>(HELLO)</span><br><span class="line"><span class="built_in">ADD_SUBDIRECTORY</span>(src bin)</span><br><span class="line"><span class="built_in">INSTALL</span>(FILES COPYRIGHT README DESTINATION share/doc/cmake/)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>INSTALL(FILES COPYRIGHT README DESTINATION share/doc/cmake/)</code></p>
+<p><code>FILES</code>：文件</p>
+<p><code>DESTINATION</code>：</p>
+<p>1、写绝对路径</p>
+<p>2、可以写相对路径，相对路径实际路径是：<code>$&#123;CMAKE_INSTALL_PREFIX&#125;/&lt;DESTINATION 定义的路径&gt;</code></p>
+<p><code>CMAKE_INSTALL_PREFIX</code> 默认是在
+<code>/usr/local/</code></p>
+<p><code>cmake -DCMAKE_INSTALL_PREFIX=/usr</code>
+在<code>cmake</code>的时候指定<code>CMAKE_INSTALL_PREFIX</code>变量的路径</p>
+</blockquote>
+<h4 id="安装脚本runhello.sh">7.2.2 安装脚本<code>runhello.sh</code></h4>
+<p>继续在我们的<code>CMakeLists.txt</code>中添加</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">INSTALL</span>(PROGRAMS runhello.sh DESTINATION bin)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>PROGRAMS：非目标文件的可执行程序安装(比如脚本之类)</p>
+<p><code>INSTALL(PROGRAMS runhello.sh DESTINATION bin)</code></p>
+<p>说明：实际安装到的是 /usr/bin</p>
+</blockquote>
+<h4 id="安装-doc中的-hello.txt">7.2.3 安装 <code>doc</code>中的
+<code>hello.txt</code></h4>
+<ul>
+<li><p>一、是通过在 doc 目录建立CMakeLists.txt
+，通过install下的file</p></li>
+<li><p>二、是直接在工程目录通过</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">INSTALL</span>(DIRECTORY doc/ DESTINATION share/doc/cmake)</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><code>DIRECTORY</code>后面连接的是所在<code>Source</code>
+目录的相对路径</p>
+<p>注意：<code>abc</code>和 <code>abc/</code>有很大的区别</p>
+<p>目录名不以<code>/</code>结尾：这个目录将被安装为目标路径下的</p>
+<p>目录名以<code>/</code>结尾：将这个目录中的内容安装到目标路径</p>
+<h4 id="安装-1">7.2.4 安装</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202208161103808.jpg" /></p>
+<p>可以看到已经生成了<code>Makefile</code>文件，代表没有出错</p>
+<p>执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202208161103917.jpg" /></p>
+<p>已经在<code>bin</code>中成功生成<code>hello</code>可执行文件</p>
+<p>执行</p>
+<blockquote>
+<p>make install</p>
+</blockquote>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202208161103178.jpg" /></p>
+<p>可以看到我们的<code>COPYRIGHT</code>和<code>README</code>已经成功安装。</p>
+<h2 id="静态库和动态库的构建">8. 静态库和动态库的构建</h2>
+<p>任务：</p>
+<p>１，建立一个静态库和动态库，提供
+<code>HelloFunc</code>函数供其他程序编程使用，<code>HelloFunc</code>
+向终端输出<code>Hello World</code> 字符串。</p>
+<p>２，安装头文件与共享库。</p>
+<p>静态库和动态库的区别</p>
+<ul>
+<li>静态库的扩展名一般为<code>.a</code>或<code>.lib</code>；动态库的扩展名一般为<code>.so</code>或<code>.dll</code>。</li>
+<li>静态库在编译时会直接整合到目标程序中，编译成功的可执行文件可独立运行</li>
+<li>动态库在编译时不会放到连接的目标程序中，即可执行文件无法单独运行。</li>
+</ul>
+<h3 id="创建实例-1">8.1 创建实例</h3>
+<p>我们创建<code>cmake03</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── cmake01</span><br><span class="line">├── cmake02</span><br><span class="line">├── cmake03</span><br></pre></td></tr></table></figure>
+<p><code>cmake03</code>结构为</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//目录树结构</span></span><br><span class="line">.</span><br><span class="line">├── build</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">└── lib</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    ├── hello.cpp</span><br><span class="line">    └── hello.h</span><br></pre></td></tr></table></figure>
+<p><code>hello.h</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hello.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> HELLO_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> HELLO_H</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">HelloFunc</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<p><code>hello.cpp</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hello.cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;hello.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">HelloFunc</span><span class="params">()</span></span>&#123;</span><br><span class="line">	std::cout &lt;&lt; <span class="string">&quot;hello world&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>写项目外层的<code>CMakeLists.txt</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">PROJECT</span>(HELLO)</span><br><span class="line"><span class="built_in">ADD_SUBDIRECTORY</span>(lib bin)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第二句为我们在<code>lib</code>中生成一个共享库<code>bin</code></p>
+</blockquote>
+<p><code>lib</code>中<code>CMakeLists.txt</code>中的内容</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// lib/CMakeLists.txt</span></span><br><span class="line"><span class="built_in">SET</span>(LIBHELLO_SRC hello.cpp)</span><br><span class="line"><span class="built_in">ADD_LIBRARY</span>(hello SHARED $&#123;LIBHELLO_SRC&#125;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>LIBHELLO_SRC 为我们定义的一个变量</p>
+<p>在这个变量上放入了 hello.cpp</p>
+</blockquote>
+<p><code>ADD_LIBRARY</code></p>
+<p><code>ADD_LIBRARY(hello SHARED $&#123;LIBHELLO_SRC&#125;)</code></p>
+<ul>
+<li><code>hello</code>：就是正常的库名，生成的名字前面会加上<code>lib</code>，最终产生的文件是<code>libhello.so</code>
+或者<code>libhello.dylib</code>(<code>mac</code>中的共享库)</li>
+<li><code>SHARED</code>，动态库 <code>STATIC</code>，静态库</li>
+<li><code>$&#123;LIBHELLO_SRC&#125;</code>：源文件</li>
+</ul>
+<p>我们来到<code>build</code>，执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<p>可以看到<code>bin</code>中生成了动态共享库<code>libhello.dylib</code></p>
+<blockquote>
+<p>drwxr-xr-x 5 SJCHEN staff 160B 5 15 22:41 CMakeFiles -rw-r--r-- 1
+SJCHEN staff 5.8K 5 15 22:41 Makefile -rw-r--r-- 1 SJCHEN staff 1.1K 5
+15 22:41 cmake_install.cmake -rwxr-xr-x 1 SJCHEN staff 55K 5 15 22:41
+libhello.dylib</p>
+</blockquote>
+<h3 id="同时构建静态和动态库">8.2 同时构建静态和动态库</h3>
+<p>我们来到<code>lib</code>中的<code>CMakeLists.txt</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">SET</span>(LIBHELLO_SRC hello.cpp)</span><br><span class="line"></span><br><span class="line"><span class="built_in">ADD_LIBRARY</span>(hello_static STATIC $&#123;LIBHELLO_SRC&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">SET_TARGET_PROPERTIES</span>(hello_static PROPERTIES  OUTPUT_NAME <span class="string">&quot;hello&quot;</span>)</span><br><span class="line"><span class="built_in">SET_TARGET_PROPERTIES</span>(hello_static PROPERTIES CLEAN_DIRECT_OUTPUT <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">ADD_LIBRARY</span>(hello SHARED $&#123;LIBHELLO_SRC&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">SET_TARGET_PROPERTIES</span>(hello PROPERTIES  OUTPUT_NAME <span class="string">&quot;hello&quot;</span>)</span><br><span class="line"><span class="built_in">SET_TARGET_PROPERTIES</span>(hello PROPERTIES CLEAN_DIRECT_OUTPUT <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<p><code>SET_TARGET_PROPERTIES</code></p>
+<p>这条指令可以用来设置输出的名称，对于动态库，还可以用来指定动态库版本和
+API 版本</p>
+<p>来到<code>build</code></p>
+<p>先把<code>build</code>中的数据删空</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">rm</span> -rf *</span><br></pre></td></tr></table></figure>
+<p>执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<p>输出结果；</p>
+<blockquote>
+<p>[ 25%] Building CXX object
+bin/CMakeFiles/hello_static.dir/hello.o</p>
+<p>[ 50%] Linking CXX static library libhello.a</p>
+<p>[ 50%] Built target hello_static</p>
+<p>[ 75%] Building CXX object bin/CMakeFiles/hello.dir/hello.o</p>
+<p>[100%] Linking CXX shared library libhello.dylib</p>
+</blockquote>
+<p>可以看到我们同时输出了静态库<code>libhello.a</code>和动态共享库<code>libhello.dylib</code></p>
+<h3 id="安装共享库和头文件">8.3 安装共享库和头文件</h3>
+<p>来到<code>lib</code>中的<code>CMakeLists.txt</code></p>
+<p>插入</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">INSTALL</span>(FILES hello.h DESTINATION include/hello)</span><br><span class="line"><span class="built_in">INSTALL</span>(TARGETS hello hello_static LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>//二进制，静态库，动态库安装都用TARGETS //ARCHIVE 特指静态库，LIBRARY
+特指动态库，RUNTIME 特指可执行目标二进制。</p>
+</blockquote>
+<p>此时<code>CMakeLists.txt</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">SET</span>(LIBHELLO_SRC hello.cpp)</span><br><span class="line"></span><br><span class="line"><span class="built_in">ADD_LIBRARY</span>(hello_static STATIC $&#123;LIBHELLO_SRC&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">SET_TARGET_PROPERTIES</span>(hello_static PROPERTIES  OUTPUT_NAME <span class="string">&quot;hello&quot;</span>)</span><br><span class="line"><span class="built_in">SET_TARGET_PROPERTIES</span>(hello_static PROPERTIES CLEAN_DIRECT_OUTPUT <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">ADD_LIBRARY</span>(hello SHARED $&#123;LIBHELLO_SRC&#125;)</span><br><span class="line"></span><br><span class="line"><span class="built_in">SET_TARGET_PROPERTIES</span>(hello PROPERTIES  OUTPUT_NAME <span class="string">&quot;hello&quot;</span>)</span><br><span class="line"><span class="built_in">SET_TARGET_PROPERTIES</span>(hello PROPERTIES CLEAN_DIRECT_OUTPUT <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">INSTALL</span>(FILES hello.h DESTINATION include/hello)</span><br><span class="line"><span class="built_in">INSTALL</span>(TARGETS hello hello_static LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>ps:</p>
+<p>注意：</p>
+<p>安装的时候，指定一下路径，放到系统下</p>
+<p>cmake -DCMAKE_INSTALL_PREFIX=/usr ..</p>
+</blockquote>
+<p>来到<code>build</code>，清空</p>
+<p>执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cmake -DCMAKE_INSTALL_PREFIX=/usr ..</span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<p>安装</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make install</span><br></pre></td></tr></table></figure>
+<h3 id="使用外部共享库和头文件">8.4 使用外部共享库和头文件</h3>
+<p>准备工作，新建一个目录来使用外部共享库和头文件</p>
+<p>我们创建<code>cmake04</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//目录树结构</span></span><br><span class="line">.</span><br><span class="line">├── build</span><br><span class="line">├── CMakeLists.txt</span><br><span class="line">└── src</span><br><span class="line">    ├── CMakeLists.txt</span><br><span class="line">    └── main.cpp</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="SJCHEN 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="SJCHEN 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>SJCHEN
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sjchen404.github.io/2022/08/16/cMake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/" title="cMake学习之路">https://sjchen404.github.io/2022/08/16/cMake学习之路/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/cMake/" rel="tag"># cMake</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/16/hexo-%E6%9B%B4%E6%96%B0/" rel="prev" title="hexo 更新">
+                  <i class="fa fa-chevron-left"></i> hexo 更新
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/16/cMake%E5%AE%98%E6%96%B9%E6%96%87%E6%A1%A3%E5%AD%A6%E4%B9%A0/" rel="next" title="cMake官方文档学习">
+                  cMake官方文档学习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">null </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SJCHEN</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">554k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">8:24</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"waline-blog-ij33-fskc7zdtq-1261476297-qqcom.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"请文明评论呀","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick"],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/08/16/cMake%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: false,
+  label: '🌓',
+  autoMatchOsTheme: false
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+if (window.darkmode && !window.darkmode.isActivated()) {
+  window.darkmode.toggle();
+  var toggleButtons = document.getElementsByClassName("darkmode-toggle");
+  if (toggleButtons && toggleButtons.length > 0) {
+    for (i = 0; i < toggleButtons.length; i++) {
+      toggleButtons[i].classList.add("darkmode-toggle--white");
+    }
+  }
+}
+</script>
+
+</body>
+</html>

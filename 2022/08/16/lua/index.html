@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="[[toc]] Getting started with lua. Lua 5.4 Reference Manual">
+<meta property="og:type" content="article">
+<meta property="og:title" content="lua">
+<meta property="og:url" content="https://sjchen404.github.io/2022/08/16/lua/index.html">
+<meta property="og:site_name" content="SJCHEN">
+<meta property="og:description" content="[[toc]] Getting started with lua. Lua 5.4 Reference Manual">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-16T03:19:54.525Z">
+<meta property="article:modified_time" content="2022-08-16T03:19:54.525Z">
+<meta property="article:author" content="SJCHEN">
+<meta property="article:tag" content="lua">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sjchen404.github.io/2022/08/16/lua/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sjchen404.github.io/2022/08/16/lua/","path":"2022/08/16/lua/","title":"lua"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>lua | SJCHEN</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="waline-blog-ij33-fskc7zdtq-1261476297-qqcom.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SJCHEN</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">时光，不会辜负每一个平静努力的人</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#comment"><span class="nav-number">1.</span> <span class="nav-text">comment</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#variables"><span class="nav-number">2.</span> <span class="nav-text">Variables</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#number"><span class="nav-number">3.</span> <span class="nav-text">Number</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#operator"><span class="nav-number">4.</span> <span class="nav-text">Operator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#string"><span class="nav-number">5.</span> <span class="nav-text">string</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#function"><span class="nav-number">6.</span> <span class="nav-text">Function</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#table"><span class="nav-number">7.</span> <span class="nav-text">table</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#digital-subscript"><span class="nav-number">7.1.</span> <span class="nav-text">digital subscript:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#table.insert"><span class="nav-number">7.1.1.</span> <span class="nav-text">table.insert()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#table.remove"><span class="nav-number">7.1.2.</span> <span class="nav-text">table.remove()</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#string-subscript"><span class="nav-number">7.2.</span> <span class="nav-text">string subscript:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#g"><span class="nav-number">8.</span> <span class="nav-text">_G</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#boolean"><span class="nav-number">9.</span> <span class="nav-text">boolean</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#branch-statement"><span class="nav-number">9.1.</span> <span class="nav-text">branch statement</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#loop-statement"><span class="nav-number">10.</span> <span class="nav-text">loop statement</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#for"><span class="nav-number">10.1.</span> <span class="nav-text">for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#while"><span class="nav-number">10.2.</span> <span class="nav-text">while</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#string-1"><span class="nav-number">11.</span> <span class="nav-text">string</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="SJCHEN"
+      src="/images/new%E5%A4%B4%E5%83%8F.jpg">
+  <p class="site-author-name" itemprop="name">SJCHEN</p>
+  <div class="site-description" itemprop="description">start from zero</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">148</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SJCHEN404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SJCHEN404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chenshengjiao1912@163.com" title="E-Mail → mailto:chenshengjiao1912@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5702603638" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5702603638" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+  <div class="links-of-recent-posts motion-element">
+    <div class="links-of-recent-posts-title">
+      <i class="fa fa-history fa-fw"></i>
+      最近文章
+    </div>
+    <ul class="links-of-recent-posts-list">
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/static/" title="2022&#x2F;08&#x2F;16&#x2F;static&#x2F;">快速了解static</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/%E5%BF%AB%E9%80%9F%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E5%88%B0github/" title="2022&#x2F;08&#x2F;16&#x2F;快速将本地项目上传到github&#x2F;">上传项目到github</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" title="2022&#x2F;08&#x2F;16&#x2F;第二章_进程与线程&#x2F;">第二章_进程与线程</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/Hexo8.x%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%AF%E5%88%87%E6%8D%A2%E7%9A%84%E9%BB%91%E6%9A%97%E6%A8%A1%E5%BC%8F/" title="2022&#x2F;08&#x2F;16&#x2F;Hexo8.x主题添加可切换的黑暗模式&#x2F;">Hexo8.x主题添加可切换的黑暗模式</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/Hexo%E8%AE%BE%E7%BD%AE%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0/" title="2022&#x2F;08&#x2F;16&#x2F;Hexo设置近期文章&#x2F;">Hexo设置近期文章</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/08/16/lua/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="lua | SJCHEN">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          lua
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-16 11:19:54" itemprop="dateCreated datePublished" datetime="2022-08-16T11:19:54+08:00">2022-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/lua/" itemprop="url" rel="index"><span itemprop="name">lua</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/08/16/lua/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/08/16/lua/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>[[toc]]</p>
+<p>Getting started with lua.</p>
+<p><a target="_blank" rel="noopener" href="https://www.lua.org/manual/5.4/">Lua 5.4 Reference
+Manual</a></p>
+<span id="more"></span>
+<h1 id="comment">comment</h1>
+<p>The line comments and block comments.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(a = <span class="number">1</span>)</span><br><span class="line"><span class="comment">--Line comments</span></span><br><span class="line"><span class="comment">--[[</span></span><br><span class="line"><span class="comment">block comments</span></span><br><span class="line"><span class="comment">]]</span></span><br></pre></td></tr></table></figure>
+<h1 id="variables">Variables</h1>
+<p>It is okay to have a semicoion at the end.</p>
+<p>the declaration variable defaults to global.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span>;</span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>1</p>
+</blockquote>
+<p>local variable <figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> a = <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>Variables that have not been declared in lua are <code>nil</code>,
+Similar to <code>nullptr</code> in C++.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(c)</span><br></pre></td></tr></table></figure>
+<p>Output</p>
+<blockquote>
+<p>nil</p>
+</blockquote>
+<p><strong>Multiple assignment</strong></p>
+<p>The default value without assignment is <code>nil</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a, b, c = <span class="number">1</span>, <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(a, b, c)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>1 2 nil</p>
+</blockquote>
+<h1 id="number">Number</h1>
+<p>In the C language,there are multiple types of number values,such as
+<code>int</code>,<code>char</code>,<code>long</code>,etc.,but in lua
+they are collectively called <code>number</code>.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line">b = <span class="number">2e10</span></span><br><span class="line">c = <span class="number">0x11</span></span><br><span class="line"><span class="comment">--Hexadecimal</span></span><br></pre></td></tr></table></figure>
+<h1 id="operator">Operator</h1>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line">b = <span class="number">2</span></span><br><span class="line"><span class="built_in">print</span>(a + b)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>3</p>
+</blockquote>
+<h1 id="string">string</h1>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;I am string type\n&quot;</span></span><br><span class="line">b = <span class="string">&#x27;I am also a string type\n&#x27;</span></span><br><span class="line">c = <span class="string">[[</span></span><br><span class="line"><span class="string">The contents of the remain unchanged.\n</span></span><br><span class="line"><span class="string">]]</span></span><br><span class="line"><span class="built_in">print</span>(a, b, c)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>I am string type<br> I am alse a string type<br> The contents of the
+remain unchanged.</p>
+</blockquote>
+<p>We found that the content in <code>[[]]</code> remained the same,and
+the transliteration characters did not change.</p>
+<p>In lua the string concatenation is not a <code>+</code>,but
+<code>..</code>.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&#x27;the &#x27;</span></span><br><span class="line">b = <span class="string">&#x27;lua&#x27;</span></span><br><span class="line">c = a..b</span><br><span class="line"><span class="built_in">print</span>(c)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>the lua</p>
+</blockquote>
+<p>String and numbers can alse be converted to each other. the return
+value of <code>tonumber()</code> conversion failure is
+<code>nil</code>.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="built_in">tostring</span>(<span class="number">10</span>)</span><br><span class="line">b = <span class="built_in">tonumber</span>(<span class="string">&#x27;10&#x27;</span>)</span><br><span class="line">c = <span class="built_in">tonumber</span>(<span class="string">&quot;abc&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>10 10 nil</p>
+</blockquote>
+<p>Get the string length by <code>#</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;hello world&quot;</span></span><br><span class="line"><span class="built_in">print</span>(#a)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>11</p>
+</blockquote>
+<h1 id="function">Function</h1>
+<p><strong>declared function</strong></p>
+<p>The following function declares an equivalence, <code>...</code> is
+the function argument.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">function_name1</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="comment">-- body</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">function_name2 = <span class="function"><span class="keyword">function</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="comment">-- body</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">function_name3</span><span class="params">(...)</span></span></span><br><span class="line">    <span class="comment">-- body</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>such as:</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="built_in">print</span>(a, b)</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">f(<span class="number">1</span>, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>1 2</p>
+</blockquote>
+<p>The default return value of the function is alse
+<code>nil</code>.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span><span class="params">(a, b)</span></span></span><br><span class="line">    <span class="keyword">return</span> a, b</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(f(<span class="number">1</span>, <span class="number">2</span>))</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>1 2</p>
+</blockquote>
+<h1 id="table">table</h1>
+<h2 id="digital-subscript"><strong>digital subscript:</strong></h2>
+<p>Can store numbers or strings,and even other tables,function,That is
+to say,anything can be stored in it.</p>
+<p>It should be noted that the first subscript of the table is
+<code>1</code>, you can also get the length of the table by
+<code>#</code>.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>, <span class="string">&quot;abc&quot;</span>, &#123;&#125;, <span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">end</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">1</span>])</span><br><span class="line"><span class="built_in">print</span>(#a)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>1 4</p>
+</blockquote>
+<h3 id="table.insert">table.insert()</h3>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>, <span class="string">&quot;ac&quot;</span>, &#123;&#125;, <span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">end</span>&#125;</span><br><span class="line">a[<span class="number">5</span>] = <span class="number">123</span></span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">insert</span>(a, <span class="string">&quot;d&quot;</span>)</span><br><span class="line"><span class="comment">-- insert at the end</span></span><br><span class="line"><span class="built_in">print</span>(#a)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>6</p>
+</blockquote>
+<p>Insert a value at the specified position and move the following
+elements backward.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>, <span class="string">&quot;ac&quot;</span>, &#123;&#125;, <span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">end</span>&#125;</span><br><span class="line">a[<span class="number">5</span>] = <span class="number">123</span></span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">insert</span>(a, <span class="number">2</span>, <span class="string">&quot;d&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>d</p>
+</blockquote>
+<h3 id="table.remove">table.remove()</h3>
+<p>remove an element from an array</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;<span class="number">1</span>, <span class="string">&quot;ac&quot;</span>, &#123;&#125;, <span class="function"><span class="keyword">function</span><span class="params">()</span></span> <span class="keyword">end</span>&#125;</span><br><span class="line">a[<span class="number">5</span>] = <span class="number">123</span></span><br><span class="line"><span class="built_in">table</span>.<span class="built_in">insert</span>(a, <span class="number">2</span>, <span class="string">&quot;d&quot;</span>)</span><br><span class="line"><span class="keyword">local</span> s = <span class="built_in">table</span>.<span class="built_in">remove</span>(a, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(a[<span class="number">2</span>])</span><br><span class="line"><span class="built_in">print</span>(s)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>ac d</p>
+</blockquote>
+<h2 id="string-subscript"><strong>string subscript:</strong></h2>
+<p>It should be noted that each end must be followed by
+<code>,</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">a = &#123;</span><br><span class="line">    a = <span class="number">1</span>,</span><br><span class="line">    b = <span class="string">&quot;1234&quot;</span>,</span><br><span class="line">    c = <span class="function"><span class="keyword">function</span><span class="params">()</span></span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">end</span>,</span><br><span class="line">    d = <span class="number">123</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(a[<span class="string">&quot;a&quot;</span>])</span><br><span class="line"><span class="built_in">print</span>(a.a)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>1 1</p>
+</blockquote>
+<h1 id="g">_G</h1>
+<p>global table</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">_G</span>)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>table: 0x3</p>
+</blockquote>
+<p>As long as the declared global variables will appear in
+<code>_G</code>.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">_G</span>[<span class="string">&quot;a&quot;</span>])</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>1</p>
+</blockquote>
+<h1 id="boolean">boolean</h1>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="literal">true</span></span><br><span class="line">b = <span class="literal">false</span></span><br><span class="line"><span class="built_in">print</span>(<span class="number">1</span> ~= <span class="number">2</span>)</span><br><span class="line"><span class="comment">-- not equal to(1 != 2)</span></span><br></pre></td></tr></table></figure>
+<p><strong>and, or, not</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="literal">true</span></span><br><span class="line">b = <span class="literal">false</span></span><br><span class="line"><span class="built_in">print</span>(a <span class="keyword">and</span> b)</span><br><span class="line"><span class="built_in">print</span>(a <span class="keyword">or</span> b)</span><br><span class="line"><span class="built_in">print</span>(<span class="keyword">not</span> a)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>false true false</p>
+</blockquote>
+<p>In lua,only <code>false</code> and <code>nil</code> represent
+<code>false</code>,all other are <code>true</code></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="literal">nil</span> <span class="comment">--false</span></span><br><span class="line">b = <span class="number">0</span> <span class="comment">-- true</span></span><br><span class="line"><span class="built_in">print</span>(a <span class="keyword">and</span> b)</span><br><span class="line"><span class="built_in">print</span>(a <span class="keyword">or</span> b)</span><br><span class="line"><span class="built_in">print</span>(<span class="keyword">not</span> a)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>nil 0 true</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">5</span></span><br><span class="line"><span class="built_in">print</span>(a &gt; <span class="number">10</span> <span class="keyword">and</span> <span class="string">&quot;yes&quot;</span> <span class="keyword">or</span> <span class="string">&quot;no&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>no</p>
+</blockquote>
+<p>similar to c++</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">if</span>(a &gt; <span class="number">10</span>)</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;yes&quot;</span>;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;no&quot;</span></span><br></pre></td></tr></table></figure>
+<h2 id="branch-statement">branch statement</h2>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">1</span>&gt;<span class="number">10</span> <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;1&gt;10&quot;</span>)</span><br><span class="line"><span class="keyword">elseif</span> <span class="number">1</span> &lt; <span class="number">10</span> <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;1 &lt; 10&quot;</span>)</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;no&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>1 &lt; 10</p>
+</blockquote>
+<p><strong>0 is the true</strong></p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="number">0</span> <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;0 is true!&quot;</span>)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>0 is true!</p>
+</blockquote>
+<h1 id="loop-statement">loop statement</h1>
+<h2 id="for">for</h2>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">10</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>1 2 3 4 5 6 7 8 9 10</p>
+</blockquote>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>, <span class="number">10</span>, <span class="number">2</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>1 3 5 7 9</p>
+</blockquote>
+<p>2 is the step size.</p>
+<p>The for loop variable can not be modified in the middle.</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">10</span>, <span class="number">1</span>, <span class="number">-1</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">    <span class="keyword">if</span> i == <span class="number">5</span> <span class="keyword">then</span> <span class="keyword">break</span> <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>10 9 8 7 6 5</p>
+</blockquote>
+<h2 id="while">while</h2>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> n = <span class="number">10</span></span><br><span class="line"><span class="keyword">while</span> n &gt; <span class="number">1</span> <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">print</span>(n)</span><br><span class="line">    n = n - <span class="number">1</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>10 9 8 7 6 5 4 3 2</p>
+</blockquote>
+<p>Decrement is not supported in lua, such as</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">local n = 10</span><br><span class="line">n--</span><br><span class="line">n -= 1</span><br></pre></td></tr></table></figure>
+<h1 id="string-1">string</h1>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="built_in">string</span>.<span class="built_in">char</span>(<span class="number">0x30</span>,<span class="number">0x31</span>,<span class="number">0x32</span>,<span class="number">0x33</span>) <span class="comment">--ascii</span></span><br><span class="line">n = <span class="built_in">string</span>.<span class="built_in">byte</span>(s, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">print</span>(s)</span><br><span class="line"><span class="built_in">print</span>(n)</span><br></pre></td></tr></table></figure>
+<p>Output:</p>
+<blockquote>
+<p>0123 49</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="SJCHEN 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="SJCHEN 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>SJCHEN
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sjchen404.github.io/2022/08/16/lua/" title="lua">https://sjchen404.github.io/2022/08/16/lua/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/lua/" rel="tag"># lua</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/16/109_%E6%9C%89%E5%BA%8F%E9%93%BE%E8%A1%A8%E8%BD%AC%E6%8D%A2%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" rel="prev" title="109_有序链表转换二叉搜索树">
+                  <i class="fa fa-chevron-left"></i> 109_有序链表转换二叉搜索树
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/16/nvim-lua-%E5%B8%B8%E7%94%A8%E9%94%AE%E4%BD%8D/" rel="next" title="nvim-lua 常用键位">
+                  nvim-lua 常用键位 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">null </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SJCHEN</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">554k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">8:24</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"waline-blog-ij33-fskc7zdtq-1261476297-qqcom.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"请文明评论呀","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick"],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/08/16/lua/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: false,
+  label: '🌓',
+  autoMatchOsTheme: false
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+if (window.darkmode && !window.darkmode.isActivated()) {
+  window.darkmode.toggle();
+  var toggleButtons = document.getElementsByClassName("darkmode-toggle");
+  if (toggleButtons && toggleButtons.length > 0) {
+    for (i = 0; i < toggleButtons.length; i++) {
+      toggleButtons[i].classList.add("darkmode-toggle--white");
+    }
+  }
+}
+</script>
+
+</body>
+</html>

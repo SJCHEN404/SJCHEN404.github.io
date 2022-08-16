@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="第二章 信息的表示和处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSAPP第二章家庭作业">
+<meta property="og:url" content="https://sjchen404.github.io/2022/08/16/CSAPP%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/index.html">
+<meta property="og:site_name" content="SJCHEN">
+<meta property="og:description" content="第二章 信息的表示和处理">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-16T03:13:04.903Z">
+<meta property="article:modified_time" content="2022-08-16T03:13:04.903Z">
+<meta property="article:author" content="SJCHEN">
+<meta property="article:tag" content="CSAPP">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sjchen404.github.io/2022/08/16/CSAPP%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sjchen404.github.io/2022/08/16/CSAPP%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/","path":"2022/08/16/CSAPP第二章家庭作业/","title":"CSAPP第二章家庭作业"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>CSAPP第二章家庭作业 | SJCHEN</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="waline-blog-ij33-fskc7zdtq-1261476297-qqcom.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SJCHEN</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">时光，不会辜负每一个平静努力的人</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A1%A8%E7%A4%BA%E5%92%8C%E5%A4%84%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">第二章 信息的表示和处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#section"><span class="nav-number">1.1.</span> <span class="nav-text">2-55 ～ 2-57</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-1"><span class="nav-number">1.2.</span> <span class="nav-text">2-58</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-2"><span class="nav-number">1.3.</span> <span class="nav-text">2-59</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-3"><span class="nav-number">1.4.</span> <span class="nav-text">2-60</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-4"><span class="nav-number">1.5.</span> <span class="nav-text">2-61</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-5"><span class="nav-number">1.6.</span> <span class="nav-text">2-62</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-6"><span class="nav-number">1.7.</span> <span class="nav-text">2-63</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#section-7"><span class="nav-number">1.8.</span> <span class="nav-text">2-64</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="SJCHEN"
+      src="/images/new%E5%A4%B4%E5%83%8F.jpg">
+  <p class="site-author-name" itemprop="name">SJCHEN</p>
+  <div class="site-description" itemprop="description">start from zero</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">148</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">63</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SJCHEN404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SJCHEN404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chenshengjiao1912@163.com" title="E-Mail → mailto:chenshengjiao1912@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5702603638" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5702603638" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+  <div class="links-of-recent-posts motion-element">
+    <div class="links-of-recent-posts-title">
+      <i class="fa fa-history fa-fw"></i>
+      最近文章
+    </div>
+    <ul class="links-of-recent-posts-list">
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/static/" title="2022&#x2F;08&#x2F;16&#x2F;static&#x2F;">快速了解static</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/%E5%BF%AB%E9%80%9F%E5%B0%86%E6%9C%AC%E5%9C%B0%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0%E5%88%B0github/" title="2022&#x2F;08&#x2F;16&#x2F;快速将本地项目上传到github&#x2F;">上传项目到github</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/%E7%AC%AC%E4%BA%8C%E7%AB%A0_%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/" title="2022&#x2F;08&#x2F;16&#x2F;第二章_进程与线程&#x2F;">第二章_进程与线程</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/Hexo8.x%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%AF%E5%88%87%E6%8D%A2%E7%9A%84%E9%BB%91%E6%9A%97%E6%A8%A1%E5%BC%8F/" title="2022&#x2F;08&#x2F;16&#x2F;Hexo8.x主题添加可切换的黑暗模式&#x2F;">Hexo8.x主题添加可切换的黑暗模式</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/16/Hexo%E8%AE%BE%E7%BD%AE%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0/" title="2022&#x2F;08&#x2F;16&#x2F;Hexo设置近期文章&#x2F;">Hexo设置近期文章</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/08/16/CSAPP%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="CSAPP第二章家庭作业 | SJCHEN">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CSAPP第二章家庭作业
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-16 11:13:04" itemprop="dateCreated datePublished" datetime="2022-08-16T11:13:04+08:00">2022-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/" itemprop="url" rel="index"><span itemprop="name">技术</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">深入理解计算机系统</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/08/16/CSAPP%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/08/16/CSAPP%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="第二章-信息的表示和处理">第二章 信息的表示和处理</h1>
+<span id="more"></span>
+<h2 id="section">2-55 ～ 2-57</h2>
+<p>头文件<code>show_bytes.c</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">char</span>* byte_pointer;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_bytes</span><span class="params">(byte_pointer start, <span class="type">size_t</span> len)</span>&#123;</span><br><span class="line">    <span class="type">size_t</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%.2x&quot;</span>, start[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">char</span>* byte_pointer;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_bytes</span><span class="params">(byte_pointer start, <span class="type">size_t</span> len)</span>&#123;</span><br><span class="line">    <span class="type">size_t</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%.2x&quot;</span>, start[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_int</span><span class="params">(<span class="type">int</span> x)</span>&#123;</span><br><span class="line">    show_bytes((byte_pointer) &amp;x, <span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_short</span><span class="params">(<span class="type">short</span> x)</span>&#123;</span><br><span class="line">    show_bytes((byte_pointer) &amp;x, <span class="keyword">sizeof</span>(<span class="type">short</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_long</span><span class="params">(<span class="type">long</span> x)</span>&#123;</span><br><span class="line">    show_bytes((byte_pointer) &amp;x, <span class="keyword">sizeof</span>(<span class="type">long</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_double</span><span class="params">(<span class="type">double</span> x)</span>&#123;</span><br><span class="line">    show_bytes((byte_pointer) &amp;x, <span class="keyword">sizeof</span>(<span class="type">double</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_pointer</span><span class="params">(<span class="type">void</span> *x)</span>&#123;</span><br><span class="line">    show_bytes((byte_pointer) &amp;x, <span class="keyword">sizeof</span>(<span class="type">void</span> *));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// test</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">test_show_bytes</span><span class="params">(<span class="type">int</span> val)</span>&#123;</span><br><span class="line">    <span class="type">int</span> ival = val;</span><br><span class="line">    <span class="type">short</span> sval = (<span class="type">short</span>) ival;</span><br><span class="line">    <span class="type">long</span> lval = (<span class="type">long</span>) ival;</span><br><span class="line">    <span class="type">double</span> dval = (<span class="type">double</span>) ival;</span><br><span class="line">    <span class="type">int</span> *pval = &amp;ival;</span><br><span class="line"></span><br><span class="line">    show_int(ival);</span><br><span class="line">    show_short(sval);</span><br><span class="line">    show_long(lval);</span><br><span class="line">    show_double(dval);</span><br><span class="line">    show_pointer(pval);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//main</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    test_show_bytes(<span class="number">12345</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>show_bytes</code>打印出每个以十六进制表示的字节。</p>
+<p>上面程序使用强制类型转换来访问和打印不同程序对象的字节表示。</p>
+<p>我们将<code>byte_pointer</code>定义为一个指向类型为<code>unsigned char</code>的对象指针，这样一个字节指针引用一个字节序列，其中每个字节都被认为是一个非负整数。该字节数指定为数据类型<code>size_t</code>，表示数据结构大小的首选数据类型。</p>
+<blockquote>
+<p>c格式化指针
+<code>"%.2x"</code>表明整数必须用至少两个数字的十六进制格式输出</p>
+<p><code>sizeof(T)</code>返回存储一个类型为<code>T</code>的对象所需要的字节数。需要注意的是<code>sizeof</code>不是一个固定的值，在不同机器上可能会不同</p>
+</blockquote>
+<p>输出十六进制：</p>
+<blockquote>
+<p>39300000 3930 3930000000000000 00000000801cc840 e8c779b7f77f0000</p>
+</blockquote>
+<h2 id="section-1">2-58</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">unsigned</span> <span class="type">char</span>* byte_pointer;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">is_litter_endian</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> test = <span class="number">0x01</span>;</span><br><span class="line">    byte_pointer p = (byte_pointer) &amp; test;</span><br><span class="line">    <span class="keyword">if</span>(*p)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> is_litter_endian();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc 2_58.c &amp;&amp; ./a.out ; <span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<blockquote>
+<p>1</p>
+</blockquote>
+<h2 id="section-2">2-59</h2>
+<p>很明显我们只需要</p>
+<blockquote>
+<p>ox89ABCDEF &amp; 0xFF = 0x000000EF</p>
+<p>0x76543210 &amp; ~0xFF = 0x76543200</p>
+<p>最后</p>
+<p>0x000000EF | 0x76543200 = 0x765432EF</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">0x89ABCDEF</span>;</span><br><span class="line">    <span class="type">int</span> y = <span class="number">0x76543210</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;0x%.8x\n&quot;</span>, (x &amp; <span class="number">0xff</span>) | (y &amp; ~<span class="number">0xff</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc 2_59.c &amp;&amp; ./a.out</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<blockquote>
+<p>0x765432ef</p>
+</blockquote>
+<h2 id="section-3">2-60</h2>
+<p>为了使<code>replace_byte(0x12345678, 2, 0xAB) --&gt; 0x12AB5678</code></p>
+<p>我们先算出左移的位，也就是<code>move = 2 * 8 = 16</code></p>
+<p><code>x &amp; ~(0xff &lt;&lt; move)</code> =
+<code>0x12005678</code></p>
+<p><code>b &lt;&lt; move = 0xAB0000</code></p>
+<p><code>0x12005678 | 0xAB0000 = 0x12AB5678</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="title function_">replace_byte</span><span class="params">(<span class="type">unsigned</span> x, <span class="type">int</span> i, <span class="type">unsigned</span> <span class="type">char</span> b)</span>&#123;</span><br><span class="line">    <span class="type">int</span> move = i * <span class="number">8</span>;</span><br><span class="line">    <span class="keyword">return</span> x &amp; ~(<span class="number">0xff</span> &lt;&lt; move) | b &lt;&lt; move;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.8x\n&quot;</span>, replace_byte(<span class="number">0x12345678</span>, <span class="number">2</span>, <span class="number">0xAB</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%.8x\n&quot;</span>, replace_byte(<span class="number">0x12345678</span>, <span class="number">0</span>, <span class="number">0xAB</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译运行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc 2_60.c &amp;&amp; ./a.out</span><br></pre></td></tr></table></figure>
+<p>输出</p>
+<blockquote>
+<p>0x12AB5678</p>
+<p>0x123456AB</p>
+</blockquote>
+<h2 id="section-4">2-61</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> x;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* A: Any bit x is equal to 1 */</span></span><br><span class="line">    x = <span class="number">0xffffff00</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, !~x);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* B: Any bit x is equal to 0 */</span></span><br><span class="line">    x = <span class="number">0x000000ff</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, !x);</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* C: The bits in the least significant byte of x are equal to 1 */</span></span><br><span class="line">    x = <span class="number">0xffffff00</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, !~(x | ~<span class="number">0xff</span>));</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* D: The bits in the highest significant byte of x are equal to 0*/</span></span><br><span class="line">    x = <span class="number">0x00ffffff</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,!((x &gt;&gt; ((<span class="keyword">sizeof</span>(<span class="type">int</span>)<span class="number">-1</span>) &lt;&lt; <span class="number">3</span>)) &amp; <span class="number">0xff</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc 2_61.c &amp;&amp; ./a.out</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>0</p>
+<p>0</p>
+<p>0</p>
+<p>1</p>
+</blockquote>
+<h2 id="section-5">2-62</h2>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>码制</th>
+<th>添补代码</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>正数</td>
+<td>源码，补码，反码</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>负数</td>
+<td>源码</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>补码</td>
+<td>左移补0</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td>右移补1</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>反码</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>所以这里我们只需要判断<code>(-1 &gt;&gt; 1) == -1</code>即可，因为<code>-1</code>的补码为<code>11</code>,右移一位后也是<code>11</code></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">int_shift_are_arithmetic</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> test = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">return</span> (test &gt;&gt; <span class="number">1</span>) == <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    int_shift_are_arithmetic();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc 2_58.c &amp;&amp; ./a.out ; <span class="built_in">echo</span> $?</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>0</p>
+</blockquote>
+<h2 id="section-6">2-63</h2>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="title function_">srl</span><span class="params">(<span class="type">unsigned</span> x, <span class="type">int</span> k)</span>&#123;</span><br><span class="line">    <span class="comment">/* Perform shift arithmetically */</span></span><br><span class="line">    <span class="type">unsigned</span> xsra = (<span class="type">int</span>) x &gt;&gt; k;</span><br><span class="line">    <span class="type">int</span> w = <span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">8</span>;</span><br><span class="line">    <span class="type">unsigned</span> z = <span class="number">2</span> &lt;&lt; (w - k - <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> (z - <span class="number">1</span>) &amp; xsra;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">sra</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> k)</span>&#123;</span><br><span class="line">    <span class="comment">/* Perform shift logically */</span></span><br><span class="line">    <span class="type">int</span> xsrl = (<span class="type">unsigned</span>) x &gt;&gt; k;</span><br><span class="line">    <span class="type">int</span> w = <span class="keyword">sizeof</span>(<span class="type">int</span>) * <span class="number">8</span>;</span><br><span class="line">    <span class="type">unsigned</span> z = <span class="number">1</span> &lt;&lt; (w - k - <span class="number">1</span>);</span><br><span class="line">    <span class="type">unsigned</span> mask = z - <span class="number">1</span>;</span><br><span class="line">    <span class="type">unsigned</span> right = mask &amp; xsrl;</span><br><span class="line">    <span class="type">unsigned</span> left = ~mask &amp; (~(z &amp; xsrl) + z);</span><br><span class="line">    <span class="keyword">return</span> left | right;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">test</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%x\n&quot;</span>, srl(<span class="number">8</span>, <span class="number">2</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%x\n&quot;</span>, sra(<span class="number">8</span>, <span class="number">2</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%x\n&quot;</span>, sra(<span class="number">-8</span>, <span class="number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    test();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="section-7">2-64</h2>
+<p>如果奇位都为1，则返会1，否则返回0</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> Return 1 when any odd bit of x equals 1; 0 otherwise.</span></span><br><span class="line"><span class="comment"> Assume w = 32</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">any_odd_one</span><span class="params">(<span class="type">unsigned</span> x)</span>&#123;</span><br><span class="line">    <span class="comment">// A = 1010,刚好偶数都为1</span></span><br><span class="line">    <span class="type">int</span> mask = <span class="number">0xAAAAAAAA</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span> != (x &amp; mask);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="type">int</span> test1 = <span class="number">0x5</span>; <span class="comment">// 00000000 00000000 00000000 00000101</span></span><br><span class="line">    <span class="type">int</span> test2 = <span class="number">0x7</span>; <span class="comment">// 00000000 00000000 00000000 00000111</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, any_odd_one(test1));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, any_odd_one(test2));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc 2_64.c &amp;&amp; ./a.out</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>0</p>
+<p>1</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="SJCHEN 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="SJCHEN 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>SJCHEN
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sjchen404.github.io/2022/08/16/CSAPP%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/" title="CSAPP第二章家庭作业">https://sjchen404.github.io/2022/08/16/CSAPP第二章家庭作业/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/CSAPP/" rel="tag"># CSAPP</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/08/16/%E5%9B%BE%E7%9A%84%E6%80%BB%E7%BB%93/" rel="prev" title="图的总结">
+                  <i class="fa fa-chevron-left"></i> 图的总结
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/08/16/112_%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C/" rel="next" title="112_路径总和">
+                  112_路径总和 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">null </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SJCHEN</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">554k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">8:24</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"waline-blog-ij33-fskc7zdtq-1261476297-qqcom.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"请文明评论呀","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick"],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/08/16/CSAPP%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: false,
+  label: '🌓',
+  autoMatchOsTheme: false
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+if (window.darkmode && !window.darkmode.isActivated()) {
+  window.darkmode.toggle();
+  var toggleButtons = document.getElementsByClassName("darkmode-toggle");
+  if (toggleButtons && toggleButtons.length > 0) {
+    for (i = 0; i < toggleButtons.length; i++) {
+      toggleButtons[i].classList.add("darkmode-toggle--white");
+    }
+  }
+}
+</script>
+
+</body>
+</html>
