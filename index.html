@@ -161,7 +161,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">150</span>
+          <span class="site-state-item-count">151</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -172,7 +172,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">76</span>
+        <span class="site-state-item-count">77</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -198,6 +198,9 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
+          <a href="/2022/08/17/%E8%99%9A%E5%87%BD%E6%95%B0/" title="2022&#x2F;08&#x2F;17&#x2F;虚函数&#x2F;">虚函数详解</a>
+        </li>
+        <li class="links-of-recent-posts-item">
           <a href="/2022/08/17/%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/" title="2022&#x2F;08&#x2F;17&#x2F;继承与多态&#x2F;">继承与多态</a>
         </li>
         <li class="links-of-recent-posts-item">
@@ -208,9 +211,6 @@
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/2022/08/17/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91_%E5%90%8E%E7%BB%A7%E8%80%85/" title="2022&#x2F;08&#x2F;17&#x2F;二叉搜索树_后继者&#x2F;">二叉搜索树__后继者</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/2022/08/17/CSAPP%E7%AC%AC%E4%BA%8C%E7%AB%A0%E5%AE%B6%E5%BA%AD%E4%BD%9C%E4%B8%9A/" title="2022&#x2F;08&#x2F;17&#x2F;CSAPP第二章家庭作业&#x2F;">CSAPP第二章家庭作业</a>
         </li>
     </ul>
   </div>
@@ -236,6 +236,177 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/08/17/%E8%99%9A%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SJCHEN">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/08/17/%E8%99%9A%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">虚函数详解</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-08-17 16:38:53" itemprop="dateCreated datePublished" datetime="2022-08-17T16:38:53+08:00">2022-08-17</time>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/08/17/%E8%99%9A%E5%87%BD%E6%95%B0/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/08/17/%E8%99%9A%E5%87%BD%E6%95%B0/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="定义">定义</h1>
+<p>多态(<code>polymorphism</code>)是面向对象编程语言的一大特点，而虚函数是实现多态的机制。其核心理念是通过基类访问派生类定义的函数。</p>
+<p>多态性使得程序调用的函数是在运行时动态确定的，而不是在编译时静态确定。</p>
+<ul>
+<li><p>虚函数。在类成员方法的声明语句前加上<code>virtual</code>关键字，例如：<code>virtual void func();</code></p></li>
+<li><p>纯虚函数。在虚函数后加上<code>"=0"</code>,如<code>virtual void func() = 0;</code></p></li>
+</ul>
+<p>对于虚函数，子类可以（也可以不）重新定义基类的虚函数，该行为称为复写<code>(override)</code></p>
+<h1 id="虚函数">虚函数</h1>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// no_virtual.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 宠物类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Pet</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">std::string <span class="title">GetName</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">&quot;pet&quot;</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 狗类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> : <span class="keyword">public</span> Pet &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string m_Name;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Dog</span>(<span class="type">const</span> std::string&amp; name)</span><br><span class="line">        : <span class="built_in">m_Name</span>(name) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">std::string <span class="title">GetName</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> m_Name; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Pet* e = <span class="keyword">new</span> <span class="built_in">Pet</span>();</span><br><span class="line">    std::cout &lt;&lt; e-&gt;<span class="built_in">GetName</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    Dog* Peter = <span class="keyword">new</span> <span class="built_in">Dog</span>(<span class="string">&quot;Peter&quot;</span>);</span><br><span class="line">    std::cout &lt;&lt; Peter-&gt;<span class="built_in">GetName</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译执行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">g++ -o test.o no_virtual.cpp</span><br><span class="line">./test.o</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>pet</p>
+<p>Peter</p>
+</blockquote>
+<p>这和我们想的一样，如果我们使用多态的概念来编写上面的代码：</p>
+<p>在main里面加上：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Pet* e = <span class="keyword">new</span> <span class="built_in">Pet</span>();</span><br><span class="line">    std::cout &lt;&lt; e-&gt;<span class="built_in">GetName</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    Dog* Peter = <span class="keyword">new</span> <span class="built_in">Dog</span>(<span class="string">&quot;Peter&quot;</span>);</span><br><span class="line">    std::cout &lt;&lt; Peter-&gt;<span class="built_in">GetName</span>() &lt;&lt; std::endl;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// 我们希望输出“Peter”</span></span><br><span class="line">    Pet* pet = Peter;</span><br><span class="line">    std::cout &lt;&lt; pet-&gt;<span class="built_in">GetName</span>() &lt;&lt; std::endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>pet</p>
+</blockquote>
+<p>如果我们这样编写：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 宠物类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Pet</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">std::string <span class="title">GetName</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">&quot;pet&quot;</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 狗类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> : <span class="keyword">public</span> Pet &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string m_Name;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Dog</span>(<span class="type">const</span> std::string&amp; name)</span><br><span class="line">        : <span class="built_in">m_Name</span>(name) &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">std::string <span class="title">GetName</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> m_Name; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PrintName</span><span class="params">(Pet* pet)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; pet-&gt;<span class="built_in">GetName</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Pet* e = <span class="keyword">new</span> <span class="built_in">Pet</span>();</span><br><span class="line">    <span class="built_in">PrintName</span>(e);</span><br><span class="line"></span><br><span class="line">    Dog* Peter = <span class="keyword">new</span> <span class="built_in">Dog</span>(<span class="string">&quot;Peter&quot;</span>);</span><br><span class="line">    <span class="built_in">PrintName</span>(Peter);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们期望输出的是：pet Peter</p>
+<p>输出：</p>
+<blockquote>
+<p>pet</p>
+<p>pet</p>
+</blockquote>
+<p>这是因为到了调用方法时，都会调用这个类型的方法，因为<code>PeintName</code>这个函数是属于<code>Pet</code>类型的指针，调用这个函数，将会调用<code>Pet</code>中的<code>getName</code></p>
+<p>如果我们希望C++可以根据我们传入的类型不同自动来选择对应的函数，这时就需要用到虚函数了。</p>
+<p>虚函数引入了动态分配，使用虚函数表<code>(VTable)</code>来实现编译，虚函数表包含基类中所有虚函数的映射，以便我们能在运行时映射它们到正确的覆写函数。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 宠物类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Pet</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 定义虚函数</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> std::string <span class="title">GetName</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">&quot;pet&quot;</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 狗类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> : <span class="keyword">public</span> Pet &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string m_Name;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Dog</span>(<span class="type">const</span> std::string&amp; name)</span><br><span class="line">        : <span class="built_in">m_Name</span>(name) &#123;&#125;</span><br><span class="line">    <span class="comment">// 覆写</span></span><br><span class="line">    <span class="function">std::string <span class="title">GetName</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> m_Name; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PrintName</span><span class="params">(Pet* pet)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; pet-&gt;<span class="built_in">GetName</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Pet* e = <span class="keyword">new</span> <span class="built_in">Pet</span>();</span><br><span class="line">    <span class="built_in">PrintName</span>(e);</span><br><span class="line"></span><br><span class="line">    Dog* Peter = <span class="keyword">new</span> <span class="built_in">Dog</span>(<span class="string">&quot;Peter&quot;</span>);</span><br><span class="line">    <span class="built_in">PrintName</span>(Peter);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这时就能输出：pet Peter</p>
+<p>需要特别说明下<code>override</code>是C++11新特性，我们可以加上也可以不加上，不过最好还是加上，这可以避免我们覆写基类函数中没有定义的函数。</p>
+<h1 id="纯虚函数">纯虚函数</h1>
+<p>在很多情况下，基类本身生成对象是不合理的，例如，宠物<code>Pet</code>作为一个基类可以派生出猫，狗等子类。</p>
+<p>纯虚函数是在基类中声明的虚函数，它要求任何派生类都要定义自己的实现方法，以实现多态性。实现了纯虚函数的子类，该纯虚函数在子类中就
+变成了虚函数。</p>
+<p>定义纯虚函数是为了实现一个<em>接口</em>，用来规范派生类的行为。</p>
+<p>含有纯虚函数的类称为<em>抽象类</em>，它不能生成对象（创建实例），只能创建它的派生类的实例。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// pure_virtual.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 宠物类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Pet</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 定义纯虚函数</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> std::string <span class="title">GetName</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 狗类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> : <span class="keyword">public</span> Pet &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string m_Name;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Dog</span>(<span class="type">const</span> std::string&amp; name)</span><br><span class="line">        : <span class="built_in">m_Name</span>(name) &#123;&#125;</span><br><span class="line">    <span class="comment">// 覆写</span></span><br><span class="line">    <span class="function">std::string <span class="title">GetName</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> m_Name; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PrintName</span><span class="params">(Pet* pet)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; pet-&gt;<span class="built_in">GetName</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Pet* e = <span class="keyword">new</span> <span class="built_in">Pet</span>();         <span class="comment">// error 抽象类不能创建实例</span></span><br><span class="line">    <span class="built_in">PrintName</span>(e);</span><br><span class="line"></span><br><span class="line">    Dog* Peter = <span class="keyword">new</span> <span class="built_in">Dog</span>(<span class="string">&quot;Peter&quot;</span>);</span><br><span class="line">    <span class="built_in">PrintName</span>(Peter);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改进过后：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// pure_virtual.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Printable</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 纯虚函数</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> std::string <span class="title">GetClassName</span><span class="params">()</span> </span>= <span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 宠物类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Pet</span> : <span class="keyword">public</span> Printable &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// 定义虚函数</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> std::string <span class="title">GetName</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> <span class="string">&quot;pet&quot;</span>; &#125;</span><br><span class="line">    <span class="function">std::string <span class="title">GetClassName</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> <span class="string">&quot;Pet&quot;</span>; &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 狗类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Dog</span> : <span class="keyword">public</span> Pet &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string m_Name;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Dog</span>(<span class="type">const</span> std::string&amp; name)</span><br><span class="line">        : <span class="built_in">m_Name</span>(name) &#123;&#125;</span><br><span class="line">    <span class="comment">// 覆写</span></span><br><span class="line">    <span class="function">std::string <span class="title">GetName</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> m_Name; &#125;</span><br><span class="line">    <span class="function">std::string <span class="title">GetClassName</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> <span class="string">&quot;Dog&quot;</span>; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">PrintName</span><span class="params">(Pet* pet)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; pet-&gt;<span class="built_in">GetName</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Print</span><span class="params">(Printable* obj)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; obj-&gt;<span class="built_in">GetClassName</span>() &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Pet* e = <span class="keyword">new</span> <span class="built_in">Pet</span>();</span><br><span class="line">    <span class="comment">// PrintName(e);</span></span><br><span class="line"></span><br><span class="line">    Dog* Peter = <span class="keyword">new</span> <span class="built_in">Dog</span>(<span class="string">&quot;Peter&quot;</span>);</span><br><span class="line">    <span class="comment">// PrintName(Peter);</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">Print</span>(e);</span><br><span class="line">    <span class="built_in">Print</span>(Peter);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<blockquote>
+<p>Pet</p>
+<p>Dog</p>
+</blockquote>
+<p>对于<code>Print</code>函数，接受<code>printable</code>对象，它不关心实现的是什么类（多态性）。</p>
+<p>如果你没有实现<code>GetClassName</code>这个函数，你就不能实例化这个类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span> : Printable &#123;</span><br><span class="line">    <span class="function">std::string <span class="title">GetClassName</span><span class="params">()</span> <span class="keyword">override</span> </span>&#123; <span class="keyword">return</span> <span class="string">&quot;A&quot;</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">Print</span>(<span class="keyword">new</span> <span class="built_in">A</span>());     <span class="comment">// 只有实现了GetClassName函数才能实例化这个类</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="注意">注意</h1>
+<h2 id="静态函数可以声明为虚函数吗">静态函数可以声明为虚函数吗？</h2>
+<p>静态函数不可以声明为虚函数，同时也不能被<code>const</code>和<code>volatile</code>关键字修饰</p>
+<p><code>static</code>成员函数不属于任何类对象或类实例，所以给此函数加上<code>virtual</code>也是没有意义的。</p>
+<p>虚函数依靠<code>vptr</code>和<code>vtable</code>来处理。<code>vptr</code>是一个指针，在类的构造函数中创建生成，并且只能用<code>this</code>指针来访问它，静态成员函数没有<code>this</code>指针，所以
+无法访问<code>vptr</code>。</p>
+<h2 id="构造函数可以为虚函数吗">构造函数可以为虚函数吗？</h2>
+<p>构造函数不可以声明为虚函数，同时除了<code>inline,explicit</code>之外，构造函数不允许使用其他任何关键字。</p>
+<p>尽管虚函数表<code>vtable</code>是在编译阶段已经建立的，但指向虚函数表的指针<code>vptr</code>是在运行阶段实例化对象时才产生的。如果类含有虚函数，编译器会在构造函数中
+添加代码来创建<code>vptr</code>。问题来了，如果构造函数是虚的，那么它需要<code>vptr</code>来访问<code>vtable</code>,可这个时候<code>vptr</code>还没产生。因此，构造函数不可以为虚函数。</p>
+<p>我们之所以使用虚函数，是因为需要在信息不全的情况下进行多态运行。而构造函数是用来初始化实例的，实例的类型是必须明确的。因此，构造函数没有
+必要被声明为虚函数。</p>
+<h2 id="析构函数可以为虚函数吗">析构函数可以为虚函数吗？</h2>
+<p>析构函数可以声明为虚函数。</p>
+<h2 id="虚函数可以被内联吗">虚函数可以被内联吗？</h2>
+<ul>
+<li>虚函数可以是内联函数，内联是可以修饰虚函数的，但是当虚函数表示多态性的时候不能被内联。</li>
+</ul>
+<p>内联是在编译期间，而虚函数的多态性是在运行期，编译器无法知道运行期间调用哪个代码，因此虚函数表现为多态时，不可以被内联。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1371,122 +1542,8 @@ src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/第二章_进程与线�
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/08/16/Hexo%E8%AE%BE%E7%BD%AE%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="SJCHEN">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SJCHEN">
-      <meta itemprop="description" content="start from zero">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SJCHEN">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/16/Hexo%E8%AE%BE%E7%BD%AE%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0/" class="post-title-link" itemprop="url">Hexo设置近期文章</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-16 11:21:31" itemprop="dateCreated datePublished" datetime="2022-08-16T11:21:31+08:00">2022-08-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/hexo/" itemprop="url" rel="index"><span itemprop="name">hexo</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/08/16/Hexo%E8%AE%BE%E7%BD%AE%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/08/16/Hexo%E8%AE%BE%E7%BD%AE%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>设置近期文章</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/16/Hexo%E8%AE%BE%E7%BD%AE%E8%BF%91%E6%9C%9F%E6%96%87%E7%AB%A0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
@@ -1511,13 +1568,13 @@ src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/第二章_进程与线�
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">559k</span>
+    <span title="站点总字数">565k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">8:28</span>
+    <span title="站点阅读时长">8:34</span>
   </span>
 </div>
 <div class="busuanzi-count">
