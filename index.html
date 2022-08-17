@@ -274,7 +274,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-08-17 11:17:12" itemprop="dateCreated datePublished" datetime="2022-08-17T11:17:12+08:00">2022-08-17</time>
+      <time title="创建时间：2022-08-17 11:24:50" itemprop="dateCreated datePublished" datetime="2022-08-17T11:24:50+08:00">2022-08-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -326,74 +326,14 @@
     
     <div class="post-body" itemprop="articleBody">
           <p>面向对象的核心思想是数据抽象，继承和动态绑定。</p>
-<h1 id="定义基类与派生类">定义基类与派生类</h1>
-<p>通过<strong>继承(inheritance)</strong>联系在一起的类构成了一种层次关系。通常在层次的根部有一个<strong>基类(base
-class)</strong>，其他类则直接或间接地从基类继承而来，
-这些继承而来的类称为<strong>派生类</strong>。</p>
-<p>派生类必须通过使用<strong>派生类列表</strong>明确指出它是从哪个基类继承而来的。</p>
-<p>类派生列表的形式是：首先一个冒号，后面紧跟以基类列表，其中每个基类前面可以有访问说明符：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 基类</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Entity</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">float</span> X, Y;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">Move</span><span class="params">(<span class="type">float</span> xa, <span class="type">float</span> ya)</span> </span>&#123;</span><br><span class="line">        X += xa;</span><br><span class="line">        Y += ya;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 派生类</span></span><br><span class="line"><span class="comment">// Player 继承了 Entity</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Player</span> : <span class="keyword">public</span> Entity &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="type">const</span> <span class="type">char</span>* Name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">printName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        std::cout &lt;&lt; Name &lt;&lt; std::endl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="定义基类">定义基类</h2>
-<p>我们定义一个图书的<code>Quote</code>类：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// book.cpp</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Quote</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// C++11新特性，默认构造函数</span></span><br><span class="line">    <span class="built_in">Quote</span>() = <span class="keyword">default</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">Quote</span>(<span class="type">const</span> std::string &amp;book, <span class="type">double</span> sales_price) :</span><br><span class="line">        <span class="built_in">bookNo</span>(book), <span class="built_in">price</span>(sales_price) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function">std::string <span class="title">isbn</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> bookNo;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 返回给定数量的书籍的销售总额</span></span><br><span class="line">    <span class="comment">// 派生类负责改写并使用不同的折扣计算算法</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="type">double</span> <span class="title">net_price</span><span class="params">(std::<span class="type">size_t</span> n)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n * price;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 析构函数</span></span><br><span class="line">    <span class="keyword">virtual</span> ~<span class="built_in">Quote</span>() = <span class="keyword">default</span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::string bookNo;     <span class="comment">// 书籍的ISBN编号</span></span><br><span class="line"><span class="keyword">protected</span>:</span><br><span class="line">    <span class="type">double</span> price = <span class="number">0.0</span>;     <span class="comment">// 代表普通状态下不打折的价格</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>虚函数我们后面再讲，现在只需要记住，作为继承关系中根节点的类通常都定义一个虚析构函数。</p>
-<p><code>Note</code> &gt;
-基类通常都定义一个虚析构函数，即使该函数不执行任何实际操作。</p>
-<h3 id="成员函数与继承">成员函数与继承</h3>
-<p>派生类需要对一些操作提供自己的新定义以<em>覆盖(override)</em>从基类继承而来的定义。</p>
-<p>基类必须将它的两种成员函数区分开：</p>
-<ul>
-<li><p>基类希望其派生类进行覆盖的函数</p></li>
-<li><p>基类希望派生类直接继承而不要改变的函数</p></li>
-</ul>
-<p>对于前者，基类通常将其定义为<em>虚函数(virtual)</em>。当我们使用指针或引用调用虚函数时，该调用将被动态绑定。</p>
-<p>成员函数如果没被声明为虚函数，则其解析过程发生在编译时而非运行时。</p>
-<h3 id="访问控制与继承">访问控制与继承</h3>
-<p>派生类可以继承定义在基类中的成员，但是派生类的成员函数不一定有权访问从基类继承而来的成员。
-派生类能访问公有成员，而不能访问私有成员。</p>
-<p>如果我们希望它的派生类有权访问该成员，同时禁止其他用户访问，我们可以使用<code>protected</code>访问运算符说明这样的成员。</p>
-<h2 id="定义派生类">定义派生类</h2>
-<p>派生类必须将其继承而来的成员函数需要覆盖的那些重新声明，因此我们的<code>Bulk_quote</code>类必须包含一个<code>net_price</code>成员：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Bulk_quote 继承自 Quote</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Bulk_quote</span> : <span class="keyword">public</span> Quote&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Bulk_quote</span>() = <span class="keyword">default</span>;</span><br><span class="line">    <span class="built_in">Bulk_quote</span>(<span class="type">const</span> std::string&amp;, <span class="type">double</span>, std::<span class="type">size_t</span>, <span class="type">double</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 覆盖基类的函数版本以实现基于大量购买的折扣政策</span></span><br><span class="line">    <span class="function"><span class="type">double</span> <span class="title">net_price</span><span class="params">(std::<span class="type">size_t</span>)</span> <span class="type">const</span> <span class="keyword">override</span></span>;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    std::<span class="type">size_t</span> min_qty = <span class="number">0</span>;        <span class="comment">// 适用折扣政策的最低购买量</span></span><br><span class="line">    <span class="type">double</span> discount = <span class="number">0.0</span>;          <span class="comment">// 以小数表示的折扣额</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>我们的<code>Bulk_quote</code>类从它的基类<code>Quote</code>那里继承了<code>isbn</code>函数和<code>bookNo,price</code>等数据成员，此外，它还定义了<code>net_price</code>的新版本，
-同时新增了两个新增加的数据成员<code>min_qty</code>和<code>discount</code>。这两个成员分别用于说明享受折扣所需购买的最低数量以及一旦该数量达到
-之后具体的折扣信息。</p>
-<h3 id="派生类中的虚函数">派生类中的虚函数</h3>
-<p>派生类经常覆盖它继承的虚函数。如果派生类没有覆盖，则会直接继承其在基类中的版本。</p>
-<p>派生类可以在它覆盖的函数前使用<code>virtual</code>关键字，C++11新标准允许派生类显式地注明它使用某个成员函数覆盖了它继承的虚函数，具体做法是
-在形参列表后面，或者在<code>const</code>成员函数的<code>const</code>关键字后面，或者在引用成员函数的引用限定符后面添加一个关键字<code>override</code>。</p>
-<h3
-id="派生类对象及派生类向基类的类型转换">派生类对象及派生类向基类的类型转换</h3>
-<p>一个派生类对象包含多个组成部分：</p>
-<ul>
-<li><p>派生类自己定义的（非静态）成员的子对象</p></li>
-<li><p>该派生类继承的基类对应的子对象</p></li>
-</ul>
-<p>因为在派生类对象中含有与其基类对应的组成部分，所以我们能把派生类的对象当成基类对象来使用，而且我们也能将基类的指针或引用绑定
-到派生类对象中的基类部分上：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Quote item;             <span class="comment">// 基类对象</span></span><br><span class="line">Bulk_quote bulk;        <span class="comment">// 派生类对象</span></span><br><span class="line">Quote *p = &amp;item;       <span class="comment">// p 指向Quote 对象</span></span><br><span class="line">p = &amp;bulk;              <span class="comment">// p 指向bulk的Quote部分</span></span><br><span class="line">Quote &amp;r = bulk;        <span class="comment">// r 绑定到bulk的Quote部分</span></span><br></pre></td></tr></table></figure>
-<p>这种转换称为<strong>派生类到基类</strong>的类型转换，编译器会隐式地执行派生类到基类的转换。</p>
-<h3 id="派生类构造函数">派生类构造函数</h3>
-<p>尽管在派生类对象中含有基类继承而来的成员，但是派生类并不能直接初始化这些成员。必须通过基类的构造函数来初始化它的基类部分。</p>
-<p>例如接受4个参数的<code>Bulk_quote</code>构造函数：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Bulk_quote</span>(<span class="type">const</span> std::string&amp; book, <span class="type">double</span> p, std::<span class="type">size_t</span> qty, <span class="type">double</span> disc) :</span><br><span class="line">    <span class="built_in">Quote</span>(book, p), <span class="built_in">min_qty</span>(qty), <span class="built_in">discount</span>(disc) &#123;&#125;</span><br></pre></td></tr></table></figure>
-<p>该函数将它的两个参数（分别表示ISBN
-和价格）传递给<code>Quote</code>的构造函数，由<code>Quote</code>的构造函数负责初始化<code>Bulk_quote</code>的基类部分（即bookNo,price）。
-接下来由派生类直接定义的<code>min_qty</code>成员和<code>discount</code>成员，最后运行<code>Bulk_quote</code>构造函数的（空的）函数体。</p>
-<h3 id="派生类使用基类的成员">派生类使用基类的成员</h3>
-<p>派生类可以访问基类的公有成员和受保护成员：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 如果达到了购买书籍的某个最低限量值，就可以享受折扣价格了</span></span><br><span class="line"><span class="function"><span class="type">double</span> <span class="title">Bulk_quote::net_price</span><span class="params">(<span class="type">size_t</span> cnt)</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (cnt &gt;= min_qty)</span><br><span class="line">        <span class="keyword">return</span> cnt * (<span class="number">1</span> - discount) * price;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="keyword">return</span> cnt * price;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="继承与静态函数">继承与静态函数</h3>
-<p>如果基类定义了一个静态成员，则在整个继承体系中只存在该成员的唯一定义。不论从基类中派生出来多少个派生类，对于每个静态成员来说都只存在唯一的实例。</p>
-<h3 id="防止继承的发生">防止继承的发生</h3>
-<p>我们不希望其他类继承它，可以通过C++11新标准提供的一种防止继承发生的方法，即在类名后跟一个关键字<code>final</code>:</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">NoDerived</span> <span class="keyword">final</span> &#123;<span class="comment">/* */</span>&#125;;              / NoDerived不能作为基类</span><br></pre></td></tr></table></figure>
-<h3
-id="不存在从基类向派生类的隐式类型转换">不存在从基类向派生类的隐式类型转换：</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Quote base;</span><br><span class="line">Bulk_quote* bulkP = &amp;base;      <span class="comment">// error: 不能将基类转换成派生类</span></span><br><span class="line">Bulk_quote&amp; bulkRef = base;     <span class="comment">// error</span></span><br></pre></td></tr></table></figure>
-<p>如果上述合法，则我们有可能会使用<code>bulkP</code>或<code>bulkRed</code>访问<code>base</code>中本不存在的成员。</p>
-<p>当我们用一个派生类对象为一个基类对象初始化或赋值时，只有该派生类对象中的基类部分会被拷贝，移动或赋值，它的派生类部分将会被忽略掉。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/08/17/%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
