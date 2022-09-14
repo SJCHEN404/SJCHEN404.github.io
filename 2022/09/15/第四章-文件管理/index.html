@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="需要重点对概念的理解，重点掌握文件系统的结构及其实现，文件分配和空闲空间管理等。要掌握文件系统的文件控制块，物理分配方法，索引结构，树形结构， 树形目录结构，文件共享原理，文件系统的布局，虚拟文件系统原理等。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="操作系统-第四章-文件管理">
+<meta property="og:url" content="https://sjchen404.github.io/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="SJCHEN">
+<meta property="og:description" content="需要重点对概念的理解，重点掌握文件系统的结构及其实现，文件分配和空闲空间管理等。要掌握文件系统的文件控制块，物理分配方法，索引结构，树形结构， 树形目录结构，文件共享原理，文件系统的布局，虚拟文件系统原理等。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-14T17:30:59.531Z">
+<meta property="article:modified_time" content="2022-09-14T17:30:59.531Z">
+<meta property="article:author" content="SJCHEN">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sjchen404.github.io/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sjchen404.github.io/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/","path":"2022/09/15/第四章-文件管理/","title":"操作系统-第四章-文件管理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>操作系统-第四章-文件管理 | SJCHEN</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="waline-blog-ij33-fskc7zdtq-1261476297-qqcom.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SJCHEN</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">时光，不会辜负每一个平静努力的人</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">4.1 文件系统基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">4.1.1 基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%9D%97%E5%92%8C%E7%B4%A2%E5%BC%95%E7%BB%93%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">4.1.2 文件控制块和索引结点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 文件的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%9D%97"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 文件控制块(!!!)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%BB%93%E7%82%B9"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 索引结点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">4.1.3 文件的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 文件的基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%89%93%E5%BC%80%E4%B8%8E%E5%85%B3%E9%97%AD"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 文件的打开与关闭</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4"><span class="nav-number">1.4.</span> <span class="nav-text">4.1.4 文件保护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.</span> <span class="nav-text">4.1.5 文件的逻辑结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%E6%B5%81%E5%BC%8F%E6%96%87%E4%BB%B6"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. 无结构文件（流式文件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%E8%AE%B0%E5%BD%95%E5%BC%8F%E6%96%87%E4%BB%B6"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. 有结构文件（记录式文件）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84"><span class="nav-number">1.6.</span> <span class="nav-text">4.1.6 文件的物理结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D"><span class="nav-number">1.6.1.</span> <span class="nav-text">1. 连续分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E5%88%86%E9%85%8D"><span class="nav-number">1.6.2.</span> <span class="nav-text">2. 链接分配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%90%E5%BC%8F%E9%93%BE%E6%8E%A5"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">隐式链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E5%BC%8F%E9%93%BE%E6%8E%A5"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">显式链接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E9%85%8D"><span class="nav-number">1.6.3.</span> <span class="nav-text">3. 索引分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%B4%A2%E5%BC%95%E5%88%86%E9%85%8D"><span class="nav-number">1.6.4.</span> <span class="nav-text">4. 混合索引分配</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="SJCHEN"
+      src="/images/new%E5%A4%B4%E5%83%8F.jpg">
+  <p class="site-author-name" itemprop="name">SJCHEN</p>
+  <div class="site-description" itemprop="description">start from zero</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">156</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SJCHEN404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SJCHEN404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chenshengjiao1912@163.com" title="E-Mail → mailto:chenshengjiao1912@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5702603638" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5702603638" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+  <div class="links-of-recent-posts motion-element">
+    <div class="links-of-recent-posts-title">
+      <i class="fa fa-history fa-fw"></i>
+      最近文章
+    </div>
+    <ul class="links-of-recent-posts-list">
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" title="2022&#x2F;09&#x2F;15&#x2F;第四章-文件管理&#x2F;">操作系统-第四章-文件管理</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/09/03/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="2022&#x2F;09&#x2F;03&#x2F;第三章-内存管理&#x2F;">操作系统第三章-内存管理</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/25/%E5%9C%A8nvim%E5%92%8CvsCode%E4%B8%AD%E5%BF%AB%E9%80%9F%E5%AE%9E%E7%8E%B0C++%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96/" title="2022&#x2F;08&#x2F;25&#x2F;在nvim和vsCode中快速实现C++代码格式化&#x2F;">在nvim和VS Code中快速实现C++代码格式化</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/20/%E5%9C%A8nvim%E4%B8%AD%E4%BD%BF%E7%94%A8clangd%E5%A4%84%E7%90%86c++%E9%A1%B9%E7%9B%AE%E5%A4%B4%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/" title="2022&#x2F;08&#x2F;20&#x2F;在nvim中使用clangd处理c++项目头文件报错&#x2F;">在nvim中使用clangd处理c++头文件报错</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/18/%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="2022&#x2F;08&#x2F;18&#x2F;快速了解数据结构&#x2F;">快速复习数据结构</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="操作系统-第四章-文件管理 | SJCHEN">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          操作系统-第四章-文件管理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-09-15 01:30:59" itemprop="dateCreated datePublished" datetime="2022-09-15T01:30:59+08:00">2022-09-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">计算机基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>需要重点对概念的理解，重点掌握文件系统的结构及其实现，文件分配和空闲空间管理等。要掌握文件系统的文件控制块，物理分配方法，索引结构，树形结构，
+树形目录结构，文件共享原理，文件系统的布局，虚拟文件系统原理等。</p>
+<span id="more"></span>
+<h1 id="文件系统基础">4.1 文件系统基础</h1>
+<h2 id="基本概念">4.1.1 基本概念</h2>
+<p><strong>文件</strong>是以硬盘为载体的存储在计算机上的信息集合，文件可以是文本文档，图片，程序等。</p>
+<p>在系统运行时，计算机以进程为基本单位进行资源的调度和分配；在用户进行输入，输出时，则以文件为基本单位</p>
+<p><strong>文件的结构：</strong></p>
+<ol type="1">
+<li>数据项。是文件系统中最低级的数据组织形式。可以分为
+<ul>
+<li>基本数据项。用于描述一个对象的某种属性的一个值，是数据中的最小逻辑单位</li>
+<li>组合数据项。有多个基本数据项组成</li>
+</ul></li>
+<li>记录。是一组相关的数据项的集合，用于描述一个对象在某方面的属性</li>
+<li>文件。是指由创建者所定义的，具有文件名的一组相关元素的集合，可以分为有结构文件和无结构文件两种。</li>
+</ol>
+<blockquote>
+<p>有结构文件：文件由若干个相似的记录组成</p>
+<p>无结构文件则被视为一个字节流，比如一个二进制文件或字符文件</p>
+</blockquote>
+<h2 id="文件控制块和索引结点">4.1.2 文件控制块和索引结点</h2>
+<p>与进程管理一样，为便于文件管理，在操作系统中引入了文件控制块的数据结构。</p>
+<h3 id="文件的属性">1. 文件的属性</h3>
+<p>除了文件数据，操作系统还会保存与文件相关的信息，如所有者，创建时间等，这些附加信息称为<em>文件属性</em>或<em>文件元数据</em>。文件属性在不同系统中差别很大，但通常都包括如下属性</p>
+<ol type="1">
+<li><strong>名称</strong>。文件名称唯一，以容易读取但形式保存</li>
+<li><strong>类型</strong>。被支持不同类型的文件系统所使用</li>
+<li><strong>创建者</strong>。文件创建者的ID</li>
+<li><strong>所有者</strong>。文件当前所有者的ID</li>
+<li><strong>位置</strong>。指向设备和设备上文件的指针</li>
+<li><strong>大小</strong>。文件当前大小（用字节，字或块表示），也包含文件所允许的最大值</li>
+<li><strong>保护</strong>。对文件进行保护的访问控制信息</li>
+<li><strong>创建时间，最后一次修改时间和最后一次存取时间</strong>。文件创建，上次修改和上次访问的相关信息，用于保护和跟踪文件的使用</li>
+</ol>
+<p>操作系统通过文件控制块（FCB）来维护文件元数据</p>
+<h3 id="文件控制块">2. 文件控制块(!!!)</h3>
+<p>文件控制块（FCB）是用来存放控制文件需要的各种信息的数据结构，以实现“按名存取”。</p>
+<p><code>FCB</code>的有序集合称为<em>文件目录</em>，一个<code>FCB</code>就是一个<em>文件目录项</em>。</p>
+<blockquote>
+<p>目录文件永远不会为空，它至少包含两个目录项：</p>
+<ul>
+<li>当前目录项“.”和父目录项".."</li>
+</ul>
+</blockquote>
+<p>为了创建一个新文件，系统将分配一个FCB并存放在文件目录中，称为目录项。</p>
+<p><strong>一个典型的FCB</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>文件时间</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>文件权限（创建，访问，写）</td>
+</tr>
+<tr class="even">
+<td>文件所有者，组，ACL</td>
+</tr>
+<tr class="odd">
+<td>文件大小</td>
+</tr>
+<tr class="even">
+<td>文件数据块</td>
+</tr>
+</tbody>
+</table>
+<p><code>FCB</code>主要包含以下信息：</p>
+<ul>
+<li>基本信息，如文件名，文件的物理位置，文件的逻辑结构，文件的物理结构等</li>
+<li>存取控制信息，如文件存取权限等</li>
+<li>使用信息，如文件建立时间，修改时间等</li>
+</ul>
+<h3 id="索引结点">3. 索引结点</h3>
+<p>UNIX系统采用了文件名和文件描述信息分开的方法，使文件描述信息单独形成一个称为<em>索引结点</em>的数据结构，简称<code>i</code>结点（inode），在文件目录中的每个目录项仅由文件名和指向该文件所对应的<code>i</code>结点的指针构成。</p>
+<h2 id="文件的操作">4.1.3 文件的操作</h2>
+<h3 id="文件的基本操作">1. 文件的基本操作</h3>
+<p><strong>文件属于抽象数据类型！！！</strong></p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209142032142.png" /></p>
+<h3 id="文件的打开与关闭">2. 文件的打开与关闭</h3>
+<p>许多系统要求在首次使用文件时，使用<em>系统调用open</em></p>
+<h2 id="文件保护">4.1.4 文件保护</h2>
+<p>为了防止文件共享可能会导致文件被破坏或未经核准的用户修改文件，文件系统必须控制用户对文件的存取。</p>
+<p>文件保护方式：</p>
+<ul>
+<li>口令保护</li>
+<li>加密保护</li>
+<li>访问控制</li>
+</ul>
+<p><em>口令和加密是为了防止用户文件被他人存取或窃取</em></p>
+<p><em>访问控制则用于控制用户对文件的访问方式</em></p>
+<h2 id="文件的逻辑结构">4.1.5 文件的逻辑结构</h2>
+<p>从用户观点出发看到的文件的组织形式</p>
+<p>文件的逻辑结构与存储介质特性无关，它实际上是指在文件的内部，数据逻辑上是如何组织起来的。</p>
+<p>按逻辑结构，文件可分为无结构文件和有结构文件两大类</p>
+<h3 id="无结构文件流式文件">1. 无结构文件（流式文件）</h3>
+<p>最简单的文件组织形式。以字节为单位。</p>
+<p>对记录的访问只能通过穷举搜索的方式。所以，那些对基本信息单位操作不多的文件较适合采用字节流的无结构方式，如源程序文件，目标代码文件等。</p>
+<h3 id="有结构文件记录式文件">2. 有结构文件（记录式文件）</h3>
+<ol type="1">
+<li>顺序文件</li>
+<li>索引文件</li>
+<li>索引顺序文件</li>
+<li>直接文件或散列文件</li>
+</ol>
+<p>索引文件和索引顺序文件都提高了存取的速度，但因为配置索引表而增加了存储空间</p>
+<p>散列文件有很高的存取速度，但是会引起冲突，即不同关键字的散列函数值相同</p>
+<h2 id="文件的物理结构">4.1.6 文件的物理结构</h2>
+<p>文件分配对应于文件的物理结构，是指如何为文件分配磁盘块。</p>
+<p>常用的磁盘空间分配方法有三种：</p>
+<ol type="1">
+<li>连续分配</li>
+<li>链接分配</li>
+<li>索引分配</li>
+</ol>
+<h3 id="连续分配">1. 连续分配</h3>
+<p>连续分配要求每个文件在磁盘上占有一组<em>连续</em>的块，其文件的<code>FCB</code>包含第一块的磁盘地址和连续块的数量。</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209150033161.png" /></p>
+<ol type="1">
+<li>支持顺序访问和直接访问</li>
+<li>实现简单，访问文件时需要的寻道数和寻道时间最小，存取速度快</li>
+<li>文件长度不宜动态增加</li>
+<li>反复增删文件后会产生外部碎片，只适用于长度固定的文件</li>
+</ol>
+<blockquote>
+<p>第3点是因为一个文件末尾的盘块可能已分配给其他文件，一旦需要增加，就需要大量移动盘块</p>
+</blockquote>
+<h3 id="链接分配">2. 链接分配</h3>
+<p>链接分配是一种采用<em>离散分配</em>的方式。</p>
+<h4 id="隐式链接">隐式链接</h4>
+<p>目录项中含有文件第一块的指针和最后一块的指针。每个文件对应一个磁盘块的链表；</p>
+<p>除了最后一个盘块外，每个盘块都有指向文件下一个盘块的指针，这些指针对用户是透明的。</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209150044418.png" /></p>
+<ol type="1">
+<li>只能顺序访问文件</li>
+<li>消除了外部碎片，显著提高了外存空间（磁盘）的利用率</li>
+<li>可动态地按需分配盘块，无须事先知道文件的大小</li>
+<li>对文件的增，删，改很方便</li>
+<li>稳定性存在问题，一旦断链将导致文件数据的丢失</li>
+</ol>
+<p><strong>解决方法：</strong>
+将几个盘块组成簇，按簇而不按块来分配，可以成倍地减少查找时间，这样指针所占的磁盘空间比例也要小得多，这种方法的代价是增加了内部碎片。</p>
+<h4 id="显式链接">显式链接</h4>
+<p>显式链接是指把用于链接文件各物理块的指针，显示地存放在内存的一张链接表中。该表在整个磁盘中仅设置一张，称为<em>文件分配表FAT</em>，在每个表项中存放链接指针，即下一个盘块号。</p>
+<p>文件的第一个盘块号记录在目录项“物理地址”字段中，后序的盘块可通过FAT找到。</p>
+<p>例如，某磁盘共有100个磁盘块，存放了两个文件：</p>
+<p>文件“aaa”占三个盘块，依次是2-&gt;8-&gt;5;</p>
+<p>文件“bbb”占两个盘块，依次是7-&gt;1</p>
+<p>其余盘块都是空闲盘块，则该磁盘的FAT如图：</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209150059917.png" /></p>
+<p>FAT表在系统启动时就会被读入内存，因此查找记录的过程是在内存中进行的，因此不仅显著地提高了检索速度，而且明显减少了访问磁盘的次数。</p>
+<h3 id="索引分配">3. 索引分配</h3>
+<p>链接分配解决了连续分配的外部碎片和文件大小管理问题。但依然存在问题；</p>
+<ol type="1">
+<li>链接分配不能有效支持直接访问（FAT除外）</li>
+<li>FAT需要占用较大的内存空间</li>
+</ol>
+<p>事实上，在打开某个文件时，只需要将该文件对应的盘块的编号调入内存即可，完全没必要将整个FAT调入内存。
+为此，索引分配将每个文件所有的盘块号都集中放在一起构成索引块（表）</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209150105123.png" /></p>
+<p>每个文件都有索引块，这是一个磁盘块地址的数组，索引块的第<code>i</code>个条目指向文件的第<code>i</code>个块。目录条目包括索引块的地址</p>
+<ol type="1">
+<li>索引分配支持直接访问，且没有外部碎片</li>
+<li>增加了系统分配存储空间的开销</li>
+</ol>
+<p>每个文件必须有一个索引块，因此索引块应尽可能小，但索引块太小就无法支持大文件。所以需要采用以下机制来处理问题：</p>
+<ul>
+<li><strong>链接方案</strong>。一个索引块通常为一个磁盘块，因此它本身可以直接读写，为了支持大文件，可以将多个索引块链接起来</li>
+<li><strong>多层索引</strong>。</li>
+<li><strong>混合索引</strong>。</li>
+</ul>
+<p><strong>单级索引分配方式或多级索引分配方式为高频考点！！！！！</strong></p>
+<h3 id="混合索引分配">4. 混合索引分配</h3>
+<p>为了能够较全面地照顾到小型，中型，大型和特大型文件，可采用混合索引分配方式。</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209150116214.png" /></p>
+<p>即把所有地址分为两类，直接地址和间接地址</p>
+<p><strong>直接地址</strong></p>
+<p>每项中所存在所存放的是该文件数据所在盘块的盘块号</p>
+<p><strong>一次间接地址</strong></p>
+<p>每项一次间接地址指向一个一次间址块（索引块），一次间址块中存放着文件的多个盘块号</p>
+<p><strong>二次间接地址</strong></p>
+<p>每项二次间接地址指向一个二次间址块，二次间址块中记入所有一次间址块的盘号。</p>
+<p>在采用混合索引分配方式时，假如有<span
+class="math inline">\(N_0\)</span>个直接地址项，<span
+class="math inline">\(N_1\)</span>个一次间接地址项，<span
+class="math inline">\(N_2\)</span>个二次间接地址项，每个盘块的大小为<code>M</code>字节，盘块号占<code>m</code>个字节。其所允许的文件最大长度为（字节）</p>
+<p><span class="math display">\[
+\left(N_0 + N_1 * \frac{M}{m} + \left(\frac{M}{m}\right)^2 \right) * M
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="SJCHEN 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="SJCHEN 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>SJCHEN
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sjchen404.github.io/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" title="操作系统-第四章-文件管理">https://sjchen404.github.io/2022/09/15/第四章-文件管理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 操作系统</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/03/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" rel="prev" title="操作系统第三章-内存管理">
+                  <i class="fa fa-chevron-left"></i> 操作系统第三章-内存管理
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">null </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SJCHEN</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">596k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">9:02</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"waline-blog-ij33-fskc7zdtq-1261476297-qqcom.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"请文明评论呀","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick"],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: false,
+  label: '🌓',
+  autoMatchOsTheme: false
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+if (window.darkmode && !window.darkmode.isActivated()) {
+  window.darkmode.toggle();
+  var toggleButtons = document.getElementsByClassName("darkmode-toggle");
+  if (toggleButtons && toggleButtons.length > 0) {
+    for (i = 0; i < toggleButtons.length; i++) {
+      toggleButtons[i].classList.add("darkmode-toggle--white");
+    }
+  }
+}
+</script>
+
+</body>
+</html>
