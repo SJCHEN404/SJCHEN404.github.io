@@ -30,7 +30,7 @@
 <meta property="og:description" content="需要重点对概念的理解，重点掌握文件系统的结构及其实现，文件分配和空闲空间管理等。要掌握文件系统的文件控制块，物理分配方法，索引结构，树形结构， 树形目录结构，文件共享原理，文件系统的布局，虚拟文件系统原理等。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-14T17:30:59.531Z">
-<meta property="article:modified_time" content="2022-09-14T17:30:59.531Z">
+<meta property="article:modified_time" content="2022-09-17T17:04:13.633Z">
 <meta property="article:author" content="SJCHEN">
 <meta property="article:tag" content="操作系统">
 <meta name="twitter:card" content="summary">
@@ -150,7 +150,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">4.1 文件系统基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">4.1.1 基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%9D%97%E5%92%8C%E7%B4%A2%E5%BC%95%E7%BB%93%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">4.1.2 文件控制块和索引结点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 文件的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%9D%97"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 文件控制块(!!!)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%BB%93%E7%82%B9"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 索引结点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">4.1.3 文件的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 文件的基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%89%93%E5%BC%80%E4%B8%8E%E5%85%B3%E9%97%AD"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 文件的打开与关闭</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4"><span class="nav-number">1.4.</span> <span class="nav-text">4.1.4 文件保护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.</span> <span class="nav-text">4.1.5 文件的逻辑结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%E6%B5%81%E5%BC%8F%E6%96%87%E4%BB%B6"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. 无结构文件（流式文件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%E8%AE%B0%E5%BD%95%E5%BC%8F%E6%96%87%E4%BB%B6"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. 有结构文件（记录式文件）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84"><span class="nav-number">1.6.</span> <span class="nav-text">4.1.6 文件的物理结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D"><span class="nav-number">1.6.1.</span> <span class="nav-text">1. 连续分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E5%88%86%E9%85%8D"><span class="nav-number">1.6.2.</span> <span class="nav-text">2. 链接分配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%90%E5%BC%8F%E9%93%BE%E6%8E%A5"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">隐式链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E5%BC%8F%E9%93%BE%E6%8E%A5"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">显式链接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E9%85%8D"><span class="nav-number">1.6.3.</span> <span class="nav-text">3. 索引分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%B4%A2%E5%BC%95%E5%88%86%E9%85%8D"><span class="nav-number">1.6.4.</span> <span class="nav-text">4. 混合索引分配</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80"><span class="nav-number">1.</span> <span class="nav-text">4.1 文件系统基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">4.1.1 基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%9D%97%E5%92%8C%E7%B4%A2%E5%BC%95%E7%BB%93%E7%82%B9"><span class="nav-number">1.2.</span> <span class="nav-text">4.1.2 文件控制块和索引结点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.1.</span> <span class="nav-text">1. 文件的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%8E%A7%E5%88%B6%E5%9D%97"><span class="nav-number">1.2.2.</span> <span class="nav-text">2. 文件控制块(!!!)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E7%BB%93%E7%82%B9"><span class="nav-number">1.2.3.</span> <span class="nav-text">3. 索引结点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.</span> <span class="nav-text">4.1.3 文件的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-number">1.3.1.</span> <span class="nav-text">1. 文件的基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E6%89%93%E5%BC%80%E4%B8%8E%E5%85%B3%E9%97%AD"><span class="nav-number">1.3.2.</span> <span class="nav-text">2. 文件的打开与关闭</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E4%BF%9D%E6%8A%A4"><span class="nav-number">1.4.</span> <span class="nav-text">4.1.4 文件保护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.</span> <span class="nav-text">4.1.5 文件的逻辑结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%E6%B5%81%E5%BC%8F%E6%96%87%E4%BB%B6"><span class="nav-number">1.5.1.</span> <span class="nav-text">1. 无结构文件（流式文件）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E7%BB%93%E6%9E%84%E6%96%87%E4%BB%B6%E8%AE%B0%E5%BD%95%E5%BC%8F%E6%96%87%E4%BB%B6"><span class="nav-number">1.5.2.</span> <span class="nav-text">2. 有结构文件（记录式文件）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E7%89%A9%E7%90%86%E7%BB%93%E6%9E%84"><span class="nav-number">1.6.</span> <span class="nav-text">4.1.6 文件的物理结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E5%88%86%E9%85%8D"><span class="nav-number">1.6.1.</span> <span class="nav-text">1. 连续分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%93%BE%E6%8E%A5%E5%88%86%E9%85%8D"><span class="nav-number">1.6.2.</span> <span class="nav-text">2. 链接分配</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%90%E5%BC%8F%E9%93%BE%E6%8E%A5"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">隐式链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%98%BE%E5%BC%8F%E9%93%BE%E6%8E%A5"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">显式链接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B4%A2%E5%BC%95%E5%88%86%E9%85%8D"><span class="nav-number">1.6.3.</span> <span class="nav-text">3. 索引分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E7%B4%A2%E5%BC%95%E5%88%86%E9%85%8D"><span class="nav-number">1.6.4.</span> <span class="nav-text">4. 混合索引分配</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-number">1.7.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">2.</span> <span class="nav-text">4.2 目录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">4.1.2 目录的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.</span> <span class="nav-text">4.2.2 目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E7%BA%A7%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.1.</span> <span class="nav-text">1. 单级目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E7%BA%A7%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.2.</span> <span class="nav-text">2. 两级目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A0%91%E5%BD%A2%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.3.</span> <span class="nav-text">3. 树形目录结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84%E5%92%8C%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">绝对路径和相对路径</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%97%A0%E7%8E%AF%E5%9B%BE%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="nav-number">2.2.4.</span> <span class="nav-text">4. 无环图目录结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">2.3.</span> <span class="nav-text">4.2.3 目录的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.4.</span> <span class="nav-text">4.2.4 目录的实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB"><span class="nav-number">2.5.</span> <span class="nav-text">4.2.5 文件共享！！！</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E7%B4%A2%E5%BC%95%E7%9A%84%E5%85%B1%E4%BA%AB%E6%96%B9%E5%BC%8F%E7%A1%AC%E9%93%BE%E6%8E%A5"><span class="nav-number">2.5.1.</span> <span class="nav-text">1. 基于索引的共享方式（硬链接）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E7%AC%A6%E5%8F%B7%E9%93%BE%E5%AE%9E%E7%8E%B0%E6%96%87%E4%BB%B6%E5%85%B1%E4%BA%AB%E8%BD%AF%E9%93%BE%E6%8E%A5"><span class="nav-number">2.5.2.</span> <span class="nav-text">2.
+利用符号链实现文件共享（软链接）</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -283,6 +284,13 @@
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2022-09-18 01:04:13" itemprop="dateModified" datetime="2022-09-18T01:04:13+08:00">2022-09-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
       </span>
       <span class="post-meta-item-text">分类于</span>
@@ -323,14 +331,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.2k</span>
+      <span>5.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>3 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -417,6 +425,7 @@
 </ul>
 <h3 id="索引结点">3. 索引结点</h3>
 <p>UNIX系统采用了文件名和文件描述信息分开的方法，使文件描述信息单独形成一个称为<em>索引结点</em>的数据结构，简称<code>i</code>结点（inode），在文件目录中的每个目录项仅由文件名和指向该文件所对应的<code>i</code>结点的指针构成。</p>
+<p>在<code>UNIX</code>操作系统中，所有设备都被视为<em>特殊文件</em>，因为<code>UNIX</code>操作系统控制和访问外部设备的方式和访问一个文件的方式是一样的。</p>
 <h2 id="文件的操作">4.1.3 文件的操作</h2>
 <h3 id="文件的基本操作">1. 文件的基本操作</h3>
 <p><strong>文件属于抽象数据类型！！！</strong></p>
@@ -424,7 +433,9 @@
 src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209142032142.png" /></p>
 <h3 id="文件的打开与关闭">2. 文件的打开与关闭</h3>
 <p>许多系统要求在首次使用文件时，使用<em>系统调用open</em></p>
+<p>打开文件操作是将该文件的<code>FCB</code>存入内存的活跃文件目录表。</p>
 <h2 id="文件保护">4.1.4 文件保护</h2>
+<p>系统级管理包括注册和登陆。</p>
 <p>为了防止文件共享可能会导致文件被破坏或未经核准的用户修改文件，文件系统必须控制用户对文件的存取。</p>
 <p>文件保护方式：</p>
 <ul>
@@ -537,6 +548,96 @@ class="math inline">\(N_2\)</span>个二次间接地址项，每个盘块的大�
 <p><span class="math display">\[
 \left(N_0 + N_1 * \frac{M}{m} + \left(\frac{M}{m}\right)^2 \right) * M
 \]</span></p>
+<h2 id="小结">小结</h2>
+<ul>
+<li>read系统调用</li>
+</ul>
+<blockquote>
+<p><code>read</code>只需要<code>open</code>返回的文件描述符，不需要包括文件的名称</p>
+</blockquote>
+<ul>
+<li>创建的文件数量的上限 = 索引结点数量的上限</li>
+</ul>
+<h1 id="目录">4.2 目录</h1>
+<h2 id="目录的基本概念">4.1.2 目录的基本概念</h2>
+<p><code>FCB</code>的有序集合称为<em>文件目录</em>，一个<code>FCB</code>就是一个<em>文件目录项</em></p>
+<p>目录管理的基本要求：</p>
+<ul>
+<li>用户角度 -- 实现“按名存取” -- 提高对目录的检索速度</li>
+<li>多用户系统中 -- 提供用于控制访问文件的信息 --
+允许不同用户对不同文件采用相同的名字</li>
+</ul>
+<h2 id="目录结构">4.2.2 目录结构</h2>
+<h3 id="单级目录结构">1. 单级目录结构</h3>
+<p>在整个文件系统中只建立一张目录表，每个文件占一个目录项</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209171550345.png" /></p>
+<ul>
+<li>当访问一个文件时，先按文件名在该目录中查找到对应的<code>FCB</code>，经合法性检查后执行相应的操作</li>
+<li>当建立一个新文件时，必须先检索所有目录项，以确保没有“重名”的情况，然后在该目录中增设一项，把新文件的属性填入</li>
+<li>当删除一个文件时，先从该目录中找到该文件的目录项，回收该文件所占用的存储空间，然后消除该目录项</li>
+</ul>
+<p>单机目录结构实现了“按名存取”，但是存在查找速度慢，文件不允许重名。不便于文件共享等缺点，而且对于多用户的操作系统显然不适用。</p>
+<p>一级目录平均访盘次数为<span
+class="math inline">\(\frac{1}{2}\)</span>盘块数</p>
+<h3 id="两级目录结构">2. 两级目录结构</h3>
+<p>为了克服单级目录所存在的缺点，将文件目录分成<em>主文件目录（MFD）</em>和<em>用户文件目录（UFD）</em></p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209171553389.png" /></p>
+<ul>
+<li>主文件目录项记录用户名即相应用户文件目录所在的存储位置</li>
+<li>用户文件目录项记录该用户文件的<code>FCB</code>信息</li>
+</ul>
+<p>当某用户欲对其文件进行访问时，只需要搜索该用户对应的<code>UFD</code>，这既解决了不同用户文件的“重名”问题，又在一定程度上保证了文件的安全</p>
+<p>两级目录结构提高了检索速度，解决了多用户之间的文件重名问题，文件系统可以在目录上实现访问限制。但是两级目录结构缺乏灵活性，不能对文件分类。</p>
+<h3 id="树形目录结构">3. 树形目录结构</h3>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209171558232.png" /></p>
+<p>可以明显提高对目录的检索速度和文件系统的性能</p>
+<h4 id="绝对路径和相对路径">绝对路径和相对路径</h4>
+<p>用户要访问某个文件时用文件路径名标识文件，文件路径名是个字符串，由从根目录出发到所找文件的通路上的所有目录名与数据文件名用分隔符“/”链接起来</p>
+<ul>
+<li><strong>绝对路径</strong>：从根目录出发的路径</li>
+<li><strong>相对路径</strong>：从用户（进程）的当前目录出发到所找文件通路上所有目录名与数据名用分隔符“/”链接而成。进程对各文件的访问都是相对于当前目录进行的，<em>设置当前目录有利于加快文件的检索速度</em></li>
+</ul>
+<p>设置当前工作目录的主要目的是<em>加快文件的检索速度</em></p>
+<p>树形目录结构优点：</p>
+<ul>
+<li>可以方便地对文件进行分类，层次结构清晰</li>
+<li>能够有效的进行文件的管理和保护</li>
+</ul>
+<h3 id="无环图目录结构">4. 无环图目录结构</h3>
+<p>树形目录结构能便于实现文件分类，但不便于实现文件共享，为此在树形目录结构的基础上增加了一些指向同一结点的有向边，使整个目录成为一个有向无环图。</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209171610884.png" /></p>
+<h2 id="目录的操作">4.2.3 目录的操作</h2>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209172238696.png" /></p>
+<h2 id="目录的实现">4.2.4 目录的实现</h2>
+<ol type="1">
+<li>线性列表</li>
+<li>哈希表</li>
+</ol>
+<h2 id="文件共享">4.2.5 文件共享！！！</h2>
+<p>文件共享使多个用户共享同一个文件，系统中只需要保留该文件的一个副本。</p>
+<h3 id="基于索引的共享方式硬链接">1. 基于索引的共享方式（硬链接）</h3>
+<p>在树形结构的目录中，当有两个或多个用户要共享一个子目录或文件时，必须将共享文件或子目录链接到两个或多个用户的目录中，才能方便地找到该文件。</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202209172244295.png" /></p>
+<p>文件的物理地址及其他的文件属性等信息不再放在目录项中，而是放在<em>索引结点中</em>。</p>
+<p>在文件目录中只设置文件名及指向相应索引结点的指针</p>
+<p>在索引结点中还应有一个链接计数<code>count</code>，用于表示链接到本索引文件结点（即文件）的用户目录项的数目。当<code>count = 2</code>时，表示有两个用户目录项链接到本文件上，或者说有两个用户共享此文件</p>
+<p>用户A创建一个新文件时，他便是该文件的所有者，此时将count置为1.用户B要共享此文件时，在B的目录中增加一个目录项，并设置一个指针指向该文件的索引结点。此时，文件主仍然是用户A，count
+=
+2,如果用户A不再需要此文件，不能直接删除，因为如果删除了该文件，也必然删除了该文件的索引结点，这样会使用户B的指针悬空，而B可能正在此文件上执行写操作，此时将因此半途而废，只是将该文件的count减1，然后删除自己目录中的相应目录项。用户B仍可以使用该文件。当count
+= 0时，表示没有用户使用该文件，才会删除该文件。</p>
+<h3 id="利用符号链实现文件共享软链接">2.
+利用符号链实现文件共享（软链接）</h3>
+<p>为使用户B可以共享用户A的一个文件F，可以由系统创建一个<strong>LINK</strong>类型的新文件，也取名为F，并将该文件写入用户B的目录中，以实现用户B的目录与文件F的链接。在新文件中只包含被链接文件F的路径名。</p>
+<p>在利用符号链方式实现文件共享时，只有文件主才拥有指向其索引结点的指针。而共享该文件的其他用户只有该文件的路径名，并不拥有指向其索引结点的指针。这样，也就不会发生在文件主删除一共享文件后留下一悬空指针的情况了。当文件主把一个共享文件删除后，若其他用户又试图通过符号链去访问它，则会出访问失败。</p>
+<p><strong>优点：</strong> 文件拥有者可以删除被他人共享的文件</p>
+<p><strong>缺点：</strong>
+当其他用户读共享文件时，需要根据路径名多次读盘，访问开销大</p>
 
     </div>
 
@@ -627,13 +728,13 @@ class="math inline">\(N_2\)</span>个二次间接地址项，每个盘块的大�
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">596k</span>
+    <span title="站点总字数">598k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">9:02</span>
+    <span title="站点阅读时长">9:04</span>
   </span>
 </div>
 <div class="busuanzi-count">
