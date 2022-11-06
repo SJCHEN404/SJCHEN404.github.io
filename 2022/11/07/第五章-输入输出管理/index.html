@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.2.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha256-xejo6yLi6vGtAjcMIsY8BHdKsLg7QynVlFMzdQgUuy8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"sjchen404.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":false,"version":"8.12.3","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.json","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="重点掌握I&#x2F;O接口，I&#x2F;O软件。三种I&#x2F;O控制方式，高速缓存与缓冲区，SPOOLing技术，磁盘特性和调度算法。 I&#x2F;O管理概述 I&#x2F;O 设备 I&#x2F;O接口 I&#x2F;O接口（设备控制器）位于CPU与设备之间，它既要与CPU通信，又要与设备通信，还要具有按CPU发来的命令去控制设备工作的功能。 主要由三部分组成：  设备控制器与CPU接口 ，该接口有三类信号线：数据线，地址线和控制线 设备控制器与设备的接">
+<meta property="og:type" content="article">
+<meta property="og:title" content="输入输出管理">
+<meta property="og:url" content="https://sjchen404.github.io/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="SJCHEN">
+<meta property="og:description" content="重点掌握I&#x2F;O接口，I&#x2F;O软件。三种I&#x2F;O控制方式，高速缓存与缓冲区，SPOOLing技术，磁盘特性和调度算法。 I&#x2F;O管理概述 I&#x2F;O 设备 I&#x2F;O接口 I&#x2F;O接口（设备控制器）位于CPU与设备之间，它既要与CPU通信，又要与设备通信，还要具有按CPU发来的命令去控制设备工作的功能。 主要由三部分组成：  设备控制器与CPU接口 ，该接口有三类信号线：数据线，地址线和控制线 设备控制器与设备的接">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-11-06T18:30:39.399Z">
+<meta property="article:modified_time" content="2022-11-06T18:30:39.399Z">
+<meta property="article:author" content="SJCHEN">
+<meta property="article:tag" content="操作系统">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://sjchen404.github.io/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://sjchen404.github.io/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/","path":"2022/11/07/第五章-输入输出管理/","title":"输入输出管理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>输入输出管理 | SJCHEN</title>
+  
+
+
+
+
+<link rel="dns-prefetch" href="waline-blog-ij33-fskc7zdtq-1261476297-qqcom.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><style>.darkmode--activated{--body-bg-color:#282828;--content-bg-color:#333;--card-bg-color:#555;--text-color:#ccc;--blockquote-color:#bbb;--link-color:#ccc;--link-hover-color:#eee;--brand-color:#ddd;--brand-hover-color:#ddd;--table-row-odd-bg-color:#282828;--table-row-hover-bg-color:#363636;--menu-item-bg-color:#555;--btn-default-bg:#222;--btn-default-color:#ccc;--btn-default-border-color:#555;--btn-default-hover-bg:#666;--btn-default-hover-color:#ccc;--btn-default-hover-border-color:#666;--highlight-background:#282b2e;--highlight-foreground:#a9b7c6;--highlight-gutter-background:#34393d;--highlight-gutter-foreground:#9ca9b6}.darkmode--activated img{opacity:.75}.darkmode--activated img:hover{opacity:.9}.darkmode--activated code{color:#69dbdc;background:0 0}button.darkmode-toggle{z-index:9999}.darkmode-ignore,img{display:flex!important}.beian img{display:inline-block!important}</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">SJCHEN</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">时光，不会辜负每一个平静努力的人</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-schedule"><a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#io%E7%AE%A1%E7%90%86%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">I&#x2F;O管理概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#io-%E8%AE%BE%E5%A4%87"><span class="nav-number">1.1.</span> <span class="nav-text">I&#x2F;O 设备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#io%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.1.1.</span> <span class="nav-text">I&#x2F;O接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#io%E7%AB%AF%E5%8F%A3"><span class="nav-number">1.1.2.</span> <span class="nav-text">I&#x2F;O端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#io%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.</span> <span class="nav-text">I&#x2F;O控制方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E7%9B%B4%E6%8E%A5%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.程序直接控制方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%AD%E9%A9%B1%E5%8A%A8%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.中断驱动方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dma%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.DMA方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E9%81%93%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="nav-number">1.2.4.</span> <span class="nav-text">4.通道控制方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#io%E8%BD%AF%E4%BB%B6%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">I&#x2F;O软件层次结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E8%AE%B0%E5%BF%86%E7%82%B9"><span class="nav-number">1.4.</span> <span class="nav-text">总结记忆点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E7%8B%AC%E7%AB%8B%E6%80%A7%E8%BD%AF%E4%BB%B6"><span class="nav-number">1.5.</span> <span class="nav-text">5.2 设备独立性软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98%E4%B8%8E%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-number">1.5.1.</span> <span class="nav-text">5.2.2 高速缓存与缓冲区</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">1. 磁盘高速缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%93%E5%86%B2%E5%8C%BA"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">2. 缓冲区</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8D%95%E7%BC%93%E5%86%B2"><span class="nav-number">1.5.1.2.1.</span> <span class="nav-text">1. 单缓冲</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%8C%E7%BC%93%E5%86%B2"><span class="nav-number">1.5.1.2.2.</span> <span class="nav-text">2. 双缓冲</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%BC%93%E5%86%B2"><span class="nav-number">1.5.1.2.3.</span> <span class="nav-text">3. 循环缓冲</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%93%E5%86%B2%E6%B1%A0"><span class="nav-number">1.5.1.2.4.</span> <span class="nav-text">4. 缓冲池</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D%E4%B8%8E%E5%9B%9E%E6%94%B6"><span class="nav-number">1.5.2.</span> <span class="nav-text">5.2.3 设备分配与回收</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D%E6%A6%82%E8%BF%B0"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">1. 设备分配概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">2. 设备分配的数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">3. 设备分配策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E5%A4%87%E5%88%86%E9%85%8D%E7%9A%84%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">1.5.2.4.</span> <span class="nav-text">4. 设备分配的安全性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E8%AE%BE%E5%A4%87%E5%90%8D%E5%88%B0%E7%89%A9%E7%90%86%E8%AE%BE%E5%A4%87%E5%90%8D%E7%9A%84%E6%98%A0%E5%B0%84"><span class="nav-number">1.5.2.5.</span> <span class="nav-text">5.
+逻辑设备名到物理设备名的映射</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#spooling%E6%8A%80%E6%9C%AF%E5%81%87%E8%84%B1%E6%9C%BA%E6%8A%80%E6%9C%AF"><span class="nav-number">1.5.3.</span> <span class="nav-text">5.2.4 SPOOLing技术（假脱机技术）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.5.4.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E5%92%8C%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98"><span class="nav-number">1.6.</span> <span class="nav-text">5.3 磁盘和固态硬盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E7%9B%98"><span class="nav-number">1.6.1.</span> <span class="nav-text">5.3.1 磁盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E7%9A%84%E7%AE%A1%E7%90%86"><span class="nav-number">1.6.2.</span> <span class="nav-text">5.3.2 磁盘的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">1.6.2.1.</span> <span class="nav-text">1.磁盘初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E5%8C%BA"><span class="nav-number">1.6.2.2.</span> <span class="nav-text">2.分区</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E5%AF%BC%E5%9D%97"><span class="nav-number">1.6.3.</span> <span class="nav-text">3.引导块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9D%8F%E5%9D%97"><span class="nav-number">1.6.4.</span> <span class="nav-text">4. 坏块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A3%81%E7%9B%98%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">1.7.</span> <span class="nav-text">5.3.3 磁盘调度算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%A3%81%E7%9B%98%E8%B0%83%E5%BA%A6%E7%AE%97%E6%B3%95"><span class="nav-number">1.7.1.</span> <span class="nav-text">常用磁盘调度算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98"><span class="nav-number">1.8.</span> <span class="nav-text">5.3.4 固态硬盘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%BA%E6%80%81%E7%A1%AC%E7%9B%98%E7%89%B9%E6%80%A7"><span class="nav-number">1.8.1.</span> <span class="nav-text">1. 固态硬盘特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A3%A8%E6%8D%9F%E5%9D%87%E8%A1%A1"><span class="nav-number">1.8.2.</span> <span class="nav-text">2. 磨损均衡</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="SJCHEN"
+      src="/images/new%E5%A4%B4%E5%83%8F.jpg">
+  <p class="site-author-name" itemprop="name">SJCHEN</p>
+  <div class="site-description" itemprop="description">start from zero</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">157</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">65</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">81</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SJCHEN404" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;SJCHEN404" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:chenshengjiao1912@163.com" title="E-Mail → mailto:chenshengjiao1912@163.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5702603638" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5702603638" rel="noopener" target="_blank"><i class="fab fa-weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+  <div class="links-of-recent-posts motion-element">
+    <div class="links-of-recent-posts-title">
+      <i class="fa fa-history fa-fw"></i>
+      最近文章
+    </div>
+    <ul class="links-of-recent-posts-list">
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/" title="2022&#x2F;11&#x2F;07&#x2F;第五章-输入输出管理&#x2F;">输入输出管理</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" title="2022&#x2F;09&#x2F;15&#x2F;第四章-文件管理&#x2F;">操作系统-第四章-文件管理</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/09/03/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/" title="2022&#x2F;09&#x2F;03&#x2F;第三章-内存管理&#x2F;">操作系统第三章-内存管理</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/25/%E5%9C%A8nvim%E5%92%8CvsCode%E4%B8%AD%E5%BF%AB%E9%80%9F%E5%AE%9E%E7%8E%B0C++%E4%BB%A3%E7%A0%81%E6%A0%BC%E5%BC%8F%E5%8C%96/" title="2022&#x2F;08&#x2F;25&#x2F;在nvim和vsCode中快速实现C++代码格式化&#x2F;">在nvim和VS Code中快速实现C++代码格式化</a>
+        </li>
+        <li class="links-of-recent-posts-item">
+          <a href="/2022/08/20/%E5%9C%A8nvim%E4%B8%AD%E4%BD%BF%E7%94%A8clangd%E5%A4%84%E7%90%86c++%E9%A1%B9%E7%9B%AE%E5%A4%B4%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/" title="2022&#x2F;08&#x2F;20&#x2F;在nvim中使用clangd处理c++项目头文件报错&#x2F;">在nvim中使用clangd处理c++头文件报错</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="输入输出管理 | SJCHEN">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          输入输出管理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-07 02:30:39" itemprop="dateCreated datePublished" datetime="2022-11-07T02:30:39+08:00">2022-11-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">计算机基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>重点掌握I/O接口，I/O软件。三种I/O控制方式，高速缓存与缓冲区，SPOOLing技术，磁盘特性和调度算法。</p>
+<h1 id="io管理概述">I/O管理概述</h1>
+<h2 id="io-设备">I/O 设备</h2>
+<h3 id="io接口">I/O接口</h3>
+<p>I/O接口（设备控制器）位于CPU与设备之间，它既要与CPU通信，又要与设备通信，还要具有按CPU发来的命令去控制设备工作的功能。</p>
+<p>主要由三部分组成：</p>
+<ol type="1">
+<li><strong>设备控制器与CPU接口</strong>
+，该接口有三类信号线：数据线，地址线和控制线</li>
+<li><strong>设备控制器与设备的接口</strong></li>
+<li><strong>I/O逻辑</strong></li>
+</ol>
+<p><strong>设备控制器的主要功能：</strong></p>
+<ol type="1">
+<li>接收和识别CPU发来的命令，如磁盘控制器能接收读，写，查找等命令</li>
+<li>数据交换，包括设备和控制器之间的数据传输，以及控制器和主存之间的数据传输</li>
+<li>标识和报告设备的状态，以供CPU处理</li>
+<li>地址识别</li>
+<li>数据缓冲</li>
+<li>差错控制</li>
+</ol>
+<h3 id="io端口">I/O端口</h3>
+<p>I/O端口是指设备控制器中可被CPU直接访问的寄存器，主要有以下三类寄存器：</p>
+<ol type="1">
+<li><strong>数据寄存器：</strong> 实现CPU和外设之间的数据缓冲</li>
+<li><strong>状态寄存器：</strong>
+获取执行结果和设备的状态信息，以让CPU知道是否准备好</li>
+<li><strong>控制寄存器：</strong>
+由CPU写入，以便启动命令或更改设备模式</li>
+</ol>
+<p>为了实现CPU与I/O端口进行通信，有两种方法：</p>
+<ol type="1">
+<li>独立编址</li>
+<li>统一编址</li>
+</ol>
+<h2 id="io控制方式">I/O控制方式</h2>
+<p>设备管理的主要任务之一是控制设备和内存或CPU之间的数据传送。</p>
+<h3 id="程序直接控制方式">1.程序直接控制方式</h3>
+<p>简单且易于实现，由于CPU和设备只能串行工作，导致CPU利用率相当低</p>
+<h3 id="中断驱动方式">2.中断驱动方式</h3>
+<p>允许I/O设备主动打断CPU的运行并请求服务，从而“解放”CPU。</p>
+<p>从CPU的角度来看，CPU发出读命令，然后保存当前运行程序的上下文（现场，包括程序计数器以及处理机寄存器），转去执行其他程序。<em>在每个指令周期的末尾，CPU检查中断</em>。当有来自I/O控制器的中断时，CPU保存当前正在运行程序的上下文，转去执行中断处理程序以处理该中断。这时，CPU从I/O控制器读一个字的数据传送到寄存器，并存入主存，接着，CPU恢复发出I/O命令的程序（或其他命令）的上下文，然后继续执行。</p>
+<p>中断驱动方式比程序直接控制方式有效，但由于数据中的每个字在存储器与I/O控制器之间的传输都必须经过CPU，这就导致了中断驱动方式仍然会消耗较多的CPU时间。</p>
+<h3 id="dma方式">3.DMA方式</h3>
+<p>DMA（之间存储器存取）是在I/O设备和内存之间开辟直接的数据交换通路，彻底“释放”CPU</p>
+<p>特点：</p>
+<ol type="1">
+<li>基本单位是数据块</li>
+<li>所传送的数据，是从设备直接送入内存，或者相反</li>
+<li>仅在传送一个或多个数据块的开始和结束时，才需要CPU干预，整块数据的传送是在DMA控制器的控制下完成的。</li>
+</ol>
+<p>要在主机与控制器之间实现成块数据的直接交换，必须在DMA控制器中设置以下4类寄存器：</p>
+<ol type="1">
+<li>命令/状态寄存器（CR）</li>
+<li>内存地址寄存器（MAR）</li>
+<li>数据寄存器（DR）</li>
+<li>数据计数器（DC）</li>
+</ol>
+<p><em>DMA方式与中断方式的主要区别：</em></p>
+<p>中断方式在每个数据需要传输时中断CPU，而DMA方式则是在所要求传送的一批数据全部传送结束时才中断CPU；此外，中断方式的数据传送是在中断处理时由CPU控制完成的，而MDA方式则是在DMA控制器的控制下完成的。</p>
+<h3 id="通道控制方式">4.通道控制方式</h3>
+<p>I/O通道是指专门负责输入/输出的处理机。通道属于硬件</p>
+<p>I/O通道与一般处理机的区别：通道指令的类型单一，没有自己的内存，通道所执行的通道程序是放在主机的内存中，也就是说<em>通道与CPU共享内存</em></p>
+<p>I/O通道与DMA方式的区别：DMA方式需要CPU来控制传输的数据块大小，传输的内存位置，而通道方式中这些信息是由通道控制的。另外，每个DMA控制器对应一台设备或内存传递数据，而一个通道可以控制多态设备与内存的数据交换</p>
+<h2 id="io软件层次结构">I/O软件层次结构</h2>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202210061705226.png" /></p>
+<h2 id="总结记忆点">总结记忆点</h2>
+<ol type="1">
+<li>可寻址是块设备的基本特征</li>
+<li>共享设备是指<em>一段时间</em>内允许多个进程同时访问的设备</li>
+<li>I/O控制方式为：程序直接控制方式，中断驱动方式，DMA方式，通道控制方式</li>
+<li>接口用于传输信号，I/O逻辑即设备控制器用来实现对设备的控制</li>
+<li>DMA是在<em>I/O设备和主存</em>之间建立一条直接数据通路</li>
+<li>通道又称I/O处理机，用于实现<em>内存与外设</em>之间的信息传输</li>
+<li><em>字节多路通道</em> 用作连接大量的低速或中速I/O设备</li>
+<li>及时性不是设备分配中应考虑的问题</li>
+<li>通道控制设备控制器，设备控制器控制设备工作</li>
+</ol>
+<h2 id="设备独立性软件">5.2 设备独立性软件</h2>
+<h3 id="高速缓存与缓冲区">5.2.2 高速缓存与缓冲区</h3>
+<h4 id="磁盘高速缓存">1. 磁盘高速缓存</h4>
+<p>磁盘高速缓存逻辑上属于磁盘，物理上则是驻留在内存中的盘块</p>
+<p>高速缓存在内存中分为两种形式：</p>
+<ol type="1">
+<li>在内存中开辟一个单独的空间作为磁盘高速缓存，大小固定</li>
+<li>把未利用的内存空间作为一个缓冲池，供请求分页系统和磁盘I/O时共享</li>
+</ol>
+<h4 id="缓冲区">2. 缓冲区</h4>
+<p>引入缓冲区的目的：</p>
+<ol type="1">
+<li>缓和CPU与I/O设备间速度不匹配的矛盾</li>
+<li>减少对CPU的中断频率，放宽对CPU中断响应时间的限制</li>
+<li>解决基本数据单元大小不匹配的问题</li>
+<li>提高CPU和I/O设备之间的并行性</li>
+</ol>
+<p>实现方法：</p>
+<ol type="1">
+<li>采用硬件缓冲区，但由于成本太高，除一些关键部位外，一般不采用硬件缓冲器</li>
+<li>采用缓冲区（位于内存区域）</li>
+</ol>
+<p>缓冲区管理需要重点考虑的问题是：</p>
+<p>实现进程访问缓冲区的同步</p>
+<p>根据系统设置缓冲区的个数，缓存技术可以分为以下几种：</p>
+<h5 id="单缓冲">1. 单缓冲</h5>
+<p>在块设备输入时，假定从磁盘把一块数据输入到缓冲区的时间为T，操作系统将该缓冲区中的数据传送到用户区的时间为M，而CPU对这一块数据处理的时间为C</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202210141650624.png" /></p>
+<p>假设初始状态为：工作区是满的，缓冲区是空的。如题目无明确说明，通常认为缓冲区的大小和工作区的大小相等</p>
+<p>单缓冲区处理每块数据的用时为<code>max(C,T) + M</code></p>
+<h5 id="双缓冲">2. 双缓冲</h5>
+<p>双缓冲区处理一块数据的用时为 <code>max(C + M, T)</code></p>
+<h5 id="循环缓冲">3. 循环缓冲</h5>
+<h5 id="缓冲池">4. 缓冲池</h5>
+<p>为了使并发进程能有效地进行输入和输出</p>
+<p>缓冲池在主存中</p>
+<h3 id="设备分配与回收">5.2.3 设备分配与回收</h3>
+<h4 id="设备分配概述">1. 设备分配概述</h4>
+<ol type="1">
+<li>独占设备</li>
+<li>共享设备</li>
+<li>虚拟设备</li>
+</ol>
+<h4 id="设备分配的数据结构">2. 设备分配的数据结构</h4>
+<p>设备分配依据的主要数据结构：</p>
+<ol type="1">
+<li>设备控制表（DCT）</li>
+<li>控制器控制表（COCT）</li>
+<li>通道控制表（CHCT）</li>
+<li>系统设备表（SDT）</li>
+</ol>
+<h4 id="设备分配策略">3. 设备分配策略</h4>
+<p>对于独占设备，既可以采用动态分配方式，也可以采用静态分配方式，但往往采用静态分配方式。共享设备一般采用动态分配方式。</p>
+<h4 id="设备分配的安全性">4. 设备分配的安全性</h4>
+<p>指设备分配中应防止发生进程死锁</p>
+<ol type="1">
+<li>安全分配方式，缺点：CPU和I/O设备是串行工作</li>
+<li>不安全分配方式，优点：一个进程可以同时操作多个设备，使进程推进迅速，缺点：有可能造成死锁</li>
+</ol>
+<h4 id="逻辑设备名到物理设备名的映射">5.
+逻辑设备名到物理设备名的映射</h4>
+<p>为了提高设备分配的灵活性和设备的利用率，方便实现I/O重定向，引入了设备独立性。</p>
+<p><em>设备独立性</em> 指应用程序独立与具体使用的物理设备</p>
+<p>为了实现设备独立性，在应用程序中使用 <strong>逻辑设备名</strong>
+来请求使用某类设备，在系统中设置一张逻辑设备表（LUT），用于将逻辑设备名映射为物理设备名</p>
+<p>在系统中可采取两种方式设备逻辑设备表：</p>
+<ol type="1">
+<li>在整个系统中只设置一张LUT。主要适用于单用户系统</li>
+<li>为每个用户设置一张LUT，每当用户登陆时，系统便为该用户建立一个进程，同时也为之建立一张LUT，并将该表放入进程的PCB中</li>
+</ol>
+<h3 id="spooling技术假脱机技术">5.2.4 SPOOLing技术（假脱机技术）</h3>
+<p>为了缓和CPU的高速性与I/O设备的低速性之间的矛盾</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211052151022.png" /></p>
+<p>组成：</p>
+<ol type="1">
+<li>输入井和输出井</li>
+<li>输入缓冲区和输出缓冲区</li>
+<li>输入进程和输出进程</li>
+</ol>
+<p>SPOOLing系统特点：</p>
+<ol type="1">
+<li>提高了I/O的速度，将对低速I/O设备执行的I/O设备演变为对磁盘缓冲区中数据的存取</li>
+<li>将独占设备改造为共享设备</li>
+<li>实现了虚拟设备功能</li>
+</ol>
+<p><strong>SPOOLing技术是一种以空间换时间的技术</strong></p>
+<h3 id="总结">总结</h3>
+<ol type="1">
+<li>提高单机资源利用率的关键技术是：多道程序设计技术</li>
+<li>虚拟设备是靠SPOOLing技术来实现的</li>
+<li>SPOOLing技术的主要目的是：提高独占设备的利用率</li>
+<li>在采用SPOOLing技术的系统中，用户打印结果首先被送到
+<em>磁盘固定区域</em></li>
+<li>采用SPOOLing技术的计算机系统，需要使用磁盘空间（输入井和输出井）和内存空间（输入/输出缓冲区），不需要外围计算机的支持</li>
+<li>设备可视为特殊文件</li>
+<li>对于具备设备独立性的系统，更换物理设备后只需更换驱动程序</li>
+</ol>
+<h2 id="磁盘和固态硬盘">5.3 磁盘和固态硬盘</h2>
+<h3 id="磁盘">5.3.1 磁盘</h3>
+<p>磁盘盘面上的数据存储在一组同心圆中，称为<em>磁道</em>，磁道又划分为几百个扇区，每个扇区固定存储大小，一个扇区称为一个<em>盘块</em>，相邻磁道及相邻扇区通过一定的间隙分隔开，以避免精度错误</p>
+<p>扇区是磁盘可寻址的最小单位，磁盘上能存储的物理块数目由扇区数，磁道数及磁盘面数决定。</p>
+<p>磁盘地址用“柱面-盘面号-扇区号”表示</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211052232489.png" /></p>
+<h3 id="磁盘的管理">5.3.2 磁盘的管理</h3>
+<h4 id="磁盘初始化">1.磁盘初始化</h4>
+<p>在磁盘可以存储数据之前，必须将它分成扇区，以便磁盘控制器能够进行读写操作，这个过程称为<em>低级格式化（或物理格式化）</em></p>
+<h4 id="分区">2.分区</h4>
+<p>在可以使用磁盘存储文件之前，操作系统还要将自己的数据结构记录到磁盘上，分为两步：</p>
+<ol type="1">
+<li>将磁盘分为由一个或多个柱面组成的分区（即C盘，D盘等分区），每个分区起始扇区和大小都记录在磁盘主引导记录的分区表中</li>
+<li>对物理分区进行<em>逻辑格式化（创建文件系统）</em>，操作系统将初始的文件系统数据结构存储到磁盘上</li>
+</ol>
+<p>因为扇区的单位太小，为了提高效率，操作系统将多个相邻的扇区组合在一起，形成一簇。为了更高效的管理磁盘，一簇只能存放一个文件的内容，文件所占用的空间只能是簇的整数倍；如果文件大小小与一簇，也要占用一簇的空间</p>
+<h3 id="引导块">3.引导块</h3>
+<p>计算机启动时需要运行一个初始化程序（自举程序），它初始化CPU，寄存器，设备控制器和内存等，接着启动操作系统。</p>
+<p><strong>自举程序通常存放在ROM中</strong>，通常只在ROM中保留很小的自举装入程序，而将完整功能的引导程序保存在磁盘的启动块上，启动块位于磁盘固定位置，具有启动分区的磁盘称为<em>启动磁盘或系统磁盘</em></p>
+<h3 id="坏块">4. 坏块</h3>
+<p>对坏盘的处理实质上就是用某种机制使系统不去使用坏块</p>
+<h2 id="磁盘调度算法">5.3.3 磁盘调度算法</h2>
+<p>一次磁盘读写的时间由寻找（寻道）时间，旋转延迟时间和传输时间决定</p>
+<ol type="1">
+<li>寻找时间<span class="math inline">\(T_s\)</span></li>
+</ol>
+<p>活动头磁盘在读写信息前，将磁头移动到指定磁道所需要的时间，这个时间除了跨越n条磁道的时间外，还包括启动磁臂的时间s</p>
+<p><span class="math display">\[
+T_s = m * n + s
+\]</span></p>
+<p>m是与磁盘驱动器速度有关的常数，约为<code>0.2ms</code>，磁臂的启动时间约为<code>2ms</code></p>
+<ol start="2" type="1">
+<li>旋转延迟时间<span class="math inline">\(T_r\)</span></li>
+</ol>
+<p>磁头定位到某一磁道的扇区所需要的时间，设磁盘的旋转速度为r</p>
+<p><span class="math display">\[
+T_r = \frac{1}{2r}
+\]</span></p>
+<p>对于硬盘，典型的旋转速度为<code>5400</code>转/分，相当于<code>11.1ms</code>，则<span
+class="math inline">\(T_r\)</span>为5.55ms</p>
+<ol start="3" type="1">
+<li>传输时间<span class="math inline">\(T_t\)</span></li>
+</ol>
+<p>从磁盘读出或向磁盘写入数据所经历的时间，这个时间取决于每次所写或读的字节数b和磁盘的旋转速度</p>
+<p><span class="math display">\[
+T_t = \frac{b}{rN}
+\]</span></p>
+<p>r为磁盘每秒的转数，N为一个磁道上的字节数</p>
+<p>在磁盘存取时间的计算中，寻道时间与磁盘调度算法相关，而延迟时间和传输时间都与磁盘旋转速度相关，且为线性相关</p>
+<p>总平均存取时间<span class="math inline">\(T_a\)</span></p>
+<p><span class="math display">\[
+T_a = T_s + \frac{1}{2r} + \frac{b}{rN}
+\]</span></p>
+<h3 id="常用磁盘调度算法">常用磁盘调度算法</h3>
+<ol type="1">
+<li>先来先服务（FCFS）算法</li>
+</ol>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070136465.png" /></p>
+<ol start="2" type="1">
+<li>最短寻找时间优先（SSTF）算法</li>
+</ol>
+<p><em>会产生饥饿现象</em></p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070137030.png" /></p>
+<ol start="3" type="1">
+<li>扫描（SCAN）算法（又称电梯调度算法）</li>
+</ol>
+<p><em>可避免饥饿现象</em></p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070139941.png" /></p>
+<ol start="4" type="1">
+<li>循环扫描（C-SCAN）算法</li>
+</ol>
+<p>消除了对两端磁道请求的不公平</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070140252.png" /></p>
+<p>改进型SCAN和C-SCAN，不需要到达磁盘端点，称为LOOK调度和C-LOOK调度</p>
+<p>无特殊说明默认SCAN和C-SCAN为LOOK和C-LOOK调度</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070143345.png" /></p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070143755.png" /></p>
+<p>除了减少寻找时间外，减少延迟时间也是提高传输效率的重要因素，可以对盘面扇区进行交替编号</p>
+<h2 id="固态硬盘">5.3.4 固态硬盘</h2>
+<h3 id="固态硬盘特性">1. 固态硬盘特性</h3>
+<p>固态硬盘（SSD）是一种基于闪存技术的存储器。</p>
+<p>随机读写性能明显高于磁盘</p>
+<p>随机写比较慢，易于磨损</p>
+<h3 id="磨损均衡">2. 磨损均衡</h3>
+<ul>
+<li>动态磨损均衡，写入数据时，自动选择较新的闪存块。</li>
+<li>静态磨损均衡，这种技术更先进。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="reward-container">
+  <div>Buy me a coffee</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/wechatpay.png" alt="SJCHEN 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/alipay.png" alt="SJCHEN 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
+</div>
+
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>SJCHEN
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://sjchen404.github.io/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/" title="输入输出管理">https://sjchen404.github.io/2022/11/07/第五章-输入输出管理/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="tag"># 操作系统</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" rel="prev" title="操作系统-第四章-文件管理">
+                  <i class="fa fa-chevron-left"></i> 操作系统-第四章-文件管理
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="beian"><a href="https://beian.miit.gov.cn/" rel="noopener" target="_blank">null </a>
+  </div>
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SJCHEN</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">605k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">9:10</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.6/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.0/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+  
+  <script data-pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">false</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","cdn":"//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"waline-blog-ij33-fskc7zdtq-1261476297-qqcom.vercel.app","cssUrl":"https://unpkg.com/@waline/client@v2/dist/waline.css","commentCount":true,"pageview":false,"placeholder":"请文明评论呀","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick"],"libUrl":"//unpkg.com/@waline/client@v2/dist/waline.js","el":"#waline","comment":true,"path":"/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/"}</script>
+<link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css">
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() =>
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => 
+    Waline.init(Object.assign({}, CONFIG.waline,{ el: document.querySelector(CONFIG.waline.el) }))
+  );
+});
+</script>
+<script src="https://unpkg.com/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+
+<script>
+var options = {
+  bottom: '64px',
+  right: 'unset',
+  left: '32px',
+  time: '0.5s',
+  mixColor: 'transparent',
+  backgroundColor: 'transparent',
+  buttonColorDark: '#100f2c',
+  buttonColorLight: '#fff',
+  saveInCookies: false,
+  label: '🌓',
+  autoMatchOsTheme: false
+}
+const darkmode = new Darkmode(options);
+window.darkmode = darkmode;
+darkmode.showWidget();
+if (window.darkmode && !window.darkmode.isActivated()) {
+  window.darkmode.toggle();
+  var toggleButtons = document.getElementsByClassName("darkmode-toggle");
+  if (toggleButtons && toggleButtons.length > 0) {
+    for (i = 0; i < toggleButtons.length; i++) {
+      toggleButtons[i].classList.add("darkmode-toggle--white");
+    }
+  }
+}
+</script>
+
+</body>
+</html>

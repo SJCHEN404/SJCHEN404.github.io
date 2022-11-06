@@ -161,7 +161,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">156</span>
+          <span class="site-state-item-count">157</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -198,6 +198,9 @@
     </div>
     <ul class="links-of-recent-posts-list">
         <li class="links-of-recent-posts-item">
+          <a href="/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/" title="2022&#x2F;11&#x2F;07&#x2F;第五章-输入输出管理&#x2F;">输入输出管理</a>
+        </li>
+        <li class="links-of-recent-posts-item">
           <a href="/2022/09/15/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86/" title="2022&#x2F;09&#x2F;15&#x2F;第四章-文件管理&#x2F;">操作系统-第四章-文件管理</a>
         </li>
         <li class="links-of-recent-posts-item">
@@ -208,9 +211,6 @@
         </li>
         <li class="links-of-recent-posts-item">
           <a href="/2022/08/20/%E5%9C%A8nvim%E4%B8%AD%E4%BD%BF%E7%94%A8clangd%E5%A4%84%E7%90%86c++%E9%A1%B9%E7%9B%AE%E5%A4%B4%E6%96%87%E4%BB%B6%E6%8A%A5%E9%94%99/" title="2022&#x2F;08&#x2F;20&#x2F;在nvim中使用clangd处理c++项目头文件报错&#x2F;">在nvim中使用clangd处理c++头文件报错</a>
-        </li>
-        <li class="links-of-recent-posts-item">
-          <a href="/2022/08/18/%E5%BF%AB%E9%80%9F%E4%BA%86%E8%A7%A3%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="2022&#x2F;08&#x2F;18&#x2F;快速了解数据结构&#x2F;">快速复习数据结构</a>
         </li>
     </ul>
   </div>
@@ -236,6 +236,389 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
+      <meta itemprop="name" content="SJCHEN">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SJCHEN">
+      <meta itemprop="description" content="start from zero">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SJCHEN">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">输入输出管理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-11-07 02:30:39" itemprop="dateCreated datePublished" datetime="2022-11-07T02:30:39+08:00">2022-11-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">计算机基础</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">操作系统</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/#waline" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" data-path="/2022/11/07/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%AE%A1%E7%90%86/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>重点掌握I/O接口，I/O软件。三种I/O控制方式，高速缓存与缓冲区，SPOOLing技术，磁盘特性和调度算法。</p>
+<h1 id="io管理概述">I/O管理概述</h1>
+<h2 id="io-设备">I/O 设备</h2>
+<h3 id="io接口">I/O接口</h3>
+<p>I/O接口（设备控制器）位于CPU与设备之间，它既要与CPU通信，又要与设备通信，还要具有按CPU发来的命令去控制设备工作的功能。</p>
+<p>主要由三部分组成：</p>
+<ol type="1">
+<li><strong>设备控制器与CPU接口</strong>
+，该接口有三类信号线：数据线，地址线和控制线</li>
+<li><strong>设备控制器与设备的接口</strong></li>
+<li><strong>I/O逻辑</strong></li>
+</ol>
+<p><strong>设备控制器的主要功能：</strong></p>
+<ol type="1">
+<li>接收和识别CPU发来的命令，如磁盘控制器能接收读，写，查找等命令</li>
+<li>数据交换，包括设备和控制器之间的数据传输，以及控制器和主存之间的数据传输</li>
+<li>标识和报告设备的状态，以供CPU处理</li>
+<li>地址识别</li>
+<li>数据缓冲</li>
+<li>差错控制</li>
+</ol>
+<h3 id="io端口">I/O端口</h3>
+<p>I/O端口是指设备控制器中可被CPU直接访问的寄存器，主要有以下三类寄存器：</p>
+<ol type="1">
+<li><strong>数据寄存器：</strong> 实现CPU和外设之间的数据缓冲</li>
+<li><strong>状态寄存器：</strong>
+获取执行结果和设备的状态信息，以让CPU知道是否准备好</li>
+<li><strong>控制寄存器：</strong>
+由CPU写入，以便启动命令或更改设备模式</li>
+</ol>
+<p>为了实现CPU与I/O端口进行通信，有两种方法：</p>
+<ol type="1">
+<li>独立编址</li>
+<li>统一编址</li>
+</ol>
+<h2 id="io控制方式">I/O控制方式</h2>
+<p>设备管理的主要任务之一是控制设备和内存或CPU之间的数据传送。</p>
+<h3 id="程序直接控制方式">1.程序直接控制方式</h3>
+<p>简单且易于实现，由于CPU和设备只能串行工作，导致CPU利用率相当低</p>
+<h3 id="中断驱动方式">2.中断驱动方式</h3>
+<p>允许I/O设备主动打断CPU的运行并请求服务，从而“解放”CPU。</p>
+<p>从CPU的角度来看，CPU发出读命令，然后保存当前运行程序的上下文（现场，包括程序计数器以及处理机寄存器），转去执行其他程序。<em>在每个指令周期的末尾，CPU检查中断</em>。当有来自I/O控制器的中断时，CPU保存当前正在运行程序的上下文，转去执行中断处理程序以处理该中断。这时，CPU从I/O控制器读一个字的数据传送到寄存器，并存入主存，接着，CPU恢复发出I/O命令的程序（或其他命令）的上下文，然后继续执行。</p>
+<p>中断驱动方式比程序直接控制方式有效，但由于数据中的每个字在存储器与I/O控制器之间的传输都必须经过CPU，这就导致了中断驱动方式仍然会消耗较多的CPU时间。</p>
+<h3 id="dma方式">3.DMA方式</h3>
+<p>DMA（之间存储器存取）是在I/O设备和内存之间开辟直接的数据交换通路，彻底“释放”CPU</p>
+<p>特点：</p>
+<ol type="1">
+<li>基本单位是数据块</li>
+<li>所传送的数据，是从设备直接送入内存，或者相反</li>
+<li>仅在传送一个或多个数据块的开始和结束时，才需要CPU干预，整块数据的传送是在DMA控制器的控制下完成的。</li>
+</ol>
+<p>要在主机与控制器之间实现成块数据的直接交换，必须在DMA控制器中设置以下4类寄存器：</p>
+<ol type="1">
+<li>命令/状态寄存器（CR）</li>
+<li>内存地址寄存器（MAR）</li>
+<li>数据寄存器（DR）</li>
+<li>数据计数器（DC）</li>
+</ol>
+<p><em>DMA方式与中断方式的主要区别：</em></p>
+<p>中断方式在每个数据需要传输时中断CPU，而DMA方式则是在所要求传送的一批数据全部传送结束时才中断CPU；此外，中断方式的数据传送是在中断处理时由CPU控制完成的，而MDA方式则是在DMA控制器的控制下完成的。</p>
+<h3 id="通道控制方式">4.通道控制方式</h3>
+<p>I/O通道是指专门负责输入/输出的处理机。通道属于硬件</p>
+<p>I/O通道与一般处理机的区别：通道指令的类型单一，没有自己的内存，通道所执行的通道程序是放在主机的内存中，也就是说<em>通道与CPU共享内存</em></p>
+<p>I/O通道与DMA方式的区别：DMA方式需要CPU来控制传输的数据块大小，传输的内存位置，而通道方式中这些信息是由通道控制的。另外，每个DMA控制器对应一台设备或内存传递数据，而一个通道可以控制多态设备与内存的数据交换</p>
+<h2 id="io软件层次结构">I/O软件层次结构</h2>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202210061705226.png" /></p>
+<h2 id="总结记忆点">总结记忆点</h2>
+<ol type="1">
+<li>可寻址是块设备的基本特征</li>
+<li>共享设备是指<em>一段时间</em>内允许多个进程同时访问的设备</li>
+<li>I/O控制方式为：程序直接控制方式，中断驱动方式，DMA方式，通道控制方式</li>
+<li>接口用于传输信号，I/O逻辑即设备控制器用来实现对设备的控制</li>
+<li>DMA是在<em>I/O设备和主存</em>之间建立一条直接数据通路</li>
+<li>通道又称I/O处理机，用于实现<em>内存与外设</em>之间的信息传输</li>
+<li><em>字节多路通道</em> 用作连接大量的低速或中速I/O设备</li>
+<li>及时性不是设备分配中应考虑的问题</li>
+<li>通道控制设备控制器，设备控制器控制设备工作</li>
+</ol>
+<h2 id="设备独立性软件">5.2 设备独立性软件</h2>
+<h3 id="高速缓存与缓冲区">5.2.2 高速缓存与缓冲区</h3>
+<h4 id="磁盘高速缓存">1. 磁盘高速缓存</h4>
+<p>磁盘高速缓存逻辑上属于磁盘，物理上则是驻留在内存中的盘块</p>
+<p>高速缓存在内存中分为两种形式：</p>
+<ol type="1">
+<li>在内存中开辟一个单独的空间作为磁盘高速缓存，大小固定</li>
+<li>把未利用的内存空间作为一个缓冲池，供请求分页系统和磁盘I/O时共享</li>
+</ol>
+<h4 id="缓冲区">2. 缓冲区</h4>
+<p>引入缓冲区的目的：</p>
+<ol type="1">
+<li>缓和CPU与I/O设备间速度不匹配的矛盾</li>
+<li>减少对CPU的中断频率，放宽对CPU中断响应时间的限制</li>
+<li>解决基本数据单元大小不匹配的问题</li>
+<li>提高CPU和I/O设备之间的并行性</li>
+</ol>
+<p>实现方法：</p>
+<ol type="1">
+<li>采用硬件缓冲区，但由于成本太高，除一些关键部位外，一般不采用硬件缓冲器</li>
+<li>采用缓冲区（位于内存区域）</li>
+</ol>
+<p>缓冲区管理需要重点考虑的问题是：</p>
+<p>实现进程访问缓冲区的同步</p>
+<p>根据系统设置缓冲区的个数，缓存技术可以分为以下几种：</p>
+<h5 id="单缓冲">1. 单缓冲</h5>
+<p>在块设备输入时，假定从磁盘把一块数据输入到缓冲区的时间为T，操作系统将该缓冲区中的数据传送到用户区的时间为M，而CPU对这一块数据处理的时间为C</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202210141650624.png" /></p>
+<p>假设初始状态为：工作区是满的，缓冲区是空的。如题目无明确说明，通常认为缓冲区的大小和工作区的大小相等</p>
+<p>单缓冲区处理每块数据的用时为<code>max(C,T) + M</code></p>
+<h5 id="双缓冲">2. 双缓冲</h5>
+<p>双缓冲区处理一块数据的用时为 <code>max(C + M, T)</code></p>
+<h5 id="循环缓冲">3. 循环缓冲</h5>
+<h5 id="缓冲池">4. 缓冲池</h5>
+<p>为了使并发进程能有效地进行输入和输出</p>
+<p>缓冲池在主存中</p>
+<h3 id="设备分配与回收">5.2.3 设备分配与回收</h3>
+<h4 id="设备分配概述">1. 设备分配概述</h4>
+<ol type="1">
+<li>独占设备</li>
+<li>共享设备</li>
+<li>虚拟设备</li>
+</ol>
+<h4 id="设备分配的数据结构">2. 设备分配的数据结构</h4>
+<p>设备分配依据的主要数据结构：</p>
+<ol type="1">
+<li>设备控制表（DCT）</li>
+<li>控制器控制表（COCT）</li>
+<li>通道控制表（CHCT）</li>
+<li>系统设备表（SDT）</li>
+</ol>
+<h4 id="设备分配策略">3. 设备分配策略</h4>
+<p>对于独占设备，既可以采用动态分配方式，也可以采用静态分配方式，但往往采用静态分配方式。共享设备一般采用动态分配方式。</p>
+<h4 id="设备分配的安全性">4. 设备分配的安全性</h4>
+<p>指设备分配中应防止发生进程死锁</p>
+<ol type="1">
+<li>安全分配方式，缺点：CPU和I/O设备是串行工作</li>
+<li>不安全分配方式，优点：一个进程可以同时操作多个设备，使进程推进迅速，缺点：有可能造成死锁</li>
+</ol>
+<h4 id="逻辑设备名到物理设备名的映射">5.
+逻辑设备名到物理设备名的映射</h4>
+<p>为了提高设备分配的灵活性和设备的利用率，方便实现I/O重定向，引入了设备独立性。</p>
+<p><em>设备独立性</em> 指应用程序独立与具体使用的物理设备</p>
+<p>为了实现设备独立性，在应用程序中使用 <strong>逻辑设备名</strong>
+来请求使用某类设备，在系统中设置一张逻辑设备表（LUT），用于将逻辑设备名映射为物理设备名</p>
+<p>在系统中可采取两种方式设备逻辑设备表：</p>
+<ol type="1">
+<li>在整个系统中只设置一张LUT。主要适用于单用户系统</li>
+<li>为每个用户设置一张LUT，每当用户登陆时，系统便为该用户建立一个进程，同时也为之建立一张LUT，并将该表放入进程的PCB中</li>
+</ol>
+<h3 id="spooling技术假脱机技术">5.2.4 SPOOLing技术（假脱机技术）</h3>
+<p>为了缓和CPU的高速性与I/O设备的低速性之间的矛盾</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211052151022.png" /></p>
+<p>组成：</p>
+<ol type="1">
+<li>输入井和输出井</li>
+<li>输入缓冲区和输出缓冲区</li>
+<li>输入进程和输出进程</li>
+</ol>
+<p>SPOOLing系统特点：</p>
+<ol type="1">
+<li>提高了I/O的速度，将对低速I/O设备执行的I/O设备演变为对磁盘缓冲区中数据的存取</li>
+<li>将独占设备改造为共享设备</li>
+<li>实现了虚拟设备功能</li>
+</ol>
+<p><strong>SPOOLing技术是一种以空间换时间的技术</strong></p>
+<h3 id="总结">总结</h3>
+<ol type="1">
+<li>提高单机资源利用率的关键技术是：多道程序设计技术</li>
+<li>虚拟设备是靠SPOOLing技术来实现的</li>
+<li>SPOOLing技术的主要目的是：提高独占设备的利用率</li>
+<li>在采用SPOOLing技术的系统中，用户打印结果首先被送到
+<em>磁盘固定区域</em></li>
+<li>采用SPOOLing技术的计算机系统，需要使用磁盘空间（输入井和输出井）和内存空间（输入/输出缓冲区），不需要外围计算机的支持</li>
+<li>设备可视为特殊文件</li>
+<li>对于具备设备独立性的系统，更换物理设备后只需更换驱动程序</li>
+</ol>
+<h2 id="磁盘和固态硬盘">5.3 磁盘和固态硬盘</h2>
+<h3 id="磁盘">5.3.1 磁盘</h3>
+<p>磁盘盘面上的数据存储在一组同心圆中，称为<em>磁道</em>，磁道又划分为几百个扇区，每个扇区固定存储大小，一个扇区称为一个<em>盘块</em>，相邻磁道及相邻扇区通过一定的间隙分隔开，以避免精度错误</p>
+<p>扇区是磁盘可寻址的最小单位，磁盘上能存储的物理块数目由扇区数，磁道数及磁盘面数决定。</p>
+<p>磁盘地址用“柱面-盘面号-扇区号”表示</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211052232489.png" /></p>
+<h3 id="磁盘的管理">5.3.2 磁盘的管理</h3>
+<h4 id="磁盘初始化">1.磁盘初始化</h4>
+<p>在磁盘可以存储数据之前，必须将它分成扇区，以便磁盘控制器能够进行读写操作，这个过程称为<em>低级格式化（或物理格式化）</em></p>
+<h4 id="分区">2.分区</h4>
+<p>在可以使用磁盘存储文件之前，操作系统还要将自己的数据结构记录到磁盘上，分为两步：</p>
+<ol type="1">
+<li>将磁盘分为由一个或多个柱面组成的分区（即C盘，D盘等分区），每个分区起始扇区和大小都记录在磁盘主引导记录的分区表中</li>
+<li>对物理分区进行<em>逻辑格式化（创建文件系统）</em>，操作系统将初始的文件系统数据结构存储到磁盘上</li>
+</ol>
+<p>因为扇区的单位太小，为了提高效率，操作系统将多个相邻的扇区组合在一起，形成一簇。为了更高效的管理磁盘，一簇只能存放一个文件的内容，文件所占用的空间只能是簇的整数倍；如果文件大小小与一簇，也要占用一簇的空间</p>
+<h3 id="引导块">3.引导块</h3>
+<p>计算机启动时需要运行一个初始化程序（自举程序），它初始化CPU，寄存器，设备控制器和内存等，接着启动操作系统。</p>
+<p><strong>自举程序通常存放在ROM中</strong>，通常只在ROM中保留很小的自举装入程序，而将完整功能的引导程序保存在磁盘的启动块上，启动块位于磁盘固定位置，具有启动分区的磁盘称为<em>启动磁盘或系统磁盘</em></p>
+<h3 id="坏块">4. 坏块</h3>
+<p>对坏盘的处理实质上就是用某种机制使系统不去使用坏块</p>
+<h2 id="磁盘调度算法">5.3.3 磁盘调度算法</h2>
+<p>一次磁盘读写的时间由寻找（寻道）时间，旋转延迟时间和传输时间决定</p>
+<ol type="1">
+<li>寻找时间<span class="math inline">\(T_s\)</span></li>
+</ol>
+<p>活动头磁盘在读写信息前，将磁头移动到指定磁道所需要的时间，这个时间除了跨越n条磁道的时间外，还包括启动磁臂的时间s</p>
+<p><span class="math display">\[
+T_s = m * n + s
+\]</span></p>
+<p>m是与磁盘驱动器速度有关的常数，约为<code>0.2ms</code>，磁臂的启动时间约为<code>2ms</code></p>
+<ol start="2" type="1">
+<li>旋转延迟时间<span class="math inline">\(T_r\)</span></li>
+</ol>
+<p>磁头定位到某一磁道的扇区所需要的时间，设磁盘的旋转速度为r</p>
+<p><span class="math display">\[
+T_r = \frac{1}{2r}
+\]</span></p>
+<p>对于硬盘，典型的旋转速度为<code>5400</code>转/分，相当于<code>11.1ms</code>，则<span
+class="math inline">\(T_r\)</span>为5.55ms</p>
+<ol start="3" type="1">
+<li>传输时间<span class="math inline">\(T_t\)</span></li>
+</ol>
+<p>从磁盘读出或向磁盘写入数据所经历的时间，这个时间取决于每次所写或读的字节数b和磁盘的旋转速度</p>
+<p><span class="math display">\[
+T_t = \frac{b}{rN}
+\]</span></p>
+<p>r为磁盘每秒的转数，N为一个磁道上的字节数</p>
+<p>在磁盘存取时间的计算中，寻道时间与磁盘调度算法相关，而延迟时间和传输时间都与磁盘旋转速度相关，且为线性相关</p>
+<p>总平均存取时间<span class="math inline">\(T_a\)</span></p>
+<p><span class="math display">\[
+T_a = T_s + \frac{1}{2r} + \frac{b}{rN}
+\]</span></p>
+<h3 id="常用磁盘调度算法">常用磁盘调度算法</h3>
+<ol type="1">
+<li>先来先服务（FCFS）算法</li>
+</ol>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070136465.png" /></p>
+<ol start="2" type="1">
+<li>最短寻找时间优先（SSTF）算法</li>
+</ol>
+<p><em>会产生饥饿现象</em></p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070137030.png" /></p>
+<ol start="3" type="1">
+<li>扫描（SCAN）算法（又称电梯调度算法）</li>
+</ol>
+<p><em>可避免饥饿现象</em></p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070139941.png" /></p>
+<ol start="4" type="1">
+<li>循环扫描（C-SCAN）算法</li>
+</ol>
+<p>消除了对两端磁道请求的不公平</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070140252.png" /></p>
+<p>改进型SCAN和C-SCAN，不需要到达磁盘端点，称为LOOK调度和C-LOOK调度</p>
+<p>无特殊说明默认SCAN和C-SCAN为LOOK和C-LOOK调度</p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070143345.png" /></p>
+<p><img
+src="https://sjchen404.oss-cn-shenzhen.aliyuncs.com/img/202211070143755.png" /></p>
+<p>除了减少寻找时间外，减少延迟时间也是提高传输效率的重要因素，可以对盘面扇区进行交替编号</p>
+<h2 id="固态硬盘">5.3.4 固态硬盘</h2>
+<h3 id="固态硬盘特性">1. 固态硬盘特性</h3>
+<p>固态硬盘（SSD）是一种基于闪存技术的存储器。</p>
+<p>随机读写性能明显高于磁盘</p>
+<p>随机写比较慢，易于磨损</p>
+<h3 id="磨损均衡">2. 磨损均衡</h3>
+<ul>
+<li>动态磨损均衡，写入数据时，自动选择较新的闪存块。</li>
+<li>静态磨损均衡，这种技术更先进。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1340,137 +1723,6 @@ target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/largest-re
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://sjchen404.github.io/2022/08/17/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91_%E5%90%8E%E7%BB%A7%E8%80%85/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/new%E5%A4%B4%E5%83%8F.jpg">
-      <meta itemprop="name" content="SJCHEN">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="SJCHEN">
-      <meta itemprop="description" content="start from zero">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | SJCHEN">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/08/17/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91_%E5%90%8E%E7%BB%A7%E8%80%85/" class="post-title-link" itemprop="url">二叉搜索树__后继者</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-08-17 01:24:22" itemprop="dateCreated datePublished" datetime="2022-08-17T01:24:22+08:00">2022-08-17</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/%E4%BA%8C%E5%8F%89%E6%A0%91/" itemprop="url" rel="index"><span itemprop="name">二叉树</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/2022/08/17/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91_%E5%90%8E%E7%BB%A7%E8%80%85/#waline" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" data-path="/2022/08/17/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91_%E5%90%8E%E7%BB%A7%E8%80%85/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="面试题-04.06.-后继者"><a
-target="_blank" rel="noopener" href="https://leetcode.cn/problems/successor-lcci/">面试题 04.06.
-后继者</a></h1>
-<p>设计一个算法，找出二叉搜索树中指定节点的“下一个”节点（也即中序后继）。</p>
-<p>如果指定节点没有对应的“下一个”节点，则返回<code>null</code>。</p>
-<h2 id="示例">示例：</h2>
-<blockquote>
-<p>输入: root = [2,1,3], p = 1</p>
-<p>2</p>
-<p>/<br />
-</p>
-<p>1 3</p>
-<p>输出: 2</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/08/17/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91_%E5%90%8E%E7%BB%A7%E8%80%85/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
@@ -1497,13 +1749,13 @@ target="_blank" rel="noopener" href="https://leetcode.cn/problems/successor-lcci
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">600k</span>
+    <span title="站点总字数">605k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">9:06</span>
+    <span title="站点阅读时长">9:10</span>
   </span>
 </div>
 <div class="busuanzi-count">
